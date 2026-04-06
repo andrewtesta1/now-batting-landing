@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/join/:id",
+      "destination": "https://walkup-hero.vercel.app/join/:id"
+    }
+  ]
+}
