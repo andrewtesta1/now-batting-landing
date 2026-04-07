@@ -413,40 +413,177 @@
 
     /* ── HEAR THE MOMENT ── */
     .moment { padding: 80px 0; }
-    .moment-sub { font-size: 17px; color: var(--txt2); line-height: 1.65; max-width: 540px; margin: 0 auto 44px; text-align: center; }
-    .moment-timeline {
-      display: flex; align-items: flex-start; justify-content: center;
-      gap: 0; margin-bottom: 44px; flex-wrap: nowrap;
-    }
-    .mt-step { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; max-width: 220px; }
-    .mt-dot { width: 16px; height: 16px; border-radius: 8px; margin-bottom: 12px; flex-shrink: 0; box-shadow: 0 0 12px currentColor; }
-    .mt-label { font-family: var(--bebas); font-size: 18px; letter-spacing: 1px; color: var(--txt); margin-bottom: 6px; }
-    .mt-desc { font-size: 13px; color: var(--txt2); line-height: 1.5; }
-    .mt-line { flex: 0 0 48px; height: 2px; background: linear-gradient(to right, rgba(30,52,80,0.8), rgba(30,52,80,0.8)); margin-top: 7px; align-self: flex-start; }
-    .moment-btn-wrap { text-align: center; }
+    .moment-sub { font-size: 17px; color: var(--txt2); line-height: 1.65; max-width: 540px; margin: 0 auto 40px; text-align: center; }
     .moment-btn {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--gold); color: #000; font-family: var(--dm); font-weight: 700;
-      font-size: 15px; letter-spacing: 1px; padding: 18px 36px; border-radius: 12px;
+      font-size: 15px; letter-spacing: 1px; padding: 16px 32px; border-radius: 12px;
       border: none; cursor: pointer; transition: opacity 0.15s, transform 0.12s;
     }
     .moment-btn:hover { opacity: 0.88; transform: scale(1.02); }
     .moment-btn:active { transform: scale(0.97); }
     .moment-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
     .moment-btn.playing { background: var(--surf); color: var(--txt); border: 1px solid var(--bord); }
-    .moment-progress {
-      margin: 18px auto 0; max-width: 340px; height: 3px; border-radius: 2px;
-      background: var(--bord); overflow: hidden; display: none;
-    }
+    .moment-progress { margin: 16px auto 0; width: 260px; height: 3px; border-radius: 2px; background: var(--bord); overflow: hidden; display: none; }
     .moment-progress.on { display: block; }
     .moment-progress-bar { height: 100%; background: var(--gold); width: 0%; transition: width 0.15s linear; }
-    .moment-phase { text-align: center; font-size: 12px; color: var(--dim); font-weight: 700; letter-spacing: 1.5px; margin-top: 10px; min-height: 18px; text-transform: uppercase; }
-    @media (max-width: 860px) {
-      .moment { padding: 60px 0; }
-      .moment-timeline { flex-direction: column; align-items: center; gap: 20px; }
-      .mt-line { display: none; }
-      .mt-step { max-width: 100%; }
+    .moment-phase { text-align: center; font-size: 11px; color: var(--dim); font-weight: 700; letter-spacing: 1.5px; margin-top: 8px; min-height: 16px; text-transform: uppercase; }
+
+    /* ── DEMO ANNOUNCEMENT SCREEN ── */
+    .demo-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    .demo-phone {
+      width: 260px;
+      background: #0B1220;
+      border: 1.5px solid #1E3450;
+      border-radius: 30px;
+      padding: 18px 16px 20px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04);
+      overflow: hidden; position: relative;
+      transition: box-shadow 0.5s;
     }
+    .demo-phone.song  { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 40px rgba(200,152,32,0.18), 0 0 0 1px rgba(255,255,255,0.04); }
+    .demo-phone.announcing { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 50px rgba(208,20,38,0.28), 0 0 0 1px rgba(255,255,255,0.04); }
+    .demo-phone.blast { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 60px rgba(255,255,255,0.14), 0 0 0 1px rgba(255,255,255,0.04); }
+
+    /* Progress tabs */
+    .demo-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+    .demo-tab {
+      flex: 1; height: 3px; border-radius: 2px; background: #1E3450;
+      position: relative; overflow: hidden;
+    }
+    .demo-tab-label {
+      font-family: var(--dm); font-size: 8px; font-weight: 700; letter-spacing: 1.2px;
+      color: #405870; text-transform: uppercase; text-align: center;
+      margin-top: 4px; transition: color 0.35s;
+    }
+    .demo-tab-fill {
+      position: absolute; top: 0; left: 0; height: 100%; width: 0%; border-radius: 2px;
+      transition: width 0.3s, background 0.3s;
+    }
+    /* Song tab active */
+    .demo-phone.song .demo-tab-song .demo-tab-fill { width: 100%; background: #C89820; }
+    .demo-phone.song .demo-tab-song .demo-tab-label { color: #C89820; }
+    /* Call tab active */
+    .demo-phone.announcing .demo-tab-song .demo-tab-fill { width: 100%; background: #C89820; }
+    .demo-phone.announcing .demo-tab-call .demo-tab-fill { width: 100%; background: #D01426; }
+    .demo-phone.announcing .demo-tab-call .demo-tab-label { color: #D01426; }
+    .demo-phone.announcing .demo-tab-song .demo-tab-label { color: #C89820; }
+    /* Blast tab active */
+    .demo-phone.blast .demo-tab-song .demo-tab-fill,
+    .demo-phone.blast .demo-tab-call .demo-tab-fill { width: 100%; background: #C89820; }
+    .demo-phone.blast .demo-tab-blast .demo-tab-fill { width: 100%; background: #fff; }
+    .demo-phone.blast .demo-tab-song .demo-tab-label,
+    .demo-phone.blast .demo-tab-call .demo-tab-label { color: rgba(200,152,32,0.6); }
+    .demo-phone.blast .demo-tab-blast .demo-tab-label { color: #fff; }
+
+    /* Album art */
+    .demo-artwork {
+      width: 160px; height: 160px; border-radius: 14px; margin: 0 auto 16px;
+      background: #0D1A2A;
+      border: 1px solid #1C2A3A;
+      display: flex; align-items: center; justify-content: center;
+      transition: box-shadow 0.4s, border-color 0.4s;
+      overflow: hidden; position: relative;
+    }
+    .demo-phone.song .demo-artwork { border-color: rgba(200,152,32,0.3); box-shadow: 0 8px 30px rgba(200,152,32,0.2); }
+    .demo-phone.announcing .demo-artwork { border-color: rgba(208,20,38,0.3); box-shadow: 0 8px 30px rgba(208,20,38,0.25); }
+    .demo-phone.blast .demo-artwork { border-color: rgba(255,255,255,0.25); box-shadow: 0 8px 30px rgba(255,255,255,0.1); }
+    /* Music note icon in artwork placeholder */
+    .demo-artwork-icon { font-size: 48px; opacity: 0.12; }
+
+    /* NOW BATTING label */
+    .demo-nb-label {
+      font-family: var(--bebas); font-size: 13px; letter-spacing: 4px;
+      color: #D01426; text-align: center; margin-bottom: 6px;
+      position: relative; display: inline-block; left: 50%; transform: translateX(-50%);
+      transition: color 0.35s, text-shadow 0.35s;
+    }
+    .demo-nb-label::after {
+      content: ''; display: block; height: 2px; border-radius: 1px;
+      background: #D01426; margin-top: 3px;
+      transition: background 0.35s;
+    }
+    .demo-phone.blast .demo-nb-label { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+    .demo-phone.blast .demo-nb-label::after { background: #fff; }
+
+    /* Phase badge */
+    .demo-phase-badge {
+      display: block; text-align: center; margin: 0 auto 12px;
+      font-family: var(--dm); font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+      color: #7A9AB8; text-transform: uppercase;
+      border: 1px solid #1E3450; border-radius: 20px;
+      padding: 4px 12px; width: fit-content; position: relative; left: 50%; transform: translateX(-50%);
+      transition: color 0.35s, border-color 0.35s;
+    }
+    .demo-phone.song .demo-phase-badge { color: #C89820; border-color: rgba(200,152,32,0.35); }
+    .demo-phone.announcing .demo-phase-badge { color: #fff; border-color: rgba(255,255,255,0.2); }
+    .demo-phone.blast .demo-phase-badge { color: #fff; border-color: rgba(255,255,255,0.3); }
+
+    /* Jersey number */
+    .demo-jersey-num {
+      font-family: var(--bebas); font-size: 40px; line-height: 1;
+      color: #C89820; text-align: center; margin-bottom: 2px;
+      transition: color 0.35s, text-shadow 0.35s;
+    }
+    .demo-phone.announcing .demo-jersey-num { color: #C89820; }
+    .demo-phone.blast .demo-jersey-num { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.4); }
+
+    /* Player name */
+    .demo-player-name {
+      font-family: var(--bebas); font-size: 46px; line-height: 0.95;
+      color: #fff; text-align: center; letter-spacing: 1px;
+      margin-bottom: 14px;
+      transition: text-shadow 0.35s;
+    }
+    .demo-phone.blast .demo-player-name { text-shadow: 0 0 30px rgba(255,255,255,0.3); }
+
+    /* Song info */
+    .demo-song-info { text-align: center; margin-bottom: 18px; }
+    .demo-song-title {
+      font-family: var(--dm); font-size: 12px; font-style: italic; color: #D0DCE8;
+      margin-bottom: 2px; transition: color 0.35s;
+    }
+    .demo-phone.announcing .demo-song-title { color: rgba(208,20,38,0.4); }
+    .demo-song-artist { font-family: var(--dm); font-size: 11px; color: #7A9AB8; transition: color 0.35s; }
+    .demo-phone.announcing .demo-song-artist { color: rgba(208,20,38,0.3); }
+
+    /* Waveform background (announcing state) */
+    .demo-waveform-bg {
+      position: absolute; bottom: 80px; left: 0; right: 0;
+      display: flex; align-items: flex-end; justify-content: center; gap: 3px;
+      height: 60px; padding: 0 20px; pointer-events: none;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .demo-phone.announcing .demo-waveform-bg { opacity: 1; }
+    .demo-phone.blast .demo-waveform-bg { opacity: 0.3; }
+    .dwf-bg-bar {
+      width: 4px; border-radius: 2px; background: rgba(208,20,38,0.25);
+      animation: dwfBg 0.6s ease-in-out var(--d,0s) infinite alternate;
+    }
+    @keyframes dwfBg { from { height: 6px; } to { height: 50px; } }
+
+    /* Action buttons */
+    .demo-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+    .demo-btn {
+      flex: 1; padding: 10px 0; border-radius: 10px; text-align: center;
+      font-family: var(--dm); font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+      border: 1.5px solid #1E3450; color: #7A9AB8; background: rgba(16,30,48,0.6);
+      transition: border-color 0.35s, color 0.35s, background 0.35s;
+    }
+    .demo-btn-stop {
+      border-color: rgba(208,20,38,0.4); color: #D01426; background: rgba(208,20,38,0.08);
+    }
+    .demo-phone.blast .demo-btn-stop { border-color: rgba(255,255,255,0.25); color: #fff; background: rgba(255,255,255,0.06); }
+
+    /* Volume row */
+    .demo-vol {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .demo-vol-label { font-family: var(--dm); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #405870; text-transform: uppercase; }
+    .demo-vol-val { font-family: var(--dm); font-size: 11px; color: #7A9AB8; }
+    .demo-vol-btn { font-size: 14px; color: #405870; line-height: 1; }
+    .demo-ctrl { display: flex; flex-direction: column; align-items: center; }
+    @media (max-width: 860px) { .moment { padding: 60px 0; } }
   </style>
 </head>
 <body>
@@ -578,29 +715,91 @@
     <p class="eyebrow r">The Full Experience</p>
     <h2 class="h2 r d1" style="text-align:center; margin-bottom:12px;">~15 seconds. Big-league energy.</h2>
     <p class="moment-sub r d2">Song drops. Stadium call fires. Song roars back. Just like watching your kid walk up in the pros — except it's your backfield on a Tuesday night.</p>
-    <div class="moment-timeline r d2">
-      <div class="mt-step">
-        <div class="mt-dot" style="background:#C89820; box-shadow:0 0 10px rgba(200,152,32,0.6);"></div>
-        <div class="mt-label">Song Drops</div>
-        <div class="mt-desc">Walk-up music starts as they step to the plate</div>
+
+    <div class="demo-layout r d2">
+
+      <!-- Animated phone mockup — announcement screen -->
+      <div class="demo-phone" id="demoPhone">
+
+        <!-- Progress tabs: SONG / CALL / BLAST -->
+        <div class="demo-tabs">
+          <div class="demo-tab demo-tab-song">
+            <div class="demo-tab-fill"></div>
+            <div class="demo-tab-label">SONG</div>
+          </div>
+          <div class="demo-tab demo-tab-call">
+            <div class="demo-tab-fill"></div>
+            <div class="demo-tab-label">CALL</div>
+          </div>
+          <div class="demo-tab demo-tab-blast">
+            <div class="demo-tab-fill"></div>
+            <div class="demo-tab-label">BLAST</div>
+          </div>
+        </div>
+
+        <!-- Album art -->
+        <div class="demo-artwork">
+          <span class="demo-artwork-icon">♪</span>
+        </div>
+
+        <!-- NOW BATTING -->
+        <span class="demo-nb-label">NOW BATTING</span>
+
+        <!-- Phase badge -->
+        <span class="demo-phase-badge" id="demoPhaseLabel">WALK-UP SONG STARTS</span>
+
+        <!-- Waveform background (announcing) -->
+        <div class="demo-waveform-bg">
+          <div class="dwf-bg-bar" style="--d:0s"></div>
+          <div class="dwf-bg-bar" style="--d:.05s"></div>
+          <div class="dwf-bg-bar" style="--d:.1s"></div>
+          <div class="dwf-bg-bar" style="--d:.15s"></div>
+          <div class="dwf-bg-bar" style="--d:.2s"></div>
+          <div class="dwf-bg-bar" style="--d:.25s"></div>
+          <div class="dwf-bg-bar" style="--d:.3s"></div>
+          <div class="dwf-bg-bar" style="--d:.35s"></div>
+          <div class="dwf-bg-bar" style="--d:.4s"></div>
+          <div class="dwf-bg-bar" style="--d:.45s"></div>
+          <div class="dwf-bg-bar" style="--d:.5s"></div>
+          <div class="dwf-bg-bar" style="--d:.55s"></div>
+          <div class="dwf-bg-bar" style="--d:.6s"></div>
+          <div class="dwf-bg-bar" style="--d:.65s"></div>
+          <div class="dwf-bg-bar" style="--d:.7s"></div>
+        </div>
+
+        <!-- Jersey number + name -->
+        <div class="demo-jersey-num">#7</div>
+        <div class="demo-player-name">JAKE<br>MILLER</div>
+
+        <!-- Song info -->
+        <div class="demo-song-info">
+          <div class="demo-song-title">Eye of the Tiger</div>
+          <div class="demo-song-artist">Survivor</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="demo-btns">
+          <div class="demo-btn">REPLAY</div>
+          <div class="demo-btn demo-btn-stop">STOP</div>
+        </div>
+
+        <!-- Volume -->
+        <div class="demo-vol">
+          <span class="demo-vol-btn">−</span>
+          <span class="demo-vol-label">VOLUME</span>
+          <span class="demo-vol-val">100%</span>
+          <span class="demo-vol-btn">+</span>
+        </div>
+
       </div>
-      <div class="mt-line"></div>
-      <div class="mt-step">
-        <div class="mt-dot" style="background:#D01426; box-shadow:0 0 10px rgba(208,20,38,0.6);"></div>
-        <div class="mt-label">Call Fires</div>
-        <div class="mt-desc">"Now batting, number 7 — Jake Miller!"</div>
+
+      <!-- Play button + progress -->
+      <div class="demo-ctrl">
+        <button class="moment-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
+        <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
+        <p class="moment-phase" id="demoPhase"></p>
       </div>
-      <div class="mt-line"></div>
-      <div class="mt-step">
-        <div class="mt-dot" style="background:#FFFFFF; box-shadow:0 0 10px rgba(255,255,255,0.3);"></div>
-        <div class="mt-label">Song Roars Back</div>
-        <div class="mt-desc">Full-volume blast, then fades to silence</div>
-      </div>
-    </div>
-    <div class="moment-btn-wrap r d3">
-      <button class="moment-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
-      <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
-      <p class="moment-phase" id="demoPhase"></p>
+
     </div>
   </div>
 </section>
@@ -828,12 +1027,24 @@
 
   // ── HEAR THE EXPERIENCE demo ──────────────────────────────────────────────
   let _demoMusic = null, _demoTts = null, _demoPlaying = false, _demoTtsUrl = null;
-  const DEMO_DURATION = 15000; // ~15s total for progress bar
+  const DEMO_DURATION = 15000;
   let _demoStart = 0, _demoRaf = null, _demoAutoStop = null;
 
-  function _setPhase(txt) { const el = document.getElementById('demoPhase'); if (el) el.textContent = txt; }
+  function _setCardState(state) {
+    const phone = document.getElementById('demoPhone');
+    if (!phone) return;
+    phone.classList.remove('song', 'announcing', 'blast');
+    if (state) phone.classList.add(state);
+  }
+  function _setCardPhase(txt) {
+    const el = document.getElementById('demoPhaseLabel');
+    if (el) el.textContent = txt;
+  }
+  function _setCardIcon(txt) {
+    // no-op: announcement screen doesn't have a standalone icon element
+  }
+
   function _resetDemo(btn) {
-    // Null refs FIRST so any in-flight async continuations bail immediately
     _demoPlaying = false;
     const music = _demoMusic, tts = _demoTts, ttsUrl = _demoTtsUrl, raf = _demoRaf, autoStop = _demoAutoStop;
     _demoMusic = null; _demoTts = null; _demoTtsUrl = null; _demoRaf = null; _demoAutoStop = null;
@@ -846,7 +1057,7 @@
     const prog = document.getElementById('demoProgress'), bar = document.getElementById('demoBar');
     if (prog) prog.classList.remove('on');
     if (bar)  bar.style.width = '0%';
-    _setPhase('');
+    _setCardState(''); _setCardPhase('WALK-UP SONG STARTS'); _setCardIcon('');
   }
 
   function _tickProgress() {
@@ -863,12 +1074,10 @@
     btn.classList.add('playing');
     btn.disabled = true;
     try {
-      // Start music immediately (user gesture is still active — no async gap yet)
       _demoMusic = new Audio('/onboard_walkup.mp3');
       _demoMusic.volume = 1.0;
-      await _demoMusic.play(); // must happen before any await on fetch
+      await _demoMusic.play();
 
-      // Fetch TTS in parallel while music is already playing
       const ttsPromise = fetch('https://walkup-hero.vercel.app/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -883,13 +1092,16 @@
       _demoStart = Date.now();
       btn.textContent = '\u25A0\u00A0\u00A0STOP';
       btn.disabled = false;
-      _setPhase('Walk-up song drops...');
+
+      // Card: song phase
+      _setCardState('song');
+      _setCardPhase('WALK-UP SONG STARTS');
+      _setCardIcon('');
+
       document.getElementById('demoProgress').classList.add('on');
       _tickProgress();
-      // Hard stop at 15s regardless of track length
       _demoAutoStop = setTimeout(() => { if (_demoPlaying) _resetDemo(btn); }, 15000);
 
-      // Wait for TTS fetch (min 1.5s intro before duck)
       const [res] = await Promise.all([ttsPromise, new Promise(r => setTimeout(r, 1500))]);
       if (!_demoPlaying) return;
       if (!res.ok) throw new Error('TTS failed');
@@ -899,16 +1111,24 @@
       _demoTtsUrl = URL.createObjectURL(blob);
 
       _demoMusic.volume = 0.22;
-      _setPhase('Stadium call fires...');
+
+      // Card: announcing phase
+      _setCardState('announcing');
+      _setCardPhase('ANNOUNCING NOW');
+      _setCardIcon('');
 
       _demoTts = new Audio(_demoTtsUrl);
       _demoTts.volume = 1.0;
       await _demoTts.play();
 
       _demoTts.onended = () => {
+        if (!_demoPlaying) return;
         if (_demoMusic) _demoMusic.volume = 1.0;
         _demoTts = null;
-        _setPhase('Song roars back...');
+        // Card: blast phase
+        _setCardState('blast');
+        _setCardPhase('JAKE MILLER!');
+        _setCardIcon('');
       };
       _demoMusic.onended = () => { _resetDemo(btn); };
 
