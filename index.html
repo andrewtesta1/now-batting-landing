@@ -833,11 +833,14 @@
 
   function _setPhase(txt) { const el = document.getElementById('demoPhase'); if (el) el.textContent = txt; }
   function _resetDemo(btn) {
+    // Null refs FIRST so any in-flight async continuations bail immediately
     _demoPlaying = false;
-    if (_demoMusic) { _demoMusic.pause(); _demoMusic = null; }
-    if (_demoTts)   { _demoTts.pause();   _demoTts = null; }
-    if (_demoTtsUrl) { URL.revokeObjectURL(_demoTtsUrl); _demoTtsUrl = null; }
-    if (_demoRaf)   { cancelAnimationFrame(_demoRaf); _demoRaf = null; }
+    const music = _demoMusic, tts = _demoTts, ttsUrl = _demoTtsUrl, raf = _demoRaf;
+    _demoMusic = null; _demoTts = null; _demoTtsUrl = null; _demoRaf = null;
+    if (music)  { music.pause(); }
+    if (tts)    { tts.pause(); }
+    if (ttsUrl) { URL.revokeObjectURL(ttsUrl); }
+    if (raf)    { cancelAnimationFrame(raf); }
     if (btn) { btn.textContent = '▶\u00A0\u00A0HEAR THE EXPERIENCE'; btn.classList.remove('playing'); btn.disabled = false; }
     const prog = document.getElementById('demoProgress'), bar = document.getElementById('demoBar');
     if (prog) prog.classList.remove('on');
@@ -854,8 +857,9 @@
 
   async function playDemo(btn) {
     if (_demoPlaying) { _resetDemo(btn); return; }
-    btn.disabled = true;
+    _demoPlaying = true; // set early so a second tap during loading cancels
     btn.textContent = 'Loading...';
+    btn.classList.add('playing');
     try {
       const res = await fetch('https://walkup-hero.vercel.app/api/tts', {
         method: 'POST',
@@ -872,9 +876,9 @@
 
       _demoMusic = new Audio('/onboard_walkup.mp3');
       _demoMusic.volume = 1.0;
+      if (!_demoPlaying) return; // cancelled during TTS fetch
       await _demoMusic.play();
 
-      _demoPlaying = true;
       _demoStart = Date.now();
       btn.textContent = '■\u00A0\u00A0STOP';
       btn.classList.add('playing');
