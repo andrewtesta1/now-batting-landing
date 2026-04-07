@@ -828,19 +828,20 @@
 
   // ── HEAR THE EXPERIENCE demo ──────────────────────────────────────────────
   let _demoMusic = null, _demoTts = null, _demoPlaying = false, _demoTtsUrl = null;
-  const DEMO_DURATION = 14000; // ~14s total for progress bar
-  let _demoStart = 0, _demoRaf = null;
+  const DEMO_DURATION = 15000; // ~15s total for progress bar
+  let _demoStart = 0, _demoRaf = null, _demoAutoStop = null;
 
   function _setPhase(txt) { const el = document.getElementById('demoPhase'); if (el) el.textContent = txt; }
   function _resetDemo(btn) {
     // Null refs FIRST so any in-flight async continuations bail immediately
     _demoPlaying = false;
-    const music = _demoMusic, tts = _demoTts, ttsUrl = _demoTtsUrl, raf = _demoRaf;
-    _demoMusic = null; _demoTts = null; _demoTtsUrl = null; _demoRaf = null;
-    if (music)  { music.pause(); }
-    if (tts)    { tts.pause(); }
-    if (ttsUrl) { URL.revokeObjectURL(ttsUrl); }
-    if (raf)    { cancelAnimationFrame(raf); }
+    const music = _demoMusic, tts = _demoTts, ttsUrl = _demoTtsUrl, raf = _demoRaf, autoStop = _demoAutoStop;
+    _demoMusic = null; _demoTts = null; _demoTtsUrl = null; _demoRaf = null; _demoAutoStop = null;
+    if (music)    { music.pause(); }
+    if (tts)      { tts.pause(); }
+    if (ttsUrl)   { URL.revokeObjectURL(ttsUrl); }
+    if (raf)      { cancelAnimationFrame(raf); }
+    if (autoStop) { clearTimeout(autoStop); }
     if (btn) { btn.textContent = '▶\u00A0\u00A0HEAR THE EXPERIENCE'; btn.classList.remove('playing'); btn.disabled = false; }
     const prog = document.getElementById('demoProgress'), bar = document.getElementById('demoBar');
     if (prog) prog.classList.remove('on');
@@ -857,39 +858,46 @@
 
   async function playDemo(btn) {
     if (_demoPlaying) { _resetDemo(btn); return; }
-    _demoPlaying = true; // set early so a second tap during loading cancels
+    _demoPlaying = true;
     btn.textContent = 'Loading...';
     btn.classList.add('playing');
+    btn.disabled = true;
     try {
-      const res = await fetch('https://walkup-hero.vercel.app/api/tts', {
+      // Start music immediately (user gesture is still active — no async gap yet)
+      _demoMusic = new Audio('/onboard_walkup.mp3');
+      _demoMusic.volume = 1.0;
+      await _demoMusic.play(); // must happen before any await on fetch
+
+      // Fetch TTS in parallel while music is already playing
+      const ttsPromise = fetch('https://walkup-hero.vercel.app/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          text: 'Now batting...\nnumber 7...\nJake Miller!',
+          text: 'Now batting — number seven — Jake Miller!',
           voiceId: 'nRya2HPtpEpRT4p9vFlh',
-          voice_settings: { stability: 0.50, similarity_boost: 0.82, style: 0.88, use_speaker_boost: true, speed: 0.82 }
+          model_id: 'eleven_multilingual_v2',
+          voice_settings: { stability: 0.65, similarity_boost: 0.90, style: 0.40, use_speaker_boost: true, speed: 0.88 }
         })
       });
-      if (!res.ok) throw new Error('TTS failed');
-      const blob = await res.blob();
-      _demoTtsUrl = URL.createObjectURL(blob);
-
-      _demoMusic = new Audio('/onboard_walkup.mp3');
-      _demoMusic.volume = 1.0;
-      if (!_demoPlaying) return; // cancelled during TTS fetch
-      await _demoMusic.play();
 
       _demoStart = Date.now();
-      btn.textContent = '■\u00A0\u00A0STOP';
-      btn.classList.add('playing');
+      btn.textContent = '\u25A0\u00A0\u00A0STOP';
       btn.disabled = false;
       _setPhase('Walk-up song drops...');
       document.getElementById('demoProgress').classList.add('on');
       _tickProgress();
+      // Hard stop at 15s regardless of track length
+      _demoAutoStop = setTimeout(() => { if (_demoPlaying) _resetDemo(btn); }, 15000);
 
-      // After 1.5s: duck music, fire TTS
-      await new Promise(r => setTimeout(r, 1500));
+      // Wait for TTS fetch (min 1.5s intro before duck)
+      const [res] = await Promise.all([ttsPromise, new Promise(r => setTimeout(r, 1500))]);
       if (!_demoPlaying) return;
+      if (!res.ok) throw new Error('TTS failed');
+
+      const blob = await res.blob();
+      if (!_demoPlaying) return;
+      _demoTtsUrl = URL.createObjectURL(blob);
+
       _demoMusic.volume = 0.22;
       _setPhase('Stadium call fires...');
 
