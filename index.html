@@ -447,8 +447,9 @@
 
     /* Progress tabs */
     .demo-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
-    .demo-tab {
-      flex: 1; height: 3px; border-radius: 2px; background: #1E3450;
+    .demo-tab { flex: 1; }
+    .demo-tab-bar {
+      height: 3px; border-radius: 2px; background: #1E3450;
       position: relative; overflow: hidden;
     }
     .demo-tab-label {
@@ -458,7 +459,7 @@
     }
     .demo-tab-fill {
       position: absolute; top: 0; left: 0; height: 100%; width: 0%; border-radius: 2px;
-      transition: width 0.3s, background 0.3s;
+      transition: width 0.4s ease, background 0.3s;
     }
     /* Song tab active */
     .demo-phone.song .demo-tab-song .demo-tab-fill { width: 100%; background: #C89820; }
@@ -467,7 +468,7 @@
     .demo-phone.announcing .demo-tab-song .demo-tab-fill { width: 100%; background: #C89820; }
     .demo-phone.announcing .demo-tab-call .demo-tab-fill { width: 100%; background: #D01426; }
     .demo-phone.announcing .demo-tab-call .demo-tab-label { color: #D01426; }
-    .demo-phone.announcing .demo-tab-song .demo-tab-label { color: #C89820; }
+    .demo-phone.announcing .demo-tab-song .demo-tab-label { color: rgba(200,152,32,0.7); }
     /* Blast tab active */
     .demo-phone.blast .demo-tab-song .demo-tab-fill,
     .demo-phone.blast .demo-tab-call .demo-tab-fill { width: 100%; background: #C89820; }
@@ -479,28 +480,30 @@
     /* Album art */
     .demo-artwork {
       width: 160px; height: 160px; border-radius: 14px; margin: 0 auto 16px;
-      background: #0D1A2A;
+      background: linear-gradient(145deg, #0D1A2A 0%, #162238 60%, #0A1520 100%);
       border: 1px solid #1C2A3A;
       display: flex; align-items: center; justify-content: center;
       transition: box-shadow 0.4s, border-color 0.4s;
       overflow: hidden; position: relative;
     }
-    .demo-phone.song .demo-artwork { border-color: rgba(200,152,32,0.3); box-shadow: 0 8px 30px rgba(200,152,32,0.2); }
-    .demo-phone.announcing .demo-artwork { border-color: rgba(208,20,38,0.3); box-shadow: 0 8px 30px rgba(208,20,38,0.25); }
+    .demo-phone.song .demo-artwork { border-color: rgba(200,152,32,0.35); box-shadow: 0 8px 30px rgba(200,152,32,0.2); }
+    .demo-phone.announcing .demo-artwork { border-color: rgba(208,20,38,0.35); box-shadow: 0 8px 30px rgba(208,20,38,0.25); }
     .demo-phone.blast .demo-artwork { border-color: rgba(255,255,255,0.25); box-shadow: 0 8px 30px rgba(255,255,255,0.1); }
-    /* Music note icon in artwork placeholder */
-    .demo-artwork-icon { font-size: 48px; opacity: 0.12; }
+    /* Placeholder artwork — baseball field SVG */
+    .demo-artwork svg { width: 90px; height: 90px; opacity: 0.22; transition: opacity 0.4s; }
+    .demo-phone.song .demo-artwork svg { opacity: 0.45; }
+    .demo-phone.blast .demo-artwork svg { opacity: 0.6; }
 
     /* NOW BATTING label */
     .demo-nb-label {
       font-family: var(--bebas); font-size: 13px; letter-spacing: 4px;
       color: #D01426; text-align: center; margin-bottom: 6px;
-      position: relative; display: inline-block; left: 50%; transform: translateX(-50%);
+      display: block;
       transition: color 0.35s, text-shadow 0.35s;
     }
     .demo-nb-label::after {
       content: ''; display: block; height: 2px; border-radius: 1px;
-      background: #D01426; margin-top: 3px;
+      background: #D01426; margin-top: 3px; width: 40px; margin-left: auto; margin-right: auto;
       transition: background 0.35s;
     }
     .demo-phone.blast .demo-nb-label { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
@@ -508,11 +511,12 @@
 
     /* Phase badge */
     .demo-phase-badge {
-      display: block; text-align: center; margin: 0 auto 12px;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      margin: 0 auto 12px; width: fit-content;
       font-family: var(--dm); font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
       color: #7A9AB8; text-transform: uppercase;
       border: 1px solid #1E3450; border-radius: 20px;
-      padding: 4px 12px; width: fit-content; position: relative; left: 50%; transform: translateX(-50%);
+      padding: 4px 12px;
       transition: color 0.35s, border-color 0.35s;
     }
     .demo-phone.song .demo-phase-badge { color: #C89820; border-color: rgba(200,152,32,0.35); }
@@ -547,20 +551,31 @@
     .demo-song-artist { font-family: var(--dm); font-size: 11px; color: #7A9AB8; transition: color 0.35s; }
     .demo-phone.announcing .demo-song-artist { color: rgba(208,20,38,0.3); }
 
-    /* Waveform background (announcing state) */
+    /* Waveform background */
     .demo-waveform-bg {
-      position: absolute; bottom: 80px; left: 0; right: 0;
+      position: absolute; bottom: 72px; left: 0; right: 0;
       display: flex; align-items: flex-end; justify-content: center; gap: 3px;
-      height: 60px; padding: 0 20px; pointer-events: none;
+      height: 70px; padding: 0 12px; pointer-events: none;
       opacity: 0; transition: opacity 0.4s;
     }
+    .demo-phone.song .demo-waveform-bg { opacity: 1; }
     .demo-phone.announcing .demo-waveform-bg { opacity: 1; }
-    .demo-phone.blast .demo-waveform-bg { opacity: 0.3; }
+    .demo-phone.blast .demo-waveform-bg { opacity: 0.35; }
     .dwf-bg-bar {
-      width: 4px; border-radius: 2px; background: rgba(208,20,38,0.25);
-      animation: dwfBg 0.6s ease-in-out var(--d,0s) infinite alternate;
+      flex: 1; max-width: 5px; border-radius: 2px;
+      background: rgba(200,152,32,0.2);
+      animation: dwfBgSong 0.9s ease-in-out var(--d,0s) infinite alternate;
     }
-    @keyframes dwfBg { from { height: 6px; } to { height: 50px; } }
+    .demo-phone.announcing .dwf-bg-bar {
+      background: rgba(208,20,38,0.25);
+      animation: dwfBgAnn 0.5s ease-in-out var(--d,0s) infinite alternate;
+    }
+    .demo-phone.blast .dwf-bg-bar {
+      background: rgba(255,255,255,0.15);
+      animation: dwfBgSong 0.55s ease-in-out var(--d,0s) infinite alternate;
+    }
+    @keyframes dwfBgSong { from { height: 4px; } to { height: 45px; } }
+    @keyframes dwfBgAnn  { from { height: 4px; } to { height: 65px; } }
 
     /* Action buttons */
     .demo-btns { display: flex; gap: 8px; margin-bottom: 12px; }
@@ -724,22 +739,35 @@
         <!-- Progress tabs: SONG / CALL / BLAST -->
         <div class="demo-tabs">
           <div class="demo-tab demo-tab-song">
-            <div class="demo-tab-fill"></div>
+            <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
             <div class="demo-tab-label">SONG</div>
           </div>
           <div class="demo-tab demo-tab-call">
-            <div class="demo-tab-fill"></div>
+            <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
             <div class="demo-tab-label">CALL</div>
           </div>
           <div class="demo-tab demo-tab-blast">
-            <div class="demo-tab-fill"></div>
+            <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
             <div class="demo-tab-label">BLAST</div>
           </div>
         </div>
 
         <!-- Album art -->
         <div class="demo-artwork">
-          <span class="demo-artwork-icon">♪</span>
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Baseball diamond -->
+            <polygon points="50,10 90,50 50,90 10,50" stroke="#C89820" stroke-width="2.5" fill="rgba(200,152,32,0.06)"/>
+            <!-- Bases -->
+            <rect x="45" y="5" width="10" height="10" rx="2" fill="#C89820" opacity="0.7"/>
+            <rect x="85" y="45" width="10" height="10" rx="2" fill="#C89820" opacity="0.5"/>
+            <rect x="45" y="85" width="10" height="10" rx="2" fill="#C89820" opacity="0.5"/>
+            <rect x="5" y="45" width="10" height="10" rx="2" fill="#C89820" opacity="0.5"/>
+            <!-- Pitcher mound -->
+            <circle cx="50" cy="50" r="5" fill="rgba(200,152,32,0.25)" stroke="#C89820" stroke-width="1.5"/>
+            <!-- Foul lines -->
+            <line x1="50" y1="10" x2="10" y2="90" stroke="#C89820" stroke-width="1" opacity="0.2"/>
+            <line x1="50" y1="10" x2="90" y2="90" stroke="#C89820" stroke-width="1" opacity="0.2"/>
+          </svg>
         </div>
 
         <!-- NOW BATTING -->
