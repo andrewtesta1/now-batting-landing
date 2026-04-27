@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -28,8 +31,7 @@
       background: rgba(6,8,15,0.96); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--bord);
     }
-    .logo { font-family: var(--font-sans); font-size: 20px; letter-spacing: 3px; color: var(--daylight); text-decoration: none; }
-    .logo span { color: var(--txt); }
+    .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
     .nav-back { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
     .nav-back:hover { color: var(--daylight); }
 
@@ -64,7 +66,7 @@
 <body>
 
 <nav>
-  <a href="/" class="logo">NOW <span>BATTING</span></a>
+  <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 302 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#FFFFFF"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#C7FF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#C7FF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#C7FF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#C7FF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#C7FF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#C7FF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#C7FF00"/><circle cx="175.88" cy="30" r="3.5" fill="#FFFFFF"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">batting</text></svg></a>
   <a href="/" class="nav-back">← Back to Home</a>
 </nav>
 
