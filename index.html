@@ -133,18 +133,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       /* ── Color ── */
-      --bg:           #06080F;
-      --mid:          #111827;
-      --surf:         #1A2235;
-      --bord:         rgba(255,255,255,0.08);
+      --bg:           #F6F4EF;
+      --mid:          #FFFFFF;
+      --surf:         #EDEAD9;
+      --bord:         rgba(0,0,0,0.09);
 
       --neon:         #DFFF00;
       --daylight:     #B8CC00;
       --daylight-dim: #8A9900;
 
-      --txt:          #FFFFFF;
-      --txt2:         #9CA3AF;
-      --txt3:         #6B7280;
+      --txt:          #1F1F1F;
+      --txt2:         #4A4A4A;
+      --txt3:         #7A7A7A;
 
       /* ── Typography ── */
       --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
@@ -171,7 +171,7 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--txt); font-family: var(--font-sans); font-size: 16px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
     body::before {
-      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.12;
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
 
@@ -180,13 +180,13 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 48px;
-      background: rgba(6,8,15,0.96); backdrop-filter: blur(16px);
+      background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--bord);
     }
     .logo { display: flex; align-items: center; line-height: 1; }
     .nav-right { display: flex; align-items: center; gap: 16px; }
     .nav-social { display: flex; align-items: center; gap: 10px; }
-    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(11,26,53,0.05); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
     .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
     .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
     .nav-btn {
@@ -200,7 +200,7 @@
     section { position: relative; z-index: 1; }
     .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
     .hr { height: 1px; background: linear-gradient(to right, transparent, var(--bord), transparent); max-width: 1080px; margin: 0 auto; }
-    .eyebrow { font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 3px; color: var(--daylight); margin-bottom: 12px; text-transform: uppercase; }
+    .eyebrow { font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 3px; color: var(--txt3); margin-bottom: 12px; text-transform: uppercase; }
     .h2 { font-family: var(--font-sans); font-size: clamp(32px, 4vw, 50px); font-weight: 800; letter-spacing: -0.025em; line-height: 0.95; color: var(--txt); margin-bottom: 12px; }
 
     /* reveal */
@@ -219,7 +219,7 @@
     .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .form-row input {
       flex: 1; min-width: 200px;
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px;
+      background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.14); border-radius: 10px;
       padding: 15px 17px; font-family: var(--font-sans); font-size: 15px; color: var(--txt);
       outline: none; transition: border-color 0.2s;
     }
@@ -252,7 +252,7 @@
     }
     .hero-eye {
       font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 3px;
-      color: var(--daylight); margin-bottom: 14px;
+      color: var(--txt3); margin-bottom: 14px;
       opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s;
     }
     .hero-h1 {
@@ -360,7 +360,7 @@
     .p-t3 .p-title-em { font-size: 28px; color: var(--daylight); letter-spacing: 2px; }
 
     /* testimonial */
-    .tcard { background: var(--mid); border: 1px solid var(--bord); border-radius: 16px; padding: 32px; position: relative; overflow: hidden; }
+    .tcard { background: var(--mid); border: 1px solid var(--bord); border-radius: 16px; padding: 32px; position: relative; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
     .tcard::before {
       content: '"'; font-family: var(--font-sans); font-size: 120px; color: rgba(184,204,0,0.07);
       position: absolute; top: -12px; left: 12px; line-height: 1; pointer-events: none;
@@ -381,6 +381,7 @@
     .step {
       background: var(--mid); border: 1px solid var(--bord); border-radius: 14px;
       padding: 26px 22px; position: relative; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
       transition: border-color 0.25s, transform 0.25s;
     }
     .step:hover { border-color: rgba(184,204,0,0.4); transform: translateY(-3px); }
@@ -452,14 +453,14 @@
     .f-logo { display: flex; align-items: center; line-height: 1; }
     .f-copy { font-size: 12px; color: var(--txt3); }
     .f-social { display: flex; align-items: center; gap: 10px; }
-    .f-social a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(255,255,255,0.03); color: var(--txt3); transition: border-color 0.2s, color 0.2s; }
+    .f-social a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.03); color: var(--txt3); transition: border-color 0.2s, color 0.2s; }
     .f-social a:hover { border-color: var(--daylight); color: var(--daylight); }
     .f-social svg { width: 15px; height: 15px; fill: currentColor; }
 
     /* MOBILE STICKY */
     .msticky {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
-      background: rgba(6,8,15,0.97); backdrop-filter: blur(16px);
+      background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
       border-top: 1px solid var(--bord); padding: 12px 18px 20px;
       flex-direction: column; gap: 8px;
     }
@@ -522,6 +523,7 @@
     .nf-card {
       background: var(--mid); border: 1px solid var(--bord); border-radius: 20px;
       padding: 36px 32px; position: relative; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
       transition: border-color 0.25s, transform 0.2s;
     }
     .nf-card:hover { border-color: var(--daylight); transform: translateY(-3px); }
@@ -540,14 +542,14 @@
     .nf-title { font-family: var(--font-sans); font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
     .nf-body { font-size: 15px; color: var(--txt2); line-height: 1.65; margin-bottom: 24px; }
     .nf-demo {
-      background: rgba(0,0,0,0.3); border: 1px solid rgba(184,204,0,0.25);
+      background: var(--surf); border: 1px solid var(--bord);
       border-radius: 12px; padding: 16px 20px; text-align: center;
     }
-    .nf-demo-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--daylight); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .nf-demo-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--txt3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
     .nf-demo-code { font-size: 30px; font-weight: 800; letter-spacing: 5px; color: var(--txt); font-variant-numeric: tabular-nums; }
     .nf-demo-hint { font-size: 11px; color: var(--txt3); margin-top: 6px; }
     .nf-teams-demo { display: flex; gap: 10px; flex-wrap: wrap; }
-    .nf-team { background: rgba(255,255,255,0.04); border: 1px solid var(--bord); border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 700; color: var(--txt2); }
+    .nf-team { background: rgba(0,0,0,0.04); border: 1px solid var(--bord); border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 700; color: var(--txt2); }
     .nf-team-active { background: rgba(184,204,0,0.1); border-color: rgba(184,204,0,0.4); color: var(--txt); }
     @media (max-width: 860px) {
       .nf-grid { grid-template-columns: 1fr; }
@@ -560,10 +562,11 @@
     .wjw-card {
       background: var(--mid); border: 1px solid var(--bord); border-radius: 20px;
       padding: 32px 28px; position: relative;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
       transition: border-color 0.25s, transform 0.2s;
     }
     .wjw-card:hover { border-color: var(--daylight); transform: translateY(-3px); }
-    .wjw-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--daylight); text-transform: uppercase; margin-bottom: 12px; }
+    .wjw-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); text-transform: uppercase; margin-bottom: 12px; }
     .wjw-title { font-family: var(--font-sans); font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
     .wjw-body { font-size: 14px; color: var(--txt2); line-height: 1.65; }
     @media (max-width: 900px) {
@@ -832,7 +835,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#FFFFFF"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#FFFFFF"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">batting</text></svg></div>
+  <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
   <div class="nav-right">
     <div class="nav-social">
       <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
@@ -876,16 +879,16 @@
     <h2 class="h2 r d1" style="margin-bottom: 40px;">Built for the dugout. Ready in minutes.</h2>
     <div class="ss-rail">
       <div class="ss-phone r d1">
-        <img src="/screenshots/DA6B6030-DEE4-40C2-B260-BA815A31FB9B.PNG" alt="Player setup screen showing name, jersey number, announcement phrase selector and Hear The Call button" class="ss-img" />
-        <p class="ss-caption">Player Setup</p>
+        <img src="/screenshots/screenshot-manage.png" alt="Player setup screen showing name, jersey number, announcement phrase selector and Hear The Call button" class="ss-img" />
+        <p class="ss-caption">Player Lineup</p>
       </div>
       <div class="ss-phone ss-phone-center r d2">
-        <img src="/screenshots/AAB9924A-72FD-4122-9536-32E259ECC60C.PNG" alt="Game-day overlay showing #22 Joe Donaldson stepping up to bat with Enter Sandman by Metallica" class="ss-img" />
-        <p class="ss-caption">Game Day</p>
+        <img src="/screenshots/screenshot-nowplaying.png" alt="Game-day overlay showing #22 Joe Donaldson stepping up to bat with Enter Sandman by Metallica" class="ss-img" />
+        <p class="ss-caption">Now Playing</p>
       </div>
       <div class="ss-phone r d3">
-        <img src="/screenshots/AD3C0CF0-B6AE-46D6-8EAC-A4B9E04DA98F.PNG" alt="DUGOUT tab showing National Anthem, Air Horn, Home Run Horn, and Quick Play playlist" class="ss-img" />
-        <p class="ss-caption">Dugout & Quick Play</p>
+        <img src="/screenshots/screenshot-sounds.png" alt="DUGOUT tab showing National Anthem, Air Horn, Home Run Horn, and Quick Play playlist" class="ss-img" />
+        <p class="ss-caption">Game Day Sounds</p>
       </div>
     </div>
   </div>
@@ -1255,7 +1258,7 @@
 </section>
 
 <footer>
-  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#FFFFFF"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#FFFFFF"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">batting</text></svg></div>
+  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
   <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. Every parent deserves to enjoy it. · <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" style="color:var(--txt3);text-decoration:none;">@nowbattingapp</a> · <a href="/privacy" style="color:var(--txt3);text-decoration:none;">Privacy Policy</a> · <a href="/terms" style="color:var(--txt3);text-decoration:none;">Terms</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
