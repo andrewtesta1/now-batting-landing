@@ -599,13 +599,14 @@
     .demo-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; }
     .demo-phone {
       width: 260px;
-      background: #0B1220;
-      border: 1.5px solid #1E3450;
+      background: #1F1F1F;
+      border: 1.5px solid rgba(255,255,255,0.07);
       border-radius: 30px;
       padding: 18px 16px 20px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
       overflow: hidden; position: relative;
       transition: box-shadow 0.5s;
+      display: flex; flex-direction: column;
     }
     .demo-phone.song  { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 40px rgba(184,204,0,0.18), 0 0 0 1px rgba(255,255,255,0.04); }
     .demo-phone.announcing { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 50px rgba(223,255,0,0.28), 0 0 0 1px rgba(255,255,255,0.04); }
@@ -615,12 +616,12 @@
     .demo-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
     .demo-tab { flex: 1; }
     .demo-tab-bar {
-      height: 3px; border-radius: 2px; background: #1E3450;
+      height: 3px; border-radius: 2px; background: rgba(255,255,255,0.08);
       position: relative; overflow: hidden;
     }
     .demo-tab-label {
       font-family: var(--font-sans); font-size: 8px; font-weight: 700; letter-spacing: 1.2px;
-      color: #405870; text-transform: uppercase; text-align: center;
+      color: rgba(255,255,255,0.2); text-transform: uppercase; text-align: center;
       margin-top: 4px; transition: color 0.35s;
     }
     .demo-tab-fill {
@@ -680,8 +681,8 @@
       display: flex; align-items: center; justify-content: center; text-align: center;
       margin: 0 auto 12px; width: fit-content;
       font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
-      color: #7A9AB8; text-transform: uppercase;
-      border: 1px solid #1E3450; border-radius: 20px;
+      color: rgba(255,255,255,0.3); text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
       padding: 4px 12px;
       transition: color 0.35s, border-color 0.35s;
     }
@@ -740,15 +741,15 @@
       background: rgba(255,255,255,0.15);
       animation: dwfBgSong 0.55s ease-in-out var(--d,0s) infinite alternate;
     }
-    @keyframes dwfBgSong { from { height: 4px; } to { height: 45px; } }
-    @keyframes dwfBgAnn  { from { height: 4px; } to { height: 65px; } }
+    @keyframes dwfBgSong { from { height: 4px; } to { height: 110px; } }
+    @keyframes dwfBgAnn  { from { height: 4px; } to { height: 140px; } }
 
     /* Action buttons */
     .demo-btns { display: flex; gap: 8px; margin-bottom: 12px; }
     .demo-btn {
       flex: 1; padding: 10px 0; border-radius: 10px; text-align: center;
       font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
-      border: 1.5px solid #1E3450; color: #7A9AB8; background: rgba(16,30,48,0.6);
+      border: 1.5px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.04);
       transition: border-color 0.35s, color 0.35s, background 0.35s;
     }
     .demo-btn-stop {
@@ -760,9 +761,9 @@
     .demo-vol {
       display: flex; align-items: center; justify-content: center; gap: 10px;
     }
-    .demo-vol-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #405870; text-transform: uppercase; }
-    .demo-vol-val { font-family: var(--font-sans); font-size: 11px; color: #7A9AB8; }
-    .demo-vol-btn { font-size: 14px; color: #405870; line-height: 1; }
+    .demo-vol-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.2); text-transform: uppercase; }
+    .demo-vol-val { font-family: var(--font-sans); font-size: 11px; color: rgba(255,255,255,0.35); }
+    .demo-vol-btn { font-size: 14px; color: rgba(255,255,255,0.2); line-height: 1; }
     .demo-ctrl { display: flex; flex-direction: column; align-items: center; }
     @media (max-width: 860px) { .moment { padding: 60px 0; } }
 
@@ -829,13 +830,62 @@
     }
     .faq-item.open .faq-a { display: block; }
     @media (max-width: 860px) { .faq { padding: 60px 0; } .faq-q { font-size: 15px; padding: 16px 18px; } .faq-a { padding: 0 18px 16px; } }
+
+    /* ── LOGO ANIMATION ── */
+    @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
+    @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
+    @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
+    @keyframes idle-4 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.68);} }
+    @keyframes idle-5 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.70);} }
+    @keyframes idle-6 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.60);} }
+    @keyframes idle-7 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.52);} }
+    .idle-wave .bar { transform-origin: center bottom; }
+    .idle-wave .b1 { animation: idle-1 2.1s ease-in-out 0.0s infinite; }
+    .idle-wave .b2 { animation: idle-2 1.9s ease-in-out 0.12s infinite; }
+    .idle-wave .b3 { animation: idle-3 1.8s ease-in-out 0.06s infinite; }
+    .idle-wave .b4 { animation: idle-4 1.6s ease-in-out 0.0s infinite; }
+    .idle-wave .b5 { animation: idle-5 1.7s ease-in-out 0.08s infinite; }
+    .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
+    .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
+
+    /* ── MOMENT SECTION — DARK ── */
+    .moment { background: #1A1A1A; }
+    .moment .eyebrow { color: rgba(223,255,0,0.45); }
+    .moment .h2 { color: #FFFFFF; }
+    .moment .moment-sub { color: rgba(255,255,255,0.5); }
+    .moment .moment-phase { color: rgba(255,255,255,0.3); }
+    .mws-wrap { display: flex; flex-direction: column; align-items: center; padding: 52px 0 32px; gap: 16px; }
+    .mws-label { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 3px; color: rgba(223,255,0,0.3); text-transform: uppercase; }
+    .mws-svg { width: 160px; height: 139px; overflow: visible; }
+    @media (max-width: 860px) { .mws-svg { width: 100px; height: 87px; } .mws-wrap { padding: 40px 0 24px; } }
+
+    /* ── DEMO PHONE — ONDECK ── */
+    .demo-ondeck {
+      text-align: center; padding: 10px 0 0; margin-top: 4px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .demo-ondeck-label { font-family: var(--font-sans); font-size: 8px; font-weight: 700; letter-spacing: 1.5px; color: rgba(184,204,0,0.7); text-transform: uppercase; }
+    .demo-ondeck-player { font-family: var(--font-sans); font-size: 10px; font-weight: 700; letter-spacing: 1px; color: rgba(184,204,0,1); }
+
+    /* ── DEMO PHONE — CENTER ── */
+    .demo-center {
+      position: relative; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 150px; overflow: hidden; margin: 0 -4px;
+    }
+    .demo-center .demo-waveform-bg {
+      position: absolute; inset: 0; bottom: auto; height: 100%;
+      display: flex; align-items: flex-end; justify-content: center; gap: 2px; padding: 0 6px;
+    }
+    .demo-center .demo-jersey-num, .demo-center .demo-player-name { position: relative; z-index: 1; }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <div class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
   <div class="nav-right">
     <div class="nav-social">
       <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
@@ -957,6 +1007,18 @@
 
 <!-- HEAR THE MOMENT -->
 <section class="moment">
+  <div class="mws-wrap" aria-hidden="true">
+    <svg class="idle-wave mws-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 80">
+      <rect class="bar b1" x="0"      y="32"  width="8.1"   height="16" rx="4.05"  fill="#DFFF00"/>
+      <rect class="bar b2" x="13"     y="24"  width="8.1"   height="32" rx="4.05"  fill="#DFFF00"/>
+      <rect class="bar b3" x="26"     y="14"  width="9"     height="52" rx="4.5"   fill="#DFFF00"/>
+      <rect class="bar b4" x="39.375" y="0"   width="11.25" height="80" rx="5.625" fill="#DFFF00"/>
+      <rect class="bar b5" x="54.625" y="12"  width="9.9"   height="56" rx="4.95"  fill="#DFFF00"/>
+      <rect class="bar b6" x="68.525" y="22"  width="8.55"  height="36" rx="4.275" fill="#DFFF00"/>
+      <rect class="bar b7" x="81.075" y="30"  width="8.55"  height="20" rx="4.275" fill="#DFFF00"/>
+    </svg>
+    <p class="mws-label">Moment Wave</p>
+  </div>
   <div class="wrap" style="text-align:center;">
     <p class="eyebrow r">The Full Experience</p>
     <h2 class="h2 r d1" style="text-align:center; margin-bottom:12px;">~15 seconds. Big-league energy.</h2>
@@ -983,71 +1045,52 @@
           </div>
         </div>
 
-        <!-- Album art -->
-        <div class="demo-artwork">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Baseball diamond -->
-            <polygon points="50,10 90,50 50,90 10,50" stroke="#C89820" stroke-width="2.5" fill="rgba(200,152,32,0.06)"/>
-            <!-- Bases -->
-            <rect x="45" y="5" width="10" height="10" rx="2" fill="#C89820" opacity="0.7"/>
-            <rect x="85" y="45" width="10" height="10" rx="2" fill="#C89820" opacity="0.5"/>
-            <rect x="45" y="85" width="10" height="10" rx="2" fill="#C89820" opacity="0.5"/>
-            <rect x="5" y="45" width="10" height="10" rx="2" fill="#C89820" opacity="0.5"/>
-            <!-- Pitcher mound -->
-            <circle cx="50" cy="50" r="5" fill="rgba(200,152,32,0.25)" stroke="#C89820" stroke-width="1.5"/>
-            <!-- Foul lines -->
-            <line x1="50" y1="10" x2="10" y2="90" stroke="#C89820" stroke-width="1" opacity="0.2"/>
-            <line x1="50" y1="10" x2="90" y2="90" stroke="#C89820" stroke-width="1" opacity="0.2"/>
-          </svg>
-        </div>
-
-        <!-- NOW BATTING -->
-        <span class="demo-nb-label">NOW BATTING</span>
+        <!-- NOW BATTING header -->
+        <span class="demo-nb-label">Now Batting</span>
 
         <!-- Phase badge -->
-        <span class="demo-phase-badge" id="demoPhaseLabel">WALK-UP SONG STARTS</span>
+        <span class="demo-phase-badge" id="demoPhaseLabel">WALK-UP SONG</span>
 
-        <!-- Waveform background (announcing) -->
-        <div class="demo-waveform-bg">
-          <div class="dwf-bg-bar" style="--d:0s"></div>
-          <div class="dwf-bg-bar" style="--d:.05s"></div>
-          <div class="dwf-bg-bar" style="--d:.1s"></div>
-          <div class="dwf-bg-bar" style="--d:.15s"></div>
-          <div class="dwf-bg-bar" style="--d:.2s"></div>
-          <div class="dwf-bg-bar" style="--d:.25s"></div>
-          <div class="dwf-bg-bar" style="--d:.3s"></div>
-          <div class="dwf-bg-bar" style="--d:.35s"></div>
-          <div class="dwf-bg-bar" style="--d:.4s"></div>
-          <div class="dwf-bg-bar" style="--d:.45s"></div>
-          <div class="dwf-bg-bar" style="--d:.5s"></div>
-          <div class="dwf-bg-bar" style="--d:.55s"></div>
-          <div class="dwf-bg-bar" style="--d:.6s"></div>
-          <div class="dwf-bg-bar" style="--d:.65s"></div>
-          <div class="dwf-bg-bar" style="--d:.7s"></div>
+        <!-- Center: waveform bg + player identity -->
+        <div class="demo-center">
+          <div class="demo-waveform-bg">
+            <div class="dwf-bg-bar" style="--d:0s"></div>
+            <div class="dwf-bg-bar" style="--d:.05s"></div>
+            <div class="dwf-bg-bar" style="--d:.1s"></div>
+            <div class="dwf-bg-bar" style="--d:.15s"></div>
+            <div class="dwf-bg-bar" style="--d:.2s"></div>
+            <div class="dwf-bg-bar" style="--d:.25s"></div>
+            <div class="dwf-bg-bar" style="--d:.3s"></div>
+            <div class="dwf-bg-bar" style="--d:.35s"></div>
+            <div class="dwf-bg-bar" style="--d:.4s"></div>
+            <div class="dwf-bg-bar" style="--d:.45s"></div>
+            <div class="dwf-bg-bar" style="--d:.5s"></div>
+            <div class="dwf-bg-bar" style="--d:.55s"></div>
+            <div class="dwf-bg-bar" style="--d:.6s"></div>
+            <div class="dwf-bg-bar" style="--d:.65s"></div>
+            <div class="dwf-bg-bar" style="--d:.7s"></div>
+          </div>
+          <div class="demo-jersey-num">#21</div>
+          <div class="demo-player-name">JAKE<br>MILLER</div>
         </div>
-
-        <!-- Jersey number + name -->
-        <div class="demo-jersey-num">#7</div>
-        <div class="demo-player-name">JAKE<br>MILLER</div>
 
         <!-- Song info -->
         <div class="demo-song-info">
-          <div class="demo-song-title">Walk-Up Song</div>
-          <div class="demo-song-artist">via Apple Music</div>
+          <div class="demo-song-title">Enter Sandman</div>
+          <div class="demo-song-artist">Metallica</div>
         </div>
 
-        <!-- Buttons -->
+        <!-- Buttons: REPLAY | STOP | FADE -->
         <div class="demo-btns">
           <div class="demo-btn">REPLAY</div>
           <div class="demo-btn demo-btn-stop">STOP</div>
+          <div class="demo-btn">FADE</div>
         </div>
 
-        <!-- Volume -->
-        <div class="demo-vol">
-          <span class="demo-vol-btn">−</span>
-          <span class="demo-vol-label">VOLUME</span>
-          <span class="demo-vol-val">100%</span>
-          <span class="demo-vol-btn">+</span>
+        <!-- ON DECK -->
+        <div class="demo-ondeck">
+          <span class="demo-ondeck-label">On Deck</span>
+          <span class="demo-ondeck-player">#22 JOE SMITH</span>
         </div>
 
       </div>
@@ -1077,12 +1120,12 @@
       </div>
       <div class="r d1">
         <div class="sb-panel">
-          <div class="sb-btn" style="border-color:rgba(212,175,55,0.35);background:rgba(212,175,55,0.05)"><div class="sb-play" style="background:#C89820;box-shadow:0 0 14px rgba(212,175,55,0.45)"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:#D4AF37">NATIONAL ANTHEM</div></div>
-          <div class="sb-btn" style="border-color:rgba(212,175,55,0.35);background:rgba(212,175,55,0.05)"><div class="sb-play" style="background:#C89820;box-shadow:0 0 14px rgba(212,175,55,0.45)"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:#D4AF37">TAKE ME OUT</div></div>
+          <div class="sb-btn" style="border-color:rgba(184,204,0,0.35);background:rgba(184,204,0,0.05)"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:var(--daylight)">NATIONAL ANTHEM</div></div>
+          <div class="sb-btn" style="border-color:rgba(184,204,0,0.35);background:rgba(184,204,0,0.05)"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:var(--daylight)">TAKE ME OUT</div></div>
           <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">AIR HORN</div></div>
           <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">HOME RUN HORN</div></div>
           <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">CHARGE</div></div>
-          <div class="sb-btn" style="border-color:rgba(200,152,32,0.4);background:rgba(200,152,32,0.07)"><div class="sb-play" style="background:#C89820;box-shadow:0 0 14px rgba(212,175,55,0.4)"><div class="sb-tri" style="border-left-color:#1A0800"></div></div><div class="sb-lbl" style="color:#C89820;font-size:7px">MY LINEUP</div></div>
+          <div class="sb-btn" style="border-color:rgba(184,204,0,0.4);background:rgba(184,204,0,0.07)"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:var(--daylight);font-size:7px">MY LINEUP</div></div>
         </div>
       </div>
     </div>
@@ -1258,7 +1301,7 @@
 </section>
 
 <footer>
-  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <div class="f-logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
   <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. Every parent deserves to enjoy it. · <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" style="color:var(--txt3);text-decoration:none;">@nowbattingapp</a> · <a href="/privacy" style="color:var(--txt3);text-decoration:none;">Privacy Policy</a> · <a href="/terms" style="color:var(--txt3);text-decoration:none;">Terms</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
