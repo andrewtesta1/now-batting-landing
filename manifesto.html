@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Saturday Standard — Now Batting Manifesto</title>
+<meta name="description" content="A tribute to the Chief Hype Officer. And the Saturday Standard we build to.">
+<meta property="og:title" content="The Saturday Standard — Now Batting">
+<meta property="og:description" content="A tribute to the Chief Hype Officer. And the Saturday Standard we build to.">
+<meta property="og:url" content="https://www.nowbattingapp.com/manifesto">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+/* ── Tokens — match nowbattingapp.com exactly ── */
+:root {
+  --bg:     #F6F4EF;
+  --mid:    #FFFFFF;
+  --surf:   #EDEAD9;
+  --bord:   rgba(0,0,0,0.09);
+  --txt:    #1F1F1F;
+  --txt2:   #4A4A4A;
+  --muted:  #6B6B6B;
+  --neon:   #DFFF00;
+  --day:    #B8CC00;
+  --dark:   #1F1F1F;
+  --font:   'Inter', system-ui, -apple-system, sans-serif;
+  --mono:   'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--txt);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV — matches site nav ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--bord);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+  letter-spacing: -0.01em;
+}
+.nav-back:hover { color: var(--txt); }
+.nav-back svg { opacity: 0.5; }
+.nav-cta {
+  background: var(--day);
+  color: var(--dark);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: background 0.15s, transform 0.12s;
+}
+.nav-cta:hover { background: #A3B800; transform: scale(0.98); }
+
+/* ── HERO BLOCK ── */
+.hero {
+  background: var(--dark);
+  padding: 80px 40px 72px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 120%, rgba(223,255,0,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--day);
+  margin-bottom: 20px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.hero-title {
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+.hero-title span { color: var(--neon); }
+.hero-subtitle {
+  font-size: clamp(14px, 2vw, 18px);
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+  margin-top: 20px;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+}
+.hero-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--neon);
+  border-radius: 2px;
+  margin: 24px auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── MAIN CONTENT ── */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 72px 40px 120px;
+}
+
+/* ── SECTION LABELS ── */
+.section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--day);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bord);
+}
+
+/* ── PROSE ── */
+.prose p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--txt2);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.prose p.large {
+  font-size: 22px;
+  color: var(--txt);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.prose p.ellipsis {
+  font-size: 22px;
+  color: var(--txt);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.prose p.bold-line {
+  font-size: 18px;
+  color: var(--txt);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── CHO DECLARATION ── */
+.cho-declaration {
+  text-align: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  margin: 48px 0;
+}
+.cho-congrats {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.cho-title {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 900;
+  color: var(--txt);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+.cho-title span { color: var(--day); }
+.cho-terms {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.cho-job {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--txt);
+  letter-spacing: -0.02em;
+}
+.cho-job span { color: var(--day); }
+
+/* ── WE SEE YOU BLOCK ── */
+.see-you {
+  background: var(--dark);
+  border-radius: 20px;
+  padding: 48px 48px;
+  margin: 48px 0;
+  position: relative;
+  overflow: hidden;
+}
+.see-you::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--neon);
+  border-radius: 0 2px 2px 0;
+}
+.see-you-heading {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+.see-you p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.see-you p:last-of-type { margin-bottom: 32px; }
+.see-you-built {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--neon);
+  letter-spacing: -0.02em;
+}
+
+/* ── THE STANDARD ── */
+.standard-block {
+  margin: 64px 0;
+}
+.standard-question {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 800;
+  color: var(--txt);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  font-style: italic;
+  margin-bottom: 24px;
+  padding-left: 24px;
+  border-left: 4px solid var(--neon);
+}
+.standard-detail {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.standard-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.standard-rule {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--txt);
+  letter-spacing: -0.01em;
+  padding: 14px 20px;
+  background: var(--mid);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.standard-rule .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--neon);
+  flex-shrink: 0;
+}
+.standard-rule.no {
+  color: var(--muted);
+  background: transparent;
+}
+.standard-rule.no .dot { background: var(--bord); }
+
+/* ── FEATURE LIST ── */
+.features {
+  margin: 64px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.feature-item {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--bord);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.feature-item:first-child { border-top: 1px solid var(--bord); }
+.feature-label {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--txt);
+  letter-spacing: -0.02em;
+}
+.feature-label .neon { color: var(--day); }
+.feature-detail {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── CLOSING ── */
+.closing {
+  text-align: center;
+  padding: 72px 0 0;
+  border-top: 3px solid var(--neon);
+  margin-top: 72px;
+}
+.closing-standard {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+.closing-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+.closing-line {
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 700;
+  color: var(--txt);
+  letter-spacing: -0.02em;
+}
+.closing-line.muted {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: clamp(16px, 2.5vw, 20px);
+}
+.closing-punch {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 56px;
+}
+.closing-punch p {
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 900;
+  color: var(--txt);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+.closing-punch p.neon { color: var(--day); }
+.pip {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--neon);
+}
+
+/* ── CTA BLOCK ── */
+.cta-block {
+  background: var(--dark);
+  border-radius: 24px;
+  padding: 56px 40px;
+  text-align: center;
+  margin-top: 64px;
+}
+.cta-block h3 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+.cta-block p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--neon);
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: 800;
+  padding: 16px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: transform 0.12s, background 0.15s;
+}
+.cta-btn:hover { transform: scale(0.98); background: #C7FF00; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 32px 40px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+footer p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+}
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+footer a:hover { color: var(--neon); }
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media(max-width: 600px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 60px 24px 56px; }
+  main { padding: 48px 24px 80px; }
+  .see-you { padding: 36px 28px; }
+  .cta-block { padding: 40px 24px; }
+  footer { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="https://www.nowbattingapp.com" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M9 2L4 7L9 12" stroke="#1F1F1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    nowbattingapp.com
+  </a>
+  <a href="https://www.nowbattingapp.com" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 302 60" height="24" aria-label="Now Batting">
+      <text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text>
+      <circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/>
+      <rect x="93.03"  y="24"   width="6.3"  height="12" rx="3.15" fill="#B8CC00"/>
+      <rect x="102.83" y="18"   width="6.3"  height="24" rx="3.15" fill="#B8CC00"/>
+      <rect x="112.63" y="10.5" width="7.0"  height="39" rx="3.5"  fill="#B8CC00"/>
+      <rect x="123.13" y="0"    width="8.75" height="60" rx="4.38" fill="#B8CC00"/>
+      <rect x="135.38" y="9"    width="7.7"  height="42" rx="3.85" fill="#B8CC00"/>
+      <rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/>
+      <rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/>
+      <circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/>
+      <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
+    </svg>
+  </a>
+  <a href="https://www.nowbattingapp.com/#closer" class="nav-cta">Get Early Access</a>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <span class="hero-eyebrow">Now Batting Presents</span>
+  <h1 class="hero-title">The Now Batting<br><span>Manifesto</span></h1>
+  <div class="hero-rule"></div>
+  <p class="hero-subtitle">A tribute to the Chief Hype Officer.<br>And the Saturday Standard we build to.</p>
+</div>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- Opening -->
+  <div class="prose fade-in">
+    <p class="large">You already have enough going on.</p>
+    <p>The work weeks that don't end. The schedules that keep getting more complicated. The mental load that follows you everywhere — including a youth baseball complex at 8:45am on a Saturday…</p>
+    <p class="ellipsis">…where you are now also responsible for the music.</p>
+    <p class="bold-line">Nobody gave you this job. You took it.</p>
+    <p>Because these kids deserved better than silence. Because you knew — if you could pull this off — they'd feel like big leaguers walking to the plate.</p>
+  </div>
+
+  <!-- CHO Declaration -->
+  <div class="cho-declaration fade-in">
+    <div class="cho-congrats">Congratulations.</div>
+    <div class="cho-title">You are the <span>Chief Hype Officer.</span></div>
+    <p class="cho-terms">There is no salary. No training. No reserved parking spot.<br>No one coming to save you.</p>
+    <div class="cho-job">Just one job: <span>Don't miss the moment.</span></div>
+  </div>
+
+  <!-- We See You -->
+  <div class="see-you fade-in">
+    <div class="see-you-heading">We see you.</div>
+    <p>The scrambling. The buffering. The one-handed chaos — because the other hand has a coffee and that's just the situation. The "please don't skip the song" panic.</p>
+    <p>And specifically — holding your phone at maximum brightness, squinting through polarized sunglasses in direct sunlight, like you are defusing a bomb that plays walk-up music.</p>
+    <div class="see-you-built">We built this for you.</div>
+  </div>
+
+  <!-- The Standard -->
+  <div class="standard-block fade-in">
+    <div class="section-label">The Saturday Standard</div>
+    <div class="standard-question">"Will this make life easier for the Chief Hype Officer?"</div>
+    <p class="standard-detail">Not easier to build. Not better on a feature list. Easier for the parent running on cold coffee and sheer determination. Easier for the coach who just needs it to work. Easier for the person who keeps showing up — again — because those kids deserve someone who does.</p>
+    <div class="standard-rules">
+      <div class="standard-rule"><div class="dot"></div>If it makes your life easier, it ships.</div>
+      <div class="standard-rule no"><div class="dot"></div>If it adds friction, it doesn't.</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="fade-in">
+    <div class="section-label">So Everything We Build Follows That Rule</div>
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-label"><span class="neon">Big buttons.</span></div>
+        <div class="feature-detail">You're watching the game with one eye and running the music with one hand. You shouldn't have to aim.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-label"><span class="neon">No signal? Still works.</span></div>
+        <div class="feature-detail">Field 3 doesn't have great signal. A kid shouldn't miss their moment because of a network bar. We cached it. You're covered.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-label"><span class="neon">Five-minute setup.</span></div>
+        <div class="feature-detail">Because you have exactly that before warmups end and the first batter steps in. We counted.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-label"><span class="neon">One tap to switch teams.</span></div>
+        <div class="feature-detail">You've got the 10U and the 12U and somehow you volunteered for both. The app keeps up without making you dig.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-label"><span class="neon">The exact moment the song hits — not just the song.</span></div>
+        <div class="feature-detail">The Drop Point. Because "Lose Yourself" needs to start at the right second or it's just Eminem talking for a while.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-label"><span class="neon">Air horn. Home run. Charge. Between innings music.</span></div>
+        <div class="feature-detail">All one tap away. Because energy doesn't wait. The moment is happening now.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-label"><span class="neon">Share the roster in seconds.</span></div>
+        <div class="feature-detail">You can't make every game. Life is complicated. Pass the CHO title. One tap. Done.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing fade-in">
+    <div class="closing-standard">The Saturday Standard</div>
+    <div class="closing-lines">
+      <div class="closing-line">The moment belongs to the kid.</div>
+      <div class="closing-line">The ease belongs to you.</div>
+    </div>
+    <p class="standard-detail" style="margin-bottom:40px;">So when the song drops exactly right… The name gets called… And the dugout loses its mind for 15 seconds that feel like forever…</p>
+    <div class="closing-punch">
+      <p>That's not luck.</p>
+      <p>That's a Chief Hype Officer doing their job.</p>
+      <p class="neon">And an app that finally did theirs.</p>
+    </div>
+    <span class="pip"></span>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block fade-in">
+    <h3>Ready to run the music?</h3>
+    <p>Five minutes of setup. A season of Big League moments.<br>Free to try. No per-player fees. Ever.</p>
+    <a href="https://www.nowbattingapp.com/#closer" class="cta-btn">Get Early Access →</a>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Now Batting · <a href="https://www.nowbattingapp.com">nowbattingapp.com</a> · <a href="https://www.nowbattingapp.com/privacy">Privacy</a> · <a href="https://www.nowbattingapp.com/terms">Terms</a></p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
