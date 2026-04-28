@@ -408,8 +408,11 @@
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
       padding: 16px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px;
       position: relative; overflow: hidden; transition: border-color 0.2s, background 0.2s;
-      cursor: default;
+      cursor: pointer; user-select: none;
     }
+    .sb-btn:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.18); }
+    .sb-btn.sb-active { background: rgba(184,204,0,0.12); border-color: rgba(184,204,0,0.45); }
+    .sb-btn.sb-active .sb-play { background: var(--daylight-dim); transform: scale(0.92); }
     .sb-play {
       width: 40px; height: 40px; border-radius: 20px;
       background: var(--daylight);
@@ -1080,12 +1083,12 @@
       </div>
       <div class="r d1">
         <div class="sb-panel">
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">National Anthem</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Take Me Out</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Air Horn</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Home Run Horn</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Charge</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">My Lineup</div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'national')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">National Anthem</div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'takemeout')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Take Me Out</div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'airhorn')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Air Horn</div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'homerun')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Home Run Horn</div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'charge')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Charge</div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'lineup')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">My Lineup</div></div>
         </div>
       </div>
     </div>
@@ -1524,6 +1527,110 @@
       _resetDemo(btn);
     }
   }
+</script>
+
+<script>
+/* ── SOUNDBOARD ENGINE (Web Audio API) ── */
+(function() {
+  let _ctx = null;
+  const _active = [];
+
+  function getCtx() {
+    if (!_ctx) _ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (_ctx.state === 'suspended') _ctx.resume();
+    return _ctx;
+  }
+
+  function stopAll() {
+    _active.forEach(o => { try { o.stop(0); } catch(e){} });
+    _active.length = 0;
+    document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('sb-active'));
+  }
+
+  function tone(ac, freq, start, dur, type, vol) {
+    const o = ac.createOscillator();
+    const g = ac.createGain();
+    o.type = type || 'sine';
+    o.frequency.value = freq;
+    o.connect(g); g.connect(ac.destination);
+    g.gain.setValueAtTime(vol || 0.4, ac.currentTime + start);
+    g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + start + dur);
+    o.start(ac.currentTime + start);
+    o.stop(ac.currentTime + start + dur + 0.05);
+    _active.push(o);
+  }
+
+  function distortedHorn(ac, freqStart, freqEnd, dur, vol) {
+    const o = ac.createOscillator();
+    const ws = ac.createWaveShaper();
+    const g = ac.createGain();
+    const c = new Float32Array(256);
+    for (let i = 0; i < 256; i++) {
+      const x = (i * 2) / 256 - 1;
+      c[i] = (Math.PI + 300) * x / (Math.PI + 300 * Math.abs(x));
+    }
+    ws.curve = c;
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(freqStart, ac.currentTime);
+    o.frequency.exponentialRampToValueAtTime(freqEnd, ac.currentTime + dur * 0.8);
+    o.connect(ws); ws.connect(g); g.connect(ac.destination);
+    g.gain.setValueAtTime(vol || 0.55, ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+    o.start(ac.currentTime); o.stop(ac.currentTime + dur + 0.05);
+    _active.push(o);
+    return dur;
+  }
+
+  const SOUNDS = {
+    national: function(ac) {
+      // Short ceremonial fanfare ascending
+      const seq = [[196,0,.22],[261,.22,.22],[329,.44,.22],[392,.66,.38],[523,1.04,.8]];
+      seq.forEach(([f,t,d]) => tone(ac,f,t,d,'triangle',0.42));
+      return 2.0;
+    },
+    takemeout: function(ac) {
+      // Opening notes: "Take me out to the ball-game"
+      const seq = [
+        [523,0,.28],[440,.28,.18],[349,.46,.20],[440,.66,.18],
+        [523,.84,.28],[659,1.12,.42],[523,1.54,.55]
+      ];
+      seq.forEach(([f,t,d]) => tone(ac,f,t,d,'sine',0.38));
+      return 2.3;
+    },
+    airhorn: function(ac) {
+      return distortedHorn(ac, 430, 220, 1.5, 0.6);
+    },
+    homerun: function(ac) {
+      // Triumphant ascending multi-tone
+      [[392,.0,.18,'sawtooth'],[440,.18,.18,'sawtooth'],
+       [523,.36,.25,'sawtooth'],[659,.61,.65,'sawtooth']
+      ].forEach(([f,t,d,tp]) => tone(ac,f,t,d,tp,0.48));
+      return 1.5;
+    },
+    charge: function(ac) {
+      // Classic cavalry charge: G-C-E-G-E-G
+      const seq = [[196,0,.14],[261,.14,.14],[329,.28,.14],[392,.42,.34],[329,.76,.14],[392,.90,.42]];
+      seq.forEach(([f,t,d]) => tone(ac,f,t,d,'triangle',0.52));
+      return 1.5;
+    },
+    lineup: function(ac) {
+      // Bright "ready" chime
+      [[523,0,.14],[659,.14,.14],[784,.28,.14],[1047,.42,.45]].forEach(([f,t,d]) => tone(ac,f,t,d,'sine',0.38));
+      return 1.0;
+    }
+  };
+
+  window.sbPlay = function(btn, name) {
+    const wasActive = btn.classList.contains('sb-active');
+    stopAll();
+    if (wasActive) return;
+    const fn = SOUNDS[name];
+    if (!fn) return;
+    btn.classList.add('sb-active');
+    const dur = fn(getCtx());
+    setTimeout(() => btn.classList.remove('sb-active'), dur * 1000);
+  };
+})();
 </script>
 </body>
 </html>
