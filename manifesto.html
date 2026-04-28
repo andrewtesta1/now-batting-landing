@@ -244,7 +244,10 @@ footer a:hover { color: var(--neon); }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 @media(max-width:600px){
-  nav { padding: 0 20px; }
+  nav { padding: 0 16px; }
+  .nav-back span { display: none; }
+  .nav-logo svg { height: 18px; }
+  .nav-cta { font-size: 12px; padding: 8px 14px; }
   .hero { padding: 72px 24px 64px; }
   main { padding: 56px 24px 80px; }
   .see-you { padding: 36px 28px; }
@@ -260,7 +263,7 @@ footer a:hover { color: var(--neon); }
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
       <path d="M9 2L4 7L9 12" stroke="#6B6B6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    nowbattingapp.com
+    <span>nowbattingapp.com</span>
   </a>
   <a href="https://www.nowbattingapp.com" class="nav-logo">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 302 60" height="22" aria-label="Now Batting">
