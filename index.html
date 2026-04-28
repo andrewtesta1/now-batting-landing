@@ -179,10 +179,21 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
       padding: 18px 48px;
       background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--bord);
     }
+    .nav-sub {
+      display: none;
+      width: 100%; padding: 0 0 10px;
+      gap: 24px; justify-content: center;
+    }
+    .nav-sub a {
+      font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+      color: var(--txt2); text-decoration: none; transition: color 0.15s;
+    }
+    .nav-sub a:hover { color: var(--txt); }
     .logo { display: flex; align-items: center; line-height: 1; }
     .nav-right { display: flex; align-items: center; gap: 16px; }
     .nav-social { display: flex; align-items: center; gap: 10px; }
@@ -495,7 +506,9 @@
     /* RESPONSIVE */
     @media (max-width: 860px) {
       nav { padding: 14px 18px; }
-      .hero { padding: 84px 18px 72px; min-height: auto; }
+      .nav-sub { display: flex; }
+      .nav-link-story, .nav-link-manifesto { display: none; }
+      .hero { padding: 104px 18px 72px; min-height: auto; }
       .hero-grid { grid-template-columns: 1fr; }
       .phone-wrap { display: none; }
       .hero-form-wrap, .hero-proof { display: none; }
@@ -513,7 +526,6 @@
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px 200px; }
       .f-social { order: -1; }
       .nav-social { display: none; }
-      .nav-link-manifesto { display: none; }
       .obox { padding: 30px 18px; }
       .o-hed { font-size: 32px; }
     }
@@ -884,6 +896,10 @@
     <a href="/about" class="nav-link nav-link-story">Our Story</a>
     <a href="/manifesto" class="nav-link nav-link-manifesto">The Saturday Standard</a>
     <a href="#closer" class="nav-btn">Get Early Access</a>
+  </div>
+  <div class="nav-sub">
+    <a href="/about">Our Story</a>
+    <a href="/manifesto">The Saturday Standard</a>
   </div>
 </nav>
 
