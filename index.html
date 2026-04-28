@@ -125,7 +125,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -189,6 +189,11 @@
     .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
     .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
     .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-link {
+      font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--txt2);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--txt); }
     .nav-btn {
       background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
       font-size: 13px; letter-spacing: 1px; padding: 10px 20px; border-radius: var(--radius-sm);
@@ -200,8 +205,8 @@
     section { position: relative; z-index: 1; }
     .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
     .hr { height: 1px; background: linear-gradient(to right, transparent, var(--bord), transparent); max-width: 1080px; margin: 0 auto; }
-    .eyebrow { font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 3px; color: var(--txt3); margin-bottom: 12px; text-transform: uppercase; }
-    .h2 { font-family: var(--font-sans); font-size: clamp(32px, 4vw, 50px); font-weight: 800; letter-spacing: -0.025em; line-height: 0.95; color: var(--txt); margin-bottom: 12px; }
+    .eyebrow { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; color: var(--txt3); margin-bottom: 12px; text-transform: uppercase; }
+    .h2 { font-family: var(--font-sans); font-size: clamp(32px, 4vw, 50px); font-weight: 700; letter-spacing: -0.015em; line-height: 0.95; color: var(--txt); margin-bottom: 12px; }
 
     /* reveal */
     .r { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -251,13 +256,13 @@
       text-align: center;
     }
     .hero-eye {
-      font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 3px;
+      font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.12em;
       color: var(--txt3); margin-bottom: 14px;
       opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s;
     }
     .hero-h1 {
       font-family: var(--font-sans); font-size: clamp(50px, 6.5vw, 82px);
-      font-weight: 900; letter-spacing: -0.03em; line-height: 0.92; text-transform: uppercase; color: var(--txt); margin-bottom: 20px;
+      font-weight: 800; letter-spacing: -0.055em; line-height: 0.92; color: var(--txt); margin-bottom: 20px;
       opacity: 0; animation: fadeUp 0.5s ease forwards 0.2s;
     }
     .hero-h1 .g { color: var(--daylight); }
@@ -342,38 +347,34 @@
     .p-sdot { width: 5px; height: 5px; border-radius: 3px; background: var(--daylight); animation: blink 1s ease infinite; }
 
     /* "You will be..." intro line */
-    .persona-you { font-size: 15px; color: var(--txt3); font-style: italic; margin-bottom: 16px; margin-top: -8px; letter-spacing: 0.3px; }
+    .persona-you { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--txt3); text-transform: uppercase; margin-bottom: 16px; margin-top: -8px; }
 
     /* ── 3. PERSONA ── */
     .persona { padding: 80px 0; }
     .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .persona-hed { font-family: var(--font-sans); font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; letter-spacing: -0.025em; line-height: 0.95; color: var(--txt); margin-bottom: 16px; }
+    .persona-hed { font-family: var(--font-sans); font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; letter-spacing: -0.015em; line-height: 0.95; color: var(--txt); margin-bottom: 16px; }
     .persona-hed .g { color: var(--daylight); }
     .persona-body { font-size: 16px; color: var(--txt2); line-height: 1.68; margin-bottom: 28px; }
     .persona-titles { display: flex; flex-direction: column; gap: 8px; }
     .p-title-item { display: flex; align-items: center; gap: 12px; border-left: 3px solid var(--daylight); padding-left: 14px; }
-    .p-title-em { font-family: var(--font-sans); letter-spacing: 1.5px; color: var(--txt); line-height: 1.2; }
-    /* escalating sizes — builds to payoff */
-    .p-t1 .p-title-em { font-size: 18px; color: var(--txt2); }
-    .p-t2 .p-title-em { font-size: 22px; color: var(--txt); }
-    .p-t3 { border-left-width: 4px; border-left-color: var(--daylight); padding-left: 16px; margin-top: 4px; }
-    .p-t3 .p-title-em { font-size: 28px; color: var(--daylight); letter-spacing: 2px; }
+    .p-title-em { font-family: var(--font-sans); font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: var(--txt); line-height: 1.2; }
+    .p-t3 { margin-top: 4px; }
 
     /* testimonial */
-    .tcard { background: var(--mid); border: 1px solid var(--bord); border-radius: 16px; padding: 32px; position: relative; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+    .tcard { padding: 8px 0; }
     .tcard::before {
-      content: '"'; font-family: var(--font-sans); font-size: 120px; color: rgba(184,204,0,0.07);
-      position: absolute; top: -12px; left: 12px; line-height: 1; pointer-events: none;
+      content: '\201C'; display: block;
+      font-size: 72px; line-height: 1; font-weight: 800;
+      color: var(--daylight); margin-bottom: 8px; letter-spacing: -0.02em;
     }
-    .ttext { font-size: 18px; color: var(--txt); line-height: 1.7; margin-bottom: 24px; position: relative; font-style: italic; }
-    .tauthor { display: flex; align-items: center; gap: 12px; }
-    .tavatar {
-      width: 42px; height: 42px; border-radius: 21px; background: var(--surf);
-      border: 2px solid rgba(184,204,0,0.3); display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-sans); font-size: 15px; color: var(--daylight); flex-shrink: 0;
+    .ttext {
+      font-size: 26px; font-weight: 700; letter-spacing: -0.025em;
+      color: var(--txt); line-height: 1.25; margin-bottom: 24px;
     }
+    .tauthor { display: flex; flex-direction: column; gap: 4px; }
+    .tavatar { display: none; }
     .tname { font-weight: 700; font-size: 14px; color: var(--txt); }
-    .trole { font-size: 12px; color: var(--txt2); margin-top: 2px; }
+    .trole { font-size: 13px; color: var(--txt3); }
 
     /* ── 4. HOW IT WORKS ── */
     .how { padding: 80px 0; }
@@ -389,7 +390,7 @@
     .step:hover::before { opacity: 1; }
     .step-n { font-family: var(--font-mono); font-size: 56px; color: rgba(184,204,0,0.55); line-height: 1; margin-bottom: 8px; }
     .step-ico { font-size: 24px; margin-bottom: 8px; }
-    .step-title { font-family: var(--font-sans); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--txt); margin-bottom: 8px; }
+    .step-title { font-family: var(--font-sans); font-size: 20px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; color: var(--txt); margin-bottom: 8px; }
     .step-body { font-size: 14px; color: var(--txt2); line-height: 1.6; }
 
     /* ── 5. SOUNDBOARD ── */
@@ -402,18 +403,16 @@
       border-radius: 100px; padding: 6px 13px; font-size: 12px; font-weight: 700; color: var(--daylight);
     }
     .sb-badge::before { content: '●'; font-size: 7px; animation: blink 1.2s ease infinite; }
-    .sb-panel { background: var(--mid); border: 1px solid var(--bord); border-radius: 14px; padding: 20px; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .sb-panel { background: #1F1F1F; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
     .sb-btn {
-      background: var(--surf); border: 1px solid var(--bord); border-radius: 9px;
-      padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+      padding: 16px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px;
       position: relative; overflow: hidden; transition: border-color 0.2s, background 0.2s;
       cursor: default;
     }
-    .sb-btn:hover { border-color: rgba(184,204,0,0.35); background: rgba(184,204,0,0.05); }
     .sb-play {
-      width: 38px; height: 38px; border-radius: 19px;
+      width: 40px; height: 40px; border-radius: 20px;
       background: var(--daylight);
-      box-shadow: 0 0 14px rgba(184,204,0,0.55), 0 0 4px rgba(184,204,0,0.3);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
@@ -421,10 +420,10 @@
       width: 0; height: 0;
       border-top: 7px solid transparent;
       border-bottom: 7px solid transparent;
-      border-left: 13px solid #111827;
+      border-left: 13px solid #1F1F1F;
       margin-left: 3px;
     }
-    .sb-lbl { font-size: 8px; font-weight: 700; color: var(--txt2); font-family: var(--font-sans); letter-spacing: 0.8px; text-align: center; line-height: 1.3; }
+    .sb-lbl { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.7); font-family: var(--font-sans); letter-spacing: 0; text-align: center; line-height: 1.3; }
 
     /* ── 6. CLOSER ── */
     .closer { padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
@@ -438,8 +437,8 @@
     .scar {
       display: inline-flex; align-items: center; gap: 7px;
       background: rgba(184,204,0,0.1); border: 1px solid rgba(184,204,0,0.3);
-      border-radius: 100px; padding: 7px 16px; font-size: 13px; font-weight: 700;
-      font-family: var(--font-mono); color: var(--daylight); margin-bottom: 24px;
+      border-radius: 100px; padding: 7px 16px; font-size: 12px; font-weight: 500;
+      font-family: var(--font-mono); letter-spacing: 0.12em; color: var(--daylight); margin-bottom: 24px;
     }
     .scar::before { content: '●'; font-size: 7px; animation: blink 1.2s ease infinite; }
     .closer-h { font-family: var(--font-sans); font-size: clamp(40px, 5.5vw, 72px); font-weight: 800; letter-spacing: -0.025em; line-height: 0.95; color: var(--txt); margin-bottom: 16px; }
@@ -481,7 +480,7 @@
     .o-sub { font-size: 15px; color: var(--txt2); line-height: 1.62; margin-bottom: 5px; }
     .o-inbox { font-size: 13px; color: var(--daylight); font-weight: 700; margin-bottom: 24px; }
     .o-div { border-top: 1px solid var(--bord); padding-top: 22px; }
-    .o-slbl { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); margin-bottom: 11px; text-transform: uppercase; }
+    .o-slbl { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--txt3); margin-bottom: 11px; text-transform: uppercase; }
     .o-sbox { background: var(--surf); border: 1px solid var(--bord); border-radius: 9px; padding: 11px 13px; display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
     .o-url { flex: 1; font-size: 12px; color: var(--txt2); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
     .o-copy { background: var(--daylight); color: #1F1F1F; border: none; border-radius: 6px; padding: 8px 14px; font-family: var(--font-sans); font-weight: 700; font-size: 12px; cursor: pointer; min-width: 86px; transition: background 0.15s; }
@@ -536,16 +535,16 @@
     .nf-badge {
       display: inline-block; background: rgba(184,204,0,0.15);
       border: 1px solid rgba(184,204,0,0.3); color: var(--daylight);
-      font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
       padding: 3px 9px; border-radius: 5px; margin-bottom: 14px;
     }
-    .nf-title { font-family: var(--font-sans); font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
+    .nf-title { font-family: var(--font-sans); font-size: 30px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
     .nf-body { font-size: 15px; color: var(--txt2); line-height: 1.65; margin-bottom: 24px; }
     .nf-demo {
       background: var(--surf); border: 1px solid var(--bord);
       border-radius: 12px; padding: 16px 20px; text-align: center;
     }
-    .nf-demo-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--txt3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .nf-demo-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--txt3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
     .nf-demo-code { font-size: 30px; font-weight: 800; letter-spacing: 5px; color: var(--txt); font-variant-numeric: tabular-nums; }
     .nf-demo-hint { font-size: 11px; color: var(--txt3); margin-top: 6px; }
     .nf-teams-demo { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -558,24 +557,31 @@
 
     /* ── WHY IT JUST WORKS ── */
     .wjw { padding: 80px 0; }
-    .wjw-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .wjw-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    @keyframes wjw-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .wjw-track {
+      display: flex; gap: 20px; width: max-content;
+      animation: wjw-scroll 28s linear infinite;
+    }
+    .wjw-track:hover { animation-play-state: paused; }
+    .wjw-grid { display: flex; gap: 20px; }
     .wjw-card {
+      flex: 0 0 300px;
       background: var(--mid); border: 1px solid var(--bord); border-radius: 20px;
       padding: 32px 28px; position: relative;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
       transition: border-color 0.25s, transform 0.2s;
     }
     .wjw-card:hover { border-color: var(--daylight); transform: translateY(-3px); }
-    .wjw-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--txt3); text-transform: uppercase; margin-bottom: 12px; }
-    .wjw-title { font-family: var(--font-sans); font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
+    .wjw-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--txt3); text-transform: uppercase; margin-bottom: 12px; }
+    .wjw-title { font-family: var(--font-sans); font-size: 24px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
     .wjw-body { font-size: 14px; color: var(--txt2); line-height: 1.65; }
-    @media (max-width: 900px) {
-      .wjw-grid { grid-template-columns: 1fr 1fr; }
-      .wjw { padding: 60px 0; }
-    }
-    @media (max-width: 560px) {
-      .wjw-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px) { .wjw { padding: 60px 0; } }
+    @media (max-width: 560px) { .wjw-card { flex: 0 0 260px; } }
 
     /* ── HEAR THE MOMENT ── */
     .moment { padding: 80px 0; }
@@ -661,20 +667,10 @@
     .demo-phone.song .demo-artwork svg { opacity: 0.45; }
     .demo-phone.blast .demo-artwork svg { opacity: 0.6; }
 
-    /* NOW BATTING label */
-    .demo-nb-label {
-      font-family: var(--font-sans); font-size: 13px; letter-spacing: 4px;
-      color: var(--daylight); text-align: center; margin-bottom: 6px;
-      display: block;
-      transition: color 0.35s, text-shadow 0.35s;
+    /* NOW BATTING logo lockup */
+    .demo-nb-logo {
+      display: block; margin: 0 auto 10px;
     }
-    .demo-nb-label::after {
-      content: ''; display: block; height: 2px; border-radius: 1px;
-      background: var(--daylight); margin-top: 3px; width: 40px; margin-left: auto; margin-right: auto;
-      transition: background 0.35s;
-    }
-    .demo-phone.blast .demo-nb-label { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-    .demo-phone.blast .demo-nb-label::after { background: #fff; }
 
     /* Phase badge */
     .demo-phase-badge {
@@ -692,7 +688,7 @@
 
     /* Jersey number */
     .demo-jersey-num {
-      font-family: var(--font-sans); font-size: 40px; line-height: 1;
+      font-family: var(--font-sans); font-size: 40px; font-weight: 700; line-height: 1;
       color: var(--daylight); text-align: center; margin-bottom: 2px;
       transition: color 0.35s, text-shadow 0.35s;
     }
@@ -701,8 +697,8 @@
 
     /* Player name */
     .demo-player-name {
-      font-family: var(--font-sans); font-size: 46px; line-height: 0.95;
-      color: #fff; text-align: center; letter-spacing: 1px;
+      font-family: var(--font-sans); font-size: 46px; font-weight: 800; line-height: 0.95;
+      color: #fff; text-align: center; letter-spacing: -0.5px;
       margin-bottom: 14px;
       transition: text-shadow 0.35s;
     }
@@ -718,31 +714,20 @@
     .demo-song-artist { font-family: var(--font-sans); font-size: 11px; color: #7A9AB8; transition: color 0.35s; }
     .demo-phone.announcing .demo-song-artist { color: rgba(223,255,0,0.3); }
 
-    /* Waveform background */
+    /* Moment Wave background */
     .demo-waveform-bg {
-      position: absolute; bottom: 72px; left: 0; right: 0;
-      display: flex; align-items: flex-end; justify-content: center; gap: 3px;
-      height: 70px; padding: 0 12px; pointer-events: none;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
       opacity: 0; transition: opacity 0.4s;
     }
     .demo-phone.song .demo-waveform-bg { opacity: 1; }
     .demo-phone.announcing .demo-waveform-bg { opacity: 1; }
-    .demo-phone.blast .demo-waveform-bg { opacity: 0.35; }
-    .dwf-bg-bar {
-      flex: 1; max-width: 5px; border-radius: 2px;
-      background: rgba(184,204,0,0.2);
-      animation: dwfBgSong 0.9s ease-in-out var(--d,0s) infinite alternate;
-    }
-    .demo-phone.announcing .dwf-bg-bar {
-      background: rgba(223,255,0,0.25);
-      animation: dwfBgAnn 0.5s ease-in-out var(--d,0s) infinite alternate;
-    }
-    .demo-phone.blast .dwf-bg-bar {
-      background: rgba(255,255,255,0.15);
-      animation: dwfBgSong 0.55s ease-in-out var(--d,0s) infinite alternate;
-    }
-    @keyframes dwfBgSong { from { height: 4px; } to { height: 110px; } }
-    @keyframes dwfBgAnn  { from { height: 4px; } to { height: 140px; } }
+    .demo-phone.blast .demo-waveform-bg { opacity: 0.4; }
+    .dwf-wave { width: 150px; height: auto; overflow: visible; }
+    .dwf-wave .bar { fill: rgba(184,204,0,0.18); }
+    .demo-phone.announcing .dwf-wave .bar { fill: rgba(223,255,0,0.28); }
+    .demo-phone.blast .dwf-wave .bar { fill: rgba(255,255,255,0.15); }
 
     /* Action buttons */
     .demo-btns { display: flex; gap: 8px; margin-bottom: 12px; }
@@ -874,10 +859,6 @@
       align-items: center; justify-content: center;
       min-height: 150px; overflow: hidden; margin: 0 -4px;
     }
-    .demo-center .demo-waveform-bg {
-      position: absolute; inset: 0; bottom: auto; height: 100%;
-      display: flex; align-items: flex-end; justify-content: center; gap: 2px; padding: 0 6px;
-    }
     .demo-center .demo-jersey-num, .demo-center .demo-player-name { position: relative; z-index: 1; }
   </style>
 </head>
@@ -885,7 +866,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
   <div class="nav-right">
     <div class="nav-social">
       <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
@@ -895,6 +876,7 @@
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
       </a>
     </div>
+    <a href="/about" class="nav-link">Our Story</a>
     <a href="#closer" class="nav-btn">Get Early Access</a>
   </div>
 </nav>
@@ -952,23 +934,16 @@
     <div class="persona-grid">
       <div>
         <p class="eyebrow r">Who it's for</p>
-        <h2 class="persona-hed r d1">Built by parents who know Saturday morning follows a <span class="g">50-hour work week.</span></h2>
-        <p class="persona-body r d2">We take the chore out of the magic. Five minutes of setup. A season of Big-League moments.</p>
-        <p class="persona-you r d3">You will be...</p>
-        <div class="persona-titles r d3">
-          <div class="p-title-item p-t2"><span class="p-title-em">The Most Valuable Parent.</span></div>
-          <div class="p-title-item p-t3"><span class="p-title-em">THE CHIEF HYPE OFFICER.</span></div>
-        </div>
+        <h2 class="persona-hed r d1">Built by parents, for parents who know Saturday morning follows a <span class="g">50-hour work week.</span></h2>
+        <p class="persona-body r d2">Whether you're the head coach managing 12 kids and 24 parents across three fields, or the parent who raised their hand and somehow became the unofficial music director — Now Batting was built for you.</p>
+        <p class="persona-body r d3">No tech skills required. No setup guide. No surprises on game day. Just the look on your kid's face when their song drops and the dugout goes nuts.</p>
       </div>
       <div class="r d1">
         <div class="tcard">
-          <p class="ttext">"Super easy to figure out how to use it. The kids absolutely loved it."</p>
+          <p class="ttext">Super easy to figure out how to use it. The kids absolutely loved it.</p>
           <div class="tauthor">
-            <div class="tavatar">MS</div>
-            <div>
-              <div class="tname">Matt Schrager</div>
-              <div class="trole">Denville Baseball Secretary · 8U Coach · Spring Beta</div>
-            </div>
+            <div class="tname">Matt Schrager</div>
+            <div class="trole">Denville Baseball Secretary · 8U Coach</div>
           </div>
         </div>
       </div>
@@ -991,8 +966,8 @@
       </div>
       <div class="step r d1">
         <div class="step-n">02</div>
-        <div class="step-title">Pick Their Song. Set the Exact Moment It Hits.</div>
-        <p class="step-body">Search Apple Music, set the timestamp, generate their stadium announcement in seconds — or upload your own.</p>
+        <div class="step-title">Give Each Kid Their Walk-Up.</div>
+        <p class="step-body">Search Apple Music, drag a marker to the exact bar you want the music to hit, then generate their personal stadium call — "Now batting, number 7, Jake Miller!" — in seconds.</p>
       </div>
       <div class="step r d2">
         <div class="step-n">03</div>
@@ -1017,58 +992,43 @@
       <rect class="bar b6" x="68.525" y="22"  width="8.55"  height="36" rx="4.275" fill="#DFFF00"/>
       <rect class="bar b7" x="81.075" y="30"  width="8.55"  height="20" rx="4.275" fill="#DFFF00"/>
     </svg>
-    <p class="mws-label">Moment Wave</p>
   </div>
   <div class="wrap" style="text-align:center;">
     <p class="eyebrow r">The Full Experience</p>
     <h2 class="h2 r d1" style="text-align:center; margin-bottom:12px;">~15 seconds. Big-league energy.</h2>
-    <p class="moment-sub r d2">The song drops. Your kid steps out of the on-deck circle.<br>The announcer calls their name.<br>Taps the plate… locks in… eyes on the pitcher.<br>The music hits.<br>The dugout goes nuts.<br><br>Feels like the pros — even if it's Field 3 on a Saturday night.<br>And this is why you chose Now Batting.</p>
-
     <div class="demo-layout r d2">
 
       <!-- Animated phone mockup — announcement screen -->
-      <div class="demo-phone" id="demoPhone">
+      <div class="demo-phone song" id="demoPhone">
 
-        <!-- Progress tabs: SONG / CALL / BLAST -->
+        <!-- Progress tabs: no labels, bars only -->
         <div class="demo-tabs">
           <div class="demo-tab demo-tab-song">
             <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
-            <div class="demo-tab-label">SONG</div>
           </div>
           <div class="demo-tab demo-tab-call">
             <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
-            <div class="demo-tab-label">CALL</div>
           </div>
           <div class="demo-tab demo-tab-blast">
             <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
-            <div class="demo-tab-label">BLAST</div>
           </div>
         </div>
 
         <!-- NOW BATTING header -->
-        <span class="demo-nb-label">Now Batting</span>
+        <svg class="idle-wave demo-nb-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="18" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#FFFFFF"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#FFFFFF"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">batting</text></svg>
 
-        <!-- Phase badge -->
-        <span class="demo-phase-badge" id="demoPhaseLabel">WALK-UP SONG</span>
-
-        <!-- Center: waveform bg + player identity -->
+        <!-- Center: Moment Wave bg + player identity -->
         <div class="demo-center">
           <div class="demo-waveform-bg">
-            <div class="dwf-bg-bar" style="--d:0s"></div>
-            <div class="dwf-bg-bar" style="--d:.05s"></div>
-            <div class="dwf-bg-bar" style="--d:.1s"></div>
-            <div class="dwf-bg-bar" style="--d:.15s"></div>
-            <div class="dwf-bg-bar" style="--d:.2s"></div>
-            <div class="dwf-bg-bar" style="--d:.25s"></div>
-            <div class="dwf-bg-bar" style="--d:.3s"></div>
-            <div class="dwf-bg-bar" style="--d:.35s"></div>
-            <div class="dwf-bg-bar" style="--d:.4s"></div>
-            <div class="dwf-bg-bar" style="--d:.45s"></div>
-            <div class="dwf-bg-bar" style="--d:.5s"></div>
-            <div class="dwf-bg-bar" style="--d:.55s"></div>
-            <div class="dwf-bg-bar" style="--d:.6s"></div>
-            <div class="dwf-bg-bar" style="--d:.65s"></div>
-            <div class="dwf-bg-bar" style="--d:.7s"></div>
+            <svg class="idle-wave dwf-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 80" aria-hidden="true">
+              <rect class="bar b1" x="0"      y="32"  width="8.1"   height="16" rx="4.05"/>
+              <rect class="bar b2" x="13"     y="24"  width="8.1"   height="32" rx="4.05"/>
+              <rect class="bar b3" x="26"     y="14"  width="9"     height="52" rx="4.5"/>
+              <rect class="bar b4" x="39.375" y="0"   width="11.25" height="80" rx="5.625"/>
+              <rect class="bar b5" x="54.625" y="12"  width="9.9"   height="56" rx="4.95"/>
+              <rect class="bar b6" x="68.525" y="22"  width="8.55"  height="36" rx="4.275"/>
+              <rect class="bar b7" x="81.075" y="30"  width="8.55"  height="20" rx="4.275"/>
+            </svg>
           </div>
           <div class="demo-jersey-num">#21</div>
           <div class="demo-player-name">JAKE<br>MILLER</div>
@@ -1113,65 +1073,21 @@
   <div class="wrap">
     <div class="sb-grid">
       <div>
-        <p class="eyebrow r">Game Day Soundboard</p>
+        <p class="eyebrow r">Soundboard</p>
         <h2 class="h2 r d1">Every sound a game needs.</h2>
-        <p class="sb-body r d2">National Anthem, Take Me Out to the Ballgame, Air Horn, Home Run Horn, Stomp, Charge — one tap, instant. All in the <strong style="color:var(--daylight)">SOUNDS</strong> tab, fully offline. The <strong style="color:var(--daylight)">Between Innings</strong> section streams hype music from Apple Music while sides change. And <strong style="color:var(--daylight)">My Lineup</strong> lets you tap any player's walk-up song directly — no searching, no scrolling.</p>
+        <p class="sb-body r d2">National Anthem before the first pitch. Air horn after the strikeout. Home run horn when it counts. Everything you need to make the game feel like a real game — one tap, no fumbling, works without WiFi. Keep the energy up between innings with hype music, and pull up any kid's walk-up song on the spot.</p>
         <div class="sb-badge r d3">Available Now</div>
       </div>
       <div class="r d1">
         <div class="sb-panel">
-          <div class="sb-btn" style="border-color:rgba(184,204,0,0.35);background:rgba(184,204,0,0.05)"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:var(--daylight)">NATIONAL ANTHEM</div></div>
-          <div class="sb-btn" style="border-color:rgba(184,204,0,0.35);background:rgba(184,204,0,0.05)"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:var(--daylight)">TAKE ME OUT</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">AIR HORN</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">HOME RUN HORN</div></div>
-          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">CHARGE</div></div>
-          <div class="sb-btn" style="border-color:rgba(184,204,0,0.4);background:rgba(184,204,0,0.07)"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl" style="color:var(--daylight);font-size:7px">MY LINEUP</div></div>
+          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">National Anthem</div></div>
+          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Take Me Out</div></div>
+          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Air Horn</div></div>
+          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Home Run Horn</div></div>
+          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Charge</div></div>
+          <div class="sb-btn"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">My Lineup</div></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="hr"></div>
-
-<!-- NEW FEATURES -->
-<section class="newfeatures">
-  <div class="wrap">
-    <p class="eyebrow r" style="text-align:center;">Team Management</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 8px;">One app. Every team. Every coach.</h2>
-    <p class="nf-sub r d2">Share rosters with a tap. Manage multiple teams without breaking a sweat.</p>
-
-    <div class="nf-grid">
-
-      <!-- SHARE ROSTERS -->
-      <div class="nf-card r d1">
-        <div class="nf-icon" style="background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.25);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        </div>
-        <h3 class="nf-title">Pass the CHO Title.</h3>
-        <p class="nf-body">Can't make the game? Tap <strong>Share Roster</strong> and send a link. They're running the music in one tap. No friction, no confusion, no missed moments.</p>
-        <div class="nf-demo">
-          <div class="nf-demo-label">IMPORT CODE</div>
-          <div class="nf-demo-code">8G3PK2WX</div>
-          <div class="nf-demo-hint">Recipient enters this in Now Batting</div>
-        </div>
-      </div>
-
-      <!-- MULTIPLE TEAMS -->
-      <div class="nf-card r d2">
-        <div class="nf-icon" style="background: rgba(208,20,38,0.1); border-color: rgba(208,20,38,0.25);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D01426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3 class="nf-title">Running Multiple Teams? Easy.</h3>
-        <p class="nf-body">Rec League, Travel, Fall Ball, Softball — all in one app. Tap your team name to switch rosters instantly. Player count shows for each team so you always know what you're jumping into.</p>
-        <div class="nf-teams-demo">
-          <div class="nf-team nf-team-active">● Rec League</div>
-          <div class="nf-team">○ Travel</div>
-          <div class="nf-team">○ Fall Ball</div>
-          <div class="nf-team">○ Softball</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1182,33 +1098,75 @@
 <section class="wjw">
   <div class="wrap">
     <p class="eyebrow r" style="text-align:center;">Why It Just Works</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">No excuses. No workarounds. No drama.</h2>
-    <div class="wjw-grid">
-
-      <div class="wjw-card r d1">
-        <div class="wjw-label">Reliability</div>
-        <div class="wjw-title">No Signal, No Problem</div>
-        <p class="wjw-body">Built for real fields, not perfect WiFi. AI announcements are cached the moment you generate them. Songs download through Apple Music. Once you're set up, the whole app runs offline.</p>
+    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Thought of everything. So you don't have to.</h2>
+  </div>
+  <div class="wjw-track-wrap">
+    <div class="wjw-track">
+      <div class="wjw-grid">
+        <div class="wjw-card">
+          <div class="wjw-label">Reliability</div>
+          <div class="wjw-title">No Signal, No Problem</div>
+          <p class="wjw-body">Built for real fields, not perfect WiFi. AI announcements are cached the moment you generate them. Songs download through Apple Music. Once you're set up, the whole app runs offline.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Pricing</div>
+          <div class="wjw-title">Simple. Announced at Launch.</div>
+          <p class="wjw-body">Pricing is coming when we launch. Same philosophy as the app: straightforward, no surprises, built for coaches — not subscriptions with asterisks.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Simplicity</div>
+          <div class="wjw-title">No Tutorial Required</div>
+          <p class="wjw-body">Too many options = too complicated. No learning curve. No setup guide. Just open it and go.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Game Day</div>
+          <div class="wjw-title">No Surprises</div>
+          <p class="wjw-body">Forgot to generate a kid's announcement? The app flags it before the first pitch, not during it. Big buttons. High contrast. Every tap lands.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Sharing</div>
+          <div class="wjw-title">Can't Make the Game? Share the Lineup.</div>
+          <p class="wjw-body">Send a link and whoever shows up can run the music. Songs, timestamps, announcements — everything transfers in one tap. No setup on their end.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Teams</div>
+          <div class="wjw-title">All Your Teams, One App.</div>
+          <p class="wjw-body">Rec League, Travel, Fall Ball, Softball — tap your team name to switch rosters instantly. No logging in and out. No duplicate setups.</p>
+        </div>
       </div>
-
-      <div class="wjw-card r d2">
-        <div class="wjw-label">Pricing</div>
-        <div class="wjw-title">No Nickel-and-Diming</div>
-        <p class="wjw-body">No per-player fees. No unlocking voices one kid at a time. One app. Every team. Set up once.</p>
+      <!-- duplicate for seamless loop -->
+      <div class="wjw-grid" aria-hidden="true">
+        <div class="wjw-card">
+          <div class="wjw-label">Reliability</div>
+          <div class="wjw-title">No Signal, No Problem</div>
+          <p class="wjw-body">Built for real fields, not perfect WiFi. AI announcements are cached the moment you generate them. Songs download through Apple Music. Once you're set up, the whole app runs offline.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Pricing</div>
+          <div class="wjw-title">Simple. Announced at Launch.</div>
+          <p class="wjw-body">Pricing is coming when we launch. Same philosophy as the app: straightforward, no surprises, built for coaches — not subscriptions with asterisks.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Simplicity</div>
+          <div class="wjw-title">No Tutorial Required</div>
+          <p class="wjw-body">Too many options = too complicated. No learning curve. No setup guide. Just open it and go.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Game Day</div>
+          <div class="wjw-title">No Surprises</div>
+          <p class="wjw-body">Forgot to generate a kid's announcement? The app flags it before the first pitch, not during it. Big buttons. High contrast. Every tap lands.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Sharing</div>
+          <div class="wjw-title">Can't Make the Game? Share the Lineup.</div>
+          <p class="wjw-body">Send a link and whoever shows up can run the music. Songs, timestamps, announcements — everything transfers in one tap. No setup on their end.</p>
+        </div>
+        <div class="wjw-card">
+          <div class="wjw-label">Teams</div>
+          <div class="wjw-title">All Your Teams, One App.</div>
+          <p class="wjw-body">Rec League, Travel, Fall Ball, Softball — tap your team name to switch rosters instantly. No logging in and out. No duplicate setups.</p>
+        </div>
       </div>
-
-      <div class="wjw-card r d3">
-        <div class="wjw-label">Simplicity</div>
-        <div class="wjw-title">No Tutorial Required</div>
-        <p class="wjw-body">Too many options = too complicated. No learning curve. No setup guide. Just open it and go.</p>
-      </div>
-
-      <div class="wjw-card r d4">
-        <div class="wjw-label">Game Day</div>
-        <div class="wjw-title">No Surprises</div>
-        <p class="wjw-body">Forgot to generate a kid's announcement? The app flags it before the first pitch, not during it. Big buttons. High contrast. Every tap lands.</p>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1220,7 +1178,7 @@
   <div class="wrap closer-in">
     <div class="scar">TestFlight Beta — Limited Access</div>
     <h2 class="closer-h r">Put the other dugout on <span class="g">notice.</span></h2>
-    <p class="closer-p r d1">The app is live and free. Drop your email — we'll send the TestFlight link within 48 hours.</p>
+    <p class="closer-p r d1">Drop your email and we'll send you the TestFlight link within 48 hours.</p>
     <div class="closer-form r d2">
       <div class="form-row">
         <input type="email" placeholder="Enter your email address..." id="cEmail" />
@@ -1242,66 +1200,95 @@
 
       <div class="faq-item r">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>Does it work without WiFi or cell signal?</span>
-          <span class="faq-arrow">›</span>
-        </button>
-        <div class="faq-a">Yes. Now Batting pre-caches your announcements and works with downloaded Apple Music tracks, so no signal means no problem. Built for real fields, not perfect WiFi. As reliable as catching a can of corn.</div>
-      </div>
-
-      <div class="faq-item r d1">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span>What do I need to use Now Batting?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">iPhone + Apple Music subscription. Connect to a Bluetooth speaker or aux cord so the whole field hears it. That's it.</div>
+        <div class="faq-a">An iPhone and an active Apple Music subscription. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or plug into an aux cord. That's the whole setup.</div>
       </div>
 
       <div class="faq-item r d1">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>How does the walk-up sequence actually work?</span>
-          <span class="faq-arrow">›</span>
-        </button>
-        <div class="faq-a">You pick the song, set a start timestamp (the exact moment it kicks in), and generate a personalized AI announcement. On game day: tap the player → song starts at your mark → AI calls their name → song roars back → fades after ~15 seconds. Automatic. No touching the phone again.</div>
-      </div>
-
-      <div class="faq-item r d2">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>How do the AI announcements work?</span>
-          <span class="faq-arrow">›</span>
-        </button>
-        <div class="faq-a">The app uses AI voice synthesis to generate a stadium-style call for each player — "Now batting, number seven, Jake Miller!" You choose the phrase style, add a phonetic spelling for tricky names, and pick a voice. Announcements generate once and play instantly after that.</div>
-      </div>
-
-      <div class="faq-item r d3">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>Does it work for softball? T-ball? Multiple teams?</span>
-          <span class="faq-arrow">›</span>
-        </button>
-        <div class="faq-a">Yes to all three. Works for any sport with a batting order. Now Batting supports multiple rosters — Rec League, Travel, Fall Ball — all in one app. Tap your team name at the top to switch instantly.</div>
-      </div>
-
-      <div class="faq-item r">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span>Can I share my roster with another coach or parent?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Tap "Share Roster" and send a link. If they have the app, it imports in one tap. No app yet? They see the full lineup and an 8-character code to enter when they download.</div>
+        <div class="faq-a">
+          Yes — here's how to make it seamless:<br><br>
+          <strong>1. Get your roster ready first.</strong> Make sure every player has their walk-up song set, their announcement generated, and their batting order locked in. The person you're sharing with will get exactly what you have.<br><br>
+          <strong>2. Tap "Share Roster."</strong> In the app, tap your team name at the top, then hit Share Roster. You'll get a short link and an 8-character code.<br><br>
+          <strong>3. Send the link.</strong> If they already have Now Batting installed, the roster imports automatically — one tap and they're in. If they don't have the app yet, they'll see the full lineup on the web. Once they download Now Batting, they enter the 8-character code and the entire roster — songs, timestamps, announcements — loads instantly on their phone.<br><br>
+          They're ready to run game day exactly like you would.
+        </div>
       </div>
 
       <div class="faq-item r d1">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>Is there a soundboard for other game sounds?</span>
+          <span>Does it work without WiFi or cell signal?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Yes. The SOUNDS tab has National Anthem, Take Me Out to the Ballgame, Air Horn, Home Run Horn, Stomp, Charge — all offline, one tap. The Between Innings section streams curated hype music from Apple Music while sides change. My Lineup lets you tap any player's walk-up song directly.</div>
+        <div class="faq-a">
+          Yes — but you need to do three things before you get to the field:<br><br>
+          <strong>1. Generate each player's announcement.</strong> Open each player card in the app and tap the microphone button to generate their announcement. Once it's generated, it's saved to your phone forever.<br><br>
+          <strong>2. Set your song timestamps.</strong> On each player's song screen, drag the marker to the exact moment you want the music to kick in, then save. This is what makes it feel automatic on game day.<br><br>
+          <strong>3. Download your songs in Apple Music.</strong> Open the Apple Music app, find each walk-up song, tap the three-dot menu, and select Download. Downloaded songs play back with no signal needed.<br><br>
+          Once those three things are done, Now Batting runs completely offline. No WiFi, no cell signal, no problem.
+        </div>
+      </div>
+
+      <div class="faq-item r d2">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>How does the walk-up sequence actually work?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">You pick the song, drag a marker to the exact moment you want it to kick in, and record or generate a personalized player announcement. On game day: tap the player's card → song starts at your mark → the announcer calls their name → song roars back → fades out after about 15 seconds. One tap. Completely automatic. No touching the phone again.</div>
+      </div>
+
+      <div class="faq-item r d2">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>How do the player announcements work?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">Each player gets a personalized stadium-style call — "Now batting, number seven, Jake Miller!" The app uses AI voice synthesis to generate it. You choose the phrase ("Now batting," "Leading off," or "Coming up"), add a phonetic spelling if the name is tricky to pronounce, and pick a voice. Generate it once, and it plays instantly every game after that.</div>
+      </div>
+
+      <div class="faq-item r d3">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Does it work for softball, T-ball, and multiple teams?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">Yes to all of the above. Now Batting works for any sport with a batting order — baseball, softball, T-ball, and more. It supports multiple rosters in one app, so if you coach Rec League, Travel, and Fall Ball, you can switch between teams instantly by tapping your team name at the top.</div>
+      </div>
+
+      <div class="faq-item r d3">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Is Now Batting available for Android?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">Not yet. Now Batting is iOS only right now. Android is on the roadmap — if that's you, drop your email and you'll be first on the list when it's ready.</div>
+      </div>
+
+      <div class="faq-item r d3">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>When will Now Batting launch in the App Store?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">Soon. We're in beta right now and working through the final polish before a full App Store launch. Drop your email to get early access via TestFlight — and you'll be the first to know when we go live.</div>
+      </div>
+
+      <div class="faq-item r d3">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>What if I don't have Apple Music?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">Apple Music is the only supported music service right now. You'll need an active subscription to search for and play walk-up songs in the app. We know not everyone uses it — we're actively working on adding more options. In the meantime, feel free to reach out at <a href="mailto:support@nowbattingapp.com" style="color:var(--daylight);">support@nowbattingapp.com</a> to request a specific platform.</div>
       </div>
 
     </div>
+    <p style="text-align:center; margin-top:32px; font-size:14px; color:var(--txt3);">Have a question or feature request? <a href="mailto:support@nowbattingapp.com" style="color:var(--daylight);">support@nowbattingapp.com</a></p>
   </div>
 </section>
 
 <footer>
-  <div class="f-logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
   <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. Every parent deserves to enjoy it. · <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" style="color:var(--txt3);text-decoration:none;">@nowbattingapp</a> · <a href="/privacy" style="color:var(--txt3);text-decoration:none;">Privacy Policy</a> · <a href="/terms" style="color:var(--txt3);text-decoration:none;">Terms</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
@@ -1458,7 +1445,7 @@
     const prog = document.getElementById('demoProgress'), bar = document.getElementById('demoBar');
     if (prog) prog.classList.remove('on');
     if (bar)  bar.style.width = '0%';
-    _setCardState(''); _setCardPhase('WALK-UP SONG STARTS'); _setCardIcon('');
+    _setCardState('song'); _setCardPhase('WALK-UP SONG STARTS'); _setCardIcon('');
   }
 
   function _tickProgress() {
