@@ -129,6 +129,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -169,6 +172,12 @@
       --btn-height:   52px;
     }
     html { scroll-behavior: smooth; }
+
+    /* ── SCROLL PROGRESS BAR ── */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; background: #B8CC00;
+      z-index: 9999; width: 0%; transition: width 0.1s linear; pointer-events: none;
+    }
     body { background: var(--bg); color: var(--txt); font-family: var(--font-sans); font-size: 16px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
     body::before {
       content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
@@ -219,10 +228,13 @@
     .eyebrow { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; color: var(--txt3); margin-bottom: 12px; text-transform: uppercase; }
     .h2 { font-family: var(--font-sans); font-size: clamp(32px, 4vw, 50px); font-weight: 700; letter-spacing: -0.015em; line-height: 0.95; color: var(--txt); margin-bottom: 12px; }
 
-    /* reveal */
+    /* reveal — kept for hero section; AOS handles the rest */
     .r { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .r.on { opacity: 1; transform: none; }
     .r.d1 { transition-delay: 0.08s; } .r.d2 { transition-delay: 0.15s; } .r.d3 { transition-delay: 0.22s; }
+    @media (prefers-reduced-motion: reduce) {
+      .r { opacity: 1 !important; transform: none !important; }
+    }
 
     @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -256,11 +268,73 @@
       min-height: 100vh; display: flex; align-items: center;
       padding: 110px 48px 80px; position: relative; overflow: hidden;
     }
+    /* ── Hero photo background (duotone: grayscale + gold screen tint) ── */
+    .hero-bg-photo {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden;
+    }
+    .hero-bg-img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: 62% 22%;
+      filter: grayscale(100%) contrast(1.12);
+      display: block;
+    }
+    /* Gold screen tint — lifts bright areas (helmet, jersey, bat) into #B8CC00 territory */
+    .hero-bg-photo::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(184, 204, 0, 0.28);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+    /* Dark vignette — strong at edges, breathes slightly at center for composition */
+    .hero-bg-photo::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 45%, rgba(31,31,31,0.62) 0%, rgba(31,31,31,0.88) 65%, rgba(31,31,31,0.96) 100%);
+      pointer-events: none;
+    }
+    /* Hero text overrides — white on dark photo */
+    .hero .hero-eye { color: rgba(246,244,239,0.50); }
+    /* Hero email input — bright on dark photo */
+    .hero .form-row input {
+      background: rgba(255,255,255,0.95);
+      color: #1F1F1F;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .hero .form-row input::placeholder { color: rgba(31,31,31,0.50); }
+    .hero .hero-h1 { color: #FFFFFF; }
+    .hero .hero-h1 .g { color: var(--neon); }
+    .hero .hero-sub { color: rgba(246,244,239,0.72); }
+    .hero .hero-proof { color: rgba(246,244,239,0.50) !important; }
+    .hero .hero-proof strong { color: var(--daylight); }
+    @media (max-width: 768px) {
+      .hero-bg-img { object-position: 55% 18%; }
+      .hero-bg-photo::after {
+        background: linear-gradient(180deg, rgba(31,31,31,0.60) 0%, rgba(31,31,31,0.90) 60%, rgba(31,31,31,0.97) 100%);
+      }
+    }
+    @keyframes hero-aurora-1 {
+      0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+      50% { transform: translateX(-50%) translateY(-22px) scale(1.07); }
+    }
+    @keyframes hero-aurora-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+      40% { transform: translate(18px, -18px) scale(1.12); opacity: 1; }
+      75% { transform: translate(-12px, 8px) scale(0.93); opacity: 0.6; }
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 40%; right: 8%;
+      width: 440px; height: 360px;
+      background: radial-gradient(ellipse, rgba(184,204,0,0.06) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+      animation: hero-aurora-2 22s ease-in-out infinite;
+      will-change: transform;
+    }
     .hero::after {
       content: ''; position: absolute; top: -10%; left: 50%; transform: translateX(-50%);
       width: 760px; height: 600px;
-      background: radial-gradient(ellipse, rgba(184,204,0,0.04) 0%, transparent 68%);
+      background: radial-gradient(ellipse, rgba(184,204,0,0.06) 0%, transparent 68%);
       pointer-events: none;
+      animation: hero-aurora-1 18s ease-in-out infinite;
+      will-change: transform;
     }
     .hero-grid {
       position: relative; z-index: 1; max-width: 700px; margin: 0 auto; width: 100%;
@@ -573,21 +647,7 @@
 
     /* ── WHY IT JUST WORKS ── */
     .wjw { padding: 80px 0; }
-    .wjw-track-wrap {
-      overflow: hidden;
-      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-    }
-    @keyframes wjw-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .wjw-track {
-      display: flex; gap: 20px; width: max-content;
-      animation: wjw-scroll 28s linear infinite;
-    }
-    .wjw-track:hover { animation-play-state: paused; }
-    @media (max-width: 860px) { .wjw-track { animation-duration: 50s; } }
-    .wjw-grid { display: flex; gap: 20px; }
     .wjw-card {
-      flex: 0 0 300px;
       background: var(--mid); border: 1px solid var(--bord); border-radius: 20px;
       padding: 32px 28px; position: relative;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
@@ -598,7 +658,6 @@
     .wjw-title { font-family: var(--font-sans); font-size: 24px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
     .wjw-body { font-size: 14px; color: var(--txt2); line-height: 1.65; }
     @media (max-width: 900px) { .wjw { padding: 60px 0; } }
-    @media (max-width: 560px) { .wjw-card { flex: 0 0 260px; } }
 
     /* ── HEAR THE MOMENT ── */
     .moment { padding: 80px 0; }
@@ -618,22 +677,20 @@
     .moment-progress-bar { height: 100%; background: var(--daylight); width: 0%; transition: width 0.15s linear; }
     .moment-phase { text-align: center; font-size: 11px; color: var(--txt3); font-weight: 700; letter-spacing: 1.5px; margin-top: 8px; min-height: 16px; text-transform: uppercase; }
 
-    /* ── DEMO ANNOUNCEMENT SCREEN ── */
+    /* ── DEMO VIDEO PHONE ── */
     .demo-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; }
-    .demo-phone {
+    .demo-video-phone {
       width: 260px;
-      background: #1F1F1F;
-      border: 1.5px solid rgba(255,255,255,0.07);
-      border-radius: 30px;
-      padding: 18px 16px 20px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
-      overflow: hidden; position: relative;
-      transition: box-shadow 0.5s;
-      display: flex; flex-direction: column;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 0 1.5px rgba(255,255,255,0.08), 0 0 40px rgba(184,204,0,0.12);
+      flex-shrink: 0;
     }
-    .demo-phone.song  { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 40px rgba(184,204,0,0.18), 0 0 0 1px rgba(255,255,255,0.04); }
-    .demo-phone.announcing { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 50px rgba(223,255,0,0.28), 0 0 0 1px rgba(255,255,255,0.04); }
-    .demo-phone.blast { box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 60px rgba(255,255,255,0.14), 0 0 0 1px rgba(255,255,255,0.04); }
+    .demo-video-phone video {
+      width: 100%;
+      display: block;
+    }
 
     /* Progress tabs */
     .demo-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
@@ -877,9 +934,231 @@
       min-height: 150px; overflow: hidden; margin: 0 -4px;
     }
     .demo-center .demo-jersey-num, .demo-center .demo-player-name { position: relative; z-index: 1; }
+
+    /* ── STEP 4: WJW DARK SECTION ── */
+    .wjw { background: #1F1F1F; color: #FFFFFF; }
+    .wjw .eyebrow { color: rgba(255,255,255,0.4); }
+    .wjw .h2 { color: #FFFFFF; }
+    .wjw .wjw-sub { color: rgba(255,255,255,0.5); }
+    .wjw .wjw-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #FFFFFF;
+    }
+    .wjw .wjw-card:hover { border-color: rgba(255,255,255,0.2); }
+    .wjw .wjw-title { color: #FFFFFF; }
+    .wjw .wjw-body { color: rgba(255,255,255,0.6); }
+    .wjw .wjw-label { color: #B8CC00; }
+
+    /* ── STEP 5A: WAVE BAR ANIMATION (wordmark) ── */
+    @keyframes wave-bar {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.3); }
+    }
+    .wave-bar { transform-origin: bottom; }
+    .wave-bar:nth-child(1) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 0ms; }
+    .wave-bar:nth-child(2) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 100ms; }
+    .wave-bar:nth-child(3) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 200ms; }
+    .wave-bar:nth-child(4) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 300ms; }
+    .wave-bar:nth-child(5) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 200ms; }
+    .wave-bar:nth-child(6) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 100ms; }
+    .wave-bar:nth-child(7) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 0ms; }
+
+    /* ── STEP 5D: PHONE PARALLAX ── */
+    .screenshots .ss-img {
+      transition: transform 0.1s linear;
+      will-change: transform;
+    }
+
+    /* ── STEP 5E: JERSEY NUMBER PULSE ── */
+    @keyframes jersey-pulse {
+      0%, 100% { text-shadow: 0 0 0px #DFFF00; opacity: 1; }
+      50% { text-shadow: 0 0 20px #DFFF00, 0 0 40px rgba(223,255,0,0.4); opacity: 0.9; }
+    }
+    .now-playing .player-number,
+    .moment .player-num,
+    #demoPhone .demo-jersey-num {
+      animation: jersey-pulse 3s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    /* ── STEP 5F: HOW IT WORKS VERTICAL LINE ── */
+    .how-steps {
+      position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 40px;
+      bottom: 40px;
+      width: 2px;
+      background: linear-gradient(to bottom, #B8CC00, rgba(184,204,0,0.1));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 1s ease-out;
+    }
+    .how-steps.aos-animate::before {
+      transform: scaleY(1);
+    }
+
+    /* ── STEP 5G: HEAR THE EXPERIENCE PULSE RING ── */
+    .hear-btn {
+      position: relative;
+    }
+    .hear-btn::before,
+    .hear-btn::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      border: 2px solid #DFFF00;
+      animation: hear-pulse 2s ease-out infinite;
+      pointer-events: none;
+    }
+    .hear-btn::after { animation-delay: 1s; }
+    .hear-btn.playing::before, .hear-btn.playing::after { animation: none; }
+    @keyframes hear-pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    /* ── STEP 5H: DEMO PROGRESS BAR ── */
+    #demoProgress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+    }
+    #demoBar {
+      height: 100%;
+      background: #DFFF00;
+      width: 0%;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(223,255,0,0.6);
+    }
+
+    /* ── STEP 5I: SOUNDBOARD MICRO-ANIMATION ── */
+    .sb-btn {
+      transition: transform 80ms ease, background 80ms ease, box-shadow 80ms ease;
+    }
+    .sb-btn:active { transform: scale(0.94); }
+    .sb-btn.sb-active {
+      background: #1F1F1F;
+      border-color: #B8CC00;
+      box-shadow: 0 0 0 2px rgba(184,204,0,0.3);
+      transform: scale(0.97);
+    }
+    .sb-wave { display: none; align-items: flex-end; gap: 2px; height: 14px; margin-left: 6px; }
+    .sb-active .sb-wave { display: inline-flex; }
+    .sb-wave span { width: 2px; background: #B8CC00; border-radius: 1px; animation: sb-bar 0.7s ease-in-out infinite alternate; }
+    .sb-wave span:nth-child(1) { height: 5px; animation-delay: 0ms; }
+    .sb-wave span:nth-child(2) { height: 10px; animation-delay: 100ms; }
+    .sb-wave span:nth-child(3) { height: 7px; animation-delay: 200ms; }
+    .sb-wave span:nth-child(4) { height: 4px; animation-delay: 300ms; }
+    @keyframes sb-bar {
+      from { transform: scaleY(0.5); }
+      to { transform: scaleY(1); }
+    }
+
+    /* ── STEP 5J: FEATURE CARD HOVER LIFT ── */
+    .wjw-card {
+      transition: transform 200ms ease, box-shadow 200ms ease;
+      cursor: default;
+    }
+    .wjw-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.2) !important;
+    }
+
+    /* ── STEP 5K: EMAIL INPUT FOCUS GLOW ── */
+    input[type="email"], input[type="text"].email-input {
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+    input[type="email"]:focus, input[type="text"].email-input:focus {
+      outline: none;
+      border-color: #DFFF00;
+      box-shadow: 0 0 0 3px rgba(223,255,0,0.15);
+    }
+
+    /* ── STEP 5L: CTA SUBMIT BUTTON NEON GLOW ── */
+    .closer .cta-btn, .closer .btn {
+      position: relative;
+    }
+    .closer .cta-btn::before, .closer .btn::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      background: radial-gradient(ellipse at center, rgba(223,255,0,0.12) 0%, transparent 70%);
+      border-radius: inherit;
+      pointer-events: none;
+      animation: cta-glow 3s ease-in-out infinite;
+    }
+    @keyframes cta-glow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* ── STEP 5N: SCROLL PROGRESS already in :root block above ── */
+
+    /* ── FEAT CARDS — SWIPEABLE SCROLL-SNAP ── */
+    .feat-cards {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 24px 8px;
+      cursor: grab;
+    }
+    .feat-cards::-webkit-scrollbar { display: none; }
+    .feat-cards:active { cursor: grabbing; }
+    .feat-cards .wjw-card {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      width: 280px;
+      max-width: 85vw;
+    }
+    .feat-dots { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
+    .feat-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: background 0.2s ease, transform 0.2s ease; cursor: pointer; }
+    .feat-dot.active { background: #B8CC00; transform: scale(1.3); }
+
+    /* ── MOMENT — AURORA + LIGHTNING LAYER ── */
+    .moment { position: relative; }
+    .moment-aurora {
+      position: absolute !important; inset: 0; pointer-events: none; z-index: 0;
+      opacity: 0; transition: opacity 1.2s ease;
+    }
+    .moment-aurora.on { opacity: 1; }
+    .moment-lightning {
+      position: absolute !important; inset: 0; pointer-events: none; z-index: 1;
+      opacity: 0; transition: opacity 0.15s ease;
+    }
+    .moment-lightning.flash { opacity: 1; }
+    .moment > :not(canvas) { position: relative; z-index: 2; }
+
+    /* ── HEAR THE EXPERIENCE BUTTON — DARK ── */
+    .hear-btn {
+      background: #1A1A1A !important;
+      color: #B8CC00 !important;
+      border: 1px solid rgba(184,204,0,0.35) !important;
+    }
+    .hear-btn:hover { background: #252525 !important; border-color: rgba(184,204,0,0.6) !important; }
+    .hear-btn:active { transform: scale(0.98); }
+
+    /* ── TYPED.JS CURSOR — stop blink, fade out after typing ── */
+    .typed-cursor.typed-cursor--blink { animation: none; }
+    .typed-done .typed-cursor { opacity: 0; transition: opacity 0.4s ease; }
   </style>
 </head>
 <body>
+<div id="scroll-progress" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav>
@@ -893,29 +1172,27 @@
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
       </a>
     </div>
-    <a href="/about" class="nav-link nav-link-story">Our Story</a>
-    <a href="/manifesto" class="nav-link nav-link-manifesto">The Saturday Standard</a>
-    <a href="#closer" class="nav-btn">Get Early Access</a>
-  </div>
-  <div class="nav-sub">
-    <a href="/about">Our Story</a>
-    <a href="/manifesto">The Saturday Standard</a>
+    <a href="#closer" class="nav-btn">Join the Beta</a>
   </div>
 </nav>
 
 <!-- 1. HERO -->
 <section class="hero">
+  <!-- Duotone photo background: grayscale + gold screen tint -->
+  <div class="hero-bg-photo" aria-hidden="true">
+    <img src="/batter-web.jpg" alt="" class="hero-bg-img" loading="eager" fetchpriority="high">
+  </div>
   <div class="hero-grid">
     <div>
       <p class="hero-eye">NOW ON TESTFLIGHT — FREE BETA</p>
-      <h1 class="hero-h1">Every kid deserves their <span class="g">now batting</span> moment.</h1>
-      <p class="hero-sub">Because every kid deserves their 15 seconds of fame.<br>Walk-up songs and player announcements — one tap.<br>Set up faster than you can find your kid's other batting glove.</p>
+      <h1 class="hero-h1">Every kid deserves their <span class="g" id="typed-callup"></span> moment.</h1>
+      <p class="hero-sub">Walk-up songs and player announcements — one tap.<br>Set up faster than you can find your kid's other batting glove.</p>
       <div class="hero-form-wrap">
         <div class="form-row">
           <input type="email" placeholder="Enter your email..." id="hEmail" />
-          <button class="btn" onclick="signup('hEmail',this)">Get Early Access</button>
+          <button class="btn" onclick="signup('hEmail',this)">Join the Beta</button>
         </div>
-        <p class="hero-proof"><strong id="counter">47 coaches</strong> already on the roster &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Free beta</p>
+        <p class="hero-proof"><strong><span id="coach-count">0</span>+ parents</strong> already on the roster &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Free beta</p>
       </div>
     </div>
   </div>
@@ -928,7 +1205,7 @@
 
 <!-- SCREENSHOTS -->
 <section class="screenshots">
-  <div class="wrap" style="text-align:center;">
+  <div class="wrap" data-aos="fade-up" style="text-align:center;">
     <p class="eyebrow r">The App</p>
     <h2 class="h2 r d1" style="margin-bottom: 40px;">Built for the dugout. Ready in minutes.</h2>
     <div class="ss-rail">
@@ -937,7 +1214,7 @@
         <p class="ss-caption">Game Day</p>
       </div>
       <div class="ss-phone ss-phone-center r d2">
-        <img src="/screenshots/screenshot-nowplaying.png" alt="Game-day overlay showing #21 Jake Miller stepping up to bat with Enter Sandman by Metallica" class="ss-img" />
+        <img src="/screenshots/screenshot-nowplaying.png" alt="Game-day overlay showing #7 Jake Miller stepping up to bat with Enter Sandman by Metallica" class="ss-img" />
         <p class="ss-caption">Now Playing</p>
       </div>
       <div class="ss-phone r d3">
@@ -950,9 +1227,49 @@
 
 <div class="hr"></div>
 
+<!-- HEAR THE MOMENT -->
+<section class="moment">
+  <canvas class="moment-aurora" id="momentAurora" aria-hidden="true"></canvas>
+  <canvas class="moment-lightning" id="momentLightning" aria-hidden="true"></canvas>
+  <div class="mws-wrap" aria-hidden="true">
+    <svg class="idle-wave mws-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 80">
+      <rect class="bar b1" x="0"      y="32"  width="8.1"   height="16" rx="4.05"  fill="#DFFF00"/>
+      <rect class="bar b2" x="13"     y="24"  width="8.1"   height="32" rx="4.05"  fill="#DFFF00"/>
+      <rect class="bar b3" x="26"     y="14"  width="9"     height="52" rx="4.5"   fill="#DFFF00"/>
+      <rect class="bar b4" x="39.375" y="0"   width="11.25" height="80" rx="5.625" fill="#DFFF00"/>
+      <rect class="bar b5" x="54.625" y="12"  width="9.9"   height="56" rx="4.95"  fill="#DFFF00"/>
+      <rect class="bar b6" x="68.525" y="22"  width="8.55"  height="36" rx="4.275" fill="#DFFF00"/>
+      <rect class="bar b7" x="81.075" y="30"  width="8.55"  height="20" rx="4.275" fill="#DFFF00"/>
+    </svg>
+  </div>
+  <div class="wrap" data-aos="fade-up" style="text-align:center;">
+    <p class="eyebrow r">The Full Experience</p>
+    <h2 class="h2 r d1" style="text-align:center; margin-bottom:12px;">~15 seconds. Big-league energy.</h2>
+    <div class="demo-layout r d2">
+
+      <!-- Real app screen recording -->
+      <div class="demo-video-phone">
+        <video id="demoVideo" src="/demo.mp4" playsinline preload="metadata" aria-label="Now Batting app demo — walk-up song and player announcement sequence"></video>
+      </div>
+
+      <!-- Play button + progress -->
+      <div class="demo-ctrl">
+        <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
+        <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
+        <p class="moment-phase" id="demoPhase"></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<div class="hr"></div>
+
 <!-- 3. PERSONA + TESTIMONIAL -->
 <section class="persona">
-  <div class="wrap">
+  <div class="wrap" data-aos="fade-up">
     <div class="persona-grid">
       <div>
         <p class="eyebrow r">Who it's for</p>
@@ -975,22 +1292,22 @@
 
 <!-- 4. HOW IT WORKS -->
 <section class="how">
-  <div class="wrap">
+  <div class="wrap" data-aos="fade-up">
     <p class="eyebrow r">How it works</p>
     <h2 class="h2 r d1">Set up once. Steal the show every game.</h2>
-    <div class="steps">
+    <div class="steps how-steps" data-aos="fade-up">
       <div class="step r">
-        <div class="step-n">01</div>
+        <div class="step-n" data-aos="fade-up" data-aos-delay="0">01</div>
         <div class="step-title">Build Your Lineup.</div>
         <p class="step-body">Names, numbers, done. Add each player once — you're set for the season.</p>
       </div>
       <div class="step r d1">
-        <div class="step-n">02</div>
+        <div class="step-n" data-aos="fade-up" data-aos-delay="150">02</div>
         <div class="step-title">Give Each Kid Their Walk-Up.</div>
         <p class="step-body">Search Apple Music, set the Drop Point — the exact beat you want the music to hit — and generate their personal player call in seconds. Because "Lose Yourself" needs to start at the right moment or it's just Eminem talking for a while.</p>
       </div>
       <div class="step r d2">
-        <div class="step-n">03</div>
+        <div class="step-n" data-aos="fade-up" data-aos-delay="300">03</div>
         <div class="step-title">Tap. Watch It Happen.</div>
         <p class="step-body">One tap. Moment delivered. Song drops at the right beat. Name gets called. Dugout goes nuts. Nobody sees you sweat — because there's nothing to sweat.</p>
       </div>
@@ -1000,112 +1317,27 @@
 
 <div class="hr"></div>
 
-<!-- HEAR THE MOMENT -->
-<section class="moment">
-  <div class="mws-wrap" aria-hidden="true">
-    <svg class="idle-wave mws-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 80">
-      <rect class="bar b1" x="0"      y="32"  width="8.1"   height="16" rx="4.05"  fill="#DFFF00"/>
-      <rect class="bar b2" x="13"     y="24"  width="8.1"   height="32" rx="4.05"  fill="#DFFF00"/>
-      <rect class="bar b3" x="26"     y="14"  width="9"     height="52" rx="4.5"   fill="#DFFF00"/>
-      <rect class="bar b4" x="39.375" y="0"   width="11.25" height="80" rx="5.625" fill="#DFFF00"/>
-      <rect class="bar b5" x="54.625" y="12"  width="9.9"   height="56" rx="4.95"  fill="#DFFF00"/>
-      <rect class="bar b6" x="68.525" y="22"  width="8.55"  height="36" rx="4.275" fill="#DFFF00"/>
-      <rect class="bar b7" x="81.075" y="30"  width="8.55"  height="20" rx="4.275" fill="#DFFF00"/>
-    </svg>
-  </div>
-  <div class="wrap" style="text-align:center;">
-    <p class="eyebrow r">The Full Experience</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom:12px;">~15 seconds. Big-league energy.</h2>
-    <div class="demo-layout r d2">
 
-      <!-- Animated phone mockup — announcement screen -->
-      <div class="demo-phone song" id="demoPhone">
-
-        <!-- Progress tabs: no labels, bars only -->
-        <div class="demo-tabs">
-          <div class="demo-tab demo-tab-song">
-            <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
-          </div>
-          <div class="demo-tab demo-tab-call">
-            <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
-          </div>
-          <div class="demo-tab demo-tab-blast">
-            <div class="demo-tab-bar"><div class="demo-tab-fill"></div></div>
-          </div>
-        </div>
-
-        <!-- NOW BATTING header -->
-        <svg class="idle-wave demo-nb-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="18" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#FFFFFF"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#FFFFFF"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#FFFFFF" letter-spacing="-1">batting</text></svg>
-
-        <!-- Center: Moment Wave bg + player identity -->
-        <div class="demo-center">
-          <div class="demo-waveform-bg">
-            <svg class="idle-wave dwf-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 80" aria-hidden="true">
-              <rect class="bar b1" x="0"      y="32"  width="8.1"   height="16" rx="4.05"/>
-              <rect class="bar b2" x="13"     y="24"  width="8.1"   height="32" rx="4.05"/>
-              <rect class="bar b3" x="26"     y="14"  width="9"     height="52" rx="4.5"/>
-              <rect class="bar b4" x="39.375" y="0"   width="11.25" height="80" rx="5.625"/>
-              <rect class="bar b5" x="54.625" y="12"  width="9.9"   height="56" rx="4.95"/>
-              <rect class="bar b6" x="68.525" y="22"  width="8.55"  height="36" rx="4.275"/>
-              <rect class="bar b7" x="81.075" y="30"  width="8.55"  height="20" rx="4.275"/>
-            </svg>
-          </div>
-          <div class="demo-jersey-num">#21</div>
-          <div class="demo-player-name">JAKE<br>MILLER</div>
-        </div>
-
-        <!-- Song info -->
-        <div class="demo-song-info">
-          <div class="demo-song-title">Enter Sandman</div>
-          <div class="demo-song-artist">Metallica</div>
-        </div>
-
-        <!-- Buttons: REPLAY | STOP | FADE -->
-        <div class="demo-btns">
-          <div class="demo-btn">REPLAY</div>
-          <div class="demo-btn demo-btn-stop">STOP</div>
-          <div class="demo-btn">FADE</div>
-        </div>
-
-        <!-- ON DECK -->
-        <div class="demo-ondeck">
-          <span class="demo-ondeck-label">On Deck</span>
-          <span class="demo-ondeck-player">#22 JOE SMITH</span>
-        </div>
-
-      </div>
-
-      <!-- Play button + progress -->
-      <div class="demo-ctrl">
-        <button class="moment-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
-        <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
-        <p class="moment-phase" id="demoPhase"></p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="hr"></div>
 
 <!-- 5. SOUNDBOARD -->
 <section class="soundboard">
-  <div class="wrap">
+  <div class="wrap" data-aos="fade-up">
     <div class="sb-grid">
       <div>
         <p class="eyebrow r">Soundboard</p>
         <h2 class="h2 r d1">Every sound a game needs.</h2>
         <p class="sb-body r d2">The air horn, the home run horn, the Charge — you're running a full stadium production from a lawn chair. You're a legend.</p>
+
         <div class="sb-badge r d3">Available Now</div>
       </div>
       <div class="r d1">
         <div class="sb-panel">
-          <div class="sb-btn" onclick="sbPlay(this,'national')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">National Anthem</div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'takemeout')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Take Me Out</div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'airhorn')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Air Horn</div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'homerun')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Home Run Horn</div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'charge')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Charge</div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'lineup')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">My Lineup</div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'national')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">National Anthem<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'takemeout')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Take Me Out<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'airhorn')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Air Horn<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'homerun')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Home Run Horn<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'charge')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Charge<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'lineup')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">My Lineup<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
         </div>
       </div>
     </div>
@@ -1116,93 +1348,57 @@
 
 <!-- WHY IT JUST WORKS -->
 <section class="wjw">
-  <div class="wrap">
+  <div class="wrap" data-aos="fade-up">
     <p class="eyebrow r" style="text-align:center;">Why It Just Works</p>
     <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Built for Field 3s everywhere. So you don't have to think about anything but the game.</h2>
   </div>
-  <div class="wjw-track-wrap">
-    <div class="wjw-track">
-      <div class="wjw-grid">
-        <div class="wjw-card">
-          <div class="wjw-label">Reliability</div>
-          <div class="wjw-title">No Signal, No Problem</div>
-          <p class="wjw-body">Field 3 doesn't have great signal. Neither does half the complex. A kid shouldn't miss their moment because of a network bar. AI announcements are cached. Songs download through Apple Music. Once you're set up, the whole app runs completely offline. You're covered.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Pricing</div>
-          <div class="wjw-title">Simple. Announced at Launch.</div>
-          <p class="wjw-body">Pricing is coming when we launch. Same philosophy as the app: straightforward, no surprises, built for coaches — not subscriptions with asterisks.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Simplicity</div>
-          <div class="wjw-title">No Tutorial Required</div>
-          <p class="wjw-body">Too many options = too complicated. No learning curve. No setup guide. Just open it and go.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Game Day</div>
-          <div class="wjw-title">No Surprises</div>
-          <p class="wjw-body">You're watching the game with one eye and running the music with one hand. The app flags anything missing before the first pitch, not during it. Big buttons. High contrast. Every tap lands — even through polarized sunglasses.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Sharing</div>
-          <div class="wjw-title">Can't Make the Game? Share the Lineup.</div>
-          <p class="wjw-body">Send a link and whoever shows up can run the music. Songs, timestamps, announcements — everything transfers in one tap. No setup on their end.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Teams</div>
-          <div class="wjw-title">All Your Teams, One App.</div>
-          <p class="wjw-body">Rec League, Travel, Fall Ball, Softball — tap your team name to switch rosters instantly. No logging in and out. No duplicate setups.</p>
-        </div>
-      </div>
-      <!-- duplicate for seamless loop -->
-      <div class="wjw-grid" aria-hidden="true">
-        <div class="wjw-card">
-          <div class="wjw-label">Reliability</div>
-          <div class="wjw-title">No Signal, No Problem</div>
-          <p class="wjw-body">Field 3 doesn't have great signal. Neither does half the complex. A kid shouldn't miss their moment because of a network bar. AI announcements are cached. Songs download through Apple Music. Once you're set up, the whole app runs completely offline. You're covered.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Pricing</div>
-          <div class="wjw-title">Simple. Announced at Launch.</div>
-          <p class="wjw-body">Pricing is coming when we launch. Same philosophy as the app: straightforward, no surprises, built for coaches — not subscriptions with asterisks.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Simplicity</div>
-          <div class="wjw-title">No Tutorial Required</div>
-          <p class="wjw-body">Too many options = too complicated. No learning curve. No setup guide. Just open it and go.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Game Day</div>
-          <div class="wjw-title">No Surprises</div>
-          <p class="wjw-body">You're watching the game with one eye and running the music with one hand. The app flags anything missing before the first pitch, not during it. Big buttons. High contrast. Every tap lands — even through polarized sunglasses.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Sharing</div>
-          <div class="wjw-title">Can't Make the Game? Share the Lineup.</div>
-          <p class="wjw-body">Send a link and whoever shows up can run the music. Songs, timestamps, announcements — everything transfers in one tap. No setup on their end.</p>
-        </div>
-        <div class="wjw-card">
-          <div class="wjw-label">Teams</div>
-          <div class="wjw-title">All Your Teams, One App.</div>
-          <p class="wjw-body">Rec League, Travel, Fall Ball, Softball — tap your team name to switch rosters instantly. No logging in and out. No duplicate setups.</p>
-        </div>
-      </div>
+  <div class="feat-cards" id="featCards">
+    <div class="wjw-card">
+      <div class="wjw-label">Reliability</div>
+      <div class="wjw-title">No Signal, No Problem</div>
+      <p class="wjw-body">Field 3 doesn't have great signal. Neither does half the complex. A kid shouldn't miss their moment because of a network bar. AI announcements are cached. Songs download through Apple Music. Once you're set up, the whole app runs completely offline. You're covered.</p>
+    </div>
+    <div class="wjw-card">
+      <div class="wjw-label">Pricing</div>
+      <div class="wjw-title">Simple. Announced at Launch.</div>
+      <p class="wjw-body">Pricing is coming when we launch. Same philosophy as the app: straightforward, no surprises, built for coaches — not subscriptions with asterisks.</p>
+    </div>
+    <div class="wjw-card">
+      <div class="wjw-label">Simplicity</div>
+      <div class="wjw-title">No Tutorial Required</div>
+      <p class="wjw-body">Too many options = too complicated. No learning curve. No setup guide. Just open it and go.</p>
+    </div>
+    <div class="wjw-card">
+      <div class="wjw-label">Game Day</div>
+      <div class="wjw-title">No Surprises</div>
+      <p class="wjw-body">You're watching the game with one eye and running the music with one hand. The app flags anything missing before the first pitch, not during it. Big buttons. High contrast. Every tap lands — even through polarized sunglasses.</p>
+    </div>
+    <div class="wjw-card">
+      <div class="wjw-label">Sharing</div>
+      <div class="wjw-title">Can't Make the Game? Share the Lineup.</div>
+      <p class="wjw-body">Send a link and whoever shows up can run the music. Songs, timestamps, announcements — everything transfers in one tap. No setup on their end.</p>
+    </div>
+    <div class="wjw-card">
+      <div class="wjw-label">Teams</div>
+      <div class="wjw-title">All Your Teams, One App.</div>
+      <p class="wjw-body">Rec League, Travel, Fall Ball, Softball — tap your team name to switch rosters instantly. No logging in and out. No duplicate setups.</p>
     </div>
   </div>
+  <div class="feat-dots" id="featDots" aria-hidden="true"></div>
 </section>
 
 <div class="hr"></div>
 
 <!-- 6. CLOSER -->
 <section class="closer" id="closer">
-  <div class="wrap closer-in">
+  <div class="wrap closer-in" data-aos="fade-up">
     <div class="scar">TestFlight Beta — Limited Access</div>
     <h2 class="closer-h r">Go ahead. <span class="g">Take the job officially.</span></h2>
-    <p class="closer-p r d1">Drop your email. We'll have you ready before the next game.<br>Built for the Chief Hype Officer at Field 3s everywhere.</p>
+    <p class="closer-p r d1">Built for the Chief Hype Officer at Field 3s everywhere.<br>Drop your email. We'll have you ready before the next game.</p>
     <div class="closer-form r d2">
       <div class="form-row">
-        <input type="email" placeholder="Enter your email address..." id="cEmail" />
-        <button class="btn" onclick="signup('cEmail',this)">Make 'Em Jealous →</button>
+        <input type="email" placeholder="Enter your email address..." id="cEmail" data-source="pricing" />
+        <button class="btn" onclick="signup('cEmail',this)">Join the Beta</button>
       </div>
       <p class="spots"><strong id="spotsLeft">31 spots remaining</strong> out of 50</p>
     </div>
@@ -1213,7 +1409,7 @@
 
 <!-- FAQ SECTION -->
 <section class="faq" id="faq">
-  <div class="wrap">
+  <div class="wrap" data-aos="fade-up">
     <p class="eyebrow r" style="text-align:center;">Common Questions</p>
     <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Everything you need to know.</h2>
     <div class="faq-list">
@@ -1324,7 +1520,7 @@
 <div class="msticky" id="msticky">
   <button class="msticky-x" id="msX">×</button>
   <input type="email" placeholder="Your email — get early access" id="mEmail" />
-  <button class="mbtn" onclick="signup('mEmail',this)">Get Early Access →</button>
+  <button class="mbtn" onclick="signup('mEmail',this)">Join the Beta →</button>
 </div>
 
 <!-- SUCCESS OVERLAY -->
@@ -1340,7 +1536,7 @@
         <span class="o-url" id="ourl">nowbattingapp.com/waitlist/ref=</span>
         <button class="o-copy" id="ocopy" onclick="copyLink()">Copy Link</button>
       </div>
-      <p class="o-inc">Share with other coaches. Every signup = <strong>you jump 5 spots ahead.</strong></p>
+      <p class="o-inc">Share with other parents. Every signup = <strong>you jump 5 spots ahead.</strong></p>
     </div>
     <button class="o-dismiss" onclick="closeOverlay()">I'll share it later</button>
   </div>
@@ -1365,7 +1561,17 @@
   // }
 
   // scroll reveal
-  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); } }), { threshold: 0.1 });
+  const ro = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('on');
+          ro.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0, rootMargin: '0px 0px -60px 0px' }
+  );
   document.querySelectorAll('.r').forEach(el => ro.observe(el));
 
   // counter
@@ -1412,6 +1618,8 @@
     spots = Math.max(1, spots - 1); renderSpots();
     document.getElementById('overlay').classList.add('on');
     document.body.style.overflow = 'hidden';
+    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#DFFF00','#B8CC00','#1F1F1F','#ffffff'], zIndex: 10000 });
+    setTimeout(() => { confetti({ particleCount: 40, spread: 50, origin: { y: 0.55 }, colors: ['#DFFF00','#B8CC00'], zIndex: 10000 }); }, 300);
   }
 
   function copyLink() {
@@ -1426,6 +1634,48 @@
   function closeOverlay() { document.getElementById('overlay').classList.remove('on'); document.body.style.overflow = ''; }
   document.getElementById('overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeOverlay(); });
 
+  // ── 5B: COUNTER ANIMATE UP ──
+  (function() {
+    const el = document.getElementById('coach-count');
+    if (!el) return;
+    const target = 127;
+    const duration = 1500;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  // ── 5D: PHONE PARALLAX ──
+  (function() {
+    const section = document.querySelector('.screenshots');
+    if (!section) return;
+    const imgs = section.querySelectorAll('.ss-img');
+    if (imgs.length < 2) return;
+    const parallax = [0.06, 0.03, 0.06];
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const pct = (window.innerHeight / 2 - rect.top) / rect.height;
+      imgs.forEach((img, i) => {
+        img.style.transform = `translateY(${pct * (parallax[i] || 0.04) * -60}px)`;
+      });
+    }, { passive: true });
+  })();
+
+  // ── 5N: SCROLL PROGRESS BAR ──
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('scroll-progress');
+    if (!el) return;
+    const scrolled = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    el.style.width = Math.min(100, (scrolled / total) * 100) + '%';
+  }, { passive: true });
+
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
@@ -1433,120 +1683,254 @@
     if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
   }
 
-  // ── HEAR THE EXPERIENCE demo ──────────────────────────────────────────────
-  let _demoMusic = null, _demoTts = null, _demoPlaying = false, _demoTtsUrl = null;
-  const DEMO_DURATION = 15000;
-  let _demoStart = 0, _demoRaf = null, _demoAutoStop = null;
-
-  function _setCardState(state) {
-    const phone = document.getElementById('demoPhone');
-    if (!phone) return;
-    phone.classList.remove('song', 'announcing', 'blast');
-    if (state) phone.classList.add(state);
-  }
-  function _setCardPhase(txt) {
-    const el = document.getElementById('demoPhaseLabel');
-    if (el) el.textContent = txt;
-  }
-  function _setCardIcon(txt) {
-    // no-op: announcement screen doesn't have a standalone icon element
-  }
+  // ── HEAR THE EXPERIENCE demo — real screen recording ──────────────────────
+  let _demoPlaying = false, _lightningStarted = false;
+  const _demoVideo = document.getElementById('demoVideo');
 
   function _resetDemo(btn) {
     _demoPlaying = false;
-    const music = _demoMusic, tts = _demoTts, ttsUrl = _demoTtsUrl, raf = _demoRaf, autoStop = _demoAutoStop;
-    _demoMusic = null; _demoTts = null; _demoTtsUrl = null; _demoRaf = null; _demoAutoStop = null;
-    if (music)    { music.pause(); }
-    if (tts)      { tts.pause(); }
-    if (ttsUrl)   { URL.revokeObjectURL(ttsUrl); }
-    if (raf)      { cancelAnimationFrame(raf); }
-    if (autoStop) { clearTimeout(autoStop); }
-    if (btn) { btn.textContent = '▶\u00A0\u00A0HEAR THE EXPERIENCE'; btn.classList.remove('playing'); btn.disabled = false; }
+    _lightningStarted = false;
+    if (_demoVideo) { _demoVideo.pause(); _demoVideo.currentTime = 0; }
+    if (btn) { btn.textContent = '\u25ba\u00a0\u00a0HEAR THE EXPERIENCE'; btn.classList.remove('playing'); btn.classList.add('hear-btn'); btn.disabled = false; }
     const prog = document.getElementById('demoProgress'), bar = document.getElementById('demoBar');
     if (prog) prog.classList.remove('on');
     if (bar)  bar.style.width = '0%';
-    _setCardState('song'); _setCardPhase('WALK-UP SONG STARTS'); _setCardIcon('');
+    if (window._momentStopAurora) window._momentStopAurora();
+    if (window._momentStopLightningLoop) window._momentStopLightningLoop();
   }
 
-  function _tickProgress() {
-    if (!_demoPlaying) return;
-    const bar = document.getElementById('demoBar');
-    if (bar) bar.style.width = Math.min(100, ((Date.now() - _demoStart) / DEMO_DURATION) * 100) + '%';
-    _demoRaf = requestAnimationFrame(_tickProgress);
+  if (_demoVideo) {
+    _demoVideo.addEventListener('timeupdate', () => {
+      if (!_demoPlaying || !_demoVideo.duration) return;
+      const pct = (_demoVideo.currentTime / _demoVideo.duration) * 100;
+      const bar = document.getElementById('demoBar');
+      if (bar) bar.style.width = Math.min(100, pct) + '%';
+      // Aurora fast-pulse at ~20% (announcement phase)
+      if (!_lightningStarted && _demoVideo.currentTime > _demoVideo.duration * 0.20) {
+        if (window._momentStartAurora) window._momentStartAurora(true);
+      }
+      // Lightning at ~42% (blast phase)
+      if (!_lightningStarted && _demoVideo.currentTime > _demoVideo.duration * 0.42) {
+        _lightningStarted = true;
+        if (window._momentStopAurora) window._momentStopAurora();
+        if (window._momentStartLightningLoop) window._momentStartLightningLoop(true);
+      }
+    });
+    _demoVideo.addEventListener('ended', () => {
+      _resetDemo(document.getElementById('demoBtn'));
+    });
   }
 
   async function playDemo(btn) {
     if (_demoPlaying) { _resetDemo(btn); return; }
+    if (!_demoVideo) return;
     _demoPlaying = true;
-    btn.textContent = 'Loading...';
+    _lightningStarted = false;
+    _demoVideo.currentTime = 0;
+    btn.textContent = '\u25a0\u00a0\u00a0STOP';
     btn.classList.add('playing');
-    btn.disabled = true;
+    btn.classList.remove('hear-btn');
+    if (window._momentStartAurora) window._momentStartAurora(false);
+    document.getElementById('demoProgress').classList.add('on');
     try {
-      _demoMusic = new Audio('/onboard_walkup.mp3');
-      _demoMusic.volume = 1.0;
-      await _demoMusic.play();
-
-      const ttsPromise = fetch('https://walkup-hero.vercel.app/api/tts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text: 'Now batting — number seven — Jake Miller!',
-          voiceId: 'nRya2HPtpEpRT4p9vFlh',
-          model_id: 'eleven_turbo_v2_5',
-          voice_settings: { stability: 0.80, similarity_boost: 0.90, style: 0.35, use_speaker_boost: true, speed: 0.70 }
-        })
-      });
-
-      _demoStart = Date.now();
-      btn.textContent = '\u25A0\u00A0\u00A0STOP';
-      btn.disabled = false;
-
-      // Card: song phase
-      _setCardState('song');
-      _setCardPhase('WALK-UP SONG STARTS');
-      _setCardIcon('');
-
-      document.getElementById('demoProgress').classList.add('on');
-      _tickProgress();
-      _demoAutoStop = setTimeout(() => { if (_demoPlaying) _resetDemo(btn); }, 15000);
-
-      const [res] = await Promise.all([ttsPromise, new Promise(r => setTimeout(r, 1500))]);
-      if (!_demoPlaying) return;
-      if (!res.ok) throw new Error('TTS failed');
-
-      const blob = await res.blob();
-      if (!_demoPlaying) return;
-      _demoTtsUrl = URL.createObjectURL(blob);
-
-      _demoMusic.volume = 0.22;
-
-      // Card: announcing phase
-      _setCardState('announcing');
-      _setCardPhase('ANNOUNCING NOW');
-      _setCardIcon('');
-
-      _demoTts = new Audio(_demoTtsUrl);
-      _demoTts.volume = 1.0;
-      await _demoTts.play();
-
-      _demoTts.onended = () => {
-        if (!_demoPlaying) return;
-        if (_demoMusic) _demoMusic.volume = 1.0;
-        _demoTts = null;
-        // Card: blast phase
-        _setCardState('blast');
-        _setCardPhase('JAKE MILLER!');
-        _setCardIcon('');
-      };
-      _demoMusic.onended = () => { _resetDemo(btn); };
-
+      await _demoVideo.play();
     } catch(e) {
       _resetDemo(btn);
     }
   }
 </script>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+  // ── AOS INIT ──
+  AOS.init({ duration: 600, offset: 50, easing: 'ease-out-cubic', once: true });
+
+  // ── 5C: TYPED.JS — types "now batting" once, cursor disappears cleanly ──
+  new Typed('#typed-callup', {
+    strings: ['now batting'],
+    typeSpeed: 55,
+    showCursor: true,
+    cursorChar: '|',
+    onComplete: function(self) {
+      setTimeout(function() {
+        if (self.cursor) {
+          self.cursor.style.transition = 'opacity 0.4s ease';
+          self.cursor.style.opacity = '0';
+        }
+      }, 800);
+    }
+  });
+</script>
+
+<script>
+/* ── FEAT CARDS: DRAG + DOT INDICATORS ── */
+(function() {
+  const track = document.getElementById('featCards');
+  const dotsWrap = document.getElementById('featDots');
+  if (!track || !dotsWrap) return;
+
+  const cards = Array.from(track.querySelectorAll('.wjw-card'));
+  const dots = cards.map((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'feat-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => {
+      cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    });
+    dotsWrap.appendChild(d);
+    return d;
+  });
+
+  function updateDots() {
+    const scrollLeft = track.scrollLeft;
+    let closest = 0, minDist = Infinity;
+    cards.forEach((c, i) => {
+      const dist = Math.abs(c.offsetLeft - scrollLeft - 24);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+  }
+
+  track.addEventListener('scroll', updateDots, { passive: true });
+
+  let down = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => {
+    down = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+  });
+  track.addEventListener('mouseleave', () => down = false);
+  track.addEventListener('mouseup', () => down = false);
+  track.addEventListener('mousemove', e => {
+    if (!down) return;
+    e.preventDefault();
+    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
+  });
+})();
+
+/* ── MOMENT AURORA + LIGHTNING ── */
+(function() {
+  const auroraCanvas = document.getElementById('momentAurora');
+  const lightCanvas  = document.getElementById('momentLightning');
+  if (!auroraCanvas || !lightCanvas) return;
+
+  function resize() {
+    const section = auroraCanvas.closest('.moment');
+    const w = section.offsetWidth, h = section.offsetHeight;
+    auroraCanvas.width  = w; auroraCanvas.height  = h;
+    lightCanvas.width   = w; lightCanvas.height   = h;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Aurora: radial gradient blob
+  const actx = auroraCanvas.getContext('2d');
+  function drawAurora(alpha) {
+    const w = auroraCanvas.width, h = auroraCanvas.height;
+    actx.clearRect(0, 0, w, h);
+    if (alpha <= 0) return;
+    const grd = actx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.45, w * 0.65);
+    grd.addColorStop(0,   `rgba(184,204,0,${0.32 * alpha})`);
+    grd.addColorStop(0.4, `rgba(184,204,0,${0.14 * alpha})`);
+    grd.addColorStop(0.75,`rgba(184,204,0,${0.04 * alpha})`);
+    grd.addColorStop(1,   'rgba(0,0,0,0)');
+    actx.fillStyle = grd;
+    actx.fillRect(0, 0, w, h);
+  }
+
+  // Lightning bolt algorithm
+  const lctx = lightCanvas.getContext('2d');
+  function drawBolt(x1, y1, x2, y2, roughness, depth) {
+    if (depth <= 0) {
+      lctx.moveTo(x1, y1); lctx.lineTo(x2, y2); return;
+    }
+    const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * roughness;
+    const my = (y1 + y2) / 2 + (Math.random() - 0.5) * roughness;
+    drawBolt(x1, y1, mx, my, roughness * 0.55, depth - 1);
+    drawBolt(mx, my, x2, y2, roughness * 0.55, depth - 1);
+    if (Math.random() < 0.35 && depth === 2) {
+      const bx = mx + (Math.random() - 0.5) * roughness * 0.8;
+      const by = my + roughness * (0.4 + Math.random() * 0.4);
+      drawBolt(mx, my, bx, by, roughness * 0.4, depth - 1);
+    }
+  }
+  function flashLightning() {
+    const w = lightCanvas.width, h = lightCanvas.height;
+    lctx.clearRect(0, 0, w, h);
+    const numBolts = 2 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < numBolts; i++) {
+      const sx = w * (0.25 + Math.random() * 0.5);
+      lctx.beginPath();
+      lctx.strokeStyle = `rgba(223,255,0,${0.6 + Math.random() * 0.4})`;
+      lctx.lineWidth = 0.8 + Math.random() * 0.8;
+      lctx.shadowColor = '#DFFF00';
+      lctx.shadowBlur = 8;
+      drawBolt(sx, 0, sx + (Math.random() - 0.5) * 80, h * 0.7, w * 0.18, 4);
+      lctx.stroke();
+    }
+    lightCanvas.classList.add('flash');
+    setTimeout(() => { lightCanvas.classList.remove('flash'); lctx.clearRect(0, 0, lightCanvas.width, lightCanvas.height); }, 120);
+  }
+
+  // Aurora pulse loop ref
+  let auroraAlpha = 0, auroraRaf = null, lightInterval = null;
+
+  function startAurora(fast) {
+    const duration = fast ? 600 : 1400;
+    const start = Date.now();
+    const from = auroraAlpha;
+    function tick() {
+      const t = Math.min(1, (Date.now() - start) / duration);
+      const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+      auroraAlpha = from + (0.9 - from) * ease;
+      drawAurora(auroraAlpha);
+      if (t < 1) { auroraRaf = requestAnimationFrame(tick); }
+      else { pulseAurora(); }
+    }
+    if (auroraRaf) cancelAnimationFrame(auroraRaf);
+    auroraRaf = requestAnimationFrame(tick);
+  }
+
+  function pulseAurora() {
+    const dur = 2200, from = auroraAlpha, to = auroraAlpha > 0.65 ? 0.45 : 0.85;
+    const start = Date.now();
+    function tick() {
+      const t = Math.min(1, (Date.now() - start) / dur);
+      const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+      auroraAlpha = from + (to - from) * ease;
+      drawAurora(auroraAlpha);
+      if (t < 1) { auroraRaf = requestAnimationFrame(tick); }
+      else { pulseAurora(); }
+    }
+    if (auroraRaf) cancelAnimationFrame(auroraRaf);
+    auroraRaf = requestAnimationFrame(tick);
+  }
+
+  function stopAurora() {
+    if (auroraRaf) { cancelAnimationFrame(auroraRaf); auroraRaf = null; }
+    if (lightInterval) { clearInterval(lightInterval); lightInterval = null; }
+    const start = Date.now(), from = auroraAlpha;
+    function tick() {
+      const t = Math.min(1, (Date.now() - start) / 600);
+      auroraAlpha = from * (1 - t);
+      drawAurora(auroraAlpha);
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    lctx.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
+  }
+
+  // Expose so demo player can call them
+  window._momentStartAurora = startAurora;
+  window._momentStopAurora  = stopAurora;
+  window._momentFlashLightning = flashLightning;
+  window._momentStartLightningLoop = function(fast) {
+    if (lightInterval) clearInterval(lightInterval);
+    lightInterval = setInterval(flashLightning, fast ? 280 : 500);
+  };
+  window._momentStopLightningLoop = function() {
+    if (lightInterval) { clearInterval(lightInterval); lightInterval = null; }
+    lctx.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
+  };
+})();
+
 /* ── SOUNDBOARD ENGINE (real app audio files) ── */
 (function() {
   const FILES = {
