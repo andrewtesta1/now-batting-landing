@@ -679,6 +679,29 @@
 
     /* ── DEMO VIDEO PHONE ── */
     .demo-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+
+    /* ── TRIPTYCH: screenshot · video · screenshot ── */
+    .triptych {
+      display: flex; align-items: flex-end; justify-content: center; gap: 32px;
+    }
+    .triptych-side { flex-shrink: 0; }
+    .triptych-img {
+      width: 160px;
+      border-radius: 22px;
+      border: 2px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+      display: block;
+      transform: rotate(-2deg) translateY(14px);
+      transition: transform 0.3s ease;
+    }
+    .triptych-side:last-child .triptych-img { transform: rotate(2deg) translateY(14px); }
+    .triptych-img:hover { transform: rotate(0deg) translateY(0) !important; }
+    .triptych-center { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    @media (max-width: 860px) {
+      .triptych { flex-direction: column; align-items: center; gap: 24px; }
+      .triptych-side { display: none; }
+      .triptych-img { width: 140px; }
+    }
     .demo-video-phone {
       width: 260px;
       border-radius: 36px;
@@ -965,7 +988,7 @@
     .wave-bar:nth-child(7) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 0ms; }
 
     /* ── STEP 5D: PHONE PARALLAX ── */
-    .screenshots .ss-img {
+    .triptych-img {
       transition: transform 0.1s linear;
       will-change: transform;
     }
@@ -1203,31 +1226,7 @@
 
 <div class="hr"></div>
 
-<!-- SCREENSHOTS -->
-<section class="screenshots">
-  <div class="wrap" data-aos="fade-up" style="text-align:center;">
-    <p class="eyebrow r">The App</p>
-    <h2 class="h2 r d1" style="margin-bottom: 40px;">Built for the dugout. Ready in minutes.</h2>
-    <div class="ss-rail">
-      <div class="ss-phone r d1">
-        <img src="/screenshots/screenshot-gameday.png" alt="Player setup screen showing name, jersey number, announcement phrase selector and Hear The Call button" class="ss-img" />
-        <p class="ss-caption">Game Day</p>
-      </div>
-      <div class="ss-phone ss-phone-center r d2">
-        <img src="/screenshots/screenshot-nowplaying.png" alt="Game-day overlay showing #7 Jake Miller stepping up to bat with Enter Sandman by Metallica" class="ss-img" />
-        <p class="ss-caption">Now Playing</p>
-      </div>
-      <div class="ss-phone r d3">
-        <img src="/screenshots/screenshot-sounds.png" alt="DUGOUT tab showing National Anthem, Air Horn, Home Run Horn, and Quick Play playlist" class="ss-img" />
-        <p class="ss-caption">Game Day Sounds</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="hr"></div>
-
-<!-- HEAR THE MOMENT -->
+<!-- THE EXPERIENCE -->
 <section class="moment">
   <canvas class="moment-aurora" id="momentAurora" aria-hidden="true"></canvas>
   <canvas class="moment-lightning" id="momentLightning" aria-hidden="true"></canvas>
@@ -1243,27 +1242,35 @@
     </svg>
   </div>
   <div class="wrap" data-aos="fade-up" style="text-align:center;">
-    <p class="eyebrow r">The Full Experience</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom:12px;">~15 seconds. Big-league energy.</h2>
-    <div class="demo-layout r d2">
+    <p class="eyebrow r">The Experience</p>
+    <h2 class="h2 r d1" style="text-align:center; margin-bottom:40px;">~15 seconds. Big-league energy.</h2>
 
-      <!-- Real app screen recording -->
-      <div class="demo-video-phone">
-        <video id="demoVideo" src="/demo.mp4" playsinline preload="metadata" aria-label="Now Batting app demo — walk-up song and player announcement sequence"></video>
+    <!-- Triptych: screenshot · video · screenshot -->
+    <div class="triptych r d2">
+      <div class="ss-phone triptych-side">
+        <img src="/screenshots/screenshot-gameday.png" alt="Game Day lineup view" class="ss-img triptych-img" />
+        <p class="ss-caption">Game Day</p>
       </div>
 
-      <!-- Play button + progress -->
-      <div class="demo-ctrl">
-        <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
-        <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
-        <p class="moment-phase" id="demoPhase"></p>
+      <div class="triptych-center">
+        <div class="demo-video-phone">
+          <video id="demoVideo" src="/demo.mp4" playsinline preload="metadata" aria-label="Now Batting app demo — walk-up song and player announcement sequence"></video>
+        </div>
+        <div class="demo-ctrl" style="margin-top:20px;">
+          <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
+          <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
+          <p class="moment-phase" id="demoPhase"></p>
+        </div>
       </div>
 
+      <div class="ss-phone triptych-side">
+        <img src="/screenshots/screenshot-sounds.png" alt="Sounds panel" class="ss-img triptych-img" />
+        <p class="ss-caption">Game Day Sounds</p>
+      </div>
     </div>
+
   </div>
 </section>
-
-<div class="hr"></div>
 
 <div class="hr"></div>
 
@@ -1652,11 +1659,11 @@
 
   // ── 5D: PHONE PARALLAX ──
   (function() {
-    const section = document.querySelector('.screenshots');
+    const section = document.querySelector('.triptych');
     if (!section) return;
-    const imgs = section.querySelectorAll('.ss-img');
+    const imgs = section.querySelectorAll('.triptych-img');
     if (imgs.length < 2) return;
-    const parallax = [0.06, 0.03, 0.06];
+    const parallax = [0.06, 0.06];
     window.addEventListener('scroll', () => {
       const rect = section.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
