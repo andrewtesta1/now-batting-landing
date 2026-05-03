@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Chief Hype Officer — Now Batting</title>
+  <meta name="description" content="For the parent who volunteered to run the walk-up music. Lawn chair. Wagon. Bluetooth speaker the size of a small appliance. Now Batting was built for you." />
+  <link rel="canonical" href="https://nowbattingapp.com/chief-hype-officer" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nowbattingapp.com/chief-hype-officer" />
+  <meta property="og:site_name" content="Now Batting" />
+  <meta property="og:title" content="The Chief Hype Officer — Now Batting" />
+  <meta property="og:description" content="For the parent who volunteered to run the walk-up music. Lawn chair. Wagon. Bluetooth speaker the size of a small appliance. Now Batting was built for you." />
+  <meta property="og:image" content="https://nowbattingapp.com/og-cho.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Chief Hype Officer — Now Batting" />
+  <meta name="twitter:description" content="For the parent who volunteered to run the walk-up music. Now Batting was built for you." />
+  <meta name="twitter:image" content="https://nowbattingapp.com/og-cho.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F6F4EF;
+      --mid: #FFFFFF;
+      --surf: #EDEAD9;
+      --bord: rgba(0,0,0,0.09);
+      --neon: #DFFF00;
+      --daylight: #B8CC00;
+      --daylight-dim: #8A9900;
+      --txt: #1F1F1F;
+      --txt2: #4A4A4A;
+      --txt3: #7A7A7A;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --btn-height: 52px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #1F1F1F; color: #F6F4EF;
+      font-family: var(--font-sans); font-size: 16px;
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(31,31,31,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-link {
+      font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+      color: rgba(246,244,239,0.55); text-decoration: none; transition: color 0.15s;
+    }
+    .nav-link:hover { color: rgba(246,244,239,0.90); }
+    .nav-link.active { color: rgba(246,244,239,0.90); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: rgba(246,244,239,0.5); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-btn {
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 13px; letter-spacing: 1px; padding: 10px 20px; border-radius: var(--radius-sm);
+      border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
+    }
+    .nav-btn:hover { background: var(--daylight-dim); }
+
+    /* WAVEFORM LOGO ANIMATION */
+    @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
+    @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
+    @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
+    @keyframes idle-4 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.68);} }
+    @keyframes idle-5 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.70);} }
+    @keyframes idle-6 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.60);} }
+    @keyframes idle-7 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.52);} }
+    .idle-wave .bar { transform-origin: center bottom; }
+    .idle-wave .b1 { animation: idle-1 2.1s ease-in-out 0.0s infinite; }
+    .idle-wave .b2 { animation: idle-2 1.9s ease-in-out 0.12s infinite; }
+    .idle-wave .b3 { animation: idle-3 1.8s ease-in-out 0.06s infinite; }
+    .idle-wave .b4 { animation: idle-4 1.6s ease-in-out 0.0s infinite; }
+    .idle-wave .b5 { animation: idle-5 1.7s ease-in-out 0.08s infinite; }
+    .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
+    .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
+
+    /* SHARED */
+    section { position: relative; z-index: 1; }
+    .eyebrow {
+      font-family: var(--font-mono); font-weight: 500; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .eyebrow.light { color: rgba(246,244,239,0.35); }
+    .eyebrow.dark  { color: var(--txt3); }
+
+    /* FORM */
+    .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .form-row input {
+      flex: 1; min-width: 200px;
+      background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.14); border-radius: 10px;
+      padding: 15px 17px; font-family: var(--font-sans); font-size: 15px; color: var(--txt);
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-row input::placeholder { color: var(--txt3); }
+    .form-row input:focus { border-color: var(--daylight); }
+    .form-row input.err { border-color: var(--daylight); animation: shake 0.3s ease; }
+    .btn {
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 15px; padding: 15px 26px; height: var(--btn-height); border-radius: var(--radius-md);
+      border: none; cursor: pointer; white-space: nowrap; transition: transform 0.12s, background 0.15s;
+    }
+    .btn:hover { background: var(--daylight-dim); }
+    .btn:active { transform: scale(0.98); }
+    .btn.loading { opacity: 0.5; pointer-events: none; }
+    @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
+
+    /* ── SECTION 1: DARK HERO ── */
+    .hero {
+      background: #1F1F1F;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 140px 48px 120px;
+      text-align: center;
+    }
+    .hero-headline {
+      font-family: var(--font-sans);
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 900; letter-spacing: -0.04em; line-height: 0.95;
+      color: #F6F4EF;
+    }
+
+    /* ── SECTION 2: CREAM DEFINITION ── */
+    .definition {
+      background: var(--bg);
+      padding: 120px 48px 100px;
+    }
+    .definition-inner { max-width: 720px; margin: 0 auto; }
+    .definition-headline {
+      font-family: var(--font-sans);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+      color: var(--txt); margin-bottom: 56px;
+    }
+    .def-line {
+      font-family: var(--font-sans);
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 600; line-height: 1.5;
+      color: var(--txt); margin-bottom: 28px;
+    }
+    .neon-rule {
+      height: 2px; background: var(--neon);
+      margin: 64px 0; border-radius: 1px;
+    }
+    .def-close {
+      font-family: var(--font-sans);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 700; line-height: 1.4;
+      color: var(--txt); margin-bottom: 20px;
+    }
+
+    /* ── SECTION 3: DARK MANIFESTO ── */
+    .manifesto {
+      background: #1F1F1F;
+      padding: 120px 48px 120px;
+    }
+    .manifesto-inner { max-width: 660px; margin: 0 auto; }
+    .manifesto-body p {
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.85;
+      color: rgba(246,244,239,0.72);
+      margin-bottom: 32px;
+    }
+    .manifesto-space { height: 56px; }
+    .manifesto-peak {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.2;
+      color: #F6F4EF; margin-bottom: 16px;
+    }
+    .manifesto-muted {
+      font-size: clamp(15px, 1.6vw, 17px);
+      color: rgba(246,244,239,0.45);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+    .manifesto-standard {
+      font-family: var(--font-sans);
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 700; letter-spacing: -0.01em;
+      color: #F6F4EF; margin-bottom: 20px;
+    }
+    .manifesto-quote {
+      font-style: italic;
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--neon);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .manifesto-neon-rule {
+      height: 1px;
+      background: linear-gradient(to right, var(--neon), transparent);
+      margin: 48px 0;
+    }
+
+    /* ── SECTION 4: CREAM CTA ── */
+    .cta-section {
+      background: var(--bg);
+      padding: 120px 48px 120px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+    }
+    .cta-headline {
+      font-family: var(--font-sans);
+      font-size: clamp(34px, 4.5vw, 58px);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1;
+      color: var(--txt); margin-bottom: 16px;
+    }
+    .cta-sub {
+      font-size: 18px; color: var(--txt3); margin-bottom: 40px; line-height: 1.5;
+    }
+    .cta-form-wrap { width: 100%; max-width: 480px; }
+    .cta-fine {
+      margin-top: 14px; font-size: 13px; color: var(--txt3);
+      font-family: var(--font-mono);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--bord); padding: 28px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg); position: relative; z-index: 1;
+    }
+    .f-logo { display: flex; align-items: center; }
+    .f-copy { font-size: 12px; color: var(--txt3); line-height: 1.6; }
+    .f-copy a { color: var(--txt3); text-decoration: none; }
+    .f-copy a:hover { color: var(--daylight); }
+    .f-social { display: flex; align-items: center; gap: 10px; }
+    .f-social a { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--bord); color: var(--txt3); transition: border-color 0.2s, color 0.2s; }
+    .f-social a:hover { border-color: var(--daylight); color: var(--daylight); }
+    .f-social svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* OVERLAY */
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:500; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+    .overlay.on { opacity:1; pointer-events:all; }
+    .ov-box { background:#1F1F1F; border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:40px; max-width:420px; width:90%; text-align:center; }
+    .ov-box h3 { font-size:22px; font-weight:800; color:#F6F4EF; margin-bottom:8px; }
+    .ov-box p { font-size:14px; color:rgba(246,244,239,0.6); margin-bottom:20px; line-height:1.6; }
+    .ov-url { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px 16px; font-family:var(--font-mono); font-size:13px; color:#B8CC00; word-break:break-all; margin-bottom:16px; }
+    .ov-btns { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+    .ov-btn { background:var(--daylight); color:#1F1F1F; font-weight:700; font-size:14px; padding:11px 22px; border-radius:10px; border:none; cursor:pointer; }
+    .ov-btn.sec { background:transparent; border:1px solid rgba(255,255,255,0.15); color:rgba(246,244,239,0.6); }
+    .ov-inc { font-size:12px; color:rgba(246,244,239,0.3); margin-top:12px; }
+    .ov-inc strong { color:rgba(246,244,239,0.5); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 110px 24px 80px; }
+      .definition { padding: 80px 24px 80px; }
+      .manifesto { padding: 80px 24px 80px; }
+      .cta-section { padding: 80px 24px 80px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .idle-wave .bar { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo">
+    <svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting">
+      <text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">now</text>
+      <circle cx="80.53" cy="30" r="3.5" fill="#F6F4EF"/>
+      <rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/>
+      <rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/>
+      <rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/>
+      <rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/>
+      <rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/>
+      <rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/>
+      <rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/>
+      <circle cx="175.88" cy="30" r="3.5" fill="#F6F4EF"/>
+      <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">batting</text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="/our-story" class="nav-link">Our Story</a>
+    <a href="/chief-hype-officer" class="nav-link active">The Chief Hype Officer</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <a href="/#closer" class="nav-btn">Join the Beta</a>
+  </div>
+</nav>
+
+<!-- SECTION 1: DARK HERO -->
+<section class="hero">
+  <p class="eyebrow light" data-aos="fade-up">Now Batting Presents</p>
+  <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="80">The Chief Hype Officer.</h1>
+</section>
+
+<!-- SECTION 2: CREAM DEFINITION -->
+<section class="definition">
+  <div class="definition-inner">
+    <p class="eyebrow dark" data-aos="fade-up">The Definition</p>
+    <h2 class="definition-headline" data-aos="fade-up" data-aos-delay="60">Who is the Chief Hype Officer?</h2>
+
+    <p class="def-line" data-aos="fade-up">The Chief Hype Officer is the parent — or coach — who volunteered to run the walk-up music.</p>
+    <p class="def-line" data-aos="fade-up">Who said yes before reading the job description.</p>
+    <p class="def-line" data-aos="fade-up">Who pays for Apple Music every month now. Just for this.</p>
+    <p class="def-line" data-aos="fade-up">Who has opinions about drop points.</p>
+    <p class="def-line" data-aos="fade-up">Who showed up with a lawn chair, a wagon, and a Bluetooth speaker the size of a small appliance.</p>
+    <p class="def-line" data-aos="fade-up">Who drinks cold coffee because they were too busy getting the lineup right.</p>
+    <p class="def-line" data-aos="fade-up">Who knows every kid's song. Who knows Calvin wants "Enter Sandman" at exactly fourteen seconds — because Calvin told them. Four times.</p>
+    <p class="def-line" data-aos="fade-up">Who felt the panic — shuffling through the playlist right before the next walk-up, everybody watching — and did it anyway.</p>
+    <p class="def-line" data-aos="fade-up">Who keeps showing up — again — because those kids deserve someone who does.</p>
+
+    <div class="neon-rule" data-aos="fade-up"></div>
+
+    <p class="def-close" data-aos="fade-up">They are the reason the dugout goes nuts.</p>
+    <p class="def-close" data-aos="fade-up" data-aos-delay="60">Now Batting was built for them.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: DARK MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <p class="eyebrow light" data-aos="fade-up">The Manifesto</p>
+
+    <div class="manifesto-body">
+      <p data-aos="fade-up">You already have enough going on.</p>
+      <p data-aos="fade-up">The mental load that follows you everywhere — including a youth baseball complex at 8:45am on a Saturday, where you are now also responsible for the music.</p>
+      <p data-aos="fade-up">Nobody asked you to do this.</p>
+      <p data-aos="fade-up">And yet — there you are.</p>
+      <p data-aos="fade-up">Because these kids deserved better than silence. Because you knew — if you could pull this off — they'd feel like big leaguers walking to the plate.</p>
+
+      <div class="manifesto-space"></div>
+
+      <p class="manifesto-peak" data-aos="fade-up">You are the Chief Hype Officer.</p>
+      <p data-aos="fade-up">No salary. No training. No one coming to save you.</p>
+      <p data-aos="fade-up">Just one job: make the moment.</p>
+
+      <div class="manifesto-space"></div>
+
+      <p data-aos="fade-up">We see you.</p>
+      <p data-aos="fade-up">Phone in one hand. Coffee in the other. One eye on the game. Squinting through polarized sunglasses at a screen cranked to maximum brightness.</p>
+      <p data-aos="fade-up">Lawn chair. Wagon. Bluetooth speaker the size of a small appliance.</p>
+      <p data-aos="fade-up">We built this for you.</p>
+
+      <div class="manifesto-space"></div>
+
+      <p class="manifesto-standard" data-aos="fade-up">The Saturday Standard.</p>
+      <p class="manifesto-quote" data-aos="fade-up">"Will this make life easier for the parent running the music?"</p>
+      <p data-aos="fade-up">They show up every Saturday.<br>The least we can do is show up for them.</p>
+
+      <div class="manifesto-neon-rule" data-aos="fade-up"></div>
+
+      <p class="manifesto-peak" data-aos="fade-up">The moment belongs to the kids.<br>The ease belongs to you.</p>
+      <p class="manifesto-muted" data-aos="fade-up">And the parents in those folding chairs? They have no idea how you did it.</p>
+      <p class="manifesto-muted" data-aos="fade-up">That's not luck.</p>
+      <p class="manifesto-muted" data-aos="fade-up">That's a Chief Hype Officer doing their job.</p>
+      <p class="manifesto-muted" data-aos="fade-up">And an app that finally showed up for you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: CREAM CTA -->
+<section class="cta-section">
+  <p class="eyebrow dark" data-aos="fade-up">The Title Is Yours</p>
+  <h2 class="cta-headline" data-aos="fade-up" data-aos-delay="60">Go ahead. Take the job officially.</h2>
+  <p class="cta-sub" data-aos="fade-up" data-aos-delay="100">Every kid deserves their moment. Yours is next Saturday.</p>
+  <div class="cta-form-wrap" data-aos="fade-up" data-aos-delay="140">
+    <div class="form-row">
+      <input type="email" placeholder="Enter your email address..." id="choEmail" />
+      <button class="btn" onclick="signup('choEmail',this)">Join the Beta</button>
+    </div>
+    <p class="cta-fine">Free beta · iOS only</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">
+    <svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting">
+      <text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text>
+      <circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/>
+      <rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/>
+      <rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/>
+      <rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/>
+      <rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/>
+      <rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/>
+      <rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/>
+      <rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/>
+      <circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/>
+      <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
+    </svg>
+  </div>
+  <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. &nbsp;·&nbsp; <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener">@nowbattingapp</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+  <div class="f-social">
+    <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- SUCCESS OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="ov-box">
+    <h3>You're on the roster. ⚾</h3>
+    <p>Share your link — every signup moves you up 5 spots.</p>
+    <div class="ov-url" id="ourl">nowbattingapp.com/waitlist/ref=XXXXXX</div>
+    <div class="ov-btns">
+      <button class="ov-btn" onclick="copyLink()" id="ocopy">Copy Link</button>
+      <button class="ov-btn sec" onclick="closeOverlay()">Done</button>
+    </div>
+    <p class="ov-inc">Share with other parents. Every signup = <strong>you jump 5 spots ahead.</strong></p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 40 });
+
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxEMdiflBkC6ttAdrhR-nINeCrv7gY351L7nLG43royyvUFrDdW-hIpCUEham87b2E2/exec';
+
+  async function signup(id, btn) {
+    const inp = document.getElementById(id);
+    const email = inp.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      inp.classList.add('err'); inp.focus();
+      setTimeout(() => inp.classList.remove('err'), 1200); return;
+    }
+    btn.textContent = 'Joining...'; btn.classList.add('loading');
+    const ref = Math.random().toString(36).substring(2,8).toUpperCase();
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, ref, source: id }),
+        mode: 'no-cors'
+      });
+    } catch(e) { console.warn('Sheet error:', e); }
+    btn.textContent = '✓ You\'re on the roster!'; btn.classList.remove('loading'); btn.disabled = true; btn.style.opacity = '0.7';
+    inp.value = ''; inp.disabled = true;
+    document.getElementById('ourl').textContent = 'nowbattingapp.com/waitlist/ref=' + ref;
+    document.getElementById('overlay').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#DFFF00','#B8CC00','#1F1F1F','#ffffff'], zIndex: 10000 });
+    setTimeout(() => { confetti({ particleCount: 40, spread: 50, origin: { y: 0.55 }, colors: ['#DFFF00','#B8CC00'], zIndex: 10000 }); }, 300);
+  }
+
+  function copyLink() {
+    const url = document.getElementById('ourl').textContent, btn = document.getElementById('ocopy');
+    const done = () => { btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = 'Copy Link', 2500); };
+    navigator.clipboard?.writeText(url).then(done).catch(() => {
+      const t = document.createElement('textarea'); t.value = url;
+      document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); done();
+    });
+  }
+
+  function closeOverlay() { document.getElementById('overlay').classList.remove('on'); document.body.style.overflow = ''; }
+  document.getElementById('overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeOverlay(); });
+</script>
+</body>
+</html>

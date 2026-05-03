@@ -61,12 +61,27 @@
       main { padding: 100px 24px 60px; }
       footer { padding: 24px 20px; }
     }
+    @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
+    @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
+    @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
+    @keyframes idle-4 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.68);} }
+    @keyframes idle-5 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.70);} }
+    @keyframes idle-6 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.60);} }
+    @keyframes idle-7 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.52);} }
+    .idle-wave .bar { transform-origin: center bottom; }
+    .idle-wave .b1 { animation: idle-1 2.1s ease-in-out 0.0s infinite; }
+    .idle-wave .b2 { animation: idle-2 1.9s ease-in-out 0.12s infinite; }
+    .idle-wave .b3 { animation: idle-3 1.8s ease-in-out 0.06s infinite; }
+    .idle-wave .b4 { animation: idle-4 1.6s ease-in-out 0.0s infinite; }
+    .idle-wave .b5 { animation: idle-5 1.7s ease-in-out 0.08s infinite; }
+    .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
+    .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
+  <a href="/" class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
   <a href="/" class="nav-back">← Back to Home</a>
 </nav>
 
@@ -88,14 +103,16 @@
   </ul>
 
   <h2>Apple Music & Music Licensing</h2>
-  <p>Now Batting integrates with Apple Music for walk-up song playback. Access to Apple Music requires an active Apple Music subscription governed by Apple's own Terms of Service. Now Batting plays 30-second song previews and full tracks from your Apple Music library.</p>
-  <p>You are responsible for ensuring that your use of music complies with applicable copyright laws. Now Batting is designed for personal, small-scale team use (youth sports games with no admission charge). Commercial or large-scale public performance may require a separate public performance license from the relevant rights holder.</p>
+  <p>Now Batting integrates with Apple Music for walk-up song playback. Access to Apple Music requires an active Apple Music subscription governed by Apple's own Terms of Service.</p>
+  <p>30-second song previews are available to all users without an Apple Music subscription. Full track playback from your Apple Music library requires an active Apple Music subscription.</p>
+  <p>You are responsible for ensuring that your use of music complies with applicable copyright laws. Now Batting is designed for personal, small-scale team use at youth sports games with no or nominal admission charge. Commercial or large-scale public performance may require a separate public performance license from the relevant performing rights organization (ASCAP, BMI, SESAC, or GMR).</p>
 
   <h2>AI-Generated Announcements</h2>
   <p>Now Batting uses AI voice synthesis (powered by ElevenLabs) to generate player announcements. The AI-generated audio is for your personal use with your team. You may not redistribute, sell, or publicly broadcast AI-generated content outside of standard game-day use.</p>
 
   <h2>Roster Sharing</h2>
-  <p>When you share a roster, you are sharing player names, jersey numbers, song information, and AI-generated announcement audio with the recipient. Only share rosters with people you trust. You are responsible for obtaining any necessary consent from parents or guardians before sharing information about players.</p>
+  <p>When you share a roster, you are sharing player names, jersey numbers, song information, and AI-generated announcement audio with the recipient. Shared roster data is stored on our servers for up to 48 hours and then automatically deleted.</p>
+  <p>Only share rosters with people you trust. You are responsible for obtaining any necessary consent from parents or guardians before sharing information about players.</p>
 
   <h2>Disclaimer of Warranties</h2>
   <p>Now Batting is provided "as is" without warranties of any kind, express or implied. We do not guarantee that the app will be error-free, uninterrupted, or free of bugs. Features may change, be added, or be removed at any time.</p>

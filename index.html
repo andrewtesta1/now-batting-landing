@@ -581,7 +581,8 @@
     @media (max-width: 860px) {
       nav { padding: 14px 18px; }
       .nav-sub { display: flex; }
-      .nav-link-story, .nav-link-manifesto { display: none; }
+      .nav-link-story { display: none; }
+      .nav-link-manifesto { display: none; }
       .hero { padding: 104px 18px 72px; min-height: auto; }
       .hero-grid { grid-template-columns: 1fr; }
       .phone-wrap { display: none; }
@@ -1186,6 +1187,8 @@
 <!-- NAV -->
 <nav>
   <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <a href="/our-story" class="nav-link nav-link-story">Our Story</a>
+  <a href="/chief-hype-officer" class="nav-link nav-link-manifesto">The Chief Hype Officer</a>
   <div class="nav-right">
     <div class="nav-social">
       <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
@@ -1253,9 +1256,7 @@
       </div>
 
       <div class="triptych-center">
-        <div class="demo-video-phone">
-          <video id="demoVideo" src="/demo.mp4" playsinline preload="metadata" aria-label="Now Batting app demo — walk-up song and player announcement sequence"></video>
-        </div>
+        <audio id="demoAudio" src="/demo_walkup.mp3" preload="metadata"></audio>
         <div class="demo-ctrl" style="margin-top:20px;">
           <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
           <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
@@ -1280,7 +1281,8 @@
     <div class="persona-grid">
       <div>
         <p class="eyebrow r">Who it's for</p>
-        <h2 class="persona-hed r d1">Built for the parent who volunteered to do the walk-up songs and accidentally became the most important person at the field.</h2>
+        <h2 class="persona-hed r d1">You volunteered to do the walk-up music.<br>You didn't fully read the job description.<br>You showed up anyway.</h2>
+        <p class="persona-sub r d2" style="margin-top:16px; font-size:15px; color:var(--txt3); line-height:1.6;">Official title: Chief Hype Officer. Salary: zero.<br>Satisfaction: unreasonable.</p>
       </div>
       <div class="r d1">
         <div class="tcard">
@@ -1306,7 +1308,7 @@
       <div class="step r">
         <div class="step-n" data-aos="fade-up" data-aos-delay="0">01</div>
         <div class="step-title">Build Your Lineup.</div>
-        <p class="step-body">Names, numbers, done. Add each player once — you're set for the season.</p>
+        <p class="step-body">Names, numbers, done. Add each player once — you're set for the season. No spreadsheet required. Yes, someone built a spreadsheet for this.</p>
       </div>
       <div class="step r d1">
         <div class="step-n" data-aos="fade-up" data-aos-delay="150">02</div>
@@ -1316,7 +1318,7 @@
       <div class="step r d2">
         <div class="step-n" data-aos="fade-up" data-aos-delay="300">03</div>
         <div class="step-title">Tap. Watch It Happen.</div>
-        <p class="step-body">One tap. Moment delivered. Song drops at the right beat. Name gets called. Dugout goes nuts. Nobody sees you sweat — because there's nothing to sweat.</p>
+        <p class="step-body">One tap. Their moment. You made that. Nobody in those folding chairs needs to know how.</p>
       </div>
     </div>
   </div>
@@ -1333,7 +1335,7 @@
       <div>
         <p class="eyebrow r">Soundboard</p>
         <h2 class="h2 r d1">Every sound a game needs.</h2>
-        <p class="sb-body r d2">The air horn, the home run horn, the Charge — you're running a full stadium production from a lawn chair. You're a legend.</p>
+        <p class="sb-body r d2">The air horn, the home run horn, the Charge — you're running a full stadium production from a lawn chair. Next to a wagon. With a Bluetooth speaker the size of a small appliance. You're a legend.</p>
 
         <div class="sb-badge r d3">Available Now</div>
       </div>
@@ -1357,28 +1359,28 @@
 <section class="wjw">
   <div class="wrap" data-aos="fade-up">
     <p class="eyebrow r" style="text-align:center;">Why It Just Works</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Built for Field 3s everywhere. So you don't have to think about anything but the game.</h2>
+    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Built for Field 3s everywhere.</h2>
   </div>
   <div class="feat-cards" id="featCards">
     <div class="wjw-card">
       <div class="wjw-label">Reliability</div>
       <div class="wjw-title">No Signal, No Problem</div>
-      <p class="wjw-body">Field 3 doesn't have great signal. Neither does half the complex. A kid shouldn't miss their moment because of a network bar. AI announcements are cached. Songs download through Apple Music. Once you're set up, the whole app runs completely offline. You're covered.</p>
+      <p class="wjw-body">Save before you leave home. Field 3 never has great signal anyway.</p>
     </div>
     <div class="wjw-card">
       <div class="wjw-label">Simplicity</div>
       <div class="wjw-title">No Tutorial Required</div>
-      <p class="wjw-body">Too many options = too complicated. No learning curve. No setup guide. Just open it and go.</p>
+      <p class="wjw-body">Open it. Set it up. Run the show. That's the whole manual.</p>
     </div>
     <div class="wjw-card">
       <div class="wjw-label">Game Day</div>
       <div class="wjw-title">No Surprises</div>
-      <p class="wjw-body">You're watching the game with one eye and running the music with one hand. The app flags anything missing before the first pitch, not during it. Big buttons. High contrast. Every tap lands — even through polarized sunglasses.</p>
+      <p class="wjw-body">The app flags anything missing before the first pitch — not during it.</p>
     </div>
     <div class="wjw-card">
       <div class="wjw-label">Sharing</div>
       <div class="wjw-title">Can't Make the Game? Share the Lineup.</div>
-      <p class="wjw-body">Send a link and whoever shows up can run the music. Songs, timestamps, announcements — everything transfers in one tap. No setup on their end.</p>
+      <p class="wjw-body">Send a link. They tap it. They're running the music. No account. No setup. No questions.</p>
     </div>
     <div class="wjw-card">
       <div class="wjw-label">Teams</div>
@@ -1395,8 +1397,9 @@
 <section class="closer" id="closer">
   <div class="wrap closer-in" data-aos="fade-up">
     <div class="scar">TestFlight Beta — Limited Access</div>
+    <p class="closer-pre r" style="font-size:18px; color:var(--txt2); line-height:1.6; margin-bottom:20px;">Every kid deserves their moment.<br>Yours is next Saturday.</p>
     <h2 class="closer-h r">Go ahead. <span class="g">Take the job officially.</span></h2>
-    <p class="closer-p r d1">Built for the Chief Hype Officer at Field 3s everywhere.<br>Drop your email. We'll have you ready before the next game.</p>
+    <p class="closer-p r d1">Drop your email. We'll have you ready before the next game.</p>
     <div class="closer-form r d2">
       <div class="form-row">
         <input type="email" placeholder="Enter your email address..." id="cEmail" data-source="pricing" />
@@ -1687,12 +1690,12 @@
 
   // ── HEAR THE EXPERIENCE demo — real screen recording ──────────────────────
   let _demoPlaying = false, _lightningStarted = false;
-  const _demoVideo = document.getElementById('demoVideo');
+  const _demoAudio = document.getElementById('demoAudio');
 
   function _resetDemo(btn) {
     _demoPlaying = false;
     _lightningStarted = false;
-    if (_demoVideo) { _demoVideo.pause(); _demoVideo.currentTime = 0; }
+    if (_demoAudio) { _demoAudio.pause(); _demoAudio.currentTime = 0; }
     if (btn) { btn.textContent = '\u25ba\u00a0\u00a0HEAR THE EXPERIENCE'; btn.classList.remove('playing'); btn.classList.add('hear-btn'); btn.disabled = false; }
     const prog = document.getElementById('demoProgress'), bar = document.getElementById('demoBar');
     if (prog) prog.classList.remove('on');
@@ -1701,41 +1704,41 @@
     if (window._momentStopLightningLoop) window._momentStopLightningLoop();
   }
 
-  if (_demoVideo) {
-    _demoVideo.addEventListener('timeupdate', () => {
-      if (!_demoPlaying || !_demoVideo.duration) return;
-      const pct = (_demoVideo.currentTime / _demoVideo.duration) * 100;
+  if (_demoAudio) {
+    _demoAudio.addEventListener('timeupdate', () => {
+      if (!_demoPlaying || !_demoAudio.duration) return;
+      const pct = (_demoAudio.currentTime / _demoAudio.duration) * 100;
       const bar = document.getElementById('demoBar');
       if (bar) bar.style.width = Math.min(100, pct) + '%';
-      // Aurora fast-pulse at ~20% (announcement phase)
-      if (!_lightningStarted && _demoVideo.currentTime > _demoVideo.duration * 0.20) {
+      // Aurora fast-pulse at 1.5s (announcement starts)
+      if (!_lightningStarted && _demoAudio.currentTime > 1.5) {
         if (window._momentStartAurora) window._momentStartAurora(true);
       }
-      // Lightning at ~42% (blast phase)
-      if (!_lightningStarted && _demoVideo.currentTime > _demoVideo.duration * 0.42) {
+      // Lightning at 6s (announcement ends, music blast)
+      if (!_lightningStarted && _demoAudio.currentTime > 6.0) {
         _lightningStarted = true;
         if (window._momentStopAurora) window._momentStopAurora();
         if (window._momentStartLightningLoop) window._momentStartLightningLoop(true);
       }
     });
-    _demoVideo.addEventListener('ended', () => {
+    _demoAudio.addEventListener('ended', () => {
       _resetDemo(document.getElementById('demoBtn'));
     });
   }
 
   async function playDemo(btn) {
     if (_demoPlaying) { _resetDemo(btn); return; }
-    if (!_demoVideo) return;
+    if (!_demoAudio) return;
     _demoPlaying = true;
     _lightningStarted = false;
-    _demoVideo.currentTime = 0;
+    _demoAudio.currentTime = 0;
     btn.textContent = '\u25a0\u00a0\u00a0STOP';
     btn.classList.add('playing');
     btn.classList.remove('hear-btn');
     if (window._momentStartAurora) window._momentStartAurora(false);
     document.getElementById('demoProgress').classList.add('on');
     try {
-      await _demoVideo.play();
+      await _demoAudio.play();
     } catch(e) {
       _resetDemo(btn);
     }

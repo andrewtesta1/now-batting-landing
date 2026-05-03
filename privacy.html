@@ -61,12 +61,27 @@
       main { padding: 100px 24px 60px; }
       footer { padding: 24px 20px; }
     }
+    @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
+    @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
+    @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
+    @keyframes idle-4 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.68);} }
+    @keyframes idle-5 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.70);} }
+    @keyframes idle-6 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.60);} }
+    @keyframes idle-7 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.52);} }
+    .idle-wave .bar { transform-origin: center bottom; }
+    .idle-wave .b1 { animation: idle-1 2.1s ease-in-out 0.0s infinite; }
+    .idle-wave .b2 { animation: idle-2 1.9s ease-in-out 0.12s infinite; }
+    .idle-wave .b3 { animation: idle-3 1.8s ease-in-out 0.06s infinite; }
+    .idle-wave .b4 { animation: idle-4 1.6s ease-in-out 0.0s infinite; }
+    .idle-wave .b5 { animation: idle-5 1.7s ease-in-out 0.08s infinite; }
+    .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
+    .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
+  <a href="/" class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
   <a href="/" class="nav-back">← Back to Home</a>
 </nav>
 
@@ -81,11 +96,11 @@
 
   <p><strong style="color:#fff">In the app:</strong> Now Batting stores all roster data — player names, jersey numbers, batting order, walk-up song selections, and AI-generated announcements — locally on your device using iOS storage (AsyncStorage). This data never leaves your device unless you explicitly use the roster sharing feature.</p>
 
-  <p><strong style="color:#fff">Player photos:</strong> Optional. If you add a photo to a player's card, it is stored locally on your device and is not uploaded to any server.</p>
-
   <p><strong style="color:#fff">Roster sharing:</strong> If you use the Share Roster feature, your roster (names, numbers, song metadata, and AI announcements) is temporarily uploaded to our servers to generate a share link. Shared roster data is stored for a limited time and then deleted.</p>
 
   <p><strong style="color:#fff">Email address:</strong> If you sign up on our website (nowbattingapp.com), your email address is collected and stored via Google Sheets to send you a TestFlight access link. We do not sell or share your email address.</p>
+
+  <p><strong style="color:#fff">What we don't collect:</strong> Now Batting does not collect your name, email address, location, device identifiers, or any information about how you use the app. We do not use advertising SDKs, analytics trackers, or any third-party data collection tools beyond what is listed above.</p>
 
   <h2>How We Use Your Information</h2>
   <ul>
