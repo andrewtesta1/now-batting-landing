@@ -150,6 +150,54 @@
       color: #F6F4EF;
     }
 
+    .hero-context {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(246,244,239,0.35); margin-top: 24px;
+      max-width: 480px; line-height: 1.7; text-align: center;
+    }
+
+    /* ── SHARE SECTION ── */
+    .share-section {
+      background: var(--bg);
+      padding: 100px 48px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .share-headline {
+      font-family: var(--font-sans); font-size: clamp(30px, 4vw, 48px);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1;
+      color: var(--txt); margin-bottom: 40px;
+    }
+    .share-btns {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .share-btn {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-sans); font-size: 14px; font-weight: 700;
+      padding: 12px 22px; border-radius: var(--radius-md); border: none;
+      cursor: pointer; text-decoration: none; transition: transform 0.12s, opacity 0.15s;
+      white-space: nowrap;
+    }
+    .share-btn:active { transform: scale(0.97); }
+    .share-btn.primary { background: var(--daylight); color: #1F1F1F; }
+    .share-btn.primary:hover { background: var(--daylight-dim); }
+    .share-btn.secondary { background: transparent; border: 1.5px solid rgba(31,31,31,0.18); color: var(--txt2); }
+    .share-btn.secondary:hover { border-color: var(--txt2); color: var(--txt); }
+    .share-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .share-support {
+      font-size: 14px; color: var(--txt3); line-height: 1.6; max-width: 400px;
+    }
+
+    /* SEE HOW IT WORKS link */
+    .see-how {
+      display: inline-block; margin-top: 20px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--daylight); text-decoration: none; transition: color 0.15s;
+    }
+    .see-how:hover { color: var(--daylight-dim); }
+
     /* ── SECTION 2: CREAM DEFINITION ── */
     .definition {
       background: var(--bg);
@@ -278,6 +326,8 @@
       .hero { padding: 110px 24px 80px; }
       .definition { padding: 80px 24px 80px; }
       .manifesto { padding: 80px 24px 80px; }
+      .share-section { padding: 72px 24px; }
+      .share-btns { flex-direction: column; align-items: center; }
       .cta-section { padding: 80px 24px 80px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
     }
@@ -327,6 +377,7 @@
 <section class="hero">
   <p class="eyebrow light" data-aos="fade-up">Now Batting Presents</p>
   <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="80">The Chief Hype Officer.</h1>
+  <p class="hero-context" data-aos="fade-up" data-aos-delay="180">A walk-up music app for youth baseball. And the people who run it.</p>
 </section>
 
 <!-- SECTION 2: CREAM DEFINITION -->
@@ -394,6 +445,27 @@
   </div>
 </section>
 
+<!-- SHARE SECTION -->
+<section class="share-section">
+  <p class="eyebrow dark" data-aos="fade-up">Pass It On</p>
+  <h2 class="share-headline" data-aos="fade-up" data-aos-delay="60">Know one? Send this to them.</h2>
+  <div class="share-btns" data-aos="fade-up" data-aos-delay="120">
+    <button class="share-btn primary" onclick="shareText()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Text Message
+    </button>
+    <button class="share-btn secondary" onclick="copyPageLink(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy Link
+    </button>
+    <a class="share-btn secondary" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnowbattingapp.com%2Fchief-hype-officer" target="_blank" rel="noopener" onclick="trackShare('facebook')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+  <p class="share-support" data-aos="fade-up" data-aos-delay="160">Every CHO knows another CHO. Tag them. Text them. Make sure they feel seen.</p>
+</section>
+
 <!-- SECTION 4: CREAM CTA -->
 <section class="cta-section">
   <p class="eyebrow dark" data-aos="fade-up">The Title Is Yours</p>
@@ -405,6 +477,7 @@
       <button class="btn" onclick="signup('choEmail',this)">Join the Beta</button>
     </div>
     <p class="cta-fine">Free beta · iOS only</p>
+    <a href="/" class="see-how" data-aos="fade-up">See how it works →</a>
   </div>
 </section>
 
@@ -453,6 +526,34 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 40 });
+
+  const CHO_URL = 'https://nowbattingapp.com/chief-hype-officer';
+  const CHO_TEXT = 'Are you the one running the walk-up music for your kid\'s team? This is for you.';
+
+  function trackShare(channel) {
+    // stub — wire to analytics when installed
+    try { console.log('[analytics] cho_page_share', { channel }); } catch(e) {}
+  }
+
+  function shareText() {
+    trackShare('sms');
+    const sms = 'sms:?body=' + encodeURIComponent(CHO_TEXT + ' ' + CHO_URL);
+    window.location.href = sms;
+  }
+
+  function copyPageLink(btn) {
+    trackShare('copy_link');
+    navigator.clipboard?.writeText(CHO_URL).then(() => {
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Link'; }, 2500);
+    }).catch(() => {
+      const t = document.createElement('textarea');
+      t.value = CHO_URL; document.body.appendChild(t); t.select();
+      document.execCommand('copy'); document.body.removeChild(t);
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Link'; }, 2500);
+    });
+  }
 
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxEMdiflBkC6ttAdrhR-nINeCrv7gY351L7nLG43royyvUFrDdW-hIpCUEham87b2E2/exec';
 
