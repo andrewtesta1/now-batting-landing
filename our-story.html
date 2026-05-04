@@ -231,11 +231,39 @@
     .ov-inc { font-size:12px; color:rgba(246,244,239,0.3); margin-top:12px; }
     .ov-inc strong { color:rgba(246,244,239,0.5); }
 
+    /* SCROLL PROGRESS */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: var(--daylight); z-index: 200; transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* BACK TO TOP */
+    #back-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 150;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(31,31,31,0.85); border: 1px solid rgba(31,31,31,0.15);
+      color: rgba(246,244,239,0.8); font-size: 18px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s, background 0.15s;
+      backdrop-filter: blur(8px);
+    }
+    #back-top.visible { opacity: 1; pointer-events: all; }
+    #back-top:hover { background: var(--daylight); color: #1F1F1F; border-color: var(--daylight); }
+
     /* MOBILE */
     @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .founder { padding: 110px 24px 72px; }
+      nav {
+        padding: 14px 20px;
+        flex-wrap: wrap; gap: 10px;
+      }
+      .nav-links {
+        display: flex; order: 3; width: 100%;
+        border-top: 1px solid var(--bord);
+        padding-top: 10px; gap: 20px;
+      }
+      .founder { padding: 130px 24px 72px; }
       .cta-section { padding: 80px 24px 80px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
       .f-copy { order: 2; }
@@ -248,6 +276,9 @@
   </style>
 </head>
 <body>
+
+<div id="scroll-progress"></div>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <!-- NAV -->
 <nav>
@@ -409,6 +440,18 @@
 
   function closeOverlay() { document.getElementById('overlay').classList.remove('on'); document.body.style.overflow = ''; }
   document.getElementById('overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeOverlay(); });
+
+  // Scroll progress + back-to-top
+  (function() {
+    const bar = document.getElementById('scroll-progress');
+    const btn = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      const s = document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
+      btn.classList.toggle('visible', s > 400);
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>

@@ -153,7 +153,7 @@
     .hero-context {
       font-family: var(--font-mono); font-size: 11px; font-weight: 500;
       letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(246,244,239,0.35); margin-top: 24px;
+      color: rgba(246,244,239,0.55); margin-top: 24px;
       max-width: 480px; line-height: 1.7; text-align: center;
     }
 
@@ -175,7 +175,7 @@
     .share-btn {
       display: flex; align-items: center; gap: 8px;
       font-family: var(--font-sans); font-size: 14px; font-weight: 700;
-      padding: 12px 22px; border-radius: var(--radius-md); border: none;
+      padding: 12px 22px; min-height: 44px; border-radius: var(--radius-md); border: none;
       cursor: pointer; text-decoration: none; transition: transform 0.12s, opacity 0.15s;
       white-space: nowrap;
     }
@@ -319,11 +319,39 @@
     .ov-inc { font-size:12px; color:rgba(246,244,239,0.3); margin-top:12px; }
     .ov-inc strong { color:rgba(246,244,239,0.5); }
 
+    /* SCROLL PROGRESS */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: var(--neon); z-index: 200; transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* BACK TO TOP */
+    #back-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 150;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(31,31,31,0.9); border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(246,244,239,0.7); font-size: 18px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s, background 0.15s;
+      backdrop-filter: blur(8px);
+    }
+    #back-top.visible { opacity: 1; pointer-events: all; }
+    #back-top:hover { background: rgba(184,204,0,0.15); color: var(--daylight); border-color: var(--daylight); }
+
     /* MOBILE */
     @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .hero { padding: 110px 24px 80px; }
+      nav {
+        padding: 14px 20px;
+        flex-wrap: wrap; gap: 10px;
+      }
+      .nav-links {
+        display: flex; order: 3; width: 100%;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 10px; gap: 20px;
+      }
+      .hero { padding: 130px 24px 80px; }
       .definition { padding: 80px 24px 80px; }
       .manifesto { padding: 80px 24px 80px; }
       .share-section { padding: 72px 24px; }
@@ -338,6 +366,9 @@
   </style>
 </head>
 <body>
+
+<div id="scroll-progress"></div>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <!-- NAV -->
 <nav>
@@ -594,6 +625,18 @@
 
   function closeOverlay() { document.getElementById('overlay').classList.remove('on'); document.body.style.overflow = ''; }
   document.getElementById('overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeOverlay(); });
+
+  // Scroll progress + back-to-top
+  (function() {
+    const bar = document.getElementById('scroll-progress');
+    const btn = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      const s = document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
+      btn.classList.toggle('visible', s > 400);
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>

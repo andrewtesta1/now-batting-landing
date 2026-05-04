@@ -470,14 +470,14 @@
       color: var(--txt); display: inline-block;
     }
     @keyframes cho-flash {
-      0%   { color: var(--txt);  filter: brightness(1); }
-      20%  { color: var(--neon); filter: brightness(2.2); }
-      55%  { color: var(--neon); filter: brightness(1.4); }
-      100% { color: var(--neon); filter: brightness(1); }
+      0%   { color: var(--txt);      filter: brightness(1); }
+      20%  { color: var(--neon);     filter: brightness(2.5); }
+      55%  { color: var(--daylight); filter: brightness(1.2); }
+      100% { color: var(--daylight); filter: brightness(1); }
     }
     .cho-title.is-revealed { animation: cho-flash 0.65s ease-out forwards; }
     @media (prefers-reduced-motion: reduce) {
-      .cho-title.is-revealed { animation: none !important; color: var(--neon); }
+      .cho-title.is-revealed { animation: none !important; color: var(--daylight); }
     }
     .cho-reveal-post { font-size: 15px; color: var(--txt3); margin-top: 14px; line-height: 1.6; }
     .cho-jd-link {
@@ -708,28 +708,6 @@
     /* ── DEMO VIDEO PHONE ── */
     .demo-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; }
 
-    /* ── TRIPTYCH: screenshot · video · screenshot ── */
-    .triptych {
-      display: flex; align-items: flex-end; justify-content: center; gap: 32px;
-    }
-    .triptych-side { flex-shrink: 0; }
-    .triptych-img {
-      width: 160px;
-      border-radius: 22px;
-      border: 2px solid rgba(255,255,255,0.08);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
-      display: block;
-      transform: rotate(-2deg) translateY(14px);
-      transition: transform 0.3s ease;
-    }
-    .triptych-side:last-child .triptych-img { transform: rotate(2deg) translateY(14px); }
-    .triptych-img:hover { transform: rotate(0deg) translateY(0) !important; }
-    .triptych-center { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-    @media (max-width: 860px) {
-      .triptych { flex-direction: column; align-items: center; gap: 24px; }
-      .triptych-side { display: none; }
-      .triptych-img { width: 140px; }
-    }
     .demo-video-phone {
       width: 260px;
       border-radius: 36px;
@@ -1015,13 +993,7 @@
     .wave-bar:nth-child(6) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 100ms; }
     .wave-bar:nth-child(7) { animation: wave-bar 1.2s ease-in-out infinite; animation-delay: 0ms; }
 
-    /* ── STEP 5D: PHONE PARALLAX ── */
-    .triptych-img {
-      transition: transform 0.1s linear;
-      will-change: transform;
-    }
-
-    /* ── STEP 5E: JERSEY NUMBER PULSE ── */
+/* ── STEP 5E: JERSEY NUMBER PULSE ── */
     @keyframes jersey-pulse {
       0%, 100% { text-shadow: 0 0 0px #DFFF00; opacity: 1; }
       50% { text-shadow: 0 0 20px #DFFF00, 0 0 40px rgba(223,255,0,0.4); opacity: 0.9; }
@@ -1275,25 +1247,12 @@
     <p class="eyebrow r">The Experience</p>
     <h2 class="h2 r d1" style="text-align:center; margin-bottom:40px;">~15 seconds. Big-league energy.</h2>
 
-    <!-- Triptych: screenshot · video · screenshot -->
-    <div class="triptych r d2">
-      <div class="triptych-side">
-        <img src="/screenshots/screenshot-gameday.png" alt="Game Day lineup view" class="triptych-img" />
-        <p class="ss-caption">Game Day</p>
-      </div>
-
-      <div class="triptych-center">
-        <audio id="demoAudio" src="/demo_walkup.mp3" preload="metadata"></audio>
-        <div class="demo-ctrl" style="margin-top:20px;">
-          <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
-          <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
-          <p class="moment-phase" id="demoPhase"></p>
-        </div>
-      </div>
-
-      <div class="triptych-side">
-        <img src="/screenshots/screenshot-sounds.png" alt="Sounds panel" class="triptych-img" />
-        <p class="ss-caption">Game Day Sounds</p>
+    <div class="r d2" style="display:flex; flex-direction:column; align-items:center;">
+      <audio id="demoAudio" src="/demo_walkup.mp3" preload="metadata"></audio>
+      <div class="demo-ctrl" style="margin-top:20px;">
+        <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
+        <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
+        <p class="moment-phase" id="demoPhase"></p>
       </div>
     </div>
 
@@ -1697,22 +1656,6 @@
     observer.observe(el);
   })();
 
-  // ── 5D: PHONE PARALLAX ──
-  (function() {
-    const section = document.querySelector('.triptych');
-    if (!section) return;
-    const imgs = section.querySelectorAll('.triptych-img');
-    if (imgs.length < 2) return;
-    const parallax = [0.06, 0.06];
-    window.addEventListener('scroll', () => {
-      const rect = section.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-      const pct = (window.innerHeight / 2 - rect.top) / rect.height;
-      imgs.forEach((img, i) => {
-        img.style.transform = `translateY(${pct * (parallax[i] || 0.04) * -60}px)`;
-      });
-    }, { passive: true });
-  })();
 
   // ── 5N: SCROLL PROGRESS BAR ──
   window.addEventListener('scroll', () => {
