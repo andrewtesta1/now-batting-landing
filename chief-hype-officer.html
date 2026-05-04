@@ -112,7 +112,6 @@
       letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px;
     }
     .eyebrow.light { color: rgba(246,244,239,0.55); }
-    .eyebrow.dark  { color: var(--txt3); }
 
     /* FORM */
     .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -135,7 +134,7 @@
     .btn.loading { opacity: 0.5; pointer-events: none; }
     @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
 
-    /* ── SECTION 1: DARK HERO ── */
+    /* ── HERO ── */
     .hero {
       background: #1F1F1F;
       min-height: 100vh;
@@ -149,7 +148,6 @@
       font-weight: 900; letter-spacing: -0.04em; line-height: 0.95;
       color: #F6F4EF;
     }
-
     .hero-context {
       font-family: var(--font-mono); font-size: 11px; font-weight: 500;
       letter-spacing: 0.2em; text-transform: uppercase;
@@ -157,138 +155,177 @@
       max-width: 480px; line-height: 1.7; text-align: center;
     }
 
-    /* ── SHARE SECTION ── */
-    .share-section {
-      background: var(--bg);
-      padding: 100px 48px;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-    }
-    .share-headline {
-      font-family: var(--font-sans); font-size: clamp(30px, 4vw, 48px);
-      font-weight: 900; letter-spacing: -0.03em; line-height: 1;
-      color: var(--txt); margin-bottom: 40px;
-    }
-    .share-btns {
-      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-      margin-bottom: 24px;
-    }
-    .share-btn {
-      display: flex; align-items: center; gap: 8px;
-      font-family: var(--font-sans); font-size: 14px; font-weight: 700;
-      padding: 12px 22px; min-height: 44px; border-radius: var(--radius-md); border: none;
-      cursor: pointer; text-decoration: none; transition: transform 0.12s, opacity 0.15s;
-      white-space: nowrap;
-    }
-    .share-btn:active { transform: scale(0.97); }
-    .share-btn.primary { background: var(--daylight); color: #1F1F1F; }
-    .share-btn.primary:hover { background: var(--daylight-dim); }
-    .share-btn.secondary { background: transparent; border: 1.5px solid rgba(31,31,31,0.18); color: var(--txt2); }
-    .share-btn.secondary:hover { border-color: var(--txt2); color: var(--txt); }
-    .share-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .share-support {
-      font-size: 14px; color: var(--txt3); line-height: 1.6; max-width: 400px;
-    }
-
-    /* SEE HOW IT WORKS link */
-    .see-how {
-      display: inline-block; margin-top: 20px;
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--daylight); text-decoration: none; transition: color 0.15s;
-    }
-    .see-how:hover { color: var(--daylight-dim); }
-
-    /* ── SECTION 2: CREAM DEFINITION ── */
-    .definition {
-      background: var(--bg);
-      padding: 120px 48px 100px;
-    }
-    .definition-inner { max-width: 720px; margin: 0 auto; }
-    .definition-headline {
-      font-family: var(--font-sans);
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
-      color: var(--txt); margin-bottom: 56px;
-    }
-    .def-line {
-      font-family: var(--font-sans);
-      font-size: clamp(18px, 2.2vw, 24px);
-      font-weight: 600; line-height: 1.5;
-      color: var(--txt); margin-bottom: 28px;
-    }
-    .neon-rule {
-      height: 2px; background: var(--neon);
-      margin: 64px 0; border-radius: 1px;
-    }
-    .def-close {
-      font-family: var(--font-sans);
-      font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; line-height: 1.4;
-      color: var(--txt); margin-bottom: 20px;
-    }
-
-    /* ── SECTION 3: DARK MANIFESTO ── */
-    .manifesto {
+    /* ── BODY COPY ── */
+    .cho-body {
       background: #1F1F1F;
-      padding: 120px 48px 120px;
+      padding: 0 48px 0;
     }
-    .manifesto-inner { max-width: 660px; margin: 0 auto; }
-    .manifesto-body p {
-      font-size: clamp(16px, 1.8vw, 19px);
-      line-height: 1.85;
-      color: rgba(246,244,239,0.72);
-      margin-bottom: 32px;
-    }
-    .manifesto-space { height: 56px; }
-    .manifesto-peak {
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 800; letter-spacing: -0.02em; line-height: 1.2;
-      color: #F6F4EF; margin-bottom: 16px;
-    }
-    .manifesto-muted {
-      font-size: clamp(15px, 1.6vw, 17px);
-      color: rgba(246,244,239,0.45);
-      line-height: 1.8; margin-bottom: 20px;
-    }
-    .manifesto-standard {
-      font-family: var(--font-sans);
-      font-size: clamp(18px, 2vw, 22px);
-      font-weight: 700; letter-spacing: -0.01em;
-      color: #F6F4EF; margin-bottom: 20px;
-    }
-    .manifesto-quote {
-      font-style: italic;
-      font-size: clamp(16px, 1.8vw, 20px);
-      color: var(--neon);
-      line-height: 1.6;
-      margin-bottom: 8px;
-    }
-    .manifesto-neon-rule {
-      height: 1px;
-      background: linear-gradient(to right, var(--neon), transparent);
-      margin: 48px 0;
+    .cho-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-bottom: 100px;
     }
 
-    /* ── SECTION 4: CREAM CTA ── */
-    .cta-section {
+    /* Lawn chair stanza — large display, each line breathes */
+    .cho-stanza {
+      font-size: clamp(20px, 2.8vw, 34px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #F6F4EF;
+      margin-bottom: 36px;
+    }
+    .cho-stanza:last-of-type { margin-bottom: 0; }
+
+    /* Neon reveal — "You are the Chief Hype Officer." */
+    .cho-reveal {
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--neon);
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+    .cho-reveal.flashing {
+      animation: cho-neon-flash 1.4s ease-out forwards;
+    }
+    @keyframes cho-neon-flash {
+      0%   { color: var(--neon); text-shadow: none; }
+      12%  { color: #FFFFFF; text-shadow: 0 0 28px rgba(223,255,0,1), 0 0 56px rgba(223,255,0,0.5); }
+      45%  { color: var(--neon); text-shadow: 0 0 12px rgba(223,255,0,0.3); }
+      100% { color: var(--neon); text-shadow: none; }
+    }
+
+    /* Apple Music / Calvin aside — quiet, parenthetical */
+    .cho-aside {
+      margin-bottom: 72px;
+    }
+    .cho-aside p {
+      font-size: clamp(14px, 1.5vw, 16px);
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(246,244,239,0.48);
+      margin-bottom: 4px;
+    }
+
+    /* No salary beats — stacked sentences */
+    .cho-beat {
+      font-size: clamp(15px, 1.8vw, 20px);
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(246,244,239,0.75);
+      margin-bottom: 4px;
+    }
+    .cho-beat-gap { height: 28px; }
+
+    /* Neon divider — 80px centered rule */
+    .neon-divider {
+      width: 80px;
+      height: 2px;
+      background: var(--neon);
+      border-radius: 1px;
+      margin: 0 auto;
+    }
+
+    /* ── THREE-PATH ACTION SECTION ── */
+    .paths-section {
       background: var(--bg);
-      padding: 120px 48px 120px;
-      display: flex; flex-direction: column; align-items: center;
+      padding: 0 48px 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .paths-opening-divider {
+      margin: 0 auto 80px;
+    }
+    .path-divider {
+      margin: 80px auto;
+    }
+
+    .path-block {
+      max-width: 520px;
+      width: 100%;
       text-align: center;
     }
-    .cta-headline {
-      font-family: var(--font-sans);
-      font-size: clamp(34px, 4.5vw, 58px);
-      font-weight: 800; letter-spacing: -0.03em; line-height: 1;
-      color: var(--txt); margin-bottom: 16px;
-    }
-    .cta-sub {
-      font-size: 18px; color: var(--txt3); margin-bottom: 40px; line-height: 1.5;
-    }
-    .cta-form-wrap { width: 100%; max-width: 480px; }
-    .cta-fine {
-      margin-top: 14px; font-size: 13px; color: var(--txt3);
+    .path-eyebrow {
       font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--daylight);
+      margin-bottom: 14px;
+    }
+    .path-headline {
+      font-size: clamp(22px, 2.8vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--txt);
+      margin-bottom: 12px;
+    }
+    .path-sub {
+      font-size: 16px;
+      font-weight: 400;
+      color: #444441;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .path-btn {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px 32px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.12s, background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+      border: 2px solid transparent;
+      letter-spacing: 0.01em;
+    }
+    .path-btn:active { transform: scale(0.97); }
+    .path-btn--primary {
+      background: var(--neon);
+      color: #1F1F1F;
+      border-color: var(--neon);
+    }
+    .path-btn--primary:hover { background: var(--daylight); border-color: var(--daylight); }
+    .path-btn--outline {
+      background: transparent;
+      border-color: rgba(31,31,31,0.22);
+      color: var(--txt);
+    }
+    .path-btn--outline:hover { border-color: var(--txt); }
+    .path-btn--disabled {
+      opacity: 0.38;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .path-text-link {
+      display: block;
+      margin-top: 14px;
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--txt3);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s;
+    }
+    .path-text-link:hover { color: var(--txt2); }
+    .path-launching {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--txt3);
+      margin-top: 12px;
     }
 
     /* FOOTER */
@@ -316,8 +353,6 @@
     .ov-btns { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
     .ov-btn { background:var(--daylight); color:#1F1F1F; font-weight:700; font-size:14px; padding:11px 22px; border-radius:10px; border:none; cursor:pointer; }
     .ov-btn.sec { background:transparent; border:1px solid rgba(255,255,255,0.15); color:rgba(246,244,239,0.6); }
-    .ov-inc { font-size:12px; color:rgba(246,244,239,0.3); margin-top:12px; }
-    .ov-inc strong { color:rgba(246,244,239,0.5); }
 
     /* SCROLL PROGRESS */
     #scroll-progress {
@@ -342,26 +377,23 @@
 
     /* MOBILE */
     @media (max-width: 768px) {
-      nav {
-        padding: 14px 20px;
-        flex-wrap: wrap; gap: 10px;
-      }
-      .nav-links {
-        display: flex; order: 3; width: 100%;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding-top: 10px; gap: 20px;
-      }
+      nav { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
+      .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; gap: 20px; }
       .hero { padding: 130px 24px 80px; }
-      .definition { padding: 80px 24px 80px; }
-      .manifesto { padding: 80px 24px 80px; }
-      .share-section { padding: 72px 24px; }
-      .share-btns { flex-direction: column; align-items: center; }
-      .cta-section { padding: 80px 24px 80px; }
+      .cho-body { padding: 0 24px 0; }
+      .cho-inner { padding-bottom: 72px; }
+      .cho-reveal { margin-top: 56px; margin-bottom: 56px; }
+      .cho-aside { margin-bottom: 48px; }
+      .paths-section { padding: 0 24px 80px; }
+      .paths-opening-divider { margin-bottom: 48px; }
+      .path-divider { margin: 48px auto; }
+      .path-btn { width: 100%; text-align: center; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .idle-wave .bar { animation: none; }
+      .cho-reveal { animation: none !important; color: var(--neon) !important; text-shadow: none !important; }
     }
   </style>
 </head>
@@ -404,115 +436,70 @@
   </div>
 </nav>
 
-<!-- SECTION 1: DARK HERO -->
+<!-- HERO (unchanged) -->
 <section class="hero">
   <p class="eyebrow light" data-aos="fade-up">Now Batting Presents</p>
   <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="80">The Chief Hype Officer.</h1>
-  <p class="hero-context" data-aos="fade-up" data-aos-delay="180">For the one who volunteered to run the music</p>
+  <p class="hero-context" data-aos="fade-up" data-aos-delay="180">A walk-up music app for youth baseball. And the people who run it.</p>
 </section>
 
-<!-- SECTION 2: CREAM DEFINITION -->
-<section class="definition">
-  <div class="definition-inner">
-    <p class="eyebrow dark" data-aos="fade-up">The Definition</p>
-    <h2 class="definition-headline" data-aos="fade-up" data-aos-delay="60">Who is the Chief Hype Officer?</h2>
+<!-- BODY COPY -->
+<section class="cho-body">
+  <div class="cho-inner">
+    <p class="cho-stanza" data-aos="fade-up">Lawn chair. Wagon. Bluetooth speaker the size of a small appliance.</p>
+    <p class="cho-stanza" data-aos="fade-up">Phone in one hand. Coffee — cold now — in the other.</p>
+    <p class="cho-stanza" data-aos="fade-up">Squinting through polarized sunglasses at a screen cranked to maximum brightness.</p>
 
-    <p class="def-line" data-aos="fade-up">The Chief Hype Officer is the parent — or coach — who volunteered to run the walk-up music.</p>
-    <p class="def-line" data-aos="fade-up">Who said yes before reading the job description.</p>
-    <p class="def-line" data-aos="fade-up">Who pays for Apple Music every month now. Just for this.</p>
-    <p class="def-line" data-aos="fade-up">Who has opinions about drop points.</p>
-    <p class="def-line" data-aos="fade-up">Who showed up with a lawn chair, a wagon, and a Bluetooth speaker the size of a small appliance.</p>
-    <p class="def-line" data-aos="fade-up">Who drinks cold coffee because they were too busy getting the lineup right.</p>
-    <p class="def-line" data-aos="fade-up">Who knows every kid's song. Who knows Calvin wants "Enter Sandman" at exactly fourteen seconds — because Calvin told them. Four times.</p>
-    <p class="def-line" data-aos="fade-up">Who felt the panic — shuffling through the playlist right before the next walk-up, everybody watching — and did it anyway.</p>
-    <p class="def-line" data-aos="fade-up">Who keeps showing up — again — because those kids deserve someone who does.</p>
+    <p class="cho-reveal" id="choReveal">You are the Chief Hype Officer.</p>
 
-    <div class="neon-rule" data-aos="fade-up"></div>
-
-    <p class="def-close" data-aos="fade-up">They are the reason the dugout goes nuts.</p>
-    <p class="def-close" data-aos="fade-up" data-aos-delay="60">Now Batting was built for them.</p>
-  </div>
-</section>
-
-<!-- SECTION 3: DARK MANIFESTO -->
-<section class="manifesto">
-  <div class="manifesto-inner">
-    <p class="eyebrow light" data-aos="fade-up">The Manifesto</p>
-
-    <div class="manifesto-body">
-      <p data-aos="fade-up">You already have enough going on.</p>
-      <p data-aos="fade-up">The mental load that follows you everywhere — including a youth baseball complex at 8:45am on a Saturday, where you are now also responsible for the music.</p>
-      <p data-aos="fade-up">Nobody asked you to do this.</p>
-      <p data-aos="fade-up">And yet — there you are.</p>
-      <p data-aos="fade-up">Because these kids deserved better than silence. Because you knew — if you could pull this off — they'd feel like big leaguers walking to the plate.</p>
-
-      <div class="manifesto-space"></div>
-
-      <p class="manifesto-peak" data-aos="fade-up">You are the Chief Hype Officer.</p>
-      <p data-aos="fade-up">No salary. No training. No one coming to save you.</p>
-      <p data-aos="fade-up">Just one job: make the moment.</p>
-
-      <div class="manifesto-space"></div>
-
-      <p data-aos="fade-up">We see you.</p>
-      <p data-aos="fade-up">Phone in one hand. Coffee in the other. One eye on the game. Squinting through polarized sunglasses at a screen cranked to maximum brightness.</p>
-      <p data-aos="fade-up">Lawn chair. Wagon. Bluetooth speaker the size of a small appliance.</p>
-      <p data-aos="fade-up">We built this for you.</p>
-
-      <div class="manifesto-space"></div>
-
-      <p class="manifesto-standard" data-aos="fade-up">The Saturday Standard.</p>
-      <p class="manifesto-quote" data-aos="fade-up">"Will this make life easier for the parent running the music?"</p>
-      <p data-aos="fade-up">They show up every Saturday.<br>The least we can do is show up for them.</p>
-
-      <div class="manifesto-neon-rule" data-aos="fade-up"></div>
-
-      <p class="manifesto-peak" data-aos="fade-up">The moment belongs to the kids.<br>The ease belongs to you.</p>
-      <p class="manifesto-muted" data-aos="fade-up">And the parents in those folding chairs? They have no idea how you did it.</p>
-      <p class="manifesto-muted" data-aos="fade-up">That's not luck.</p>
-      <p class="manifesto-muted" data-aos="fade-up">That's a Chief Hype Officer doing their job.</p>
-      <p class="manifesto-muted" data-aos="fade-up">And an app that finally showed up for you.</p>
+    <div class="cho-aside" data-aos="fade-up">
+      <p>You pay for Apple Music every month now. Just for this.</p>
+      <p>You have opinions about drop points.</p>
+      <p>You know every kid's song — and you know Calvin wants<br>"Enter Sandman" at exactly fourteen seconds. Because Calvin told you. Four times.</p>
     </div>
+
+    <p class="cho-beat" data-aos="fade-up">No salary.</p>
+    <p class="cho-beat" data-aos="fade-up">No training.</p>
+    <p class="cho-beat" data-aos="fade-up">No one coming to save you.</p>
+    <div class="cho-beat-gap"></div>
+    <p class="cho-beat" data-aos="fade-up">Just one job: make the moment.</p>
+
+    <div class="neon-divider" style="margin-top: 96px;"></div>
   </div>
 </section>
 
-<!-- SHARE SECTION -->
-<section class="share-section">
-  <p class="eyebrow dark" data-aos="fade-up">Pass It On</p>
-  <h2 class="share-headline" data-aos="fade-up" data-aos-delay="60">Know one? Send this to them.</h2>
-  <div class="share-btns" data-aos="fade-up" data-aos-delay="120">
-    <button class="share-btn primary" onclick="shareText()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Text Message
-    </button>
-    <button class="share-btn secondary" onclick="copyPageLink(this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      Copy Link
-    </button>
-    <a class="share-btn secondary" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnowbattingapp.com%2Fchief-hype-officer" target="_blank" rel="noopener" onclick="trackShare('facebook')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      Facebook
-    </a>
-    <button class="share-btn secondary" onclick="shareInstagram(this)">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      Instagram
-    </button>
-  </div>
-  <p class="share-support" data-aos="fade-up" data-aos-delay="160">Every CHO knows another CHO. Tag them. Text them. Make sure they feel seen.</p>
-</section>
+<!-- THREE-PATH ACTION SECTION -->
+<section class="paths-section">
+  <div class="neon-divider paths-opening-divider"></div>
 
-<!-- SECTION 4: CREAM CTA -->
-<section class="cta-section">
-  <p class="eyebrow dark" data-aos="fade-up">The Title Is Yours</p>
-  <h2 class="cta-headline" data-aos="fade-up" data-aos-delay="60">Go ahead. Take the job officially.</h2>
-  <p class="cta-sub" data-aos="fade-up" data-aos-delay="100">Every kid deserves their moment. Yours is next Saturday.</p>
-  <div class="cta-form-wrap" data-aos="fade-up" data-aos-delay="140">
-    <div class="form-row">
-      <input type="email" placeholder="Enter your email address..." id="choEmail" />
-      <button class="btn" onclick="signup('choEmail',this)">Join the Beta</button>
-    </div>
-    <p class="cta-fine">Free beta · iOS only</p>
-    <a href="/" class="see-how" data-aos="fade-up">See how it works →</a>
+  <!-- Path 1: This is me -->
+  <div class="path-block" data-aos="fade-up">
+    <p class="path-eyebrow">If this sounds like you</p>
+    <h2 class="path-headline">Welcome. Take the job officially.</h2>
+    <p class="path-sub">Free beta · iOS only · Be ready for next Saturday.</p>
+    <a href="/#closer" class="path-btn path-btn--primary" onclick="track('cho_path_beta_signup')">Join the Beta →</a>
+  </div>
+
+  <div class="neon-divider path-divider"></div>
+
+  <!-- Path 2: This is my friend -->
+  <div class="path-block" data-aos="fade-up">
+    <p class="path-eyebrow">If you know one</p>
+    <h2 class="path-headline">They deserve the best app for it.</h2>
+    <p class="path-sub">Make them an official nomination card. Tag them. Text it. Make sure they feel seen.</p>
+    <a href="/chief-hype-officer/nominate" class="path-btn path-btn--outline" onclick="track('cho_path_nominate_click')">Nominate a Chief Hype Officer →</a>
+    <button class="path-text-link" onclick="textShare()">Or just text them this page →</button>
+  </div>
+
+  <div class="neon-divider path-divider"></div>
+
+  <!-- Path 3: Find my people -->
+  <div class="path-block" data-aos="fade-up">
+    <p class="path-eyebrow">If you want to find your people</p>
+    <h2 class="path-headline" id="path3-headline">Find your people. Argue about drop points.</h2>
+    <p class="path-sub">The Chief Hype Officer Club is where the real Saturday talk happens.</p>
+    <a id="path3-btn" href="#" class="path-btn path-btn--outline path-btn--disabled" aria-disabled="true" tabindex="-1">Join the Club on Facebook →</a>
+    <span class="path-launching" id="path3-launching">Launching this season</span>
   </div>
 </section>
 
@@ -544,7 +531,7 @@
   </div>
 </footer>
 
-<!-- SUCCESS OVERLAY -->
+<!-- SUCCESS OVERLAY (signup confirmation) -->
 <div class="overlay" id="overlay">
   <div class="ov-box">
     <h3>You're on the roster. ⚾</h3>
@@ -554,7 +541,6 @@
       <button class="ov-btn" onclick="copyLink()" id="ocopy">Copy Link</button>
       <button class="ov-btn sec" onclick="closeOverlay()">Done</button>
     </div>
-    <p class="ov-inc">Share with other parents. Every signup = <strong>you jump 5 spots ahead.</strong></p>
   </div>
 </div>
 
@@ -562,43 +548,48 @@
 <script>
   AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 40 });
 
+  // ── CONFIG: update these when the Facebook group is ready ──
+  const FACEBOOK_GROUP_URL = '#'; // set to real group URL when seeded (30+ members)
+  const COMMUNITY_COUNT = null;   // set to e.g. 100 when group has 30+ members
+
+  // ── Community path: wire up once group is seeded ──
+  (function() {
+    if (COMMUNITY_COUNT) {
+      document.getElementById('path3-headline').textContent = COMMUNITY_COUNT + '+ parents already arguing about drop points.';
+    }
+    if (FACEBOOK_GROUP_URL !== '#') {
+      const btn = document.getElementById('path3-btn');
+      btn.href = FACEBOOK_GROUP_URL;
+      btn.removeAttribute('aria-disabled');
+      btn.removeAttribute('tabindex');
+      btn.classList.remove('path-btn--disabled');
+      btn.onclick = function() { track('cho_path_join_community'); };
+      const label = document.getElementById('path3-launching');
+      if (label) label.style.display = 'none';
+    }
+  })();
+
+  // ── Analytics stub — replace with real SDK when installed ──
+  function track(event, props) {
+    try { console.log('[analytics]', event, props || ''); } catch(e) {}
+    // window.gtag?.('event', event, props);
+    // window.analytics?.track(event, props);
+  }
+
+  // ── Path 2: text share ──
   const CHO_URL = 'https://nowbattingapp.com/chief-hype-officer';
-  const CHO_TEXT = 'Are you the one running the walk-up music for your kid\'s team? This is for you.';
+  const CHO_SHARE_TEXT = "You’re the Chief Hype Officer of our team and you didn’t know it had a name. Read this. " + CHO_URL;
 
-  function trackShare(channel) {
-    // stub — wire to analytics when installed
-    try { console.log('[analytics] cho_page_share', { channel }); } catch(e) {}
-  }
-
-  function shareText() {
-    trackShare('sms');
-    const sms = 'sms:?body=' + encodeURIComponent(CHO_TEXT + ' ' + CHO_URL);
-    window.location.href = sms;
-  }
-
-  function shareInstagram(btn) {
-    trackShare('instagram');
+  function textShare() {
+    track('cho_path_text_share');
     if (navigator.share) {
-      navigator.share({ title: 'The Chief Hype Officer — Now Batting', text: CHO_TEXT, url: CHO_URL }).catch(() => {});
+      navigator.share({ title: 'The Chief Hype Officer — Now Batting', text: CHO_SHARE_TEXT, url: CHO_URL }).catch(() => {});
     } else {
-      copyPageLink(btn);
+      window.location.href = 'sms:?body=' + encodeURIComponent(CHO_SHARE_TEXT);
     }
   }
 
-  function copyPageLink(btn) {
-    trackShare('copy_link');
-    navigator.clipboard?.writeText(CHO_URL).then(() => {
-      btn.textContent = '✓ Copied!';
-      setTimeout(() => { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Link'; }, 2500);
-    }).catch(() => {
-      const t = document.createElement('textarea');
-      t.value = CHO_URL; document.body.appendChild(t); t.select();
-      document.execCommand('copy'); document.body.removeChild(t);
-      btn.textContent = '✓ Copied!';
-      setTimeout(() => { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Link'; }, 2500);
-    });
-  }
-
+  // ── Signup (Path 1 / nav) ──
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxEMdiflBkC6ttAdrhR-nINeCrv7gY351L7nLG43royyvUFrDdW-hIpCUEham87b2E2/exec';
 
   async function signup(id, btn) {
@@ -612,10 +603,8 @@
     const ref = Math.random().toString(36).substring(2,8).toUpperCase();
     try {
       await fetch(SHEET_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, ref, source: id }),
-        mode: 'no-cors'
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, ref, source: id }), mode: 'no-cors'
       });
     } catch(e) { console.warn('Sheet error:', e); }
     btn.textContent = '✓ You\'re on the roster!'; btn.classList.remove('loading'); btn.disabled = true; btn.style.opacity = '0.7';
@@ -639,7 +628,22 @@
   function closeOverlay() { document.getElementById('overlay').classList.remove('on'); document.body.style.overflow = ''; }
   document.getElementById('overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeOverlay(); });
 
-  // Scroll progress + back-to-top
+  // ── Neon reveal: "You are the Chief Hype Officer." ──
+  (function() {
+    const el = document.getElementById('choReveal');
+    if (!el) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.classList.add('flashing');
+        obs.disconnect();
+      }
+    }, { threshold: 0.8 });
+    obs.observe(el);
+  })();
+
+  // ── Scroll progress + back-to-top ──
   (function() {
     const bar = document.getElementById('scroll-progress');
     const btn = document.getElementById('back-top');
