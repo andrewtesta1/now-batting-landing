@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Now Batting</title>
+  <meta name="description" content="Get help with Now Batting. Questions, bugs, or feedback — we read every message." />
+  <link rel="canonical" href="https://nowbattingapp.com/support" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:           #F6F4EF;
+      --mid:          #FFFFFF;
+      --surf:         #EDEAD9;
+      --bord:         rgba(0,0,0,0.09);
+      --neon:         #DFFF00;
+      --daylight:     #B8CC00;
+      --daylight-dim: #8A9900;
+      --txt:          #1F1F1F;
+      --txt2:         #4A4A4A;
+      --txt3:         #7A7A7A;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm:    8px;
+      --radius-md:    12px;
+      --radius-lg:    16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--txt); font-family: var(--font-sans); font-size: 16px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 18px 48px;
+      background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bord);
+    }
+    .nav-sub { display: none; width: 100%; padding: 0 0 10px; gap: 24px; justify-content: center; }
+    .nav-sub a { font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-sub a:hover { color: var(--txt); }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-link { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--txt); }
+    .nav-btn {
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.01em; padding: 10px 20px; border-radius: var(--radius-sm);
+      border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover { background: var(--daylight-dim); }
+
+    /* PAGE */
+    main {
+      position: relative; z-index: 1;
+      max-width: 720px; margin: 0 auto;
+      padding: 120px 48px 80px;
+    }
+
+    .eyebrow { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.12em; color: var(--daylight); margin-bottom: 12px; text-transform: uppercase; }
+    h1 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 16px; color: var(--txt); }
+    .subtitle { font-size: 17px; color: var(--txt2); line-height: 1.65; margin-bottom: 52px; }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: var(--mid);
+      border: 1px solid var(--bord);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 56px;
+    }
+    .contact-card h2 { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; color: var(--txt); }
+    .contact-card p { font-size: 15px; color: var(--txt2); line-height: 1.65; margin-bottom: 24px; }
+    .email-btn {
+      display: inline-block;
+      background: var(--daylight);
+      color: #1F1F1F;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 13px 24px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .email-btn:hover { background: var(--daylight-dim); text-decoration: none; }
+
+    /* FAQ */
+    .faq-head { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: var(--txt); margin-bottom: 4px; }
+    .faq-list { margin-top: 16px; }
+    .faq-item { border-top: 1px solid var(--bord); padding: 22px 0; }
+    .faq-item:last-child { border-bottom: 1px solid var(--bord); }
+    .faq-q { font-size: 15px; font-weight: 700; color: var(--txt); margin-bottom: 8px; }
+    .faq-a { font-size: 15px; color: var(--txt2); line-height: 1.75; }
+    .faq-a strong { color: var(--txt); font-weight: 600; }
+    .faq-a a { color: var(--txt); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+    .divider { height: 1px; background: var(--bord); margin: 52px 0 24px; }
+    .foot-note { font-size: 13px; color: var(--txt3); }
+    .foot-note a { color: var(--txt3); }
+    .foot-note a:hover { color: var(--daylight); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--bord); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .f-logo { display: flex; align-items: center; line-height: 1; }
+    .f-copy { font-size: 12px; color: var(--txt3); }
+    .f-copy a { color: var(--txt3); text-decoration: none; }
+    .f-copy a:hover { color: var(--daylight); }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 14px 18px; }
+      .nav-sub { display: flex; }
+      .nav-link-story, .nav-link-manifesto { display: none; }
+      .nav-social { display: none; }
+      main { padding: 100px 24px 60px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
+    }
+
+    /* WAVEFORM */
+    @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
+    @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
+    @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
+    @keyframes idle-4 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.68);} }
+    @keyframes idle-5 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.70);} }
+    @keyframes idle-6 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.60);} }
+    @keyframes idle-7 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.52);} }
+    .idle-wave .bar { transform-origin: center bottom; }
+    .idle-wave .b1 { animation: idle-1 2.1s ease-in-out 0.0s infinite; }
+    .idle-wave .b2 { animation: idle-2 1.9s ease-in-out 0.12s infinite; }
+    .idle-wave .b3 { animation: idle-3 1.8s ease-in-out 0.06s infinite; }
+    .idle-wave .b4 { animation: idle-4 1.6s ease-in-out 0.0s infinite; }
+    .idle-wave .b5 { animation: idle-5 1.7s ease-in-out 0.08s infinite; }
+    .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
+    .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" style="display:flex;align-items:center;line-height:1;text-decoration:none;">
+    <svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg>
+  </a>
+  <a href="/our-story" class="nav-link nav-link-story">Our Story</a>
+  <a href="/chief-hype-officer" class="nav-link nav-link-manifesto">The Chief Hype Officer</a>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download Free</a>
+  </div>
+</nav>
+
+<main>
+  <p class="eyebrow">Support</p>
+  <h1>We've got you.</h1>
+  <p class="subtitle">Questions, bugs, or feedback — send us a note. We read every message and respond within 24 hours.</p>
+
+  <div class="contact-card">
+    <h2>Email us directly</h2>
+    <p>The fastest way to reach us. If you're reporting a bug, include your iPhone model and iOS version — it helps us fix things faster.</p>
+    <a class="email-btn" href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a>
+  </div>
+
+  <p class="faq-head">Common questions</p>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <p class="faq-q">No sound during the game. What do I do?</p>
+      <p class="faq-a">Check that your iPhone's silent switch (the physical toggle on the side) is off. The app plays audio in silent mode, but make sure your volume is turned up before you leave home. If it's still silent, force-quit the app and reopen it.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Do I need an Apple Music subscription?</p>
+      <p class="faq-a">You need Apple Music to search the catalog and use those songs as walk-up music. The built-in soundboard (air horn, charge, etc.) and AI player announcements both work without a subscription.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">The AI announcement is mispronouncing a name. Can I fix it?</p>
+      <p class="faq-a">Yes — open the player in the editor and use the <strong>Phonetic Name</strong> field. Type the name exactly how it should sound (e.g., "Juh-VONTAY" instead of "Javontae"). Tap Generate and the announcer uses your spelling.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">I can't make Saturday's game. How do I hand off the music?</p>
+      <p class="faq-a">Open the roster menu (tap the roster name at the top), then tap <strong>Share</strong>. Send the link to whoever is running the music. They tap it, import the roster, and they're ready — every player, every song, every announcement already built.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">The field has no cell service. Will the app still work?</p>
+      <p class="faq-a">Yes, if you prepare before you leave. Make sure each player's announcement is generated (green dot in the lineup) and use the offline checklist to save walk-up songs. Once that's done, the whole game runs from your device — no signal needed.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I change the announcer voice?</p>
+      <p class="faq-a">Tap the roster name at the top of the main screen, then tap <strong>Roster Settings</strong>. You'll see the two announcer options — Buck and Brooke. Switching voices will prompt you to regenerate your player announcements.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">I found a bug.</p>
+      <p class="faq-a">Email <a href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a> with what happened. Include your iPhone model and iOS version (Settings → General → About). We take bugs seriously and usually ship a fix within a few days.</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+  <p class="foot-note">© 2026 Now Batting™ · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Use</a></p>
+</main>
+
+<footer>
+  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <p class="f-copy">© 2026 Now Batting™ · Every kid deserves their moment. · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a> · <a href="/chief-hype-officer">The Saturday Standard</a></p>
+</footer>
+
+</body>
+</html>
