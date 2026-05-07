@@ -1,0 +1,21 @@
+{
+  "name": "now-batting-landing",
+  "version": "1.0.0",
+  "description": "Now Batting landing page - Walk-up songs and stadium announcements for youth baseball",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "baseball",
+    "softball",
+    "walk-up songs",
+    "youth sports"
+  ],
+  "author": "Andrew Testa",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}

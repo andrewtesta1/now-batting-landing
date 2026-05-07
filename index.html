@@ -1197,6 +1197,10 @@
     .typed-cursor.typed-cursor--blink { animation: none; }
     .typed-done .typed-cursor { opacity: 0; transition: opacity 0.4s ease; }
   </style>
+  <script type="module">
+    import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@1/dist/index.js';
+    inject();
+  </script>
 </head>
 <body>
 <div id="scroll-progress" aria-hidden="true"></div>
