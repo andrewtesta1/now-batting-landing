@@ -802,51 +802,65 @@
     .wjw-body { font-size: 14px; color: var(--txt2); line-height: 1.65; }
     @media (max-width: 900px) { .wjw { padding: 60px 0; } }
 
-    /* ── THE WALK-UP SECTION ── */
+    /* ── THE WALK-UP SECTION — CINEMATIC ── */
     .walkup-section {
-      background: var(--bg);
-      padding: 100px 0;
+      background: #0C0C0C;
+      padding: 120px 0;
       position: relative;
+      overflow: hidden;
       z-index: 1;
+    }
+    /* Film grain */
+    .walkup-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
     }
     .walkup-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 45fr 55fr;
       gap: 80px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
     .walkup-eyebrow {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--daylight);
-      margin-bottom: 16px;
+      margin-bottom: 22px;
     }
     .walkup-hed {
       font-family: var(--font-sans);
-      font-size: clamp(28px, 3.4vw, 42px);
+      font-size: clamp(36px, 4.2vw, 58px);
       font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--txt);
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      color: #F6F4EF;
       margin-bottom: 20px;
     }
-    .walkup-body {
-      font-size: 17px;
-      line-height: 1.72;
-      color: var(--txt2);
-      margin-bottom: 36px;
+    .walkup-sub {
+      font-size: 18px;
+      line-height: 1.65;
+      color: rgba(246,244,239,0.5);
+      margin-bottom: 48px;
+      max-width: 380px;
     }
     .walkup-play-row {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
     }
     .walkup-play-btn {
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: var(--daylight);
       border: none;
@@ -855,119 +869,183 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: background 0.15s, transform 0.1s;
-      box-shadow: 0 4px 20px rgba(184,204,0,0.35);
+      transition: background 0.15s, transform 0.1s, box-shadow 0.25s;
+      box-shadow: 0 0 32px rgba(184,204,0,0.28), 0 4px 16px rgba(0,0,0,0.4);
     }
-    .walkup-play-btn:hover { background: var(--daylight-dim); box-shadow: 0 4px 20px rgba(138,153,0,0.4); }
-    .walkup-play-btn:active { transform: scale(0.94); }
-    .walkup-play-btn.playing { box-shadow: 0 0 0 4px rgba(184,204,0,0.3), 0 4px 20px rgba(184,204,0,0.25); }
-    .walkup-duration {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--txt3);
-      letter-spacing: 0.06em;
+    .walkup-play-btn:hover {
+      background: var(--daylight-dim);
+      box-shadow: 0 0 52px rgba(184,204,0,0.44), 0 4px 20px rgba(0,0,0,0.4);
     }
-    .walkup-photo {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.14);
-    }
-    .walkup-photo img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
+    .walkup-play-btn:active { transform: scale(0.93); }
+    .walkup-play-btn.playing {
+      box-shadow: 0 0 60px rgba(184,204,0,0.52), 0 0 0 4px rgba(184,204,0,0.22), 0 4px 16px rgba(0,0,0,0.4);
     }
 
-    /* ── GAME DAY TIMELINE SECTION ── */
+    /* CSS waveform visualizer */
+    .wu-waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 36px;
+    }
+    .wu-bar {
+      width: 3px;
+      background: var(--daylight);
+      border-radius: 2px;
+      height: 4px;
+      opacity: 0.5;
+      transition: height 0.15s, opacity 0.3s;
+    }
+    .wu-waveform.playing .wu-bar { opacity: 1; animation: wuWave 0.8s ease-in-out infinite; }
+    .wu-waveform.playing .wu-bar:nth-child(1)  { animation-delay:0s;    animation-duration:0.70s; }
+    .wu-waveform.playing .wu-bar:nth-child(2)  { animation-delay:0.10s; animation-duration:0.85s; }
+    .wu-waveform.playing .wu-bar:nth-child(3)  { animation-delay:0.05s; animation-duration:0.65s; }
+    .wu-waveform.playing .wu-bar:nth-child(4)  { animation-delay:0.16s; animation-duration:0.92s; }
+    .wu-waveform.playing .wu-bar:nth-child(5)  { animation-delay:0.08s; animation-duration:0.74s; }
+    .wu-waveform.playing .wu-bar:nth-child(6)  { animation-delay:0.20s; animation-duration:0.80s; }
+    .wu-waveform.playing .wu-bar:nth-child(7)  { animation-delay:0.12s; animation-duration:0.68s; }
+    .wu-waveform.playing .wu-bar:nth-child(8)  { animation-delay:0.18s; animation-duration:0.96s; }
+    .wu-waveform.playing .wu-bar:nth-child(9)  { animation-delay:0.03s; animation-duration:0.72s; }
+    .wu-waveform.playing .wu-bar:nth-child(10) { animation-delay:0.22s; animation-duration:0.88s; }
+    .wu-waveform.playing .wu-bar:nth-child(11) { animation-delay:0.14s; animation-duration:0.78s; }
+    .wu-waveform.playing .wu-bar:nth-child(12) { animation-delay:0.07s; animation-duration:0.63s; }
+    @keyframes wuWave {
+      0%,100% { height: 4px; }
+      50%      { height: 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .wu-bar { animation: none !important; } }
+
+    /* Photo side */
+    .walkup-photo-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .walkup-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      background: radial-gradient(ellipse at center, rgba(184,204,0,0.16) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .walkup-phone-img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 48px 120px rgba(0,0,0,0.7), 0 8px 32px rgba(0,0,0,0.5);
+      transform: rotate(1.5deg);
+      display: block;
+    }
+
+    /* ── GAME DAY FEATURES SECTION ── */
     .gameday-section {
-      background: #1F1F1F;
-      padding: 100px 0;
+      background: #161616;
+      padding: 100px 0 120px;
       position: relative;
       z-index: 1;
     }
+    .gameday-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184,204,0,0.2), transparent);
+    }
     .gameday-header {
       text-align: center;
-      margin-bottom: 72px;
+      margin-bottom: 52px;
     }
     .gameday-eyebrow {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--daylight);
       margin-bottom: 16px;
     }
     .gameday-hed {
       font-family: var(--font-sans);
-      font-size: clamp(28px, 3.4vw, 42px);
+      font-size: clamp(28px, 3.4vw, 44px);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
       color: #F6F4EF;
-      margin-bottom: 12px;
     }
-    .gameday-subhed {
-      font-size: 16px;
-      color: rgba(246,244,239,0.5);
-      font-weight: 400;
-    }
-    .gameday-phases {
-      display: flex;
-      flex-direction: column;
-    }
-    .gameday-phase {
-      padding: 52px 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
+
+    /* 2×2 feature card grid */
+    .feat-grid {
       display: grid;
-      grid-template-columns: 220px 1fr auto;
-      gap: 0 48px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
-    .gameday-phase:last-child {
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .feat-card-new {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, border-color 0.3s, transform 0.25s;
     }
-    .gameday-phase-label {
+    .feat-card-new:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(184,204,0,0.22);
+      transform: translateY(-4px);
+    }
+    /* Ghost number watermark */
+    .feat-card-new::after {
+      content: attr(data-num);
+      position: absolute;
+      right: 28px; bottom: 16px;
+      font-size: 96px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+      font-family: var(--font-sans);
+      letter-spacing: -0.05em;
+      user-select: none;
+    }
+    .feat-card-icon {
+      width: 40px; height: 40px;
+      color: var(--daylight);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .feat-card-icon svg { width: 40px; height: 40px; display: block; }
+    .feat-card-phase {
       font-family: var(--font-mono);
       font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--daylight);
-      margin-bottom: 0;
+      color: rgba(184,204,0,0.65);
+      margin-bottom: 10px;
     }
-    .gameday-phase-content { }
-    .gameday-phase-hed {
+    .feat-card-hed {
       font-family: var(--font-sans);
-      font-size: clamp(18px, 2vw, 24px);
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #F6F4EF;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      line-height: 1.15;
     }
-    .gameday-phase-body {
+    .feat-card-body {
       font-size: 15px;
-      color: rgba(246,244,239,0.58);
+      color: rgba(246,244,239,0.5);
       line-height: 1.72;
-      max-width: 520px;
     }
-    .gameday-phase-action {
+    .feat-card-action {
+      margin-top: 28px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-      min-width: 140px;
-      justify-content: flex-end;
+      gap: 14px;
     }
-    /* Phase with no action: collapse right column */
-    .gameday-phase.no-action {
-      grid-template-columns: 220px 1fr;
-    }
-
-    /* Phase play buttons */
-    .phase-play-btn {
-      width: 52px;
-      height: 52px;
+    .feat-card-play-btn {
+      width: 48px; height: 48px;
       border-radius: 50%;
       background: var(--daylight);
       border: none;
@@ -976,72 +1054,72 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: background 0.15s, transform 0.1s;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 0 20px rgba(184,204,0,0.18);
     }
-    .phase-play-btn:hover { background: var(--daylight-dim); }
-    .phase-play-btn:active { transform: scale(0.94); }
-    .phase-play-btn.playing { box-shadow: 0 0 0 3px rgba(184,204,0,0.35); }
-    .phase-duration {
+    .feat-card-play-btn:hover { background: var(--daylight-dim); box-shadow: 0 0 32px rgba(184,204,0,0.35); }
+    .feat-card-play-btn:active { transform: scale(0.93); }
+    .feat-card-play-btn.playing { box-shadow: 0 0 0 3px rgba(184,204,0,0.3), 0 0 20px rgba(184,204,0,0.25); }
+    .feat-card-duration {
       font-family: var(--font-mono);
       font-size: 12px;
-      color: rgba(246,244,239,0.35);
-      letter-spacing: 0.05em;
+      color: rgba(246,244,239,0.32);
+      letter-spacing: 0.06em;
     }
 
-    /* Phase 2: soundboard row */
-    .phase-sb-row {
+    /* In-card soundboard */
+    .feat-sb-row {
       display: flex;
-      align-items: center;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
+      margin-top: 28px;
     }
-    .phase-sb-item {
+    .feat-sb-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
     }
-    .phase-sb-btn {
-      width: 46px;
-      height: 46px;
+    .feat-sb-btn {
+      width: 48px; height: 48px;
       border-radius: 50%;
-      background: var(--daylight);
-      border: none;
+      background: rgba(184,204,0,0.1);
+      border: 1px solid rgba(184,204,0,0.2);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.15s, transform 0.1s;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.2s;
     }
-    .phase-sb-btn:hover { background: var(--daylight-dim); }
-    .phase-sb-btn:active { transform: scale(0.94); }
-    .phase-sb-btn.playing { box-shadow: 0 0 0 3px rgba(184,204,0,0.35); }
-    .phase-sb-label {
+    .feat-sb-btn svg { fill: var(--daylight) !important; }
+    .feat-sb-btn:hover { background: rgba(184,204,0,0.18); border-color: rgba(184,204,0,0.4); }
+    .feat-sb-btn:active { transform: scale(0.93); }
+    .feat-sb-btn.playing {
+      background: var(--daylight);
+      border-color: var(--daylight);
+      box-shadow: 0 0 18px rgba(184,204,0,0.4);
+    }
+    .feat-sb-btn.playing svg { fill: #1F1F1F !important; }
+    .feat-sb-label {
       font-family: var(--font-mono);
       font-size: 9px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(246,244,239,0.45);
+      color: rgba(246,244,239,0.38);
       text-align: center;
       white-space: nowrap;
     }
 
     /* Mobile */
     @media (max-width: 900px) {
-      .walkup-section { padding: 72px 0; }
-      .walkup-grid { grid-template-columns: 1fr; gap: 40px; }
-      .walkup-photo { order: 1; }
-      .walkup-copy { order: -1; }
-      .gameday-section { padding: 72px 0; }
-      .gameday-phase {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 40px 0;
-      }
-      .gameday-phase.no-action { grid-template-columns: 1fr; }
-      .gameday-phase-action { justify-content: flex-start; }
-      .phase-sb-row { gap: 14px; }
-      .phase-sb-item { gap: 6px; }
+      .walkup-section { padding: 80px 0; }
+      .walkup-grid { grid-template-columns: 1fr; gap: 48px; }
+      .walkup-photo-wrap { order: -1; }
+      .walkup-copy { order: 1; }
+      .walkup-phone-img { max-width: 100%; transform: none; }
+      .gameday-section { padding: 72px 0 88px; }
+      .feat-grid { grid-template-columns: 1fr; gap: 12px; }
+      .feat-card-new { padding: 32px 28px; }
     }
 
     /* ── EXPERIENCE SECTION ── */
@@ -1742,96 +1820,116 @@
   </div>
 </section>
 
-<!-- THE WALK-UP -->
+<!-- THE WALK-UP — CINEMATIC -->
 <section class="walkup-section">
   <div class="wrap walkup-grid">
-    <div class="walkup-copy" data-aos="fade-up">
+    <div class="walkup-copy" data-aos="fade-right">
       <p class="walkup-eyebrow">The Walk-Up</p>
-      <h2 class="walkup-hed">The ultimate hype moment.</h2>
-      <p class="walkup-body">Music drops. Audio dips for a clear announcement of the kid's name. Then it blasts back up. You set the drop point. About 15 seconds total. Easy fade controls before the pitch.</p>
+      <h2 class="walkup-hed">The moment every kid deserves.</h2>
+      <p class="walkup-sub">Music drops. Their name gets called. Song roars back. Fifteen seconds of pure stadium energy — one tap, every at-bat.</p>
       <div class="walkup-play-row">
         <button class="walkup-play-btn" id="wuBtn" onclick="pagePlay('wu')" aria-label="Play walk-up sample"></button>
-        <span class="walkup-duration">~15 sec</span>
+        <div class="wu-waveform" id="wuWaveform" aria-hidden="true">
+          <div class="wu-bar"></div><div class="wu-bar"></div><div class="wu-bar"></div>
+          <div class="wu-bar"></div><div class="wu-bar"></div><div class="wu-bar"></div>
+          <div class="wu-bar"></div><div class="wu-bar"></div><div class="wu-bar"></div>
+          <div class="wu-bar"></div><div class="wu-bar"></div><div class="wu-bar"></div>
+        </div>
       </div>
       <audio id="wuAudio" src="/demo_walkup.mp3" preload="metadata"></audio>
     </div>
-    <div class="walkup-photo" data-aos="fade-up" data-aos-delay="100">
-      <img src="/cho-phone-hand.jpg" alt="Now Batting app showing a player walk-up at the field" loading="lazy" />
+    <div class="walkup-photo-wrap" data-aos="fade-left" data-aos-delay="100">
+      <img class="walkup-phone-img" src="/cho-phone-hand.jpg" alt="Now Batting app showing a player walk-up at the field" loading="lazy" />
     </div>
   </div>
 </section>
 
-<!-- THE WHOLE GAME DAY -->
+<!-- THE WHOLE GAME DAY — FEATURE CARDS -->
 <section class="gameday-section">
   <div class="wrap">
     <div class="gameday-header" data-aos="fade-up">
       <p class="gameday-eyebrow">The Whole Game Day</p>
       <h2 class="gameday-hed">From warm-ups to walk-offs.</h2>
-      <p class="gameday-subhed">Everything you need to run game day audio.</p>
     </div>
 
-    <div class="gameday-phases">
+    <div class="feat-grid">
 
-      <!-- Phase 1: PRE-GAME -->
-      <div class="gameday-phase" data-aos="fade-up">
-        <div class="gameday-phase-label">Pre-Game</div>
-        <div class="gameday-phase-content">
-          <h3 class="gameday-phase-hed">Set the stage.</h3>
-          <p class="gameday-phase-body">What makes a kid feel like a pro? Hearing their name called in the pre-game lineup intro before first pitch. The full batting order plays with hype music underneath — one tap, sixty seconds, stadium energy. National Anthem is also one tap away to make it official.</p>
+      <!-- Card 1: Pre-Game -->
+      <div class="feat-card-new" data-num="01" data-aos="fade-up">
+        <div class="feat-card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/>
+          </svg>
         </div>
-        <div class="gameday-phase-action">
-          <button class="phase-play-btn" id="s9Btn" onclick="pagePlay('s9')" aria-label="Play Starting Nine sample"></button>
-          <span class="phase-duration">~60 sec</span>
+        <p class="feat-card-phase">Pre-Game</p>
+        <h3 class="feat-card-hed">Starting Nine intro.</h3>
+        <p class="feat-card-body">Full batting order, AI-announced, with hype music underneath. One tap, sixty seconds, stadium energy before first pitch.</p>
+        <div class="feat-card-action">
+          <button class="feat-card-play-btn" id="s9Btn" onclick="pagePlay('s9')" aria-label="Play Starting Nine sample"></button>
+          <span class="feat-card-duration">~60 sec</span>
         </div>
         <audio id="gdS9Audio" src="/starting-nine-reference.mp3" preload="metadata"></audio>
       </div>
 
-      <!-- Phase 2: DURING PLAY -->
-      <div class="gameday-phase" data-aos="fade-up">
-        <div class="gameday-phase-label">During Play</div>
-        <div class="gameday-phase-content">
-          <h3 class="gameday-phase-hed">The classics, on tap.</h3>
-          <p class="gameday-phase-body">Air horns. Home run sirens. The Charge. The Stomp. All the sounds a game needs, ready whenever the moment calls.</p>
+      <!-- Card 2: During Play -->
+      <div class="feat-card-new" data-num="02" data-aos="fade-up" data-aos-delay="80">
+        <div class="feat-card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
         </div>
-        <div class="gameday-phase-action">
-          <div class="phase-sb-row">
-            <div class="phase-sb-item">
-              <button class="phase-sb-btn" id="sbBtn-airhorn" onclick="pageSb('airhorn','/sounds/air_horn.mp3')" aria-label="Air Horn"></button>
-              <span class="phase-sb-label">Air Horn</span>
-            </div>
-            <div class="phase-sb-item">
-              <button class="phase-sb-btn" id="sbBtn-siren" onclick="pageSb('siren','/sounds/home_run_siren.mp3')" aria-label="Home Run Siren"></button>
-              <span class="phase-sb-label">Home Run Siren</span>
-            </div>
-            <div class="phase-sb-item">
-              <button class="phase-sb-btn" id="sbBtn-charge" onclick="pageSb('charge','/sounds/organ_cavalry.mp3')" aria-label="Charge"></button>
-              <span class="phase-sb-label">Charge</span>
-            </div>
-            <div class="phase-sb-item">
-              <button class="phase-sb-btn" id="sbBtn-stomp" onclick="pageSb('stomp','/sounds/stomp.mp3')" aria-label="Stomp"></button>
-              <span class="phase-sb-label">Stomp</span>
-            </div>
+        <p class="feat-card-phase">During Play</p>
+        <h3 class="feat-card-hed">Classics, on tap.</h3>
+        <p class="feat-card-body">Air horn. Home run siren. The Charge. The Stomp. Every sound the game needs, ready the instant the moment calls.</p>
+        <div class="feat-sb-row">
+          <div class="feat-sb-item">
+            <button class="feat-sb-btn" id="sbBtn-airhorn" onclick="pageSb('airhorn','/sounds/air_horn.mp3')" aria-label="Air Horn"></button>
+            <span class="feat-sb-label">Air Horn</span>
+          </div>
+          <div class="feat-sb-item">
+            <button class="feat-sb-btn" id="sbBtn-siren" onclick="pageSb('siren','/sounds/home_run_siren.mp3')" aria-label="Home Run Siren"></button>
+            <span class="feat-sb-label">Home Run</span>
+          </div>
+          <div class="feat-sb-item">
+            <button class="feat-sb-btn" id="sbBtn-charge" onclick="pageSb('charge','/sounds/organ_cavalry.mp3')" aria-label="Charge"></button>
+            <span class="feat-sb-label">Charge</span>
+          </div>
+          <div class="feat-sb-item">
+            <button class="feat-sb-btn" id="sbBtn-stomp" onclick="pageSb('stomp','/sounds/stomp.mp3')" aria-label="Stomp"></button>
+            <span class="feat-sb-label">Stomp</span>
           </div>
         </div>
         <audio id="sbAudio" preload="none"></audio>
       </div>
 
-      <!-- Phase 3: BETWEEN INNINGS -->
-      <div class="gameday-phase no-action" data-aos="fade-up">
-        <div class="gameday-phase-label">Between Innings</div>
-        <div class="gameday-phase-content">
-          <h3 class="gameday-phase-hed">Your walkup songs, auto-playlisted.</h3>
-          <p class="gameday-phase-body">Every kid's walk-up song auto-playlists between innings. Sides change, the music keeps the energy up. Streams from Apple Music — no setup required.</p>
+      <!-- Card 3: Between Innings -->
+      <div class="feat-card-new" data-num="03" data-aos="fade-up">
+        <div class="feat-card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"/>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
         </div>
+        <p class="feat-card-phase">Between Innings</p>
+        <h3 class="feat-card-hed">Walk-ups, auto-playlisted.</h3>
+        <p class="feat-card-body">Sides change, the music keeps going. Every kid's walk-up song plays automatically between innings — streams from Apple Music, zero setup.</p>
       </div>
 
-      <!-- Phase 4: SEVENTH-INNING STRETCH -->
-      <div class="gameday-phase no-action" data-aos="fade-up">
-        <div class="gameday-phase-label">Seventh-Inning Stretch</div>
-        <div class="gameday-phase-content">
-          <h3 class="gameday-phase-hed">The tradition stays intact.</h3>
-          <p class="gameday-phase-body">Take Me Out to the Ballgame, one tap away. Some things are non-negotiable.</p>
+      <!-- Card 4: 7th Inning Stretch -->
+      <div class="feat-card-new" data-num="04" data-aos="fade-up" data-aos-delay="80">
+        <div class="feat-card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
         </div>
+        <p class="feat-card-phase">Seventh-Inning Stretch</p>
+        <h3 class="feat-card-hed">The tradition stays intact.</h3>
+        <p class="feat-card-body">Take Me Out to the Ballgame, one tap away. Some things are non-negotiable.</p>
       </div>
 
     </div>
@@ -2630,12 +2728,18 @@
 
   let active = null; // { audio, btn, sm, sbKey }
 
+  function setWaveform(playing) {
+    const wf = document.getElementById('wuWaveform');
+    if (wf) wf.classList.toggle('playing', playing);
+  }
+
   function stopActive() {
     if (!active) return;
     active.audio.pause();
     active.audio.currentTime = 0;
     active.btn.classList.remove('playing');
     active.btn.innerHTML = active.sm ? PLAY_SM : PLAY_LG;
+    if (active.wu) setWaveform(false);
     active = null;
   }
 
@@ -2651,9 +2755,16 @@
     audio.play().catch(() => {});
     btn.classList.add('playing');
     btn.innerHTML = PAUSE_LG;
-    active = { audio, btn, sm: false, sbKey: null };
+    const isWu = key === 'wu';
+    if (isWu) setWaveform(true);
+    active = { audio, btn, sm: false, sbKey: null, wu: isWu };
     audio.onended = () => {
-      if (active && active.audio === audio) { btn.classList.remove('playing'); btn.innerHTML = PLAY_LG; active = null; }
+      if (active && active.audio === audio) {
+        btn.classList.remove('playing');
+        btn.innerHTML = PLAY_LG;
+        if (isWu) setWaveform(false);
+        active = null;
+      }
     };
   };
 
@@ -2685,7 +2796,7 @@
     const s9Btn = document.getElementById('s9Btn');
     if (wuBtn && !wuBtn.innerHTML.trim()) wuBtn.innerHTML = PLAY_LG;
     if (s9Btn && !s9Btn.innerHTML.trim()) s9Btn.innerHTML = PLAY_LG;
-    document.querySelectorAll('.phase-sb-btn').forEach(b => { if (!b.innerHTML.trim()) b.innerHTML = PLAY_SM; });
+    document.querySelectorAll('.phase-sb-btn, .feat-sb-btn').forEach(b => { if (!b.innerHTML.trim()) b.innerHTML = PLAY_SM; });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initIcons);
   else initIcons();
