@@ -143,32 +143,42 @@
       background: #1A1A18;
       background-image: url('/cho-field2.jpg');
       background-size: cover;
-      background-position: center 35%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      min-height: 82vh;
-      padding: 140px 48px 100px;
+      background-position: center top;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: space-between;
+      min-height: 90vh;
+      padding: 96px 48px 80px;
       text-align: center;
       position: relative;
     }
+    /* Gradient scrim: readable text at top, clear in middle (Field 2 sign), readable at bottom */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(18, 17, 14, 0.54);
+      background: linear-gradient(
+        to bottom,
+        rgba(18, 17, 14, 0.64) 0%,
+        rgba(18, 17, 14, 0.20) 38%,
+        rgba(18, 17, 14, 0.20) 60%,
+        rgba(18, 17, 14, 0.72) 100%
+      );
     }
     .hero > * { position: relative; z-index: 1; }
+    .hero-top-content { width: 100%; }
+    .hero-bottom-content { width: 100%; }
     .hero-brand {
       font-family: var(--font-mono); font-size: 12px; font-weight: 500;
       letter-spacing: 0.25em; text-transform: uppercase;
-      color: rgba(246,244,239,0.6); margin-bottom: 8px;
+      color: rgba(246,244,239,0.65); margin-bottom: 8px;
     }
     .hero-category {
       font-family: var(--font-sans); font-size: 16px; font-weight: 400;
-      color: rgba(246,244,239,0.55); margin-bottom: 64px;
+      color: rgba(246,244,239,0.55); margin-bottom: 0;
     }
     .hero-divider {
       width: 64px; height: 1px; background: var(--daylight);
-      margin: 0 auto 64px;
+      margin: 0 auto 32px;
     }
     .hero-h1 {
       font-family: var(--font-sans); font-size: clamp(40px, 5vw, 64px);
@@ -249,10 +259,10 @@
     /* ── DARK REVEAL BAND — the single dark moment ── */
     .cho-reveal-band {
       background: #1F1F1F;
-      background-image: url('/cho-field-chair.jpg');
+      background-image: url('/cho-speaker-hero.jpg');
       background-size: cover;
-      background-position: center 30%;
-      padding: 160px 40px;
+      background-position: center 22%;
+      padding: 200px 40px;
       text-align: center;
       position: relative;
     }
@@ -471,13 +481,13 @@
     @media (max-width: 768px) {
       nav { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
       .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; gap: 20px; }
-      .hero { padding: 130px 24px 80px; }
-      .hero-category { font-size: 15px; margin-bottom: 48px; }
-      .hero-divider { margin-bottom: 48px; width: 48px; }
-      .hero-h1 { font-size: clamp(40px, 10vw, 44px); }
+      .hero { padding: 80px 24px 72px; min-height: 85vh; }
+      .hero-category { font-size: 15px; }
+      .hero-divider { margin-bottom: 24px; width: 48px; }
+      .hero-h1 { font-size: clamp(36px, 10vw, 44px); }
       .hero-subtitle { font-size: 16px; }
       .cho-cream-section { padding: 80px 24px; }
-      .cho-reveal-band { padding: 100px 24px; }
+      .cho-reveal-band { padding: 120px 24px; }
       .cho-aside { margin-bottom: 48px; }
       .paths-section { padding: 0 24px 80px; }
       .paths-opening-divider { margin-bottom: 48px; }
@@ -535,11 +545,15 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-brand" data-aos="fade-up">Now Batting</p>
-  <p class="hero-category" data-aos="fade-up" data-aos-delay="60">Walk-up songs and player announcements. Ridiculously easy.</p>
-  <div class="hero-divider" data-aos="fade-up" data-aos-delay="120"></div>
-  <h1 class="hero-h1" data-aos="fade-up" data-aos-delay="180">The Chief Hype Officer.</h1>
-  <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="240">A field guide.</p>
+  <div class="hero-top-content" data-aos="fade-down">
+    <p class="hero-brand">Now Batting</p>
+    <p class="hero-category">Walk-up songs and player announcements. Ridiculously easy.</p>
+  </div>
+  <div class="hero-bottom-content" data-aos="fade-up">
+    <div class="hero-divider"></div>
+    <h1 class="hero-h1">The Chief Hype Officer.</h1>
+    <p class="hero-subtitle">A field guide.</p>
+  </div>
   <div class="hero-scroll-cue">↓</div>
 </section>
 
@@ -568,7 +582,7 @@
     <div class="cho-aside" data-aos="fade-up">
       <p>You pay for Apple Music every month now. Just for this.</p>
       <p>You have opinions about drop points.</p>
-      <p>You know every kid's song — and you know Calvin wants "Enter Sandman" at exactly fourteen seconds.</p>
+      <p>You know every kid's song — and you know Calvin wants "Enter Sandman" starting at the riff. Not the intro.</p>
       <p>Because Calvin told you. Four times.</p>
     </div>
 

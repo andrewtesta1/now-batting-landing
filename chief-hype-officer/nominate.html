@@ -19,6 +19,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,11 +53,16 @@
       border-bottom: 1px solid var(--bord);
     }
     .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
-    .nav-back {
-      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
-      color: var(--txt2); text-decoration: none; transition: color 0.15s;
-    }
-    .nav-back:hover { color: var(--daylight); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-link { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--txt); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-btn { background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700; font-size: 14px; letter-spacing: 0.01em; padding: 10px 20px; border-radius: var(--radius-sm); border: none; cursor: pointer; text-decoration: none; transition: background 0.15s; white-space: nowrap; }
+    .nav-btn:hover { background: var(--daylight-dim); }
 
     /* WAVEFORM LOGO */
     @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
@@ -200,15 +206,38 @@
     footer a:hover { color: var(--daylight); }
 
     /* MOBILE */
-    @media (max-width: 600px) {
-      nav { padding: 14px 20px; }
-      main { padding: 100px 20px 60px; }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
+      .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid var(--bord); padding-top: 10px; gap: 20px; }
+      .nav-social { display: none; }
+      main { padding: 130px 20px 60px; }
       .actions { flex-direction: column; }
       footer { padding: 20px; }
     }
 
+    /* Card glow when both fields are filled */
+    @keyframes card-glow {
+      0%, 100% { box-shadow: 0 8px 40px rgba(31,31,31,0.18), 0 2px 8px rgba(31,31,31,0.1); }
+      50% { box-shadow: 0 8px 40px rgba(31,31,31,0.25), 0 2px 8px rgba(31,31,31,0.1), 0 0 32px rgba(223,255,0,0.3); }
+    }
+    #nomCanvas.card-ready {
+      animation: card-glow 2.5s ease-in-out infinite;
+    }
+
+    /* Button spring-in when card is ready */
+    @keyframes btn-spring {
+      0% { transform: scale(0.93); }
+      55% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+    .act-btn.btn-pop {
+      animation: btn-spring 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .idle-wave .bar { animation: none; }
+      #nomCanvas.card-ready { animation: none; }
+      .act-btn.btn-pop { animation: none; }
     }
   </style>
 </head>
@@ -231,7 +260,18 @@
       <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
     </svg>
   </a>
-  <a href="/chief-hype-officer" class="nav-back">← The Chief Hype Officer</a>
+  <div class="nav-links">
+    <a href="/our-story" class="nav-link">Our Story</a>
+    <a href="/chief-hype-officer" class="nav-link">The Chief Hype Officer</a>
+    <a href="/support" class="nav-link">Support</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div>
+    <a href="/#closer" class="nav-btn">Join the Beta</a>
+  </div>
 </nav>
 
 <main>
@@ -240,13 +280,13 @@
   <p class="page-sub">Two fields. One graphic. Send it before the next inning.</p>
 
   <!-- Canvas preview -->
-  <div class="canvas-wrap">
+  <div class="canvas-wrap" data-aos="fade-up">
     <canvas id="nomCanvas" width="1080" height="1080" aria-label="Nomination card preview"></canvas>
     <div class="canvas-loading" id="canvasLoading">Loading fonts…</div>
   </div>
 
   <!-- Inputs -->
-  <div class="fields">
+  <div class="fields" data-aos="fade-up" data-aos-delay="80">
     <div class="field-group">
       <label class="field-label" for="friendName">Friend's name or @handle</label>
       <input class="field-input" id="friendName" type="text" maxlength="24" placeholder="@mikedonovan" autocomplete="off" spellcheck="false" />
@@ -270,10 +310,13 @@
 </main>
 
 <footer>
-  <p>© 2026 Now Batting &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a></p>
+  <p>© 2026 Now Batting™ · <a href="/our-story">Our Story</a> · <a href="/chief-hype-officer">The Chief Hype Officer</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+  AOS.init({ duration: 600, easing: 'ease-out', once: true, offset: 40 });
+
   // ── Analytics ──
   function track(event, props) {
     try { console.log('[analytics]', event, props || ''); } catch(e) {}
@@ -297,119 +340,215 @@
     ]);
   }
 
+  // ── Waveform logo helper ──
+  function drawWaveformLogo(leftX, cy) {
+    ctx.save();
+    ctx.textBaseline = 'alphabetic';
+    ctx.textAlign = 'left';
+    ctx.font = '700 22px Inter';
+    ctx.letterSpacing = '-0.5px';
+    ctx.fillStyle = '#F6F4EF';
+    ctx.fillText('now', leftX, cy + 8);
+    let x = leftX + ctx.measureText('now').width + 8;
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = '#F6F4EF';
+    ctx.beginPath(); ctx.arc(x + 2.5, cy, 2.5, 0, Math.PI * 2); ctx.fill();
+    x += 12;
+    const bars = [0.5, 0.78, 1.0, 1.5, 0.88, 0.62, 0.44];
+    const maxH = 18, bW = 4, bGap = 3;
+    bars.forEach((h, i) => {
+      const bh = maxH * h;
+      ctx.fillStyle = i === 3 ? '#B8CC00' : '#8A9900';
+      ctx.fillRect(x + i * (bW + bGap), cy - bh / 2, bW, bh);
+    });
+    x += bars.length * (bW + bGap) + 5;
+    ctx.fillStyle = '#F6F4EF';
+    ctx.beginPath(); ctx.arc(x + 2.5, cy, 2.5, 0, Math.PI * 2); ctx.fill();
+    x += 10;
+    ctx.font = '700 22px Inter';
+    ctx.letterSpacing = '-0.5px';
+    ctx.fillStyle = '#F6F4EF';
+    ctx.fillText('batting', x, cy + 8);
+    ctx.letterSpacing = '0px';
+    ctx.restore();
+  }
+
   // ── Card renderer ──
   function drawCard(friendRaw, teamRaw) {
     if (!fontsReady) return;
-
     const CX = W / 2;
     ctx.clearRect(0, 0, W, H);
-
-    // Background with rounded corners
-    ctx.fillStyle = '#1F1F1F';
-    if (ctx.roundRect) {
-      ctx.beginPath();
-      ctx.roundRect(0, 0, W, H, 32);
-      ctx.fill();
-    } else {
-      ctx.fillRect(0, 0, W, H);
-    }
-
     ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
 
-    let y = 108;
+    // ── Background ──
+    ctx.fillStyle = '#0D0E0C';
+    ctx.fillRect(0, 0, W, H);
 
-    // ── "OFFICIAL NOMINATION" eyebrow ──
-    ctx.letterSpacing = '4px';
-    ctx.font = '500 22px "JetBrains Mono"';
+    // ── Faint baseball field lines ──
+    ctx.save();
+    ctx.globalAlpha = 0.055;
+    ctx.strokeStyle = '#B8CC00';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(CX, H + 100, 350, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(CX, H + 100, 600, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(CX, H + 100); ctx.lineTo(50, 290); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(CX, H + 100); ctx.lineTo(W - 50, 290); ctx.stroke();
+    ctx.restore();
+
+    let y = 76;
+
+    // ── NOW BATTING PRESENTS ──
+    ctx.font = '500 17px "JetBrains Mono"';
+    const presW = ctx.measureText('NOW BATTING PRESENTS').width;
+    ctx.fillStyle = 'rgba(184,204,0,0.45)';
+    ctx.fillRect(CX - presW / 2 - 62, y - 7, 48, 1.5);
+    ctx.fillRect(CX + presW / 2 + 14, y - 7, 48, 1.5);
     ctx.fillStyle = '#B8CC00';
-    ctx.fillText('OFFICIAL NOMINATION', CX, y);
+    ctx.letterSpacing = '3px';
+    ctx.fillText('NOW BATTING PRESENTS', CX, y);
     ctx.letterSpacing = '0px';
-    y += 38;
 
-    // ── Neon rule ──
-    ctx.fillStyle = '#DFFF00';
-    ctx.fillRect(CX - 40, y, 80, 2);
-    y += 44;
+    // ── THE ──
+    y = 136;
+    ctx.font = '800 54px Inter';
+    ctx.fillStyle = '#F6F4EF';
+    ctx.letterSpacing = '6px';
+    ctx.fillText('THE', CX, y);
+    ctx.letterSpacing = '0px';
 
-    // ── "I hereby nominate" ──
-    ctx.font = '400 34px Inter';
-    ctx.fillStyle = 'rgba(246,244,239,0.6)';
-    ctx.fillText('I hereby nominate', CX, y);
-    y += 64;
-
-    // ── Friend name (auto-scale, uppercase) ──
-    const hasFriend = friendRaw && friendRaw.trim().length > 0;
-    const nameText = hasFriend ? friendRaw.trim().toUpperCase() : '@YOURFRIEND';
-    let nameFontSize = 88;
-    ctx.font = `900 ${nameFontSize}px Inter`;
-    while (ctx.measureText(nameText).width > 960 && nameFontSize > 48) {
-      nameFontSize -= 4;
-      ctx.font = `900 ${nameFontSize}px Inter`;
+    // ── CHIEF HYPE OFFICER ──
+    let choFS = 108;
+    ctx.font = `900 ${choFS}px Inter`;
+    while (ctx.measureText('CHIEF HYPE OFFICER').width > 1036 && choFS > 72) {
+      choFS -= 4; ctx.font = `900 ${choFS}px Inter`;
     }
-    ctx.fillStyle = hasFriend ? '#DFFF00' : '#666360';
-    if (ctx.measureText(nameText).width > 960) {
-      let truncated = nameText;
-      while (ctx.measureText(truncated + '…').width > 960 && truncated.length > 1) {
-        truncated = truncated.slice(0, -1);
-      }
-      ctx.fillText(truncated + '…', CX, y + nameFontSize);
-    } else {
-      ctx.fillText(nameText, CX, y + nameFontSize);
-    }
-    y += nameFontSize + 44;
+    y = 140 + choFS;
+    ctx.fillStyle = '#FFFFFF';
+    ctx.letterSpacing = '-2px';
+    ctx.fillText('CHIEF HYPE OFFICER', CX, y);
+    ctx.letterSpacing = '0px';
+    y += 22;
 
-    // ── "as Chief Hype Officer of the" ──
-    ctx.font = '400 34px Inter';
-    ctx.fillStyle = 'rgba(246,244,239,0.6)';
-    ctx.fillText('as Chief Hype Officer of the', CX, y);
-    y += 64;
-
-    // ── Team name (auto-scale) ──
-    const hasTeam = teamRaw && teamRaw.trim().length > 0;
-    const teamText = hasTeam ? teamRaw.trim() : 'YOUR TEAM';
-    let teamFontSize = 46;
-    ctx.font = `700 ${teamFontSize}px Inter`;
-    while (ctx.measureText(teamText).width > 960 && teamFontSize > 32) {
-      teamFontSize -= 2;
-      ctx.font = `700 ${teamFontSize}px Inter`;
-    }
-    ctx.fillStyle = hasTeam ? '#F6F4EF' : '#666360';
-    if (ctx.measureText(teamText).width > 960) {
-      let truncated = teamText;
-      while (ctx.measureText(truncated + '…').width > 960 && truncated.length > 1) {
-        truncated = truncated.slice(0, -1);
-      }
-      ctx.fillText(truncated + '…', CX, y + teamFontSize);
-    } else {
-      ctx.fillText(teamText, CX, y + teamFontSize);
-    }
-    y += teamFontSize + 72;
-
-    // ── Gray separator rule ──
+    // ── Thin separator ──
     ctx.fillStyle = 'rgba(246,244,239,0.1)';
-    ctx.fillRect(108, y, W - 216, 1);
-    y += 52;
+    ctx.fillRect(CX - 200, y + 10, 400, 1);
+    y += 28;
 
-    // ── "Qualifications:" ──
-    ctx.font = '400 24px Inter';
-    ctx.fillStyle = '#B4B2A9';
-    ctx.fillText('Qualifications:', CX, y);
-    y += 52;
+    // ── OFFICIAL NOMINATION pill ──
+    ctx.font = '500 14px "JetBrains Mono"';
+    const nomTW = ctx.measureText('OFFICIAL NOMINATION').width;
+    const nPW = nomTW + 52, nPH = 30, nPX = CX - nPW / 2, nPY = y;
+    ctx.fillStyle = 'rgba(246,244,239,0.14)';
+    ctx.fillRect(nPX - 62, nPY + nPH / 2, 50, 1);
+    ctx.fillRect(nPX + nPW + 12, nPY + nPH / 2, 50, 1);
+    ctx.strokeStyle = 'rgba(246,244,239,0.24)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(nPX, nPY, nPW, nPH, nPH / 2); else ctx.rect(nPX, nPY, nPW, nPH);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(246,244,239,0.60)';
+    ctx.letterSpacing = '2px';
+    ctx.fillText('OFFICIAL NOMINATION', CX, nPY + 20);
+    ctx.letterSpacing = '0px';
+    y += nPH + 20;
 
-    // ── Qual lines ──
-    ctx.font = '400 26px Inter';
-    ctx.fillStyle = 'rgba(246,244,239,0.82)';
-    ctx.fillText('Lawn chair. Wagon. Bluetooth speaker.', CX, y);
-    y += 44;
-    ctx.fillText('Calm under pressure. Strong opinions.', CX, y);
+    // ── Name box with neon glow ──
+    const hasFriend = friendRaw && friendRaw.trim().length > 0;
+    let nameText = hasFriend ? friendRaw.trim().toUpperCase() : '@YOURFRIEND';
+    let nameFS = 90;
+    ctx.font = `900 ${nameFS}px Inter`;
+    while (ctx.measureText(nameText).width > 840 && nameFS > 48) {
+      nameFS -= 4; ctx.font = `900 ${nameFS}px Inter`;
+    }
+    if (ctx.measureText(nameText).width > 840) {
+      while (ctx.measureText(nameText + '…').width > 840 && nameText.length > 1) nameText = nameText.slice(0, -1);
+      nameText += '…';
+    }
+    ctx.font = `900 ${nameFS}px Inter`;
+    ctx.fillStyle = hasFriend ? '#DFFF00' : '#4A4845';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(223,255,0,0.10)';
+    ctx.fillRect(CX - 200, y - 10, 400, 1);
+    ctx.save();
+    if (hasFriend) { ctx.shadowColor = '#DFFF00'; ctx.shadowBlur = 28; }
+    ctx.fillText(nameText, CX, y + nameFS);
+    ctx.restore();
+    y += nameFS + 40;
+
+    // ── CHIEF HYPE OFFICER OF THE ──
+    ctx.font = '500 13px "JetBrains Mono"';
+    const chotW = ctx.measureText('CHIEF HYPE OFFICER OF THE').width;
+    ctx.fillStyle = 'rgba(246,244,239,0.14)';
+    ctx.fillRect(CX - chotW / 2 - 64, y - 4, 52, 1);
+    ctx.fillRect(CX + chotW / 2 + 12, y - 4, 52, 1);
+    ctx.fillStyle = 'rgba(246,244,239,0.54)';
+    ctx.letterSpacing = '2px';
+    ctx.fillText('CHIEF HYPE OFFICER OF THE', CX, y);
+    ctx.letterSpacing = '0px';
+    y += 32;
+
+    // ── Team box ──
+    const hasTeam = teamRaw && teamRaw.trim().length > 0;
+    let teamText = hasTeam ? teamRaw.trim().toUpperCase() : 'YOUR TEAM';
+    let teamFS = 64;
+    ctx.font = `800 ${teamFS}px Inter`;
+    while (ctx.measureText(teamText).width > 900 && teamFS > 32) {
+      teamFS -= 3; ctx.font = `800 ${teamFS}px Inter`;
+    }
+    if (ctx.measureText(teamText).width > 900) {
+      while (ctx.measureText(teamText + '…').width > 900 && teamText.length > 1) teamText = teamText.slice(0, -1);
+      teamText += '…';
+    }
+    ctx.font = `800 ${teamFS}px Inter`;
+    ctx.fillStyle = hasTeam ? '#F6F4EF' : '#4A4845';
+    ctx.letterSpacing = '-1px';
+    ctx.textAlign = 'center';
+    ctx.fillText(teamText, CX, y + teamFS);
+    ctx.letterSpacing = '0px';
+    y += teamFS + 36;
+
+    // ── Qual rows ──
+    const quals = [
+      'Carries a Bluetooth speaker the size of a microwave.',
+      'Never misses a walk-up.',
+      'Takes pride in a perfectly timed intro after "balls in!" is called.',
+    ];
+    const qRH = 62, qLX = CX - 356;
+    for (let i = 0; i < quals.length; i++) {
+      const rowCY = y + qRH / 2;
+      if (i > 0) { ctx.fillStyle = 'rgba(255,255,255,0.07)'; ctx.fillRect(qLX, y, 712, 1); }
+      ctx.font = '900 18px Inter'; ctx.fillStyle = '#B8CC00'; ctx.textAlign = 'left';
+      ctx.fillText('—', qLX, rowCY + 6);
+      ctx.font = '400 21px Inter'; ctx.fillStyle = '#F6F4EF';
+      ctx.fillText(quals[i], qLX + 28, rowCY + 6);
+      y += qRH;
+    }
+    y += 10;
 
     // ── Footer ──
-    ctx.letterSpacing = '3px';
-    ctx.font = '500 16px "JetBrains Mono"';
-    ctx.fillStyle = '#B8CC00';
-    ctx.fillText('NOWBATTINGAPP.COM', CX, H - 72);
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    ctx.fillRect(56, y, W - 112, 1);
+    y += 16;
+    const footCY = y + (H - y - 14) / 2;
+    const divX = W - 272;
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    ctx.fillRect(divX, y + 6, 1, H - y - 20);
+
+    drawWaveformLogo(72, footCY);
+
+    ctx.textAlign = 'center';
+    ctx.font = '800 23px Inter'; ctx.fillStyle = '#DFFF00'; ctx.letterSpacing = '-0.5px';
+    ctx.fillText('MAKE IT OFFICIAL.', CX, footCY - 5);
     ctx.letterSpacing = '0px';
+    ctx.font = '500 10px "JetBrains Mono"'; ctx.fillStyle = 'rgba(246,244,239,0.36)';
+    ctx.letterSpacing = '1.5px'; ctx.fillText('NOMINATE YOUR CHIEF HYPE OFFICER', CX, footCY + 15); ctx.letterSpacing = '0px';
+
+    const rightCX = divX + (W - divX) / 2;
+    ctx.font = '700 15px Inter'; ctx.fillStyle = '#B8CC00';
+    ctx.fillText('nowbattingapp.com', rightCX, footCY - 5);
+    ctx.font = '500 10px "JetBrains Mono"'; ctx.fillStyle = 'rgba(246,244,239,0.35)';
+    ctx.letterSpacing = '1px'; ctx.fillText('FREE BETA · iOS ONLY', rightCX, footCY + 15); ctx.letterSpacing = '0px';
   }
 
   // ── Input handlers ──
@@ -418,10 +557,22 @@
       fieldTypedFired = true;
       track('nominate_field_typed');
     }
-    drawCard(
-      document.getElementById('friendName').value,
-      document.getElementById('teamName').value
-    );
+    const friendName = document.getElementById('friendName').value;
+    const teamName = document.getElementById('teamName').value;
+    drawCard(friendName, teamName);
+
+    const hasContent = friendName.trim().length > 0 && teamName.trim().length > 0;
+    const wasReady = canvas.classList.contains('card-ready');
+    canvas.classList.toggle('card-ready', hasContent);
+
+    if (hasContent && !wasReady && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.act-btn').forEach((btn, i) => {
+        btn.classList.remove('btn-pop');
+        void btn.offsetWidth;
+        btn.style.animationDelay = (i * 80) + 'ms';
+        btn.classList.add('btn-pop');
+      });
+    }
   }
 
   document.getElementById('friendName').addEventListener('input', onInput);
