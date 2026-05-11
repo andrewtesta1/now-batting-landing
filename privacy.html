@@ -32,8 +32,16 @@
       border-bottom: 1px solid var(--bord);
     }
     .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
-    .nav-back { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
-    .nav-back:hover { color: var(--daylight); }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-link { font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--txt); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-btn { background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; transition: background 0.15s; white-space: nowrap; }
+    .nav-btn:hover { background: #8A9900; }
 
     main { max-width: 720px; margin: 0 auto; padding: 120px 48px 80px; }
 
@@ -49,17 +57,18 @@
     a:hover { text-decoration: underline; }
     .divider { height: 1px; background: var(--bord); margin: 48px 0; }
 
-    footer {
-      border-top: 1px solid var(--bord); padding: 32px 48px;
-      text-align: center; color: var(--txt3); font-size: 12px;
-    }
-    footer a { color: var(--txt3); text-decoration: none; }
-    footer a:hover { color: var(--daylight); }
+    footer { border-top: 1px solid var(--bord); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .f-logo { display: flex; align-items: center; }
+    .f-copy { font-size: 12px; color: var(--txt3); }
+    .f-copy a { color: var(--txt3); text-decoration: none; }
+    .f-copy a:hover { color: var(--daylight); }
 
-    @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; gap: 10px; flex-wrap: wrap; }
+      .nav-links { order: 3; width: 100%; border-top: 1px solid var(--bord); padding-top: 10px; gap: 16px; }
+      .nav-social { display: none; }
       main { padding: 100px 24px 60px; }
-      footer { padding: 24px 20px; }
+      footer { flex-direction: column; text-align: center; padding: 22px 18px; }
     }
     @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
     @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
@@ -82,64 +91,105 @@
 
 <nav>
   <a href="/" class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
-  <a href="/" class="nav-back">← Back to Home</a>
+  <div class="nav-links">
+    <a href="/our-story" class="nav-link">Our Story</a>
+    <a href="/chief-hype-officer" class="nav-link">The Chief Hype Officer</a>
+    <a href="/support" class="nav-link">Support</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download Free</a>
+  </div>
 </nav>
 
 <main>
   <p class="page-eye">Legal</p>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: April 2026</p>
+  <p class="updated">Last updated: May 2026 (v1.0)</p>
 
-  <p>Now Batting ("we," "our," or "us") is built by Andrew Testa. This Privacy Policy explains how we collect, use, and protect information when you use the Now Batting iOS application and website at nowbattingapp.com.</p>
+  <p>This Privacy Policy explains how Now Batting collects, uses, and protects information when you use the Now Batting iOS application and the website at nowbattingapp.com.</p>
 
-  <h2>Information We Collect</h2>
+  <h2>What We Collect</h2>
 
-  <p><strong style="color:#fff">In the app:</strong> Now Batting stores all roster data — player names, jersey numbers, batting order, walk-up song selections, and AI-generated announcements — locally on your device using iOS storage (AsyncStorage). This data never leaves your device unless you explicitly use the roster sharing feature.</p>
+  <p><strong>On your device.</strong> Now Batting stores all roster data — player names, jersey numbers, batting order, walk-up song selections, and AI-generated announcements — locally on your device. This data stays on your device unless you explicitly use a feature that sends it elsewhere (described below).</p>
 
-  <p><strong style="color:#fff">Roster sharing:</strong> If you use the Share Roster feature, your roster (names, numbers, song metadata, and AI announcements) is temporarily uploaded to our servers to generate a share link. Shared roster data is stored for a limited time and then deleted.</p>
+  <p><strong>For AI-generated audio (player announcements and The Starting Nine lineup call).</strong> When you generate an AI announcement or a Starting Nine lineup call, the relevant player names, numbers, and roster name are sent to ElevenLabs to synthesize audio. The resulting audio is stored on a private content delivery network (Vercel Blob) so the app can fetch and cache it for offline playback. This audio is never published to a public-facing URL by Now Batting and is never indexed by search engines, social platforms, or any third party. The Starting Nine specifically is designed to play at the field, on your device — Now Batting does not host audio containing children's names on the public internet.</p>
 
-  <p><strong style="color:#fff">Email address:</strong> If you sign up on our website (nowbattingapp.com), your email address is collected and stored via Google Sheets to send you a TestFlight access link. We do not sell or share your email address.</p>
+  <p><strong>For roster sharing.</strong> If you use the Share Roster feature, your roster data (names, numbers, song metadata, and associated audio) is temporarily uploaded to our servers to generate a share link. Shared roster data is automatically deleted after 48 hours.</p>
 
-  <p><strong style="color:#fff">What we don't collect:</strong> Now Batting does not collect your name, email address, location, device identifiers, or any information about how you use the app. We do not use advertising SDKs, analytics trackers, or any third-party data collection tools beyond what is listed above.</p>
+  <p><strong>Email address (website only).</strong> If you sign up on our website to join the TestFlight beta, your email address is stored to send you a TestFlight access link. We do not collect email addresses through the app itself, and we do not sell, share, or rent email addresses to anyone.</p>
+
+  <p><strong>Anonymized crash data.</strong> We use Sentry for crash reporting. Crash reports include diagnostic information (device model, OS version, error stack trace) but do not include personally identifiable information. Sentry retains this data per its standard retention policy (typically 30–90 days).</p>
+
+  <h2>What We Don't Collect</h2>
+  <p>Now Batting does not collect:</p>
+  <ul>
+    <li>Your name (except as part of email signup, if you choose to provide it)</li>
+    <li>Your location</li>
+    <li>Your browsing history or app usage analytics</li>
+    <li>Device identifiers for advertising or tracking purposes</li>
+    <li>Audio recordings (we generate audio; we do not record it)</li>
+    <li>Photos or videos</li>
+    <li>Contact lists, calendars, or any other device data</li>
+  </ul>
+  <p>We do not use advertising SDKs, tracking SDKs, or any third-party data collection beyond the services described in this policy.</p>
 
   <h2>How We Use Your Information</h2>
   <ul>
-    <li>To generate AI stadium announcements via our TTS service (ElevenLabs)</li>
+    <li>To generate AI player announcements and lineup calls (via ElevenLabs)</li>
     <li>To enable roster sharing between coaches and parents</li>
     <li>To send TestFlight access links to interested coaches (website signups only)</li>
-    <li>To monitor app stability and crashes (Sentry, anonymized)</li>
+    <li>To monitor app stability and fix crashes (Sentry, anonymized)</li>
   </ul>
 
   <h2>Third-Party Services</h2>
   <p>Now Batting uses the following third-party services:</p>
   <ul>
-    <li><strong style="color:#fff">Apple Music</strong> — Used for walk-up song search and playback. Governed by Apple's Privacy Policy.</li>
-    <li><strong style="color:#fff">ElevenLabs</strong> — Used to generate AI-voiced player announcements. Player names and numbers are sent to ElevenLabs to synthesize audio. ElevenLabs does not retain this data for training purposes.</li>
-    <li><strong style="color:#fff">Vercel</strong> — Hosts our API and website. Processes API requests including TTS generation and roster sharing.</li>
-    <li><strong style="color:#fff">Sentry</strong> — Anonymized crash reporting. No personally identifiable information is included in crash reports.</li>
+    <li><strong>Apple Music</strong> — Used for walk-up song search and playback. Your interactions with Apple Music are governed by Apple's Privacy Policy.</li>
+    <li><strong>ElevenLabs</strong> — Used to generate AI-voiced player announcements and lineup calls. Player names, numbers, and roster names are sent to ElevenLabs to synthesize audio. ElevenLabs does not retain this data for model training purposes.</li>
+    <li><strong>Vercel</strong> — Hosts our API, website, and audio content delivery network. Processes API requests including AI generation and roster sharing.</li>
+    <li><strong>Upstash</strong> — Stores temporary roster-sharing data. Auto-expires after 48 hours.</li>
+    <li><strong>Sentry</strong> — Anonymized crash reporting. No personally identifiable information is included in crash reports.</li>
   </ul>
 
-  <h2>Data Retention</h2>
-  <p>Roster data stored locally on your device is retained until you delete the app or the data manually. Shared roster data on our servers is automatically deleted after 30 days. Email addresses collected via the website signup are retained until you request removal.</p>
+  <h2>Our Commitment to Children's Privacy</h2>
+  <p>Now Batting is designed for use by coaches and parents, not by children directly. We do not knowingly collect personal information from children under 13.</p>
+  <p>Although Now Batting is used to celebrate young athletes — including by name in audio announcements — we deliberately design the app to keep this data on the user's device whenever possible. Generated announcement audio is never published to the public internet by Now Batting. We never display children's names in public-facing search results, social feeds, or shareable URLs hosted by us. The adult coach or parent who uses the app retains control over all generated content. If they choose to share an audio recording outside the app, they become the publisher of that content.</p>
 
-  <h2>Children's Privacy</h2>
-  <p>Now Batting is designed for use by coaches and parents, not children. We do not knowingly collect personal information from children under 13. Player names entered into the app are used solely to generate game-day announcements and are not shared with third parties beyond what is described above.</p>
+  <h2>Data Retention</h2>
+  <ul>
+    <li><strong>Local app data</strong> — Retained on your device until you delete the app or remove the data manually.</li>
+    <li><strong>Shared roster data</strong> — Automatically deleted from our servers after 48 hours. To request earlier deletion of a shared roster, email us with the share link.</li>
+    <li><strong>AI-generated audio on Vercel Blob</strong> — Retained as long as the associated roster exists in your app. Deleting a roster removes the corresponding audio assets.</li>
+    <li><strong>Email addresses (website signup)</strong> — Retained until you request removal.</li>
+    <li><strong>Crash reports</strong> — Retained per Sentry's data retention policy (typically 30–90 days).</li>
+  </ul>
 
   <h2>Your Rights</h2>
-  <p>You can delete all locally stored app data by uninstalling Now Batting. To request removal of your email from our waitlist or deletion of any shared roster data, email us at <a href="mailto:drewtesta@gmail.com">drewtesta@gmail.com</a>.</p>
+  <p>You have the right to:</p>
+  <ul>
+    <li><strong>Access your data.</strong> Email us to request a copy of any data we have associated with you.</li>
+    <li><strong>Delete your data.</strong> Uninstalling the app removes all local data. Email us to request deletion of your email from our waitlist or removal of any shared roster data.</li>
+    <li><strong>Opt out of crash reporting.</strong> Disable analytics for Now Batting in your iOS Settings under Privacy &amp; Security → Analytics &amp; Improvements.</li>
+  </ul>
+  <p>To exercise any of these rights, email <a href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a>.</p>
 
   <h2>Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. The updated date at the top of this page reflects the most recent revision. Continued use of Now Batting after changes constitutes acceptance of the revised policy.</p>
+  <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page reflects the most recent revision. We will not reduce your privacy rights without notifying you. Continued use of Now Batting after changes constitutes acceptance of the revised policy.</p>
 
   <h2>Contact</h2>
-  <p>Questions about this policy? Email <a href="mailto:drewtesta@gmail.com">drewtesta@gmail.com</a>.</p>
+  <p>Questions about this policy, requests for data access or deletion, or any privacy concern? Email us at <a href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a>.</p>
 
   <div class="divider"></div>
-  <p style="font-size:13px;">© 2026 Now Batting · <a href="/terms">Terms of Use</a></p>
+  <p style="font-size:13px;">© 2026 Now Batting™ · <a href="/terms">Terms of Use</a></p>
 </main>
 
 <footer>
-  <p>© 2026 Now Batting &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/terms">Terms of Use</a></p>
+  <div class="f-logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <p class="f-copy">© 2026 Now Batting™ · <a href="/our-story">Our Story</a> · <a href="/chief-hype-officer">The Chief Hype Officer</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
 </body>

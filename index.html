@@ -461,9 +461,9 @@
     .persona { padding: 0; }
     .persona-band {
       background: #1A1A18;
-      background-image: url('/cho-field-chair.jpg');
+      background-image: url('/cho-field2.jpg');
       background-size: cover;
-      background-position: center 30%;
+      background-position: center 60%;
       padding: 160px 40px;
       text-align: center;
       position: relative;
@@ -591,6 +591,16 @@
     }
 
     /* ── HOW PHOTO — app-in-hand proof shot ── */
+    /* ── Starting Nine ── */
+    .s9-section { padding: 80px 0; }
+    .s9-dot { color: var(--daylight); }
+    .s9-para {
+      font-size: 17px;
+      line-height: 1.72;
+      color: var(--txt2);
+      margin-bottom: 18px;
+    }
+
     .how-photo-wrap {
       width: 100%;
       margin-top: 56px;
@@ -724,7 +734,7 @@
       .proof-sep { display: none; }
       .persona-grid, .sb-grid { grid-template-columns: 1fr; gap: 36px; }
       .steps { grid-template-columns: 1fr; gap: 12px; }
-      .persona-band { padding: 100px 24px; }
+      .persona-band { padding: 100px 24px; background-position: center 60%; }
       .how, .soundboard, .closer { padding: 60px 0; }
       .msticky { display: flex; }
       .closer-form .form-row { flex-direction: column; }
@@ -791,6 +801,384 @@
     .wjw-title { font-family: var(--font-sans); font-size: 24px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; color: var(--txt); margin-bottom: 10px; }
     .wjw-body { font-size: 14px; color: var(--txt2); line-height: 1.65; }
     @media (max-width: 900px) { .wjw { padding: 60px 0; } }
+
+    /* ── THE WALK-UP SECTION ── */
+    .walkup-section {
+      background: var(--bg);
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .walkup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .walkup-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--daylight);
+      margin-bottom: 16px;
+    }
+    .walkup-hed {
+      font-family: var(--font-sans);
+      font-size: clamp(28px, 3.4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--txt);
+      margin-bottom: 20px;
+    }
+    .walkup-body {
+      font-size: 17px;
+      line-height: 1.72;
+      color: var(--txt2);
+      margin-bottom: 36px;
+    }
+    .walkup-play-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .walkup-play-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--daylight);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 4px 20px rgba(184,204,0,0.35);
+    }
+    .walkup-play-btn:hover { background: var(--daylight-dim); box-shadow: 0 4px 20px rgba(138,153,0,0.4); }
+    .walkup-play-btn:active { transform: scale(0.94); }
+    .walkup-play-btn.playing { box-shadow: 0 0 0 4px rgba(184,204,0,0.3), 0 4px 20px rgba(184,204,0,0.25); }
+    .walkup-duration {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--txt3);
+      letter-spacing: 0.06em;
+    }
+    .walkup-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.14);
+    }
+    .walkup-photo img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ── GAME DAY TIMELINE SECTION ── */
+    .gameday-section {
+      background: #1F1F1F;
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .gameday-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .gameday-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--daylight);
+      margin-bottom: 16px;
+    }
+    .gameday-hed {
+      font-family: var(--font-sans);
+      font-size: clamp(28px, 3.4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #F6F4EF;
+      margin-bottom: 12px;
+    }
+    .gameday-subhed {
+      font-size: 16px;
+      color: rgba(246,244,239,0.5);
+      font-weight: 400;
+    }
+    .gameday-phases {
+      display: flex;
+      flex-direction: column;
+    }
+    .gameday-phase {
+      padding: 52px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      gap: 0 48px;
+      align-items: center;
+    }
+    .gameday-phase:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .gameday-phase-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--daylight);
+      margin-bottom: 0;
+    }
+    .gameday-phase-content { }
+    .gameday-phase-hed {
+      font-family: var(--font-sans);
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #F6F4EF;
+      margin-bottom: 10px;
+    }
+    .gameday-phase-body {
+      font-size: 15px;
+      color: rgba(246,244,239,0.58);
+      line-height: 1.72;
+      max-width: 520px;
+    }
+    .gameday-phase-action {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      min-width: 140px;
+      justify-content: flex-end;
+    }
+    /* Phase with no action: collapse right column */
+    .gameday-phase.no-action {
+      grid-template-columns: 220px 1fr;
+    }
+
+    /* Phase play buttons */
+    .phase-play-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--daylight);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .phase-play-btn:hover { background: var(--daylight-dim); }
+    .phase-play-btn:active { transform: scale(0.94); }
+    .phase-play-btn.playing { box-shadow: 0 0 0 3px rgba(184,204,0,0.35); }
+    .phase-duration {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(246,244,239,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    /* Phase 2: soundboard row */
+    .phase-sb-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .phase-sb-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .phase-sb-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--daylight);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .phase-sb-btn:hover { background: var(--daylight-dim); }
+    .phase-sb-btn:active { transform: scale(0.94); }
+    .phase-sb-btn.playing { box-shadow: 0 0 0 3px rgba(184,204,0,0.35); }
+    .phase-sb-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(246,244,239,0.45);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .walkup-section { padding: 72px 0; }
+      .walkup-grid { grid-template-columns: 1fr; gap: 40px; }
+      .walkup-photo { order: 1; }
+      .walkup-copy { order: -1; }
+      .gameday-section { padding: 72px 0; }
+      .gameday-phase {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 40px 0;
+      }
+      .gameday-phase.no-action { grid-template-columns: 1fr; }
+      .gameday-phase-action { justify-content: flex-start; }
+      .phase-sb-row { gap: 14px; }
+      .phase-sb-item { gap: 6px; }
+    }
+
+    /* ── EXPERIENCE SECTION ── */
+    .exp-section {
+      background: #1F1F1F;
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .exp-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--daylight);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .exp-hed {
+      font-family: var(--font-sans);
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: #F6F4EF;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .exp-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+    .exp-card {
+      background: #2C2C2C;
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .exp-card-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--daylight);
+      margin-bottom: 14px;
+    }
+    .exp-card-hed {
+      font-family: var(--font-sans);
+      font-size: clamp(17px, 1.8vw, 21px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: #F6F4EF;
+      margin-bottom: 12px;
+    }
+    .exp-card-body {
+      font-size: 14px;
+      color: rgba(246,244,239,0.52);
+      line-height: 1.72;
+      flex: 1;
+      margin-bottom: 28px;
+    }
+    .exp-play-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: auto;
+    }
+    .exp-play-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--daylight);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .exp-play-btn:hover { background: var(--daylight-dim); }
+    .exp-play-btn:active { transform: scale(0.94); }
+    .exp-play-btn.playing { box-shadow: 0 0 0 3px rgba(184,204,0,0.35); }
+    .exp-duration {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(246,244,239,0.35);
+      letter-spacing: 0.05em;
+    }
+    .exp-sb-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 16px;
+      margin-top: auto;
+    }
+    .exp-sb-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+    .exp-sb-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--daylight);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .exp-sb-btn:hover { background: var(--daylight-dim); }
+    .exp-sb-btn:active { transform: scale(0.94); }
+    .exp-sb-btn.playing { box-shadow: 0 0 0 3px rgba(184,204,0,0.35); }
+    .exp-sb-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(246,244,239,0.48);
+      text-align: center;
+      line-height: 1.3;
+    }
+    @media (max-width: 900px) {
+      .exp-section { padding: 72px 0; }
+      .exp-cards { grid-template-columns: 1fr; gap: 16px; }
+      .exp-sb-grid { grid-template-columns: repeat(4, 1fr); }
+    }
 
     /* ── HEAR THE MOMENT ── */
     .moment { padding: 80px 0; }
@@ -1354,40 +1742,101 @@
   </div>
 </section>
 
-<div class="hr"></div>
-
-<!-- THE EXPERIENCE -->
-<section class="moment">
-  <canvas class="moment-aurora" id="momentAurora" aria-hidden="true"></canvas>
-  <canvas class="moment-lightning" id="momentLightning" aria-hidden="true"></canvas>
-  <div class="mws-wrap" aria-hidden="true">
-    <svg class="idle-wave mws-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 80">
-      <rect class="bar b1" x="0"      y="32"  width="8.1"   height="16" rx="4.05"  fill="#DFFF00"/>
-      <rect class="bar b2" x="13"     y="24"  width="8.1"   height="32" rx="4.05"  fill="#DFFF00"/>
-      <rect class="bar b3" x="26"     y="14"  width="9"     height="52" rx="4.5"   fill="#DFFF00"/>
-      <rect class="bar b4" x="39.375" y="0"   width="11.25" height="80" rx="5.625" fill="#DFFF00"/>
-      <rect class="bar b5" x="54.625" y="12"  width="9.9"   height="56" rx="4.95"  fill="#DFFF00"/>
-      <rect class="bar b6" x="68.525" y="22"  width="8.55"  height="36" rx="4.275" fill="#DFFF00"/>
-      <rect class="bar b7" x="81.075" y="30"  width="8.55"  height="20" rx="4.275" fill="#DFFF00"/>
-    </svg>
-  </div>
-  <div class="wrap" data-aos="fade-up" style="text-align:center;">
-    <p class="eyebrow r">The Experience</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom:40px;">~15 seconds. Big-league energy.</h2>
-
-    <div class="r d2" style="display:flex; flex-direction:column; align-items:center;">
-      <audio id="demoAudio" src="/demo_walkup.mp3" preload="metadata"></audio>
-      <div class="demo-ctrl" style="margin-top:20px;">
-        <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><polygon points="5 3 19 12 5 21 5 3"/></svg>HEAR THE EXPERIENCE</button>
-        <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
-        <p class="moment-phase" id="demoPhase"></p>
+<!-- THE WALK-UP -->
+<section class="walkup-section">
+  <div class="wrap walkup-grid">
+    <div class="walkup-copy" data-aos="fade-up">
+      <p class="walkup-eyebrow">The Walk-Up</p>
+      <h2 class="walkup-hed">The ultimate hype moment.</h2>
+      <p class="walkup-body">Music drops. Audio dips for a clear announcement of the kid's name. Then it blasts back up. You set the drop point. About 15 seconds total. Easy fade controls before the pitch.</p>
+      <div class="walkup-play-row">
+        <button class="walkup-play-btn" id="wuBtn" onclick="pagePlay('wu')" aria-label="Play walk-up sample"></button>
+        <span class="walkup-duration">~15 sec</span>
       </div>
+      <audio id="wuAudio" src="/demo_walkup.mp3" preload="metadata"></audio>
     </div>
-
+    <div class="walkup-photo" data-aos="fade-up" data-aos-delay="100">
+      <img src="/cho-phone-hand.jpg" alt="Now Batting app showing a player walk-up at the field" loading="lazy" />
+    </div>
   </div>
 </section>
 
-<div class="hr"></div>
+<!-- THE WHOLE GAME DAY -->
+<section class="gameday-section">
+  <div class="wrap">
+    <div class="gameday-header" data-aos="fade-up">
+      <p class="gameday-eyebrow">The Whole Game Day</p>
+      <h2 class="gameday-hed">From warm-ups to walk-offs.</h2>
+      <p class="gameday-subhed">Everything you need to run game day audio.</p>
+    </div>
+
+    <div class="gameday-phases">
+
+      <!-- Phase 1: PRE-GAME -->
+      <div class="gameday-phase" data-aos="fade-up">
+        <div class="gameday-phase-label">Pre-Game</div>
+        <div class="gameday-phase-content">
+          <h3 class="gameday-phase-hed">Set the stage.</h3>
+          <p class="gameday-phase-body">What makes a kid feel like a pro? Hearing their name called in the pre-game lineup intro before first pitch. The full batting order plays with hype music underneath — one tap, sixty seconds, stadium energy. National Anthem is also one tap away to make it official.</p>
+        </div>
+        <div class="gameday-phase-action">
+          <button class="phase-play-btn" id="s9Btn" onclick="pagePlay('s9')" aria-label="Play Starting Nine sample"></button>
+          <span class="phase-duration">~60 sec</span>
+        </div>
+        <audio id="gdS9Audio" src="/starting-nine-reference.mp3" preload="metadata"></audio>
+      </div>
+
+      <!-- Phase 2: DURING PLAY -->
+      <div class="gameday-phase" data-aos="fade-up">
+        <div class="gameday-phase-label">During Play</div>
+        <div class="gameday-phase-content">
+          <h3 class="gameday-phase-hed">The classics, on tap.</h3>
+          <p class="gameday-phase-body">Air horns. Home run sirens. The Charge. The Stomp. All the sounds a game needs, ready whenever the moment calls.</p>
+        </div>
+        <div class="gameday-phase-action">
+          <div class="phase-sb-row">
+            <div class="phase-sb-item">
+              <button class="phase-sb-btn" id="sbBtn-airhorn" onclick="pageSb('airhorn','/sounds/air_horn.mp3')" aria-label="Air Horn"></button>
+              <span class="phase-sb-label">Air Horn</span>
+            </div>
+            <div class="phase-sb-item">
+              <button class="phase-sb-btn" id="sbBtn-siren" onclick="pageSb('siren','/sounds/home_run_siren.mp3')" aria-label="Home Run Siren"></button>
+              <span class="phase-sb-label">Home Run Siren</span>
+            </div>
+            <div class="phase-sb-item">
+              <button class="phase-sb-btn" id="sbBtn-charge" onclick="pageSb('charge','/sounds/organ_cavalry.mp3')" aria-label="Charge"></button>
+              <span class="phase-sb-label">Charge</span>
+            </div>
+            <div class="phase-sb-item">
+              <button class="phase-sb-btn" id="sbBtn-stomp" onclick="pageSb('stomp','/sounds/stomp.mp3')" aria-label="Stomp"></button>
+              <span class="phase-sb-label">Stomp</span>
+            </div>
+          </div>
+        </div>
+        <audio id="sbAudio" preload="none"></audio>
+      </div>
+
+      <!-- Phase 3: BETWEEN INNINGS -->
+      <div class="gameday-phase no-action" data-aos="fade-up">
+        <div class="gameday-phase-label">Between Innings</div>
+        <div class="gameday-phase-content">
+          <h3 class="gameday-phase-hed">Your walkup songs, auto-playlisted.</h3>
+          <p class="gameday-phase-body">Every kid's walk-up song auto-playlists between innings. Sides change, the music keeps the energy up. Streams from Apple Music — no setup required.</p>
+        </div>
+      </div>
+
+      <!-- Phase 4: SEVENTH-INNING STRETCH -->
+      <div class="gameday-phase no-action" data-aos="fade-up">
+        <div class="gameday-phase-label">Seventh-Inning Stretch</div>
+        <div class="gameday-phase-content">
+          <h3 class="gameday-phase-hed">The tradition stays intact.</h3>
+          <p class="gameday-phase-body">Take Me Out to the Ballgame, one tap away. Some things are non-negotiable.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- 3. PERSONA + TESTIMONIAL -->
 <section class="persona">
@@ -1441,14 +1890,9 @@
       </div>
     </div>
   </div>
-  <div class="how-photo-wrap" data-aos="fade-up" data-aos-delay="100">
-    <img src="/cho-phone-hand.jpg" alt="Now Batting app showing player walk-up at the field" loading="lazy" />
-  </div>
 </section>
 
 <div class="hr"></div>
-
-
 
 <!-- 5. SOUNDBOARD -->
 <section class="soundboard">
@@ -1478,11 +1922,13 @@
 <div class="hr"></div>
 
 <!-- THE STARTING NINE -->
-<section class="persona" style="background:var(--bg);">
+<section class="persona s9-section" style="background:var(--bg);">
   <div class="wrap" data-aos="fade-up">
     <p class="eyebrow r">New Feature</p>
-    <h2 class="h2 r d1" style="max-width:640px;">The Starting Nine.</h2>
-    <p class="sb-body r d2" style="max-width:580px; margin-bottom:32px;">One tap before first pitch and your AI announcer reads the entire lineup — every player, every position, full stadium energy. Sixty seconds. Zero prep on game day. The Chief Hype Officer's secret weapon.</p>
+    <h2 class="h2 r d1" style="max-width:640px;">The Starting Nine<span class="s9-dot">.</span></h2>
+    <p class="s9-para r d2" style="max-width:560px;">One tap before first pitch and your AI announcer reads the full batting order — every player, in order, with locked stadium energy.</p>
+    <p class="s9-para r d2" style="max-width:560px;">Sixty seconds. Zero prep on game day.</p>
+    <p class="s9-para r d2" style="max-width:560px;">The Chief Hype Officer's secret weapon.</p>
     <div class="steps how-steps r d2" style="max-width:680px;">
       <div class="step r">
         <div class="step-n" style="font-variant-numeric:tabular-nums;">01</div>
@@ -1514,7 +1960,6 @@
       </div>
     </div>
     <audio id="s9Audio" src="/starting-nine-reference.mp3" preload="none"></audio>
-
     <div class="sb-badge r d3" style="margin-top:24px;">Available Now · Build Your Lineup</div>
   </div>
 </section>
@@ -2174,6 +2619,76 @@
       prog.classList.add('on');
     } catch(e) {}
   };
+})();
+
+// ── PAGE-WIDE UNIFIED AUDIO CONTROLLER ──
+(function() {
+  const PLAY_LG  = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#1F1F1F"><polygon points="5,3 19,12 5,21"/></svg>';
+  const PAUSE_LG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#1F1F1F"><rect x="5" y="3" width="4" height="18" rx="1"/><rect x="15" y="3" width="4" height="18" rx="1"/></svg>';
+  const PLAY_SM  = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#1F1F1F"><polygon points="5,3 19,12 5,21"/></svg>';
+  const PAUSE_SM = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#1F1F1F"><rect x="5" y="3" width="4" height="18" rx="1"/><rect x="15" y="3" width="4" height="18" rx="1"/></svg>';
+
+  let active = null; // { audio, btn, sm, sbKey }
+
+  function stopActive() {
+    if (!active) return;
+    active.audio.pause();
+    active.audio.currentTime = 0;
+    active.btn.classList.remove('playing');
+    active.btn.innerHTML = active.sm ? PLAY_SM : PLAY_LG;
+    active = null;
+  }
+
+  // Walk-up + Starting Nine (single large play button each)
+  window.pagePlay = function(key) {
+    const audioId = key === 'wu' ? 'wuAudio' : 'gdS9Audio';
+    const btnId   = key === 'wu' ? 'wuBtn'   : 's9Btn';
+    const audio = document.getElementById(audioId);
+    const btn   = document.getElementById(btnId);
+    if (!audio || !btn) return;
+    if (active && active.audio === audio) { stopActive(); return; }
+    stopActive();
+    audio.play().catch(() => {});
+    btn.classList.add('playing');
+    btn.innerHTML = PAUSE_LG;
+    active = { audio, btn, sm: false, sbKey: null };
+    audio.onended = () => {
+      if (active && active.audio === audio) { btn.classList.remove('playing'); btn.innerHTML = PLAY_LG; active = null; }
+    };
+  };
+
+  // Soundboard (shared audio element, swap src)
+  const sbAudio = document.getElementById('sbAudio');
+  let activeSbKey = null;
+
+  window.pageSb = function(key, src) {
+    const btn = document.getElementById('sbBtn-' + key);
+    if (!btn || !sbAudio) return;
+    if (active && active.audio === sbAudio && activeSbKey === key) { stopActive(); activeSbKey = null; return; }
+    stopActive();
+    activeSbKey = key;
+    sbAudio.src = src;
+    sbAudio.load();
+    sbAudio.play().catch(() => {});
+    btn.classList.add('playing');
+    btn.innerHTML = PAUSE_SM;
+    active = { audio: sbAudio, btn, sm: true, sbKey: key };
+    sbAudio.onended = () => {
+      if (active && active.audio === sbAudio) { btn.classList.remove('playing'); btn.innerHTML = PLAY_SM; active = null; }
+      activeSbKey = null;
+    };
+  };
+
+  // Init icons
+  function initIcons() {
+    const wuBtn = document.getElementById('wuBtn');
+    const s9Btn = document.getElementById('s9Btn');
+    if (wuBtn && !wuBtn.innerHTML.trim()) wuBtn.innerHTML = PLAY_LG;
+    if (s9Btn && !s9Btn.innerHTML.trim()) s9Btn.innerHTML = PLAY_LG;
+    document.querySelectorAll('.phase-sb-btn').forEach(b => { if (!b.innerHTML.trim()) b.innerHTML = PLAY_SM; });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initIcons);
+  else initIcons();
 })();
 </script>
 </body>

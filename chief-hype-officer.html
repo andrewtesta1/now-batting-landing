@@ -342,21 +342,17 @@
       margin: 0 auto;
     }
 
-    /* ── THREE-PATH ACTION SECTION ── */
+    /* ── CLOSING ACTION SECTION ── */
     .paths-section {
       background: var(--bg);
-      padding: 0 48px 120px;
+      padding: 0 48px 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .paths-opening-divider {
-      margin: 0 auto 80px;
-    }
-    .path-divider {
-      margin: 56px auto;
-    }
+    .paths-opening-divider { margin: 0 auto 80px; }
 
+    /* Primary action block */
     .path-block {
       max-width: 520px;
       width: 100%;
@@ -407,42 +403,44 @@
       border-color: transparent;
     }
     .path-btn--primary:hover { background: var(--daylight-dim); border-color: transparent; }
-    .path-btn--outline {
-      background: transparent;
-      border-color: rgba(31,31,31,0.22);
-      border-width: 1px;
-      color: var(--txt);
+
+    /* Secondary action — nomination, demoted below primary */
+    .path-block--secondary {
+      margin-top: 40px;
+      max-width: 400px;
+    }
+    .path-block--secondary .path-sub {
+      font-size: 14px;
+      color: var(--txt3);
+      margin-bottom: 18px;
+    }
+    .path-btn--secondary {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 14px;
       font-weight: 600;
+      color: var(--txt);
+      text-decoration: none;
+      border: 1px solid rgba(31,31,31,0.22);
+      border-radius: var(--radius-md);
+      padding: 11px 24px;
+      transition: border-color 0.15s, color 0.15s;
     }
-    .path-btn--outline:hover { border-color: var(--daylight); }
-    .path-btn--disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
+    .path-btn--secondary:hover { border-color: var(--daylight); color: var(--daylight-dim); }
     .path-text-link {
       display: inline-block;
-      margin-top: 14px;
+      margin-top: 12px;
       background: none;
       border: none;
       font-family: var(--font-sans);
-      font-size: 14px;
-      color: var(--daylight);
+      font-size: 13px;
+      color: var(--txt3);
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
       transition: color 0.15s;
     }
-    .path-text-link:hover { color: var(--daylight-dim); }
-    .path-launching {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--daylight);
-      margin-top: 12px;
-    }
+    .path-text-link:hover { color: var(--daylight); }
 
     /* FOOTER */
     footer {
@@ -493,8 +491,10 @@
 
     /* MOBILE */
     @media (max-width: 768px) {
-      nav { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
-      .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; gap: 20px; }
+      nav { padding: 14px 20px; flex-wrap: nowrap; gap: 0; }
+      .nav-links { display: none; }
+      .nav-social { display: none; }
+      .nav-btn { font-size: 12px; padding: 0 14px; height: 38px; letter-spacing: 0.5px; }
       .hero { padding: 80px 24px 72px; min-height: 85vh; }
       .hero-category { font-size: 15px; }
       .hero-divider { margin-bottom: 24px; width: 48px; }
@@ -505,8 +505,7 @@
       .cho-aside { margin-bottom: 48px; }
       .paths-section { padding: 0 24px 80px; }
       .paths-opening-divider { margin-bottom: 48px; }
-      .path-divider { margin: 48px auto; }
-      .path-btn { width: 100%; text-align: center; }
+.path-btn { width: 100%; text-align: center; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
     }
 
@@ -608,11 +607,11 @@
   </div>
 </section>
 
-<!-- THREE-PATH ACTION SECTION -->
+<!-- CLOSING ACTION SECTION -->
 <section class="paths-section">
   <div class="section-divider paths-opening-divider"></div>
 
-  <!-- Path 1: This is me -->
+  <!-- Primary action: Join the Beta -->
   <div class="path-block" data-aos="fade-up">
     <p class="path-eyebrow">If this sounds like you</p>
     <h2 class="path-headline">Welcome. Take the job officially.</h2>
@@ -620,26 +619,11 @@
     <a href="/#closer" class="path-btn path-btn--primary" onclick="track('cho_path_beta_signup')">Join the Beta</a>
   </div>
 
-  <div class="section-divider path-divider"></div>
-
-  <!-- Path 2: This is my friend -->
-  <div class="path-block" data-aos="fade-up" data-aos-delay="80">
-    <p class="path-eyebrow">If you know one</p>
-    <h2 class="path-headline">They deserve the best app for it.</h2>
-    <p class="path-sub">Make them an official nomination card. Tag them. Text it. Make sure they feel seen.</p>
-    <a href="/chief-hype-officer/nominate" class="path-btn path-btn--primary" onclick="track('cho_path_nominate_click')">Nominate a Chief Hype Officer</a>
+  <!-- Secondary action: Nominate -->
+  <div class="path-block path-block--secondary" data-aos="fade-up">
+    <p class="path-sub">Know someone who does this job?</p>
+    <a href="/chief-hype-officer/nominate" class="path-btn--secondary" onclick="track('cho_path_nominate_click')">Nominate a Chief Hype Officer</a>
     <button class="path-text-link" onclick="textShare()">Or just text them this page</button>
-  </div>
-
-  <div class="section-divider path-divider"></div>
-
-  <!-- Path 3: Find my people -->
-  <div class="path-block" data-aos="fade-up" data-aos-delay="160">
-    <p class="path-eyebrow">If you want to find your people</p>
-    <h2 class="path-headline" id="path3-headline">Find your people. Argue about drop points.</h2>
-    <p class="path-sub">The Chief Hype Officer Club is where the real Saturday talk happens.</p>
-    <a id="path3-btn" href="#" class="path-btn path-btn--outline path-btn--disabled" aria-disabled="true" tabindex="-1">Join the Club on Facebook</a>
-    <span class="path-launching" id="path3-launching">Launching this season</span>
   </div>
 </section>
 
@@ -687,27 +671,6 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 40 });
-
-  // ── CONFIG: update these when the Facebook group is ready ──
-  const FACEBOOK_GROUP_URL = '#'; // set to real group URL when seeded (30+ members)
-  const COMMUNITY_COUNT = null;   // set to e.g. 100 when group has 30+ members
-
-  // ── Community path: wire up once group is seeded ──
-  (function() {
-    if (COMMUNITY_COUNT) {
-      document.getElementById('path3-headline').textContent = COMMUNITY_COUNT + '+ parents already arguing about drop points.';
-    }
-    if (FACEBOOK_GROUP_URL !== '#') {
-      const btn = document.getElementById('path3-btn');
-      btn.href = FACEBOOK_GROUP_URL;
-      btn.removeAttribute('aria-disabled');
-      btn.removeAttribute('tabindex');
-      btn.classList.remove('path-btn--disabled');
-      btn.onclick = function() { track('cho_path_join_community'); };
-      const label = document.getElementById('path3-launching');
-      if (label) label.style.display = 'none';
-    }
-  })();
 
   // ── Analytics stub — replace with real SDK when installed ──
   function track(event, props) {

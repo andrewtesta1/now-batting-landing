@@ -32,8 +32,16 @@
       border-bottom: 1px solid var(--bord);
     }
     .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
-    .nav-back { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
-    .nav-back:hover { color: var(--daylight); }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-link { font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--txt); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-btn { background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; transition: background 0.15s; white-space: nowrap; }
+    .nav-btn:hover { background: #8A9900; }
 
     main { max-width: 720px; margin: 0 auto; padding: 120px 48px 80px; }
 
@@ -49,17 +57,18 @@
     a:hover { text-decoration: underline; }
     .divider { height: 1px; background: var(--bord); margin: 48px 0; }
 
-    footer {
-      border-top: 1px solid var(--bord); padding: 32px 48px;
-      text-align: center; color: var(--txt3); font-size: 12px;
-    }
-    footer a { color: var(--txt3); text-decoration: none; }
-    footer a:hover { color: var(--daylight); }
+    footer { border-top: 1px solid var(--bord); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .f-logo { display: flex; align-items: center; }
+    .f-copy { font-size: 12px; color: var(--txt3); }
+    .f-copy a { color: var(--txt3); text-decoration: none; }
+    .f-copy a:hover { color: var(--daylight); }
 
-    @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; gap: 10px; flex-wrap: wrap; }
+      .nav-links { order: 3; width: 100%; border-top: 1px solid var(--bord); padding-top: 10px; gap: 16px; }
+      .nav-social { display: none; }
       main { padding: 100px 24px 60px; }
-      footer { padding: 24px 20px; }
+      footer { flex-direction: column; text-align: center; padding: 22px 18px; }
     }
     @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
     @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
@@ -82,62 +91,117 @@
 
 <nav>
   <a href="/" class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
-  <a href="/" class="nav-back">← Back to Home</a>
+  <div class="nav-links">
+    <a href="/our-story" class="nav-link">Our Story</a>
+    <a href="/chief-hype-officer" class="nav-link">The Chief Hype Officer</a>
+    <a href="/support" class="nav-link">Support</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download Free</a>
+  </div>
 </nav>
 
 <main>
   <p class="page-eye">Legal</p>
   <h1>Terms of Use</h1>
-  <p class="updated">Last updated: April 2026</p>
+  <p class="updated">Last updated: May 2026 (v1.0)</p>
 
-  <p>These Terms of Use govern your access to and use of the Now Batting iOS application and website at nowbattingapp.com ("Now Batting," "we," "our," or "us"). By downloading the app or using the service, you agree to these terms.</p>
+  <p>These Terms of Use ("Terms") govern your access to and use of the Now Batting iOS application (the "App") and the website at nowbattingapp.com (collectively, "Now Batting," "we," "our," or "us"). By downloading the App, creating content within it, or using the website, you agree to these Terms. If you do not agree, do not use Now Batting.</p>
+
+  <h2>Beta Status</h2>
+  <p>Now Batting is currently offered in beta. The App may contain bugs, features may change without notice, and service interruptions may occur. By using Now Batting during the beta period, you acknowledge and accept the in-development nature of the product. We may add, modify, or remove features at any time, and we may end the beta period at any time.</p>
 
   <h2>Use of the App</h2>
-  <p>Now Batting is a tool for coaches and parents to manage walk-up songs and player announcements for youth sports. You may use Now Batting for personal, non-commercial coaching and team management purposes.</p>
+  <p>Now Batting is a tool for coaches, parents, and team organizers to manage walk-up songs and player announcements for youth sports. You may use Now Batting for personal, non-commercial coaching and team management purposes, subject to these Terms.</p>
   <p>You agree not to:</p>
   <ul>
-    <li>Use Now Batting for commercial entertainment or public performance purposes without appropriate licensing for the music you play</li>
-    <li>Reverse engineer, copy, or redistribute the app or its code</li>
-    <li>Use the app in any way that violates applicable laws or regulations</li>
-    <li>Attempt to gain unauthorized access to our servers or API</li>
+    <li>Use Now Batting for commercial entertainment or large-scale public performance purposes without separately securing all required music licensing</li>
+    <li>Reverse engineer, decompile, copy, modify, or redistribute the App, the website, or any underlying code</li>
+    <li>Use the App in any way that violates applicable laws or regulations, including laws governing copyright, privacy, and the rights of minors</li>
+    <li>Attempt to gain unauthorized access to our servers, API, or any user's data</li>
+    <li>Use Now Batting to harass, defame, or invade the privacy of any individual, including any minor</li>
+    <li>Misrepresent your relationship to a player or team in order to enter that player's information into the App</li>
   </ul>
+  <p>We may suspend or terminate your access to Now Batting at any time if we believe you have violated these Terms.</p>
 
-  <h2>Apple Music & Music Licensing</h2>
-  <p>Now Batting integrates with Apple Music for walk-up song playback. Access to Apple Music requires an active Apple Music subscription governed by Apple's own Terms of Service.</p>
-  <p>30-second song previews are available to all users without an Apple Music subscription. Full track playback from your Apple Music library requires an active Apple Music subscription.</p>
-  <p>You are responsible for ensuring that your use of music complies with applicable copyright laws. Now Batting is designed for personal, small-scale team use at youth sports games with no or nominal admission charge. Commercial or large-scale public performance may require a separate public performance license from the relevant performing rights organization (ASCAP, BMI, SESAC, or GMR).</p>
+  <h2>Roster Data and Consent</h2>
+  <p>When you enter player information into Now Batting, you represent that you have the necessary permission from each player's parent or legal guardian to enter that information and to use it as described in our Privacy Policy. When you use the Share Roster feature to share roster data with another user, you represent that you have permission to share that information with the recipient.</p>
+  <p>You are responsible for the accuracy, content, and lawful use of any information you enter into the App.</p>
 
-  <h2>AI-Generated Announcements</h2>
-  <p>Now Batting uses AI voice synthesis (powered by ElevenLabs) to generate player announcements. The AI-generated audio is for your personal use with your team. You may not redistribute, sell, or publicly broadcast AI-generated content outside of standard game-day use.</p>
+  <h2>Apple Music &amp; Music Licensing</h2>
+  <p>Now Batting integrates with Apple Music for walk-up song search and playback. Use of Apple Music through the App requires an active Apple Music subscription and is governed by Apple's own Terms of Service and Privacy Policy.</p>
+  <p>You are solely responsible for ensuring that any music played through Now Batting complies with applicable copyright laws. This includes obtaining any public performance licenses that may be required at your venue. Public performance of copyrighted music at a sporting event may require a license from a performing rights organization (ASCAP, BMI, SESAC, GMR, or equivalent) — typically obtained by the venue or league rather than the individual user. Now Batting is a playback tool and does not grant any music performance rights.</p>
+  <p>If you are unsure whether your use requires licensing, consult the venue, league, or a qualified attorney before using the App at any public or commercial event.</p>
+
+  <h2>AI-Generated Audio</h2>
+  <p>Now Batting uses AI voice synthesis (powered by ElevenLabs) to generate player announcements and pre-game lineup calls (including the feature called "The Starting Nine"). This audio is generated for your personal, non-commercial use with your team.</p>
+  <p>You may not:</p>
+  <ul>
+    <li>Redistribute, sell, or commercialize AI-generated audio created through Now Batting</li>
+    <li>Publish AI-generated audio containing children's names to publicly accessible platforms in a manner that violates the privacy or consent of the players or their guardians</li>
+    <li>Use AI-generated audio in any context that could mislead listeners into believing the audio is from a real licensed broadcaster or commercial production</li>
+  </ul>
+  <p>The audio you generate is intended for in-game playback at the field, on your device. You retain control over what you do with audio you choose to capture or distribute beyond the App.</p>
 
   <h2>Roster Sharing</h2>
-  <p>When you share a roster, you are sharing player names, jersey numbers, song information, and AI-generated announcement audio with the recipient. Shared roster data is stored on our servers for up to 48 hours and then automatically deleted.</p>
-  <p>Only share rosters with people you trust. You are responsible for obtaining any necessary consent from parents or guardians before sharing information about players.</p>
+  <p>When you share a roster, you transmit player names, jersey numbers, song information, and AI-generated announcement audio to the recipient. Shared roster data is stored on our servers for up to 48 hours and then automatically deleted.</p>
+  <p>Only share rosters with people you trust. You are responsible for obtaining any necessary consent from parents or guardians before sharing information about minor players.</p>
 
   <h2>Disclaimer of Warranties</h2>
-  <p>Now Batting is provided "as is" without warranties of any kind, express or implied. We do not guarantee that the app will be error-free, uninterrupted, or free of bugs. Features may change, be added, or be removed at any time.</p>
+  <p>Now Batting is provided "as is" and "as available," without warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. We do not guarantee that the App will be error-free, uninterrupted, free of bugs, or free of harmful components. Features may change, be added, or be removed at any time.</p>
+  <p>To the extent any warranties cannot be disclaimed under applicable law, such warranties are limited in duration to the minimum period permitted by law.</p>
 
   <h2>Limitation of Liability</h2>
-  <p>To the maximum extent permitted by law, Now Batting and its creator shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the app, including but not limited to missed game moments, audio failures, or data loss.</p>
+  <p>To the maximum extent permitted by law, Now Batting shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from or related to your use of the App, including but not limited to missed game moments, audio failures, data loss, lost opportunities, or emotional distress.</p>
+  <p>In no event shall our total cumulative liability to you for any claims arising from or related to these Terms or the App exceed one hundred U.S. dollars ($100).</p>
+
+  <h2>Indemnification</h2>
+  <p>You agree to indemnify, defend, and hold harmless Now Batting from any claims, damages, losses, liabilities, costs, or expenses (including reasonable attorneys' fees) arising from your violation of these Terms, your violation of any law or third-party right, your misuse of the App, or any content you enter into or generate through the App.</p>
+
+  <h2>Apple-Specific Terms</h2>
+  <p>The following terms apply because Now Batting is distributed through the Apple App Store. By accepting these Terms, you acknowledge:</p>
+  <ul>
+    <li>These Terms are an agreement between you and Now Batting only, and not with Apple Inc. ("Apple"). Now Batting, not Apple, is solely responsible for the App and its content.</li>
+    <li>Apple has no obligation to furnish any maintenance or support services for the App.</li>
+    <li>In the event of any failure of the App to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price of the App to you (where applicable). To the maximum extent permitted by law, Apple has no other warranty obligation with respect to the App.</li>
+    <li>Now Batting, not Apple, is responsible for addressing any claims by you or any third party relating to the App, including product liability claims, claims that the App fails to conform to legal or regulatory requirements, and claims arising under consumer protection or similar legislation.</li>
+    <li>In the event of any third-party claim that the App or your possession and use of the App infringes that third party's intellectual property rights, Now Batting, not Apple, is solely responsible for the investigation, defense, settlement, and discharge of any such claim.</li>
+    <li>You represent and warrant that you are not located in a country subject to a U.S. Government embargo or designated as a "terrorist supporting" country, and that you are not listed on any U.S. Government list of prohibited or restricted parties.</li>
+    <li>Apple and Apple's subsidiaries are third-party beneficiaries of these Terms, and upon your acceptance, Apple has the right (and is deemed to have accepted the right) to enforce these Terms against you as a third-party beneficiary.</li>
+  </ul>
 
   <h2>Third-Party Services</h2>
-  <p>Now Batting relies on third-party services including Apple Music, ElevenLabs, and Vercel. Your use of those services is subject to their respective terms. We are not responsible for the availability or conduct of third-party services.</p>
+  <p>Now Batting relies on third-party services including Apple Music, ElevenLabs, Vercel, Upstash, and Sentry. Your use of those services is subject to their respective terms of service and privacy policies. We are not responsible for the availability, performance, or conduct of any third-party service.</p>
 
-  <h2>Not Affiliated with Apple</h2>
-  <p>Now Batting is an independent application. It is not affiliated with, endorsed by, or sponsored by Apple Inc. Apple Music is a trademark of Apple Inc.</p>
+  <h2>Not Affiliated</h2>
+  <p>Now Batting is an independent application. It is not affiliated with, endorsed by, or sponsored by Apple Inc., Apple Music, ElevenLabs, any sports league, any music label, any publisher, or any rights holder. All trademarks are the property of their respective owners.</p>
+
+  <h2>Copyright Concerns</h2>
+  <p>If you believe that content available through Now Batting infringes your copyright, please contact us at <a href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a> with sufficient detail to identify the allegedly infringing content and your basis for the claim. We will respond to legitimate copyright concerns in accordance with applicable law.</p>
+
+  <h2>Governing Law and Jurisdiction</h2>
+  <p>These Terms are governed by the laws of the State of New Jersey, without regard to conflict of law principles. Any dispute arising from or related to these Terms or your use of Now Batting shall be resolved exclusively in the state or federal courts located in New Jersey, and you consent to the personal jurisdiction of those courts.</p>
+
+  <h2>Severability</h2>
+  <p>If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.</p>
 
   <h2>Changes to These Terms</h2>
-  <p>We may update these Terms of Use from time to time. The updated date at the top reflects the most recent revision. Continued use of Now Batting after changes constitutes acceptance of the revised terms.</p>
+  <p>We may update these Terms from time to time. The "Last updated" date at the top of this page reflects the most recent revision. We will not make material changes that reduce your rights without notifying you. Continued use of Now Batting after changes constitutes acceptance of the revised Terms.</p>
 
   <h2>Contact</h2>
-  <p>Questions about these terms? Email <a href="mailto:drewtesta@gmail.com">drewtesta@gmail.com</a>.</p>
+  <p>Questions about these Terms? Email us at <a href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a>.</p>
 
   <div class="divider"></div>
-  <p style="font-size:13px;">© 2026 Now Batting · <a href="/privacy">Privacy Policy</a></p>
+  <p style="font-size:13px;">© 2026 Now Batting™ · <a href="/privacy">Privacy Policy</a></p>
 </main>
 
 <footer>
-  <p>© 2026 Now Batting &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a></p>
+  <div class="f-logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <p class="f-copy">© 2026 Now Batting™ · <a href="/our-story">Our Story</a> · <a href="/chief-hype-officer">The Chief Hype Officer</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
 </body>
