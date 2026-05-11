@@ -4,21 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Chief Hype Officer — Now Batting</title>
-  <meta name="description" content="For the parent who volunteered to run the walk-up music. Lawn chair. Wagon. Bluetooth speaker the size of a small appliance. Now Batting was built for you." />
+  <meta name="description" content="Walk-up songs and player announcements. Ridiculously easy. A field guide to the parent who runs the music." />
   <link rel="canonical" href="https://nowbattingapp.com/chief-hype-officer" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nowbattingapp.com/chief-hype-officer" />
   <meta property="og:site_name" content="Now Batting" />
   <meta property="og:title" content="The Chief Hype Officer — Now Batting" />
-  <meta property="og:description" content="For the parent who volunteered to run the walk-up music. Lawn chair. Wagon. Bluetooth speaker the size of a small appliance. Now Batting was built for you." />
+  <meta property="og:description" content="Walk-up songs and player announcements. Ridiculously easy. A field guide to the parent who runs the music." />
   <meta property="og:image" content="https://nowbattingapp.com/og-cho.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="The Chief Hype Officer — Now Batting" />
-  <meta name="twitter:description" content="For the parent who volunteered to run the walk-up music. Now Batting was built for you." />
+  <meta name="twitter:description" content="Walk-up songs and player announcements. Ridiculously easy. A field guide to the parent who runs the music." />
   <meta name="twitter:image" content="https://nowbattingapp.com/og-cho.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,7 @@
     }
     html { scroll-behavior: smooth; }
     body {
-      background: #1F1F1F; color: #F6F4EF;
+      background: var(--bg); color: var(--txt);
       font-family: var(--font-sans); font-size: 16px;
       overflow-x: hidden; -webkit-font-smoothing: antialiased;
     }
@@ -67,7 +67,9 @@
       padding: 18px 48px;
       background: rgba(31,31,31,0.97); backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: padding 0.25s ease;
     }
+    nav.shrunk { padding: 12px 48px; }
     .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-link {
@@ -83,10 +85,12 @@
     .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
     .nav-btn {
       background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
-      font-size: 13px; letter-spacing: 1px; padding: 10px 20px; border-radius: var(--radius-sm);
+      font-size: 13px; letter-spacing: 1px; padding: 0 20px; border-radius: var(--radius-md);
+      height: var(--btn-height); display: flex; align-items: center;
       border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
     }
     .nav-btn:hover { background: var(--daylight-dim); }
+    .logo .bar { fill: var(--neon); }
 
     /* WAVEFORM LOGO ANIMATION */
     @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
@@ -136,94 +140,180 @@
 
     /* ── HERO ── */
     .hero {
-      background: #1F1F1F;
-      min-height: 100vh;
+      background: #1A1A18;
+      background-image: url('/cho-field2.jpg');
+      background-size: cover;
+      background-position: center 35%;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 140px 48px 120px;
+      min-height: 82vh;
+      padding: 140px 48px 100px;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 17, 14, 0.54);
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-brand {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(246,244,239,0.6); margin-bottom: 8px;
+    }
+    .hero-category {
+      font-family: var(--font-sans); font-size: 16px; font-weight: 400;
+      color: rgba(246,244,239,0.55); margin-bottom: 64px;
+    }
+    .hero-divider {
+      width: 64px; height: 1px; background: var(--daylight);
+      margin: 0 auto 64px;
+    }
+    .hero-h1 {
+      font-family: var(--font-sans); font-size: clamp(40px, 5vw, 64px);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1;
+      color: #F6F4EF; margin-bottom: 18px;
+    }
+    .hero-subtitle {
+      font-family: var(--font-sans); font-size: 18px; font-weight: 400;
+      font-style: italic; color: rgba(246,244,239,0.6);
+    }
+    .hero-scroll-cue {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      color: rgba(246,244,239,0.25); font-size: 20px;
+      animation: cue-bounce 2s ease-in-out infinite;
+      cursor: pointer;
+    }
+    @keyframes cue-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── CREAM SECTIONS (lawn chair + post-reveal) ── */
+    .cho-cream-section {
+      background: var(--bg);
+      padding: 120px 48px;
       text-align: center;
     }
-    .hero-headline {
-      font-family: var(--font-sans);
-      font-size: clamp(48px, 7vw, 96px);
-      font-weight: 900; letter-spacing: -0.04em; line-height: 0.95;
-      color: #F6F4EF;
-    }
-    .hero-context {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(246,244,239,0.55); margin-top: 24px;
-      max-width: 480px; line-height: 1.7; text-align: center;
-    }
-
-    /* ── BODY COPY ── */
-    .cho-body {
-      background: #1F1F1F;
-      padding: 0 48px 0;
-    }
-    .cho-inner {
+    .cho-cream-inner {
       max-width: 600px;
       margin: 0 auto;
-      padding-bottom: 100px;
     }
 
-    /* Lawn chair stanza — large display, each line breathes */
+    /* Lawn chair stanza — large, dark on cream */
     .cho-stanza {
-      font-size: clamp(20px, 2.8vw, 34px);
+      font-size: clamp(20px, 2.8vw, 32px);
       font-weight: 700;
-      line-height: 1.25;
+      line-height: 1.3;
       letter-spacing: -0.02em;
-      color: #F6F4EF;
-      margin-bottom: 36px;
-    }
-    .cho-stanza:last-of-type { margin-bottom: 0; }
-
-    /* Neon reveal — "You are the Chief Hype Officer." */
-    .cho-reveal {
-      font-size: clamp(26px, 3.2vw, 42px);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--neon);
-      margin-top: 80px;
+      color: var(--txt);
       margin-bottom: 80px;
+    }
+    .cho-stanza { margin-bottom: 48px; }
+    .cho-stanza:last-child { margin-bottom: 0; }
+
+    /* ── STANZA + PHOTO — two-column editorial ── */
+    .cho-stanza-row {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      text-align: left;
+    }
+    .cho-stanza-col {}
+    .cho-stanza-col .cho-stanza { text-align: left; }
+    .cho-stanza-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .cho-stanza-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .cho-stanza-row {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .cho-stanza-col .cho-stanza { text-align: center; }
+      .cho-stanza-photo { aspect-ratio: 4/3; order: -1; }
+    }
+
+    /* ── DARK REVEAL BAND — the single dark moment ── */
+    .cho-reveal-band {
+      background: #1F1F1F;
+      background-image: url('/cho-field-chair.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      padding: 160px 40px;
+      text-align: center;
+      position: relative;
+    }
+    .cho-reveal-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 20, 20, 0.72);
+    }
+    .cho-reveal-band > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Reveal text — massive, neon, the only neon on the page */
+    .cho-reveal {
+      font-size: clamp(40px, 7vw, 96px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--neon);
+      display: inline-block;
     }
     .cho-reveal.flashing {
       animation: cho-neon-flash 1.4s ease-out forwards;
     }
     @keyframes cho-neon-flash {
       0%   { color: var(--neon); text-shadow: none; }
-      12%  { color: #FFFFFF; text-shadow: 0 0 28px rgba(223,255,0,1), 0 0 56px rgba(223,255,0,0.5); }
-      45%  { color: var(--neon); text-shadow: 0 0 12px rgba(223,255,0,0.3); }
+      12%  { color: #FFFFFF; text-shadow: 0 0 40px rgba(223,255,0,1), 0 0 80px rgba(223,255,0,0.5); }
+      45%  { color: var(--neon); text-shadow: 0 0 18px rgba(223,255,0,0.3); }
       100% { color: var(--neon); text-shadow: none; }
     }
 
-    /* Apple Music / Calvin aside — quiet, parenthetical */
+    /* Apple Music / Calvin aside — smaller, fully readable */
     .cho-aside {
-      margin-bottom: 72px;
+      margin-bottom: 80px;
     }
     .cho-aside p {
-      font-size: clamp(14px, 1.5vw, 16px);
+      font-size: clamp(15px, 1.6vw, 18px);
       font-weight: 400;
       line-height: 1.85;
-      color: rgba(246,244,239,0.48);
+      color: var(--txt);
       margin-bottom: 4px;
     }
 
-    /* No salary beats — stacked sentences */
+    /* No salary beats — large, matches stanza weight */
     .cho-beat {
-      font-size: clamp(15px, 1.8vw, 20px);
-      font-weight: 400;
-      line-height: 1.7;
-      color: rgba(246,244,239,0.75);
+      font-size: clamp(20px, 2.8vw, 32px);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--txt);
       margin-bottom: 4px;
     }
-    .cho-beat-gap { height: 28px; }
+    .cho-beat-gap { height: 60px; }
 
-    /* Neon divider — 80px centered rule */
-    .neon-divider {
-      width: 80px;
-      height: 2px;
-      background: var(--neon);
+    /* Section dividers — daylight only, no animation */
+    .section-divider {
+      width: 64px;
+      height: 1px;
+      background: var(--daylight);
       border-radius: 1px;
       margin: 0 auto;
     }
@@ -240,7 +330,7 @@
       margin: 0 auto 80px;
     }
     .path-divider {
-      margin: 80px auto;
+      margin: 56px auto;
     }
 
     .path-block {
@@ -288,43 +378,45 @@
     }
     .path-btn:active { transform: scale(0.97); }
     .path-btn--primary {
-      background: var(--neon);
+      background: var(--daylight);
       color: #1F1F1F;
-      border-color: var(--neon);
+      border-color: transparent;
     }
-    .path-btn--primary:hover { background: var(--daylight); border-color: var(--daylight); }
+    .path-btn--primary:hover { background: var(--daylight-dim); border-color: transparent; }
     .path-btn--outline {
       background: transparent;
       border-color: rgba(31,31,31,0.22);
+      border-width: 1px;
       color: var(--txt);
+      font-weight: 600;
     }
-    .path-btn--outline:hover { border-color: var(--txt); }
+    .path-btn--outline:hover { border-color: var(--daylight); }
     .path-btn--disabled {
-      opacity: 0.38;
+      opacity: 0.55;
       cursor: not-allowed;
       pointer-events: none;
     }
     .path-text-link {
-      display: block;
+      display: inline-block;
       margin-top: 14px;
       background: none;
       border: none;
       font-family: var(--font-sans);
       font-size: 14px;
-      color: var(--txt3);
+      color: var(--daylight);
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
       transition: color 0.15s;
     }
-    .path-text-link:hover { color: var(--txt2); }
+    .path-text-link:hover { color: var(--daylight-dim); }
     .path-launching {
       display: block;
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--txt3);
+      color: var(--daylight);
       margin-top: 12px;
     }
 
@@ -349,15 +441,15 @@
     .ov-box { background:#1F1F1F; border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:40px; max-width:420px; width:90%; text-align:center; }
     .ov-box h3 { font-size:22px; font-weight:800; color:#F6F4EF; margin-bottom:8px; }
     .ov-box p { font-size:14px; color:rgba(246,244,239,0.6); margin-bottom:20px; line-height:1.6; }
-    .ov-url { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px 16px; font-family:var(--font-mono); font-size:13px; color:#B8CC00; word-break:break-all; margin-bottom:16px; }
+    .ov-url { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px 16px; font-family:var(--font-mono); font-size:13px; color:var(--daylight); word-break:break-all; margin-bottom:16px; }
     .ov-btns { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
-    .ov-btn { background:var(--daylight); color:#1F1F1F; font-weight:700; font-size:14px; padding:11px 22px; border-radius:10px; border:none; cursor:pointer; }
+    .ov-btn { background:var(--daylight); color:#1F1F1F; font-weight:700; font-size:14px; padding:0 22px; height:var(--btn-height); border-radius:var(--radius-md); border:none; cursor:pointer; display:inline-flex; align-items:center; }
     .ov-btn.sec { background:transparent; border:1px solid rgba(255,255,255,0.15); color:rgba(246,244,239,0.6); }
 
     /* SCROLL PROGRESS */
     #scroll-progress {
       position: fixed; top: 0; left: 0; height: 2px; width: 0%;
-      background: var(--neon); z-index: 200; transition: width 0.1s linear;
+      background: var(--daylight); z-index: 200; transition: width 0.1s linear;
       pointer-events: none;
     }
 
@@ -380,9 +472,12 @@
       nav { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
       .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; gap: 20px; }
       .hero { padding: 130px 24px 80px; }
-      .cho-body { padding: 0 24px 0; }
-      .cho-inner { padding-bottom: 72px; }
-      .cho-reveal { margin-top: 56px; margin-bottom: 56px; }
+      .hero-category { font-size: 15px; margin-bottom: 48px; }
+      .hero-divider { margin-bottom: 48px; width: 48px; }
+      .hero-h1 { font-size: clamp(40px, 10vw, 44px); }
+      .hero-subtitle { font-size: 16px; }
+      .cho-cream-section { padding: 80px 24px; }
+      .cho-reveal-band { padding: 100px 24px; }
       .cho-aside { margin-bottom: 48px; }
       .paths-section { padding: 0 24px 80px; }
       .paths-opening-divider { margin-bottom: 48px; }
@@ -394,6 +489,7 @@
     @media (prefers-reduced-motion: reduce) {
       .idle-wave .bar { animation: none; }
       .cho-reveal { animation: none !important; color: var(--neon) !important; text-shadow: none !important; }
+      .neon-divider { animation: none; }
     }
   </style>
 </head>
@@ -422,6 +518,7 @@
   <div class="nav-links">
     <a href="/our-story" class="nav-link">Our Story</a>
     <a href="/chief-hype-officer" class="nav-link active">The Chief Hype Officer</a>
+    <a href="/support" class="nav-link">Support</a>
   </div>
   <div class="nav-right">
     <div class="nav-social">
@@ -436,69 +533,84 @@
   </div>
 </nav>
 
-<!-- HERO (unchanged) -->
+<!-- HERO -->
 <section class="hero">
-  <p class="eyebrow light" data-aos="fade-up">Now Batting Presents</p>
-  <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="80">The Chief Hype Officer.</h1>
-  <p class="hero-context" data-aos="fade-up" data-aos-delay="180">A walk-up music app for youth baseball. And the people who run it.</p>
+  <p class="hero-brand" data-aos="fade-up">Now Batting</p>
+  <p class="hero-category" data-aos="fade-up" data-aos-delay="60">Walk-up songs and player announcements. Ridiculously easy.</p>
+  <div class="hero-divider" data-aos="fade-up" data-aos-delay="120"></div>
+  <h1 class="hero-h1" data-aos="fade-up" data-aos-delay="180">The Chief Hype Officer.</h1>
+  <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="240">A field guide.</p>
+  <div class="hero-scroll-cue">↓</div>
 </section>
 
-<!-- BODY COPY -->
-<section class="cho-body">
-  <div class="cho-inner">
-    <p class="cho-stanza" data-aos="fade-up">Lawn chair. Wagon. Bluetooth speaker the size of a small appliance.</p>
-    <p class="cho-stanza" data-aos="fade-up">Phone in one hand. Coffee — cold now — in the other.</p>
-    <p class="cho-stanza" data-aos="fade-up">Squinting through polarized sunglasses at a screen cranked to maximum brightness.</p>
+<!-- BODY COPY — cream (lawn chair stanzas + photo) -->
+<section class="cho-cream-section">
+  <div class="cho-stanza-row">
+    <div class="cho-stanza-col">
+      <p class="cho-stanza" data-aos="fade-up">Lawn chair. Wagon. Bluetooth speaker the size of a small appliance.</p>
+      <p class="cho-stanza" data-aos="fade-up" data-aos-delay="150">Phone in one hand. Coffee — cold now — in the other.</p>
+      <p class="cho-stanza" data-aos="fade-up" data-aos-delay="300">Squinting through polarized sunglasses at a screen cranked to maximum brightness.</p>
+    </div>
+    <div class="cho-stanza-photo" data-aos="fade-up" data-aos-delay="100">
+      <img src="/cho-lawchair.jpg" alt="The Chief Hype Officer — lawn chair, phone, speaker at the ready" loading="lazy" />
+    </div>
+  </div>
+</section>
 
-    <p class="cho-reveal" id="choReveal">You are the Chief Hype Officer.</p>
+<!-- REVEAL BAND — the single dark moment -->
+<section class="cho-reveal-band">
+  <p class="cho-reveal" id="choReveal">You are the Chief Hype Officer.</p>
+</section>
 
+<!-- BODY COPY — cream (aside + beats) -->
+<section class="cho-cream-section">
+  <div class="cho-cream-inner">
     <div class="cho-aside" data-aos="fade-up">
       <p>You pay for Apple Music every month now. Just for this.</p>
       <p>You have opinions about drop points.</p>
-      <p>You know every kid's song — and you know Calvin wants<br>"Enter Sandman" at exactly fourteen seconds. Because Calvin told you. Four times.</p>
+      <p>You know every kid's song — and you know Calvin wants "Enter Sandman" at exactly fourteen seconds.</p>
+      <p>Because Calvin told you. Four times.</p>
     </div>
 
     <p class="cho-beat" data-aos="fade-up">No salary.</p>
-    <p class="cho-beat" data-aos="fade-up">No training.</p>
-    <p class="cho-beat" data-aos="fade-up">No one coming to save you.</p>
+    <p class="cho-beat" data-aos="fade-up" data-aos-delay="100">No training.</p>
+    <p class="cho-beat" data-aos="fade-up" data-aos-delay="200">No one coming to save you.</p>
     <div class="cho-beat-gap"></div>
-    <p class="cho-beat" data-aos="fade-up">Just one job: make the moment.</p>
-
-    <div class="neon-divider" style="margin-top: 96px;"></div>
+    <p class="cho-beat" data-aos="fade-up" data-aos-delay="80">Just one job: make the moment.</p>
   </div>
 </section>
 
 <!-- THREE-PATH ACTION SECTION -->
 <section class="paths-section">
-  <div class="neon-divider paths-opening-divider"></div>
+  <div class="section-divider paths-opening-divider"></div>
 
   <!-- Path 1: This is me -->
   <div class="path-block" data-aos="fade-up">
     <p class="path-eyebrow">If this sounds like you</p>
     <h2 class="path-headline">Welcome. Take the job officially.</h2>
     <p class="path-sub">Free beta · iOS only · Be ready for next Saturday.</p>
-    <a href="/#closer" class="path-btn path-btn--primary" onclick="track('cho_path_beta_signup')">Join the Beta →</a>
+    <a href="/#closer" class="path-btn path-btn--primary" onclick="track('cho_path_beta_signup')">Join the Beta</a>
   </div>
 
-  <div class="neon-divider path-divider"></div>
+  <div class="section-divider path-divider"></div>
 
   <!-- Path 2: This is my friend -->
-  <div class="path-block" data-aos="fade-up">
+  <div class="path-block" data-aos="fade-up" data-aos-delay="80">
     <p class="path-eyebrow">If you know one</p>
     <h2 class="path-headline">They deserve the best app for it.</h2>
     <p class="path-sub">Make them an official nomination card. Tag them. Text it. Make sure they feel seen.</p>
-    <a href="/chief-hype-officer/nominate" class="path-btn path-btn--outline" onclick="track('cho_path_nominate_click')">Nominate a Chief Hype Officer →</a>
-    <button class="path-text-link" onclick="textShare()">Or just text them this page →</button>
+    <a href="/chief-hype-officer/nominate" class="path-btn path-btn--primary" onclick="track('cho_path_nominate_click')">Nominate a Chief Hype Officer</a>
+    <button class="path-text-link" onclick="textShare()">Or just text them this page</button>
   </div>
 
-  <div class="neon-divider path-divider"></div>
+  <div class="section-divider path-divider"></div>
 
   <!-- Path 3: Find my people -->
-  <div class="path-block" data-aos="fade-up">
+  <div class="path-block" data-aos="fade-up" data-aos-delay="160">
     <p class="path-eyebrow">If you want to find your people</p>
     <h2 class="path-headline" id="path3-headline">Find your people. Argue about drop points.</h2>
     <p class="path-sub">The Chief Hype Officer Club is where the real Saturday talk happens.</p>
-    <a id="path3-btn" href="#" class="path-btn path-btn--outline path-btn--disabled" aria-disabled="true" tabindex="-1">Join the Club on Facebook →</a>
+    <a id="path3-btn" href="#" class="path-btn path-btn--outline path-btn--disabled" aria-disabled="true" tabindex="-1">Join the Club on Facebook</a>
     <span class="path-launching" id="path3-launching">Launching this season</span>
   </div>
 </section>
@@ -520,7 +632,7 @@
       <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
     </svg>
   </div>
-  <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. &nbsp;·&nbsp; <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener">@nowbattingapp</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+  <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. &nbsp;·&nbsp; <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener">@nowbattingapp</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -643,17 +755,20 @@
     obs.observe(el);
   })();
 
-  // ── Scroll progress + back-to-top ──
+  // ── Scroll progress + back-to-top + nav shrink ──
   (function() {
     const bar = document.getElementById('scroll-progress');
     const btn = document.getElementById('back-top');
+    const navEl = document.querySelector('nav');
     window.addEventListener('scroll', () => {
       const s = document.documentElement.scrollTop;
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
       btn.classList.toggle('visible', s > 400);
+      navEl.classList.toggle('shrunk', s > 60);
     }, { passive: true });
   })();
+
 </script>
 </body>
 </html>

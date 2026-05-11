@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Now Batting</title>
-  <meta name="description" content="Give every kid their stadium moment. Now Batting plays personalized walk-up songs and AI-generated announcements for youth baseball and softball. Set up in minutes, awesome every game. iOS app." />
+  <meta name="description" content="Give every kid their stadium moment. Now Batting™ plays personalized walk-up songs, AI-generated announcements, and full pre-game lineup calls for youth baseball and softball. The Chief Hype Officer's app. iOS." />
   <meta name="keywords" content="walk-up songs youth baseball, baseball walk up music app, softball walk up songs, little league walk up music, youth baseball announcer app, stadium announcements youth sports, baseball coach app, walk up song app iOS" />
   <link rel="canonical" href="https://nowbattingapp.com/" />
 
@@ -231,22 +231,24 @@
     .nav-link:hover { color: var(--txt); }
     .nav-btn {
       background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
-      font-size: 13px; letter-spacing: 1px; padding: 10px 20px; border-radius: var(--radius-sm);
+      font-size: 13px; letter-spacing: 1px; padding: 0 20px; border-radius: var(--radius-md);
+      height: var(--btn-height); display: flex; align-items: center;
       border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
     }
     .nav-btn:hover { background: var(--daylight-dim); }
+    .logo .bar { fill: var(--daylight); }
 
     /* SHARED */
     section { position: relative; z-index: 1; }
     .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
     .hr { height: 1px; background: linear-gradient(to right, transparent, var(--bord), transparent); max-width: 1080px; margin: 0 auto; }
-    .eyebrow { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; color: var(--txt3); margin-bottom: 12px; text-transform: uppercase; }
+    .eyebrow { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.12em; color: var(--daylight); margin-bottom: 12px; text-transform: uppercase; }
     .h2 { font-family: var(--font-sans); font-size: clamp(32px, 4vw, 50px); font-weight: 700; letter-spacing: -0.015em; line-height: 0.95; color: var(--txt); margin-bottom: 12px; }
 
     /* reveal — kept for hero section; AOS handles the rest */
     .r { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .r.on { opacity: 1; transform: none; }
-    .r.d1 { transition-delay: 0.08s; } .r.d2 { transition-delay: 0.15s; } .r.d3 { transition-delay: 0.22s; }
+    .r.d1 { transition-delay: 0.08s; } .r.d2 { transition-delay: 0.15s; } .r.d3 { transition-delay: 0.22s; } .r.d4 { transition-delay: 0.30s; }
     @media (prefers-reduced-motion: reduce) {
       .r { opacity: 1 !important; transform: none !important; }
     }
@@ -362,13 +364,13 @@
       text-align: center;
     }
     .hero-eye {
-      font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.12em;
+      font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.12em;
       color: var(--txt3); margin-bottom: 14px;
       opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s;
     }
     .hero-h1 {
       font-family: var(--font-sans); font-size: clamp(50px, 6.5vw, 82px);
-      font-weight: 800; letter-spacing: -0.055em; line-height: 0.92; color: var(--txt); margin-bottom: 20px;
+      font-weight: 900; letter-spacing: -0.055em; line-height: 0.92; color: var(--txt); margin-bottom: 20px;
       opacity: 0; animation: fadeUp 0.5s ease forwards 0.2s;
     }
     .hero-h1 .g { color: var(--daylight); }
@@ -456,7 +458,26 @@
     .persona-you { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--txt3); text-transform: uppercase; margin-bottom: 16px; margin-top: -8px; }
 
     /* ── 3. PERSONA ── */
-    .persona { padding: 80px 0; }
+    .persona { padding: 0; }
+    .persona-band {
+      background: #1A1A18;
+      background-image: url('/cho-field-chair.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      padding: 160px 40px;
+      text-align: center;
+      position: relative;
+    }
+    .persona-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 17, 14, 0.68);
+    }
+    .persona-band > * { position: relative; z-index: 1; }
+    .persona-band .eyebrow { color: rgba(246,244,239,0.55); }
+    .persona-band .persona-hed { color: #F6F4EF; max-width: 760px; margin: 0 auto 16px; }
+    .persona-band .cho-bridge { color: rgba(246,244,239,0.6); }
     .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .persona-hed { font-family: var(--font-sans); font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; letter-spacing: -0.015em; line-height: 0.95; color: var(--txt); margin-bottom: 16px; }
     .persona-hed .g { color: var(--daylight); }
@@ -467,40 +488,67 @@
     .p-t3 { margin-top: 4px; }
 
     /* testimonial */
-    .tcard { padding: 8px 0; }
+    .tcard {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.07);
+      padding: 36px 40px 32px;
+      border-top: 3px solid var(--daylight);
+      max-width: 720px;
+    }
     .tcard::before {
       content: '\201C'; display: block;
-      font-size: 72px; line-height: 1; font-weight: 800;
-      color: var(--daylight); margin-bottom: 8px; letter-spacing: -0.02em;
+      font-size: 44px; line-height: 1; font-weight: 800;
+      color: var(--daylight); margin-bottom: 4px; letter-spacing: -0.02em;
     }
     .ttext {
-      font-size: 26px; font-weight: 700; letter-spacing: -0.025em;
-      color: var(--txt); line-height: 1.25; margin-bottom: 24px;
+      font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--txt); line-height: 1.3; margin-bottom: 24px;
     }
     .tauthor { display: flex; flex-direction: column; gap: 4px; }
     .tavatar { display: none; }
     .tname { font-weight: 700; font-size: 14px; color: var(--txt); }
     .trole { font-size: 13px; color: var(--txt3); }
 
+    /* CHO BRIDGE */
+    .cho-bridge {
+      font-size: 18px; font-style: italic; font-weight: 400;
+      color: var(--txt2); text-align: center;
+      margin: 32px 0;
+    }
+
     /* CHO REVEAL */
-    .cho-reveal { margin: 36px 0 24px; }
-    .cho-reveal-pre { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--txt3); margin-bottom: 10px; }
+    .cho-reveal {
+      display: block;
+      max-width: none;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-bottom: 24px;
+      background: #1A1C18;
+      border-radius: 0;
+      padding: 60px 40px;
+    }
+    .cho-reveal-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .cho-reveal-pre { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(246,244,239,0.45); margin-bottom: 10px; }
     .cho-title {
       font-family: var(--font-sans); font-size: clamp(40px, 5.5vw, 68px);
       font-weight: 900; letter-spacing: -0.03em; line-height: 1;
-      color: var(--txt); display: inline-block;
+      color: var(--neon); display: inline-block;
     }
     @keyframes cho-flash {
-      0%   { color: var(--txt);      filter: brightness(1); }
-      20%  { color: var(--neon);     filter: brightness(2.5); }
-      55%  { color: var(--daylight); filter: brightness(1.2); }
-      100% { color: var(--daylight); filter: brightness(1); }
+      0%   { color: var(--neon); text-shadow: none; }
+      15%  { color: #FFFFFF; text-shadow: 0 0 32px rgba(223,255,0,1), 0 0 64px rgba(223,255,0,0.5); }
+      50%  { color: var(--neon); text-shadow: 0 0 14px rgba(223,255,0,0.3); }
+      100% { color: var(--neon); text-shadow: none; }
     }
-    .cho-title.is-revealed { animation: cho-flash 0.65s ease-out forwards; }
+    .cho-title.is-revealed { animation: cho-flash 1.4s ease-out forwards; }
     @media (prefers-reduced-motion: reduce) {
-      .cho-title.is-revealed { animation: none !important; color: var(--daylight); }
+      .cho-title.is-revealed { animation: none !important; color: var(--neon); }
     }
-    .cho-reveal-post { font-size: 15px; color: var(--txt3); margin-top: 14px; line-height: 1.6; }
+    .cho-reveal-post { font-size: 15px; color: rgba(246,244,239,0.55); margin-top: 14px; line-height: 1.6; }
     .cho-jd-link {
       display: inline-block; margin-top: 20px;
       font-family: var(--font-mono); font-size: 11px; font-weight: 500;
@@ -509,7 +557,47 @@
     }
     .cho-jd-link:hover { color: var(--daylight-dim); }
 
+    /* When cho-reveal lives inside persona-band, neutralize the breakout styles */
+    .persona-band .cho-reveal {
+      width: auto;
+      margin-left: 0;
+      background: transparent;
+      padding: 0;
+    }
+
     /* ── 4. HOW IT WORKS ── */
+    /* ── PERSONA SPLIT — text + arms-raised photo ── */
+    .persona-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .persona-split-text { text-align: left; }
+    .persona-split-text .eyebrow { text-align: left; }
+    .persona-split-text .cho-bridge { text-align: left; margin-left: 0; }
+    .persona-split-photo {
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .persona-split-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 28%;
+      display: block;
+    }
+
+    /* ── HOW PHOTO — app-in-hand proof shot ── */
+    .how-photo-wrap {
+      width: 100%;
+      margin-top: 56px;
+      overflow: hidden;
+    }
+    .how-photo-wrap img { width: 100%; display: block; }
+
     .how { padding: 80px 0; }
     .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 44px; }
     .step {
@@ -521,7 +609,7 @@
     .step:hover { border-color: rgba(184,204,0,0.4); transform: translateY(-3px); }
     .step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--daylight); opacity: 0; transition: opacity 0.25s; }
     .step:hover::before { opacity: 1; }
-    .step-n { font-family: var(--font-mono); font-size: 56px; color: rgba(184,204,0,0.55); line-height: 1; margin-bottom: 8px; }
+    .step-n { font-family: var(--font-mono); font-size: 56px; font-weight: 600; color: rgba(184,204,0,0.55); line-height: 1; margin-bottom: 8px; }
     .step-ico { font-size: 24px; margin-bottom: 8px; }
     .step-title { font-family: var(--font-sans); font-size: 20px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; color: var(--txt); margin-bottom: 8px; }
     .step-body { font-size: 14px; color: var(--txt2); line-height: 1.6; }
@@ -545,10 +633,10 @@
     }
     .sb-btn:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.18); }
     .sb-btn.sb-active { background: rgba(184,204,0,0.12); border-color: rgba(184,204,0,0.45); }
-    .sb-btn.sb-active .sb-play { background: var(--daylight-dim); transform: scale(0.92); }
+    .sb-btn.sb-active .sb-play { background: rgba(191,218,0,0.85); transform: scale(0.92); }
     .sb-play {
       width: 40px; height: 40px; border-radius: 20px;
-      background: var(--daylight);
+      background: var(--neon);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
@@ -562,13 +650,7 @@
     .sb-lbl { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.7); font-family: var(--font-sans); letter-spacing: 0; text-align: center; line-height: 1.3; }
 
     /* ── 6. CLOSER ── */
-    .closer { padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
-    .closer::before {
-      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      width: 560px; height: 400px;
-      background: radial-gradient(ellipse, rgba(184,204,0,0.1) 0%, transparent 68%);
-      pointer-events: none;
-    }
+    .closer { padding: 100px 0; text-align: center; }
     .closer-in { position: relative; z-index: 1; }
     .scar {
       display: inline-flex; align-items: center; gap: 7px;
@@ -577,7 +659,7 @@
       font-family: var(--font-mono); letter-spacing: 0.12em; color: var(--daylight); margin-bottom: 24px;
     }
     .scar::before { content: '●'; font-size: 7px; animation: blink 1.2s ease infinite; }
-    .closer-h { font-family: var(--font-sans); font-size: clamp(40px, 5.5vw, 72px); font-weight: 800; letter-spacing: -0.025em; line-height: 0.95; color: var(--txt); margin-bottom: 16px; }
+    .closer-h { font-family: var(--font-sans); font-size: clamp(40px, 5.5vw, 72px); font-weight: 800; letter-spacing: -0.025em; line-height: 0.95; color: var(--txt); margin-bottom: 16px; max-width: 640px; margin-left: auto; margin-right: auto; }
     .closer-h .g { color: var(--daylight); }
     .closer-p { font-size: 16px; color: var(--txt2); line-height: 1.68; max-width: 480px; margin: 0 auto 36px; }
     .closer-form { max-width: 500px; margin: 0 auto; }
@@ -631,6 +713,7 @@
       .nav-sub { display: flex; }
       .nav-link-story { display: none; }
       .nav-link-manifesto { display: none; }
+      .nav-link-support { display: none; }
       .hero { padding: 104px 18px 72px; min-height: auto; }
       .hero-grid { grid-template-columns: 1fr; }
       .phone-wrap { display: none; }
@@ -641,12 +724,13 @@
       .proof-sep { display: none; }
       .persona-grid, .sb-grid { grid-template-columns: 1fr; gap: 36px; }
       .steps { grid-template-columns: 1fr; gap: 12px; }
-      .persona, .how, .soundboard, .closer { padding: 60px 0; }
+      .persona-band { padding: 100px 24px; }
+      .how, .soundboard, .closer { padding: 60px 0; }
       .msticky { display: flex; }
       .closer-form .form-row { flex-direction: column; }
       .closer-form .btn { width: 100%; }
       .closer-form, .spots { display: none; }
-      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px 200px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px 100px; }
       .f-social { order: -1; }
       .nav-social { display: none; }
       .obox { padding: 30px 18px; }
@@ -725,6 +809,25 @@
     .moment-progress.on { display: block; }
     .moment-progress-bar { height: 100%; background: var(--daylight); width: 0%; transition: width 0.15s linear; }
     .moment-phase { text-align: center; font-size: 11px; color: var(--txt3); font-weight: 700; letter-spacing: 1.5px; margin-top: 8px; min-height: 16px; text-transform: uppercase; }
+
+    /* ── STARTING NINE AUDIO PLAYER ── */
+    .s9-player { margin-top: 36px; margin-bottom: 8px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .s9-player-label { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--txt3); text-transform: uppercase; }
+    .s9-player-row { display: flex; align-items: center; gap: 14px; }
+    .s9-play-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 13px; letter-spacing: 0.04em; padding: 11px 20px; border-radius: var(--radius-sm);
+      border: none; cursor: pointer; transition: background 0.15s, transform 0.12s; white-space: nowrap;
+    }
+    .s9-play-btn:hover { background: var(--daylight-dim); transform: scale(1.02); }
+    .s9-play-btn:active { transform: scale(0.98); }
+    .s9-play-btn.playing { background: var(--surf); color: var(--txt); border: 1px solid var(--bord); }
+    .s9-play-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .s9-track-label { font-size: 13px; color: var(--txt3); }
+    .s9-progress { width: 220px; height: 3px; border-radius: 2px; background: var(--bord); overflow: hidden; display: none; }
+    .s9-progress.on { display: block; }
+    .s9-progress-bar { height: 100%; background: var(--daylight); width: 0%; transition: width 0.15s linear; }
 
     /* ── DEMO VIDEO PHONE ── */
     .demo-layout { display: flex; flex-direction: column; align-items: center; gap: 28px; }
@@ -959,7 +1062,7 @@
 
     /* ── MOMENT SECTION — DARK ── */
     .moment { background: #1A1A1A; }
-    .moment .eyebrow { color: rgba(223,255,0,0.45); }
+    .moment .eyebrow { color: var(--daylight); }
     .moment .h2 { color: #FFFFFF; }
     .moment .moment-sub { color: rgba(255,255,255,0.5); }
     .moment .moment-phase { color: rgba(255,255,255,0.3); }
@@ -987,7 +1090,7 @@
 
     /* ── STEP 4: WJW DARK SECTION ── */
     .wjw { background: #1F1F1F; color: #FFFFFF; }
-    .wjw .eyebrow { color: rgba(255,255,255,0.4); }
+    .wjw .eyebrow { color: var(--daylight); }
     .wjw .h2 { color: #FFFFFF; }
     .wjw .wjw-sub { color: rgba(255,255,255,0.5); }
     .wjw .wjw-card {
@@ -1184,19 +1287,24 @@
     .moment-lightning.flash { opacity: 1; }
     .moment > :not(canvas) { position: relative; z-index: 2; }
 
-    /* ── HEAR THE EXPERIENCE BUTTON — DARK ── */
+    /* ── HEAR THE EXPERIENCE BUTTON — DARK SECONDARY ── */
     .hear-btn {
-      background: #1A1A1A !important;
-      color: #B8CC00 !important;
-      border: 1px solid rgba(184,204,0,0.35) !important;
+      background: transparent !important;
+      color: #F6F4EF !important;
+      border: 1px solid rgba(255,255,255,0.2) !important;
+      font-weight: 600 !important;
+      height: var(--btn-height) !important;
+      padding: 0 28px !important;
     }
-    .hear-btn:hover { background: #252525 !important; border-color: rgba(184,204,0,0.6) !important; }
+    .hear-btn:hover { background: rgba(255,255,255,0.06) !important; border-color: rgba(255,255,255,0.38) !important; }
     .hear-btn:active { transform: scale(0.98); }
 
     /* ── TYPED.JS CURSOR — stop blink, fade out after typing ── */
     .typed-cursor.typed-cursor--blink { animation: none; }
     .typed-done .typed-cursor { opacity: 0; transition: opacity 0.4s ease; }
   </style>
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div id="scroll-progress" aria-hidden="true"></div>
@@ -1207,6 +1315,7 @@
   <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
   <a href="/our-story" class="nav-link nav-link-story">Our Story</a>
   <a href="/chief-hype-officer" class="nav-link nav-link-manifesto">The Chief Hype Officer</a>
+  <a href="/support" class="nav-link nav-link-support">Support</a>
   <div class="nav-right">
     <div class="nav-social">
       <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
@@ -1230,7 +1339,7 @@
     <div>
       <p class="hero-eye">NOW ON TESTFLIGHT — FREE BETA</p>
       <h1 class="hero-h1">Every kid deserves their <span class="g" id="typed-callup"></span> moment.</h1>
-      <p class="hero-sub">Walk-up songs and player announcements — one tap.<br>Set up faster than you can find your kid's other batting glove.</p>
+      <p class="hero-sub">Now Batting™ — walk-up songs and player announcements. Ridiculously easy.<br>Set up faster than you can find your kid's other batting glove.</p>
       <div class="hero-form-wrap">
         <div class="form-row">
           <input type="email" placeholder="Enter your email..." id="hEmail" />
@@ -1269,7 +1378,7 @@
     <div class="r d2" style="display:flex; flex-direction:column; align-items:center;">
       <audio id="demoAudio" src="/demo_walkup.mp3" preload="metadata"></audio>
       <div class="demo-ctrl" style="margin-top:20px;">
-        <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)">▶&nbsp;&nbsp;HEAR THE EXPERIENCE</button>
+        <button class="moment-btn hear-btn" id="demoBtn" onclick="playDemo(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><polygon points="5 3 19 12 5 21 5 3"/></svg>HEAR THE EXPERIENCE</button>
         <div class="moment-progress" id="demoProgress"><div class="moment-progress-bar" id="demoBar"></div></div>
         <p class="moment-phase" id="demoPhase"></p>
       </div>
@@ -1282,18 +1391,23 @@
 
 <!-- 3. PERSONA + TESTIMONIAL -->
 <section class="persona">
-  <div class="wrap" data-aos="fade-up">
+  <div class="persona-band" data-aos="fade-up">
     <p class="eyebrow r">Who it's for</p>
-    <h2 class="persona-hed r d1" style="max-width:640px;">You volunteered to do the walk-up music.<br>You didn't fully read the job description.<br>You showed up anyway.</h2>
+    <h2 class="persona-hed r d1">You volunteered to do the walk-up music.<br>You didn't fully read the job description.<br>You showed up anyway.</h2>
+    <p class="cho-bridge r d2">Which makes you, by default —</p>
 
-    <div class="cho-reveal r d2">
-      <p class="cho-reveal-pre">Official title</p>
-      <p class="cho-title" id="choReveal">Chief Hype Officer.</p>
-      <p class="cho-reveal-post">Salary: zero. Satisfaction: unreasonable.</p>
-      <a href="/chief-hype-officer" class="cho-jd-link">Read the full job description →</a>
+    <div class="cho-reveal r d3" style="margin-top:48px;">
+      <div class="cho-reveal-inner">
+        <p class="cho-reveal-pre">Official title</p>
+        <p class="cho-title" id="choReveal">Chief Hype Officer.</p>
+        <p class="cho-reveal-post">Salary: zero. Equity: priceless.</p>
+        <a href="/chief-hype-officer" class="cho-jd-link">Read the full job description →</a>
+      </div>
     </div>
+  </div>
 
-    <div class="tcard r d3" style="max-width:560px; margin-top:40px;">
+  <div class="wrap" style="padding-top:60px; padding-bottom:60px;" data-aos="fade-up">
+    <div class="tcard r" style="max-width:560px; margin:0 auto;">
       <p class="ttext">Super easy to figure out how to use it. The kids absolutely loved it.</p>
       <div class="tauthor">
         <div class="tname">Matt Schrager</div>
@@ -1328,6 +1442,9 @@
       </div>
     </div>
   </div>
+  <div class="how-photo-wrap" data-aos="fade-up" data-aos-delay="100">
+    <img src="/cho-phone-hand.jpg" alt="Now Batting app showing player walk-up at the field" loading="lazy" />
+  </div>
 </section>
 
 <div class="hr"></div>
@@ -1347,15 +1464,59 @@
       </div>
       <div class="r d1">
         <div class="sb-panel">
-          <div class="sb-btn" onclick="sbPlay(this,'national')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">National Anthem<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'takemeout')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Take Me Out<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'airhorn')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Air Horn<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'homerun')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Home Run Horn<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'charge')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">Charge<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
-          <div class="sb-btn" onclick="sbPlay(this,'lineup')"><div class="sb-play"><div class="sb-tri"></div></div><div class="sb-lbl">My Lineup<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'national')"><div class="sb-play"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="sb-lbl">National Anthem<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'takemeout')"><div class="sb-play"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="sb-lbl">Take Me Out<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'airhorn')"><div class="sb-play"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="sb-lbl">Air Horn<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'homerun')"><div class="sb-play"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="sb-lbl">Home Run Horn<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'charge')"><div class="sb-play"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="sb-lbl">Charge<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
+          <div class="sb-btn" onclick="sbPlay(this,'lineup')"><div class="sb-play"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="sb-lbl">My Lineup<span class="sb-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div></div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- THE STARTING NINE -->
+<section class="persona" style="background:var(--bg);">
+  <div class="wrap" data-aos="fade-up">
+    <p class="eyebrow r">New Feature</p>
+    <h2 class="h2 r d1" style="max-width:640px;">The Starting Nine.</h2>
+    <p class="sb-body r d2" style="max-width:580px; margin-bottom:32px;">One tap before first pitch and your AI announcer reads the entire lineup — every player, every position, full stadium energy. Sixty seconds. Zero prep on game day. The Chief Hype Officer's secret weapon.</p>
+    <div class="steps how-steps r d2" style="max-width:680px;">
+      <div class="step r">
+        <div class="step-n" style="font-variant-numeric:tabular-nums;">01</div>
+        <div class="step-title">Generate Once.</div>
+        <p class="step-body">Tap Generate. The AI announcer reads your full lineup with locked stadium language — <em>Leading off, batting first… Batting cleanup, hitting fourth…</em> — and saves it to your phone.</p>
+      </div>
+      <div class="step r d1">
+        <div class="step-n">02</div>
+        <div class="step-title">Play Before First Pitch.</div>
+        <p class="step-body">Hit play. The music bed drops. Your announcer reads all nine (or more). The crowd goes up. Then the walkup music starts automatically for your first batter.</p>
+      </div>
+      <div class="step r d2">
+        <div class="step-n">03</div>
+        <div class="step-title">Works Offline.</div>
+        <p class="step-body">Generated once, saved locally. No cell signal at Field 3? Doesn't matter. It plays every time.</p>
+      </div>
+    </div>
+    <div class="s9-player r d3">
+      <p class="s9-player-label">Hear a sample</p>
+      <div class="s9-player-row">
+        <button class="s9-play-btn" id="s9PlayBtn" onclick="toggleS9()">
+          <svg id="s9Icon" viewBox="0 0 16 16" fill="currentColor"><polygon points="3,1 14,8 3,15"/></svg>
+          <span id="s9BtnText">Play The Starting Nine</span>
+        </button>
+        <span class="s9-track-label">Reference track · 1 min</span>
+      </div>
+      <div class="s9-progress" id="s9Progress">
+        <div class="s9-progress-bar" id="s9Bar"></div>
+      </div>
+    </div>
+    <audio id="s9Audio" src="/starting-nine-reference.mp3" preload="none"></audio>
+
+    <div class="sb-badge r d3" style="margin-top:24px;">Available Now · Build Your Lineup</div>
   </div>
 </section>
 
@@ -1421,7 +1582,7 @@
 
       <div class="faq-item r">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>What do I need to use Now Batting?</span>
+          <span>What do I need to use Now Batting™?</span>
           <span class="faq-arrow">›</span>
         </button>
         <div class="faq-a">An iPhone and an active Apple Music subscription. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or plug into an aux cord. That's the whole setup.</div>
@@ -1451,7 +1612,7 @@
           <strong>1. Generate each player's announcement.</strong> Open each player card in the app and tap the microphone button to generate their announcement. Once it's generated, it's saved to your phone forever.<br><br>
           <strong>2. Set your song timestamps.</strong> On each player's song screen, drag the marker to the exact moment you want the music to kick in, then save. This is what makes it feel automatic on game day.<br><br>
           <strong>3. Download your songs in Apple Music.</strong> Open the Apple Music app, find each walk-up song, tap the three-dot menu, and select Download. Downloaded songs play back with no signal needed.<br><br>
-          Once those three things are done, Now Batting runs completely offline. No WiFi, no cell signal, no problem.
+          Once those three things are done, Now Batting™ runs completely offline. No WiFi, no cell signal, no problem.
         </div>
       </div>
 
@@ -1481,7 +1642,7 @@
 
       <div class="faq-item r d3">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>Is Now Batting available for Android?</span>
+          <span>Is Now Batting™ available for Android?</span>
           <span class="faq-arrow">›</span>
         </button>
         <div class="faq-a">Not yet. Now Batting is iOS only right now. Android is on the roadmap — if that's you, drop your email and you'll be first on the list when it's ready.</div>
@@ -1489,7 +1650,7 @@
 
       <div class="faq-item r d3">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>When will Now Batting launch in the App Store?</span>
+          <span>When will Now Batting™ launch in the App Store?</span>
           <span class="faq-arrow">›</span>
         </button>
         <div class="faq-a">Soon. We're in beta right now and working through the final polish before a full App Store launch. Drop your email to get early access via TestFlight — and you'll be the first to know when we go live.</div>
@@ -1510,7 +1671,7 @@
 
 <footer>
   <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
-  <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. Built for the Chief Hype Officer at Field 3s everywhere. · <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" style="color:var(--txt3);text-decoration:none;">@nowbattingapp</a> · <a href="/privacy" style="color:var(--txt3);text-decoration:none;">Privacy Policy</a> · <a href="/terms" style="color:var(--txt3);text-decoration:none;">Terms</a> · <a href="/chief-hype-officer" style="color:var(--txt3);text-decoration:none;">The Saturday Standard</a></p>
+  <p class="f-copy">© 2026 Now Batting™ · Every kid deserves their moment. Built for the Chief Hype Officer™ at Field 3s everywhere. · <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" style="color:var(--txt3);text-decoration:none;">@nowbattingapp</a> · <a href="/support" style="color:var(--txt3);text-decoration:none;">Support</a> · <a href="/privacy" style="color:var(--txt3);text-decoration:none;">Privacy Policy</a> · <a href="/terms" style="color:var(--txt3);text-decoration:none;">Terms</a> · <a href="/chief-hype-officer" style="color:var(--txt3);text-decoration:none;">The Saturday Standard</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1654,18 +1815,19 @@
     requestAnimationFrame(tick);
   })();
 
-  // ── CHO REVEAL — fires once per session, respects reduced-motion ──
+  // ── CHO REVEAL — fires on scroll into view, respects reduced-motion ──
   (function() {
     const el = document.getElementById('choReveal');
     if (!el) return;
-    if (sessionStorage.getItem('cho_revealed')) { el.classList.add('is-revealed'); return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('is-revealed'); return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         el.classList.add('is-revealed');
-        sessionStorage.setItem('cho_revealed', '1');
         observer.disconnect();
       }
-    }, { threshold: 0.6 });
+    }, { threshold: 0.8 });
     observer.observe(el);
   })();
 
@@ -1697,7 +1859,7 @@
     _demoPlaying = false;
     _lightningStarted = false;
     if (_demoAudio) { _demoAudio.pause(); _demoAudio.currentTime = 0; }
-    if (btn) { btn.textContent = '\u25ba\u00a0\u00a0HEAR THE EXPERIENCE'; btn.classList.remove('playing'); btn.classList.add('hear-btn'); btn.disabled = false; }
+    if (btn) { btn.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true' style='flex-shrink:0'><polygon points='5 3 19 12 5 21 5 3'/></svg>HEAR THE EXPERIENCE"; btn.classList.remove('playing'); btn.classList.add('hear-btn'); btn.disabled = false; }
     const prog = document.getElementById('demoProgress'), bar = document.getElementById('demoBar');
     if (prog) prog.classList.remove('on');
     if (bar)  bar.style.width = '0%';
@@ -1733,7 +1895,7 @@
     _demoPlaying = true;
     _lightningStarted = false;
     _demoAudio.currentTime = 0;
-    btn.textContent = '\u25a0\u00a0\u00a0STOP';
+    btn.innerHTML = '&#9632;&nbsp;&nbsp;STOP';
     btn.classList.add('playing');
     btn.classList.remove('hear-btn');
     if (window._momentStartAurora) window._momentStartAurora(false);
@@ -1968,6 +2130,50 @@
     current = audio;
     currentBtn = btn;
     btn.classList.add('sb-active');
+  };
+})();
+
+// ── Starting Nine player ──
+(function() {
+  const audio = document.getElementById('s9Audio');
+  const btn   = document.getElementById('s9PlayBtn');
+  const icon  = document.getElementById('s9Icon');
+  const label = document.getElementById('s9BtnText');
+  const prog  = document.getElementById('s9Progress');
+  const bar   = document.getElementById('s9Bar');
+  if (!audio || !btn) return;
+
+  const PLAY_SVG = '<polygon points="3,1 14,8 3,15"/>';
+  const STOP_SVG = '<rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/>';
+
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  });
+
+  audio.addEventListener('ended', () => {
+    btn.classList.remove('playing');
+    icon.innerHTML = PLAY_SVG;
+    label.textContent = 'Play The Starting Nine';
+    prog.classList.remove('on');
+    bar.style.width = '0%';
+  });
+
+  window.toggleS9 = async function() {
+    if (!audio.paused) {
+      audio.pause();
+      btn.classList.remove('playing');
+      icon.innerHTML = PLAY_SVG;
+      label.textContent = 'Play The Starting Nine';
+      return;
+    }
+    try {
+      await audio.play();
+      btn.classList.add('playing');
+      icon.innerHTML = STOP_SVG;
+      label.textContent = 'Stop';
+      prog.classList.add('on');
+    } catch(e) {}
   };
 })();
 </script>
