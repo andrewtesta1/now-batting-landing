@@ -65,23 +65,34 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 48px;
-      background: rgba(31,31,31,0.97); backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: padding 0.25s ease;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: padding 0.25s ease, background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
     }
     nav.shrunk { padding: 12px 48px; }
+    /* Once scrolled past hero — match the cream nav of the rest of the site */
+    nav.scrolled {
+      background: rgba(246, 244, 239, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom-color: rgba(0,0,0,0.09);
+    }
     .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-link {
       font-family: var(--font-sans); font-size: 14px; font-weight: 500;
-      color: rgba(246,244,239,0.55); text-decoration: none; transition: color 0.15s;
+      color: rgba(246,244,239,0.65); text-decoration: none; transition: color 0.15s;
     }
-    .nav-link:hover { color: rgba(246,244,239,0.90); }
-    .nav-link.active { color: rgba(246,244,239,0.90); }
+    .nav-link:hover { color: rgba(246,244,239,0.95); }
+    .nav-link.active { color: rgba(246,244,239,0.95); }
+    /* Scrolled: dark links to match cream nav */
+    nav.scrolled .nav-link { color: rgba(31,31,31,0.55); }
+    nav.scrolled .nav-link:hover, nav.scrolled .nav-link.active { color: rgba(31,31,31,0.90); }
     .nav-right { display: flex; align-items: center; gap: 16px; }
     .nav-social { display: flex; align-items: center; gap: 10px; }
-    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: rgba(246,244,239,0.5); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: rgba(246,244,239,0.55); transition: border-color 0.2s, color 0.2s, background 0.2s; }
     .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
+    nav.scrolled .nav-social a { border-color: rgba(0,0,0,0.12); background: transparent; color: rgba(31,31,31,0.45); }
+    nav.scrolled .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
     .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
     .nav-btn {
       background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
@@ -90,7 +101,10 @@
       border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
     }
     .nav-btn:hover { background: var(--daylight-dim); }
+    /* Logo: light over dark hero, dark over cream */
     .logo .bar { fill: var(--neon); }
+    nav.scrolled .logo text, nav.scrolled .logo circle { fill: #1F1F1F; }
+    nav.scrolled .logo .bar { fill: var(--daylight); }
 
     /* WAVEFORM LOGO ANIMATION */
     @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
@@ -146,7 +160,7 @@
       background-position: center top;
       display: flex; flex-direction: column; align-items: center;
       justify-content: space-between;
-      min-height: 90vh;
+      min-height: max(90vh, 66vw);
       padding: 96px 48px 80px;
       text-align: center;
       position: relative;
@@ -774,13 +788,19 @@
     const bar = document.getElementById('scroll-progress');
     const btn = document.getElementById('back-top');
     const navEl = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
+    const heroEl = document.querySelector('.hero');
+    const onScroll = () => {
       const s = document.documentElement.scrollTop;
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
       btn.classList.toggle('visible', s > 400);
       navEl.classList.toggle('shrunk', s > 60);
-    }, { passive: true });
+      // Switch from transparent to cream once past the hero
+      const heroH = heroEl ? heroEl.offsetHeight : window.innerHeight;
+      navEl.classList.toggle('scrolled', s > heroH * 0.85);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on load so refreshes mid-scroll are correct
   })();
 
 </script>
