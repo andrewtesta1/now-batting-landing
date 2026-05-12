@@ -858,6 +858,12 @@
       align-items: center;
       gap: 20px;
     }
+    .walkup-duration {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: rgba(246,244,239,0.38);
+      letter-spacing: 0.06em;
+    }
     .walkup-play-btn {
       width: 72px;
       height: 72px;
@@ -1103,25 +1109,23 @@
       gap: 8px;
     }
     .feat-sb-btn {
-      width: 48px; height: 48px;
+      width: 52px; height: 52px;
       border-radius: 50%;
-      background: rgba(184,204,0,0.1);
-      border: 1px solid rgba(184,204,0,0.2);
+      background: var(--daylight);
+      border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.2s;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 0 18px rgba(184,204,0,0.2);
     }
-    .feat-sb-btn svg { fill: var(--daylight) !important; }
-    .feat-sb-btn:hover { background: rgba(184,204,0,0.18); border-color: rgba(184,204,0,0.4); }
+    .feat-sb-btn svg { fill: #1F1F1F !important; }
+    .feat-sb-btn:hover { background: var(--daylight-dim); box-shadow: 0 0 28px rgba(184,204,0,0.35); }
     .feat-sb-btn:active { transform: scale(0.93); }
     .feat-sb-btn.playing {
-      background: var(--daylight);
-      border-color: var(--daylight);
-      box-shadow: 0 0 18px rgba(184,204,0,0.4);
+      box-shadow: 0 0 0 3px rgba(184,204,0,0.3), 0 0 24px rgba(184,204,0,0.4);
     }
-    .feat-sb-btn.playing svg { fill: #1F1F1F !important; }
     .feat-sb-label {
       font-family: var(--font-mono);
       font-size: 9px;
@@ -1140,7 +1144,7 @@
       .walkup-copy { order: 1; }
       .walkup-phone-img { max-width: 100%; transform: none; }
       .gameday-section { padding: 72px 0 88px; }
-      .feat-grid { grid-template-columns: 1fr; gap: 12px; }
+      .feat-grid { grid-template-columns: 1fr; gap: 20px; }
       .feat-card-new { padding: 32px 28px; }
     }
 
@@ -1851,6 +1855,7 @@
       <p class="walkup-sub">Music drops. Their name gets called. Song roars back. Fifteen seconds of pure stadium energy — one tap, every at-bat.</p>
       <div class="walkup-play-row">
         <button class="walkup-play-btn" id="wuBtn" onclick="pagePlay('wu')" aria-label="Play walk-up sample"></button>
+        <span class="walkup-duration">~15 sec</span>
         <div class="wu-waveform" id="wuWaveform" aria-hidden="true">
           <div class="wu-bar"></div><div class="wu-bar"></div><div class="wu-bar"></div>
           <div class="wu-bar"></div><div class="wu-bar"></div><div class="wu-bar"></div>
@@ -1937,7 +1942,7 @@
           </svg>
         </div>
         <p class="feat-card-phase">Between Innings</p>
-        <h3 class="feat-card-hed">Walk-ups, auto-playlisted.</h3>
+        <h3 class="feat-card-hed">Sides change. Music doesn't.</h3>
         <p class="feat-card-body">Sides change, the music keeps going. Every kid's walk-up song plays automatically between innings — streams from Apple Music, zero setup.</p>
       </div>
 
