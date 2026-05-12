@@ -804,7 +804,9 @@
 
     /* ── THE WALK-UP SECTION — CINEMATIC ── */
     .walkup-section {
-      background: #0C0C0C;
+      background:
+        linear-gradient(rgba(12,12,12,0.91), rgba(12,12,12,0.91)),
+        url('/batter.jpg') center 30% / cover no-repeat;
       padding: 120px 0;
       position: relative;
       overflow: hidden;
@@ -981,7 +983,7 @@
       gap: 16px;
     }
     .feat-card-new {
-      background: rgba(255,255,255,0.04);
+      background: rgba(10,10,10,0.86);
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: 24px;
       padding: 40px;
@@ -989,11 +991,26 @@
       overflow: hidden;
       transition: background 0.3s, border-color 0.3s, transform 0.25s;
     }
+    /* Photo background — sits behind the dark overlay */
+    .feat-card-new::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .feat-card-new[data-num="01"]::before { background-image: url('/batter-stance.jpg'); background-position: center 22%; }
+    .feat-card-new[data-num="02"]::before { background-image: url('/batter-web.jpg');   background-position: center 40%; }
+    .feat-card-new[data-num="03"]::before { background-image: url('/cho-field2.jpg');   background-position: center 62%; }
+    .feat-card-new[data-num="04"]::before { background-image: url('/cho-lawchair.jpg'); background-position: center 45%; }
     .feat-card-new:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(184,204,0,0.22);
+      background: rgba(10,10,10,0.74); /* overlay lifts → more photo shows through */
+      border-color: rgba(184,204,0,0.28);
       transform: translateY(-4px);
     }
+    .feat-card-new:hover::before { transform: scale(1.04); } /* subtle Ken Burns */
     /* Ghost number watermark */
     .feat-card-new::after {
       content: attr(data-num);
