@@ -4,21 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Chief Hype Officer — Now Batting</title>
-  <meta name="description" content="Walk-up songs and player announcements. Ridiculously easy. A field guide to the parent who runs the music." />
+  <meta name="description" content="The unofficial job description for the parent who shows up with a Bluetooth speaker and runs the walk-up music. You are the Chief Hype Officer." />
   <link rel="canonical" href="https://nowbattingapp.com/chief-hype-officer" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nowbattingapp.com/chief-hype-officer" />
   <meta property="og:site_name" content="Now Batting" />
   <meta property="og:title" content="The Chief Hype Officer — Now Batting" />
-  <meta property="og:description" content="Walk-up songs and player announcements. Ridiculously easy. A field guide to the parent who runs the music." />
+  <meta property="og:description" content="The unofficial job description for the parent who shows up with a Bluetooth speaker and runs the walk-up music." />
   <meta property="og:image" content="https://nowbattingapp.com/og-cho.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="The Chief Hype Officer — Now Batting" />
-  <meta name="twitter:description" content="Walk-up songs and player announcements. Ridiculously easy. A field guide to the parent who runs the music." />
+  <meta name="twitter:description" content="The unofficial job description for the parent who shows up with a Bluetooth speaker and runs the walk-up music." />
   <meta name="twitter:image" content="https://nowbattingapp.com/og-cho.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,14 +28,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #F6F4EF;
-      --mid: #FFFFFF;
-      --surf: #EDEAD9;
       --bord: rgba(0,0,0,0.09);
       --neon: #DFFF00;
       --daylight: #B8CC00;
@@ -45,7 +42,6 @@
       --txt3: #7A7A7A;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-      --radius-sm: 8px;
       --radius-md: 12px;
       --btn-height: 52px;
     }
@@ -60,7 +56,7 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -70,7 +66,6 @@
       transition: padding 0.25s ease, background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
     }
     nav.shrunk { padding: 12px 48px; }
-    /* Once scrolled past hero — match the cream nav of the rest of the site */
     nav.scrolled {
       background: rgba(246, 244, 239, 0.97);
       backdrop-filter: blur(16px);
@@ -84,7 +79,6 @@
     }
     .nav-link:hover { color: rgba(246,244,239,0.95); }
     .nav-link.active { color: rgba(246,244,239,0.95); }
-    /* Scrolled: dark links to match cream nav */
     nav.scrolled .nav-link { color: rgba(31,31,31,0.55); }
     nav.scrolled .nav-link:hover, nav.scrolled .nav-link.active { color: rgba(31,31,31,0.90); }
     .nav-right { display: flex; align-items: center; gap: 16px; }
@@ -101,12 +95,11 @@
       border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
     }
     .nav-btn:hover { background: var(--daylight-dim); }
-    /* Logo: light over dark hero, dark over cream */
     .logo .bar { fill: var(--neon); }
     nav.scrolled .logo text, nav.scrolled .logo circle { fill: #1F1F1F; }
     nav.scrolled .logo .bar { fill: var(--daylight); }
 
-    /* WAVEFORM LOGO ANIMATION */
+    /* LOGO ANIMATION */
     @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
     @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
     @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
@@ -123,185 +116,42 @@
     .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
     .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
 
-    /* SHARED */
     section { position: relative; z-index: 1; }
-    .eyebrow {
-      font-family: var(--font-mono); font-weight: 500; font-size: 11px;
-      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px;
-    }
-    .eyebrow.light { color: rgba(246,244,239,0.55); }
-
-    /* FORM */
-    .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .form-row input {
-      flex: 1; min-width: 200px;
-      background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.14); border-radius: 10px;
-      padding: 15px 17px; font-family: var(--font-sans); font-size: 15px; color: var(--txt);
-      outline: none; transition: border-color 0.2s;
-    }
-    .form-row input::placeholder { color: var(--txt3); }
-    .form-row input:focus { border-color: var(--daylight); }
-    .form-row input.err { border-color: var(--daylight); animation: shake 0.3s ease; }
-    .btn {
-      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
-      font-size: 15px; padding: 15px 26px; height: var(--btn-height); border-radius: var(--radius-md);
-      border: none; cursor: pointer; white-space: nowrap; transition: transform 0.12s, background 0.15s;
-    }
-    .btn:hover { background: var(--daylight-dim); }
-    .btn:active { transform: scale(0.98); }
-    .btn.loading { opacity: 0.5; pointer-events: none; }
-    @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
 
     /* ── HERO ── */
-    .hero {
-      background: #1A1A18;
-      background-image: url('/cho-field2.jpg');
+    .cho-hero {
+      background: #141414;
+      background-image: url('/cho-speaker-hero.jpg');
       background-size: cover;
-      background-position: center top;
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: space-between;
-      min-height: max(90vh, 66vw);
-      padding: 96px 48px 80px;
+      background-position: center 30%;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       position: relative;
+      padding: 0 48px;
     }
-    /* Gradient scrim: readable text at top, clear in middle (Field 2 sign), readable at bottom */
-    .hero::before {
+    .cho-hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(18, 17, 14, 0.64) 0%,
-        rgba(18, 17, 14, 0.20) 38%,
-        rgba(18, 17, 14, 0.20) 60%,
-        rgba(18, 17, 14, 0.72) 100%
+        rgba(14,14,12,0.50) 0%,
+        rgba(14,14,12,0.42) 40%,
+        rgba(14,14,12,0.62) 100%
       );
     }
-    .hero > * { position: relative; z-index: 1; }
-    .hero-top-content { width: 100%; }
-    .hero-bottom-content { width: 100%; }
-    .hero-brand {
-      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: rgba(246,244,239,0.65); margin-bottom: 8px;
-    }
-    .hero-category {
-      font-family: var(--font-sans); font-size: 16px; font-weight: 400;
-      color: rgba(246,244,239,0.55); margin-bottom: 0;
-    }
-    .hero-divider {
-      width: 64px; height: 1px; background: var(--daylight);
-      margin: 0 auto 32px;
-    }
-    .hero-h1 {
-      font-family: var(--font-sans); font-size: clamp(40px, 5vw, 64px);
-      font-weight: 900; letter-spacing: -0.03em; line-height: 1;
-      color: #F6F4EF; margin-bottom: 18px;
-    }
-    .hero-subtitle {
-      font-family: var(--font-sans); font-size: 18px; font-weight: 400;
-      font-style: italic; color: rgba(246,244,239,0.6);
-    }
-    .hero-scroll-cue {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      color: rgba(246,244,239,0.25); font-size: 20px;
-      animation: cue-bounce 2s ease-in-out infinite;
-      cursor: pointer;
-    }
-    @keyframes cue-bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
-
-    /* ── CREAM SECTIONS (lawn chair + post-reveal) ── */
-    .cho-cream-section {
-      background: var(--bg);
-      padding: 120px 48px;
-      text-align: center;
-    }
-    .cho-cream-inner {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Lawn chair stanza — large, dark on cream */
-    .cho-stanza {
-      font-size: clamp(20px, 2.8vw, 32px);
-      font-weight: 700;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      color: var(--txt);
-      margin-bottom: 80px;
-    }
-    .cho-stanza { margin-bottom: 48px; }
-    .cho-stanza:last-child { margin-bottom: 0; }
-
-    /* ── STANZA + PHOTO — two-column editorial ── */
-    .cho-stanza-row {
-      max-width: 960px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-      text-align: left;
-    }
-    .cho-stanza-col {}
-    .cho-stanza-col .cho-stanza { text-align: left; }
-    .cho-stanza-photo {
-      border-radius: 12px;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-    }
-    .cho-stanza-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 38%;
-      display: block;
-    }
-    @media (max-width: 768px) {
-      .cho-stanza-row {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-      }
-      .cho-stanza-col .cho-stanza { text-align: center; }
-      .cho-stanza-photo { aspect-ratio: 4/3; order: -1; }
-    }
-
-    /* ── DARK REVEAL BAND — the single dark moment ── */
-    .cho-reveal-band {
-      background: #1F1F1F;
-      background-image: url('/cho-speaker-hero.jpg');
-      background-size: cover;
-      background-position: center 22%;
-      padding: 200px 40px;
-      text-align: center;
-      position: relative;
-    }
-    .cho-reveal-band::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(20, 20, 20, 0.72);
-    }
-    .cho-reveal-band > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Reveal text — massive, neon, the only neon on the page */
-    .cho-reveal {
-      font-size: clamp(40px, 7vw, 96px);
+    .cho-hero > * { position: relative; z-index: 1; }
+    .cho-hero-hed {
+      font-family: var(--font-sans);
+      font-size: clamp(48px, 7.5vw, 100px);
       font-weight: 900;
       letter-spacing: -0.04em;
       line-height: 1;
       color: var(--neon);
-      display: inline-block;
-    }
-    .cho-reveal.flashing {
-      animation: cho-neon-flash 1.4s ease-out forwards;
+      max-width: 980px;
     }
     @keyframes cho-neon-flash {
       0%   { color: var(--neon); text-shadow: none; }
@@ -309,112 +159,49 @@
       45%  { color: var(--neon); text-shadow: 0 0 18px rgba(223,255,0,0.3); }
       100% { color: var(--neon); text-shadow: none; }
     }
+    .cho-hero-hed.flashing { animation: cho-neon-flash 1.4s ease-out forwards; }
 
-    /* Apple Music / Calvin aside — smaller, fully readable */
-    .cho-aside {
-      margin-bottom: 80px;
+    /* ── IDENTITY BEATS ── */
+    .cho-beats-section {
+      background: var(--bg);
+      padding: 120px 48px 100px;
     }
-    .cho-aside p {
-      font-size: clamp(15px, 1.6vw, 18px);
-      font-weight: 400;
-      line-height: 1.85;
-      color: var(--txt);
-      margin-bottom: 4px;
-    }
-
-    /* No salary beats — large, matches stanza weight */
-    .cho-beat {
-      font-size: clamp(20px, 2.8vw, 32px);
-      font-weight: 700;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      color: var(--txt);
-      margin-bottom: 4px;
-    }
-    .cho-beat-gap { height: 60px; }
-
-    /* Section dividers — daylight only, no animation */
-    .section-divider {
-      width: 64px;
-      height: 1px;
-      background: var(--daylight);
-      border-radius: 1px;
+    .cho-beats-inner {
+      max-width: 620px;
       margin: 0 auto;
     }
+    .cho-beat-line {
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--txt);
+      margin-bottom: 52px;
+    }
+    .cho-beat-line:last-child { margin-bottom: 0; }
 
-    /* ── CLOSING ACTION SECTION ── */
-    .paths-section {
+    /* ── NOMINATE ── */
+    .cho-nominate-section {
       background: var(--bg);
       padding: 0 48px 100px;
+    }
+    .cho-nominate-inner {
+      max-width: 400px;
+      margin: 0 auto;
+      padding-top: 60px;
+      border-top: 1px solid var(--bord);
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-    .paths-opening-divider { margin: 0 auto 80px; }
-
-    /* Primary action block */
-    .path-block {
-      max-width: 520px;
-      width: 100%;
+      gap: 16px;
       text-align: center;
     }
-    .path-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--daylight);
-      margin-bottom: 14px;
-    }
-    .path-headline {
-      font-size: clamp(22px, 2.8vw, 28px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      color: var(--txt);
-      margin-bottom: 12px;
-    }
-    .path-sub {
-      font-size: 16px;
-      font-weight: 400;
-      color: #444441;
-      line-height: 1.65;
-      margin-bottom: 28px;
-    }
-    .path-btn {
-      display: inline-block;
-      font-family: var(--font-sans);
-      font-size: 15px;
-      font-weight: 700;
-      padding: 15px 32px;
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.12s, background 0.15s, border-color 0.15s, color 0.15s;
-      white-space: nowrap;
-      border: 2px solid transparent;
-      letter-spacing: 0.01em;
-    }
-    .path-btn:active { transform: scale(0.97); }
-    .path-btn--primary {
-      background: var(--daylight);
-      color: #1F1F1F;
-      border-color: transparent;
-    }
-    .path-btn--primary:hover { background: var(--daylight-dim); border-color: transparent; }
-
-    /* Secondary action — nomination, demoted below primary */
-    .path-block--secondary {
-      margin-top: 40px;
-      max-width: 400px;
-    }
-    .path-block--secondary .path-sub {
+    .cho-nominate-label {
       font-size: 14px;
       color: var(--txt3);
-      margin-bottom: 18px;
+      line-height: 1.6;
     }
-    .path-btn--secondary {
+    .cho-nominate-btn {
       display: inline-block;
       font-family: var(--font-sans);
       font-size: 14px;
@@ -426,23 +213,17 @@
       padding: 11px 24px;
       transition: border-color 0.15s, color 0.15s;
     }
-    .path-btn--secondary:hover { border-color: var(--daylight); color: var(--daylight-dim); }
-    .path-text-link {
-      display: inline-block;
-      margin-top: 12px;
-      background: none;
-      border: none;
-      font-family: var(--font-sans);
-      font-size: 13px;
-      color: var(--txt3);
-      cursor: pointer;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    .cho-nominate-btn:hover { border-color: var(--daylight); color: var(--daylight-dim); }
+    .cho-text-link {
+      background: none; border: none;
+      font-family: var(--font-sans); font-size: 13px;
+      color: var(--txt3); cursor: pointer;
+      text-decoration: underline; text-underline-offset: 3px;
       transition: color 0.15s;
     }
-    .path-text-link:hover { color: var(--daylight); }
+    .cho-text-link:hover { color: var(--daylight); }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--bord); padding: 28px 48px;
       display: flex; align-items: center; justify-content: space-between;
@@ -456,17 +237,6 @@
     .f-social a { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--bord); color: var(--txt3); transition: border-color 0.2s, color 0.2s; }
     .f-social a:hover { border-color: var(--daylight); color: var(--daylight); }
     .f-social svg { width: 13px; height: 13px; fill: currentColor; }
-
-    /* OVERLAY */
-    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:500; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
-    .overlay.on { opacity:1; pointer-events:all; }
-    .ov-box { background:#1F1F1F; border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:40px; max-width:420px; width:90%; text-align:center; }
-    .ov-box h3 { font-size:22px; font-weight:800; color:#F6F4EF; margin-bottom:8px; }
-    .ov-box p { font-size:14px; color:rgba(246,244,239,0.6); margin-bottom:20px; line-height:1.6; }
-    .ov-url { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px 16px; font-family:var(--font-mono); font-size:13px; color:var(--daylight); word-break:break-all; margin-bottom:16px; }
-    .ov-btns { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
-    .ov-btn { background:var(--daylight); color:#1F1F1F; font-weight:700; font-size:14px; padding:0 22px; height:var(--btn-height); border-radius:var(--radius-md); border:none; cursor:pointer; display:inline-flex; align-items:center; }
-    .ov-btn.sec { background:transparent; border:1px solid rgba(255,255,255,0.15); color:rgba(246,244,239,0.6); }
 
     /* SCROLL PROGRESS */
     #scroll-progress {
@@ -489,30 +259,22 @@
     #back-top.visible { opacity: 1; pointer-events: all; }
     #back-top:hover { background: rgba(184,204,0,0.15); color: var(--daylight); border-color: var(--daylight); }
 
-    /* MOBILE */
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
-      nav { padding: 14px 20px; flex-wrap: nowrap; gap: 0; }
+      nav { padding: 14px 20px; }
       .nav-links { display: none; }
       .nav-social { display: none; }
       .nav-btn { font-size: 12px; padding: 0 14px; height: 38px; letter-spacing: 0.5px; }
-      .hero { padding: 80px 24px 72px; min-height: 85vh; }
-      .hero-category { font-size: 15px; }
-      .hero-divider { margin-bottom: 24px; width: 48px; }
-      .hero-h1 { font-size: clamp(36px, 10vw, 44px); }
-      .hero-subtitle { font-size: 16px; }
-      .cho-cream-section { padding: 80px 24px; }
-      .cho-reveal-band { padding: 120px 24px; }
-      .cho-aside { margin-bottom: 48px; }
-      .paths-section { padding: 0 24px 80px; }
-      .paths-opening-divider { margin-bottom: 48px; }
-.path-btn { width: 100%; text-align: center; }
+      .cho-hero { min-height: 82vh; padding: 0 24px; }
+      .cho-beats-section { padding: 80px 24px 72px; }
+      .cho-beat-line { margin-bottom: 40px; }
+      .cho-nominate-section { padding: 0 24px 80px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .idle-wave .bar { animation: none; }
-      .cho-reveal { animation: none !important; color: var(--neon) !important; text-shadow: none !important; }
-      .neon-divider { animation: none; }
+      .cho-hero-hed { animation: none !important; }
     }
   </style>
 </head>
@@ -556,74 +318,27 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-top-content" data-aos="fade-down">
-    <p class="hero-brand">Now Batting</p>
-    <p class="hero-category">Walk-up songs and player announcements. Ridiculously easy.</p>
-  </div>
-  <div class="hero-bottom-content" data-aos="fade-up">
-    <div class="hero-divider"></div>
-    <h1 class="hero-h1">The Chief Hype Officer.</h1>
-    <p class="hero-subtitle">A field guide.</p>
-  </div>
-  <div class="hero-scroll-cue">↓</div>
+<!-- HERO — JBL speaker overhead, declarative headline -->
+<section class="cho-hero">
+  <h1 class="cho-hero-hed" id="choHeroHed">You are the Chief Hype Officer.</h1>
 </section>
 
-<!-- BODY COPY — cream (lawn chair stanzas + photo) -->
-<section class="cho-cream-section">
-  <div class="cho-stanza-row">
-    <div class="cho-stanza-col">
-      <p class="cho-stanza" data-aos="fade-up">Lawn chair. Wagon. Bluetooth speaker the size of a small appliance.</p>
-      <p class="cho-stanza" data-aos="fade-up" data-aos-delay="150">Phone in one hand. Coffee — cold now — in the other.</p>
-      <p class="cho-stanza" data-aos="fade-up" data-aos-delay="300">Squinting through polarized sunglasses at a screen cranked to maximum brightness.</p>
-    </div>
-    <div class="cho-stanza-photo" data-aos="fade-up" data-aos-delay="100">
-      <img src="/cho-lawchair.jpg" alt="The Chief Hype Officer — lawn chair, phone, speaker at the ready" loading="lazy" />
-    </div>
+<!-- IDENTITY BEATS — cream canvas, manifesto column -->
+<section class="cho-beats-section">
+  <div class="cho-beats-inner">
+    <p class="cho-beat-line" data-aos="fade-up">You pay for Apple Music every month now. Just for this.</p>
+    <p class="cho-beat-line" data-aos="fade-up" data-aos-delay="80">You have opinions about drop points.</p>
+    <p class="cho-beat-line" data-aos="fade-up" data-aos-delay="160">You know every kid's song — and you know Calvin wants "Enter Sandman" starting at the riff. Not the intro.</p>
+    <p class="cho-beat-line" data-aos="fade-up" data-aos-delay="240">Because Calvin told you. Four times.</p>
   </div>
 </section>
 
-<!-- REVEAL BAND — the single dark moment -->
-<section class="cho-reveal-band">
-  <p class="cho-reveal" id="choReveal">You are the Chief Hype Officer.</p>
-</section>
-
-<!-- BODY COPY — cream (aside + beats) -->
-<section class="cho-cream-section">
-  <div class="cho-cream-inner">
-    <div class="cho-aside" data-aos="fade-up">
-      <p>You pay for Apple Music every month now. Just for this.</p>
-      <p>You have opinions about drop points.</p>
-      <p>You know every kid's song — and you know Calvin wants "Enter Sandman" starting at the riff. Not the intro.</p>
-      <p>Because Calvin told you. Four times.</p>
-    </div>
-
-    <p class="cho-beat" data-aos="fade-up">No salary.</p>
-    <p class="cho-beat" data-aos="fade-up" data-aos-delay="100">No training.</p>
-    <p class="cho-beat" data-aos="fade-up" data-aos-delay="200">No one coming to save you.</p>
-    <div class="cho-beat-gap"></div>
-    <p class="cho-beat" data-aos="fade-up" data-aos-delay="80">Just one job: make the moment.</p>
-  </div>
-</section>
-
-<!-- CLOSING ACTION SECTION -->
-<section class="paths-section">
-  <div class="section-divider paths-opening-divider"></div>
-
-  <!-- Primary action: Join the Beta -->
-  <div class="path-block" data-aos="fade-up">
-    <p class="path-eyebrow">If this sounds like you</p>
-    <h2 class="path-headline">Welcome. Take the job officially.</h2>
-    <p class="path-sub">Free beta · iOS only · Be ready for next Saturday.</p>
-    <a href="/#closer" class="path-btn path-btn--primary" onclick="track('cho_path_beta_signup')">Join the Beta</a>
-  </div>
-
-  <!-- Secondary action: Nominate -->
-  <div class="path-block path-block--secondary" data-aos="fade-up">
-    <p class="path-sub">Know someone who does this job?</p>
-    <a href="/chief-hype-officer/nominate" class="path-btn--secondary" onclick="track('cho_path_nominate_click')">Nominate a Chief Hype Officer</a>
-    <button class="path-text-link" onclick="textShare()">Or just text them this page</button>
+<!-- NOMINATE — quiet referral, not a conversion CTA -->
+<section class="cho-nominate-section">
+  <div class="cho-nominate-inner">
+    <p class="cho-nominate-label">Know someone who does this job?</p>
+    <a href="/chief-hype-officer/nominate" class="cho-nominate-btn">Nominate a Chief Hype Officer</a>
+    <button class="cho-text-link" onclick="textShare()">Or just text them this page</button>
   </div>
 </section>
 
@@ -644,7 +359,7 @@
       <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
     </svg>
   </div>
-  <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. &nbsp;·&nbsp; <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener">@nowbattingapp</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+  <p class="f-copy">© 2026 Now Batting™ · Every kid deserves their moment. &nbsp;·&nbsp; <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener">@nowbattingapp</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -655,36 +370,23 @@
   </div>
 </footer>
 
-<!-- SUCCESS OVERLAY (signup confirmation) -->
-<div class="overlay" id="overlay">
-  <div class="ov-box">
-    <h3>You're on the roster. ⚾</h3>
-    <p>Share your link — every signup moves you up 5 spots.</p>
-    <div class="ov-url" id="ourl">nowbattingapp.com/waitlist/ref=XXXXXX</div>
-    <div class="ov-btns">
-      <button class="ov-btn" onclick="copyLink()" id="ocopy">Copy Link</button>
-      <button class="ov-btn sec" onclick="closeOverlay()">Done</button>
-    </div>
-  </div>
-</div>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 40 });
 
-  // ── Analytics stub — replace with real SDK when installed ──
-  function track(event, props) {
-    try { console.log('[analytics]', event, props || ''); } catch(e) {}
-    // window.gtag?.('event', event, props);
-    // window.analytics?.track(event, props);
-  }
+  // ── Hero headline flash — fires on page load ──
+  window.addEventListener('load', function() {
+    const el = document.getElementById('choHeroHed');
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setTimeout(() => el.classList.add('flashing'), 500);
+  });
 
-  // ── Path 2: text share ──
+  // ── Text share ──
   const CHO_URL = 'https://nowbattingapp.com/chief-hype-officer';
-  const CHO_SHARE_TEXT = "You’re the Chief Hype Officer of our team and you didn’t know it had a name. Read this. " + CHO_URL;
+  const CHO_SHARE_TEXT = "You're the Chief Hype Officer of our team and you didn't know it had a name. Read this. " + CHO_URL;
 
   function textShare() {
-    track('cho_path_text_share');
     if (navigator.share) {
       navigator.share({ title: 'The Chief Hype Officer — Now Batting', text: CHO_SHARE_TEXT, url: CHO_URL }).catch(() => {});
     } else {
@@ -692,80 +394,24 @@
     }
   }
 
-  // ── Signup (Path 1 / nav) ──
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxEMdiflBkC6ttAdrhR-nINeCrv7gY351L7nLG43royyvUFrDdW-hIpCUEham87b2E2/exec';
-
-  async function signup(id, btn) {
-    const inp = document.getElementById(id);
-    const email = inp.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      inp.classList.add('err'); inp.focus();
-      setTimeout(() => inp.classList.remove('err'), 1200); return;
-    }
-    btn.textContent = 'Joining...'; btn.classList.add('loading');
-    const ref = Math.random().toString(36).substring(2,8).toUpperCase();
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, ref, source: id }), mode: 'no-cors'
-      });
-    } catch(e) { console.warn('Sheet error:', e); }
-    btn.textContent = '✓ You\'re on the roster!'; btn.classList.remove('loading'); btn.disabled = true; btn.style.opacity = '0.7';
-    inp.value = ''; inp.disabled = true;
-    document.getElementById('ourl').textContent = 'nowbattingapp.com/waitlist/ref=' + ref;
-    document.getElementById('overlay').classList.add('on');
-    document.body.style.overflow = 'hidden';
-    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#DFFF00','#B8CC00','#1F1F1F','#ffffff'], zIndex: 10000 });
-    setTimeout(() => { confetti({ particleCount: 40, spread: 50, origin: { y: 0.55 }, colors: ['#DFFF00','#B8CC00'], zIndex: 10000 }); }, 300);
-  }
-
-  function copyLink() {
-    const url = document.getElementById('ourl').textContent, btn = document.getElementById('ocopy');
-    const done = () => { btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = 'Copy Link', 2500); };
-    navigator.clipboard?.writeText(url).then(done).catch(() => {
-      const t = document.createElement('textarea'); t.value = url;
-      document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); done();
-    });
-  }
-
-  function closeOverlay() { document.getElementById('overlay').classList.remove('on'); document.body.style.overflow = ''; }
-  document.getElementById('overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeOverlay(); });
-
-  // ── Neon reveal: "You are the Chief Hype Officer." ──
-  (function() {
-    const el = document.getElementById('choReveal');
-    if (!el) return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mq.matches) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        el.classList.add('flashing');
-        obs.disconnect();
-      }
-    }, { threshold: 0.8 });
-    obs.observe(el);
-  })();
-
-  // ── Scroll progress + back-to-top + nav shrink ──
+  // ── Scroll progress + back-to-top + nav ──
   (function() {
     const bar = document.getElementById('scroll-progress');
     const btn = document.getElementById('back-top');
     const navEl = document.querySelector('nav');
-    const heroEl = document.querySelector('.hero');
+    const heroEl = document.querySelector('.cho-hero');
     const onScroll = () => {
       const s = document.documentElement.scrollTop;
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       bar.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
       btn.classList.toggle('visible', s > 400);
       navEl.classList.toggle('shrunk', s > 60);
-      // Switch from transparent to cream once past the hero
       const heroH = heroEl ? heroEl.offsetHeight : window.innerHeight;
       navEl.classList.toggle('scrolled', s > heroH * 0.85);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run once on load so refreshes mid-scroll are correct
+    onScroll();
   })();
-
 </script>
 </body>
 </html>
