@@ -138,9 +138,10 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(14,14,12,0.50) 0%,
-        rgba(14,14,12,0.42) 40%,
-        rgba(14,14,12,0.62) 100%
+        rgba(14,14,12,0.60) 0%,
+        rgba(14,14,12,0.38) 35%,
+        rgba(14,14,12,0.12) 68%,
+        rgba(246,244,239,1.00) 100%
       );
     }
     .cho-hero > * { position: relative; z-index: 1; }
@@ -176,13 +177,21 @@
       letter-spacing: -0.02em;
       line-height: 1.25;
       color: var(--txt);
-      margin-bottom: 52px;
+      margin-bottom: 76px;
     }
-    .cho-beat-line:last-child { margin-bottom: 0; }
+    .cho-beat-line:last-child {
+      margin-bottom: 0;
+      margin-top: 16px;
+      font-style: italic;
+      font-size: clamp(17px, 2.1vw, 23px);
+      font-weight: 500;
+      color: var(--txt2);
+      letter-spacing: -0.01em;
+    }
 
     /* ── NOMINATE ── */
     .cho-nominate-section {
-      background: var(--bg);
+      background: #EDEAD9;
       padding: 0 48px 100px;
     }
     .cho-nominate-inner {
@@ -379,7 +388,7 @@
     const el = document.getElementById('choHeroHed');
     if (!el) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    setTimeout(() => el.classList.add('flashing'), 500);
+    setTimeout(() => el.classList.add('flashing'), 900);
   });
 
   // ── Text share ──

@@ -328,6 +328,7 @@
     .hero .hero-sub { color: rgba(246,244,239,0.72); }
     .hero .hero-proof { color: rgba(246,244,239,0.50) !important; }
     .hero .hero-proof strong { color: var(--daylight); }
+    .hero .hero-store a { color: rgba(246,244,239,0.32); }
     @media (max-width: 768px) {
       .hero-bg-img { object-position: 55% 18%; }
       .hero-bg-photo::after {
@@ -391,6 +392,9 @@
     .hero-form-wrap { opacity: 0; animation: fadeUp 0.5s ease forwards 0.46s; max-width: 520px; margin: 0 auto; }
     .hero-proof { margin-top: 13px; font-size: 13px; color: var(--txt3); opacity: 0; animation: fadeUp 0.5s ease forwards 0.56s; }
     .hero-proof strong { color: var(--daylight); }
+    .hero-store { margin-top: 10px; font-size: 12px; opacity: 0; animation: fadeUp 0.5s ease forwards 0.7s; }
+    .hero-store a { color: rgba(246,244,239,0.38); text-decoration: none; transition: color 0.15s; }
+    .hero-store a:hover { color: var(--daylight); }
     .req-note { font-size: 11px; color: var(--txt3); margin-top: 10px; line-height: 1.6; opacity: 0; animation: fadeUp 0.5s ease forwards 0.62s; }
     .req-note strong { color: var(--txt2); font-weight: 600; }
     .req-note-mobile { display: none; }
@@ -864,6 +868,10 @@
       color: rgba(246,244,239,0.38);
       letter-spacing: 0.06em;
     }
+    @keyframes wu-btn-idle {
+      0%, 100% { box-shadow: 0 0 28px rgba(184,204,0,0.22), 0 4px 16px rgba(0,0,0,0.4); }
+      50%       { box-shadow: 0 0 52px rgba(184,204,0,0.50), 0 0 0 7px rgba(184,204,0,0.10), 0 4px 16px rgba(0,0,0,0.4); }
+    }
     .walkup-play-btn {
       width: 72px;
       height: 72px;
@@ -875,8 +883,12 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: background 0.15s, transform 0.1s, box-shadow 0.25s;
-      box-shadow: 0 0 32px rgba(184,204,0,0.28), 0 4px 16px rgba(0,0,0,0.4);
+      transition: background 0.15s, transform 0.1s;
+      animation: wu-btn-idle 2.6s ease-in-out infinite;
+    }
+    .walkup-play-btn:hover,
+    .walkup-play-btn.playing {
+      animation: none;
     }
     .walkup-play-btn:hover {
       background: var(--daylight-dim);
@@ -886,6 +898,7 @@
     .walkup-play-btn.playing {
       box-shadow: 0 0 60px rgba(184,204,0,0.52), 0 0 0 4px rgba(184,204,0,0.22), 0 4px 16px rgba(0,0,0,0.4);
     }
+    @media (prefers-reduced-motion: reduce) { .walkup-play-btn { animation: none !important; } }
 
     /* CSS waveform visualizer */
     .wu-waveform {
@@ -935,6 +948,14 @@
       pointer-events: none;
       z-index: 0;
     }
+    @keyframes wu-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-14px); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .walkup-phone-img { animation: wu-float 4.2s ease-in-out infinite; }
+    }
+
     .walkup-phone-img {
       position: relative;
       z-index: 1;
@@ -1838,6 +1859,7 @@
           <button class="btn" onclick="signup('hEmail',this)">Join the Beta</button>
         </div>
         <p class="hero-proof"><strong><span id="coach-count">19</span>+ parents</strong> already on the roster &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Free beta</p>
+        <p class="hero-store"><a href="https://apps.apple.com/app/now-batting/id6760744461" target="_blank" rel="noopener">Already on iOS? Download on the App Store →</a></p>
       </div>
     </div>
   </div>
