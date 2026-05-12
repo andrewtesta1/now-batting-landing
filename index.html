@@ -980,52 +980,50 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
-    /* Photo directly on card — ::before is the dark overlay on top */
     .feat-card-new {
-      background-color: #0C0C0C;
-      background-size: cover;
-      background-repeat: no-repeat;
+      background: #141414;
       border: 1px solid rgba(255,255,255,0.07);
+      border-top: 1px solid rgba(184,204,0,0.15);
       border-radius: 24px;
       padding: 40px;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.3s, transform 0.25s;
+      transition: border-color 0.3s, border-top-color 0.3s, transform 0.25s, box-shadow 0.3s;
     }
-    .feat-card-new[data-num="01"] { background-image: url('/batter-stance.jpg'); background-position: center 22%; }
-    .feat-card-new[data-num="02"] { background-image: url('/batter-web.jpg');   background-position: center 40%; }
-    .feat-card-new[data-num="03"] { background-image: url('/cho-field2.jpg');   background-position: center 62%; }
-    .feat-card-new[data-num="04"] { background-image: url('/cho-lawchair.jpg'); background-position: center 45%; }
-    /* ::before = dark overlay that transitions on hover */
+    /* Green glow — bleeds from top-left corner */
     .feat-card-new::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: rgba(10,10,10,0.88);
+      top: -60px; left: -40px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(184,204,0,0.10) 0%, transparent 70%);
+      pointer-events: none;
       z-index: 0;
-      transition: background 0.35s;
+      transition: opacity 0.4s;
     }
     .feat-card-new:hover {
-      border-color: rgba(184,204,0,0.28);
+      border-color: rgba(255,255,255,0.10);
+      border-top-color: rgba(184,204,0,0.45);
       transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(184,204,0,0.08);
     }
-    .feat-card-new:hover::before { background: rgba(10,10,10,0.76); }
-    /* Ghost number watermark */
+    .feat-card-new:hover::before { opacity: 1.8; }
+    /* Ghost number — visible design element */
     .feat-card-new::after {
       content: attr(data-num);
       position: absolute;
-      right: 28px; bottom: 16px;
-      font-size: 96px;
+      right: 24px; bottom: 12px;
+      font-size: 100px;
       font-weight: 800;
-      color: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.055);
       line-height: 1;
       pointer-events: none;
       font-family: var(--font-sans);
       letter-spacing: -0.05em;
       user-select: none;
-      z-index: 1;
+      z-index: 0;
     }
-    /* All card content must sit above the ::before overlay */
+    /* Content above both pseudo-elements */
     .feat-card-icon,
     .feat-card-phase,
     .feat-card-hed,
