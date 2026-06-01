@@ -61,14 +61,59 @@
       padding: 18px 48px;
       background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--bord);
+      overflow: visible;
     }
     .logo { display: flex; align-items: center; line-height: 1; text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-link {
-      font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--txt2);
-      text-decoration: none; transition: color 0.15s;
+    .hamburger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; background: none; border: none; cursor: pointer;
+      padding: 9px; border-radius: 8px; flex-shrink: 0; transition: background 0.15s;
     }
-    .nav-link:hover { color: var(--txt); }
+    .hamburger:hover { background: rgba(0,0,0,0.05); }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--txt); border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s ease; transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-menu {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(246,244,239,0.99); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--bord);
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-menu.open { max-height: 400px; }
+    .nav-menu-inner { padding: 28px 48px 36px; display: flex; flex-direction: column; gap: 0; }
+    .menu-link {
+      font-family: var(--font-sans); font-size: clamp(22px, 3.5vw, 38px);
+      font-weight: 800; letter-spacing: -0.03em; color: var(--txt);
+      text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--bord);
+      opacity: 0; transform: translateY(10px);
+      transition: color 0.15s, opacity 0.22s ease, transform 0.22s ease;
+    }
+    .menu-link:last-of-type { border-bottom: none; }
+    .menu-link:hover { color: var(--daylight); }
+    .nav-menu.open .menu-link { opacity: 1; transform: none; }
+    .nav-menu.open .menu-link:nth-child(1) { transition-delay: 0.04s; }
+    .nav-menu.open .menu-link:nth-child(2) { transition-delay: 0.09s; }
+    .nav-menu.open .menu-link:nth-child(3) { transition-delay: 0.14s; }
+    .menu-social {
+      display: flex; gap: 8px; padding-top: 20px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.22s ease 0.18s, transform 0.22s ease 0.18s;
+    }
+    .nav-menu.open .menu-social { opacity: 1; transform: none; }
+    .menu-social a {
+      display: flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 8px;
+      border: 1px solid var(--bord); color: var(--txt2); transition: border-color 0.2s, color 0.2s;
+    }
+    .menu-social a:hover { border-color: var(--daylight); color: var(--daylight); }
+    .menu-social svg { width: 15px; height: 15px; fill: currentColor; }
+    @media (max-width: 768px) { .nav-menu-inner { padding: 24px 20px 32px; } }
     .nav-link.active { color: var(--txt); }
     .nav-right { display: flex; align-items: center; gap: 16px; }
     .nav-social { display: flex; align-items: center; gap: 10px; }
@@ -252,6 +297,35 @@
     #back-top.visible { opacity: 1; pointer-events: all; }
     #back-top:hover { background: var(--daylight); color: #1F1F1F; border-color: var(--daylight); }
 
+    /* ── PHOTO BREAK ── */
+    .photo-break {
+      position: relative;
+      width: 100%;
+      height: 72vh;
+      min-height: 480px;
+      max-height: 800px;
+      overflow: hidden;
+    }
+    .photo-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+    .photo-break::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(31,31,31,0.55) 0%,
+        rgba(31,31,31,0.10) 30%,
+        rgba(31,31,31,0.10) 70%,
+        rgba(246,244,239,0.70) 100%
+      );
+      z-index: 1;
+    }
+
     /* MOBILE */
     @media (max-width: 768px) {
       nav {
@@ -265,6 +339,7 @@
       }
       .founder { padding: 130px 24px 72px; }
       .cta-section { padding: 80px 24px 80px; }
+      .photo-break { height: 56vw; min-height: 280px; max-height: 520px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
       .f-copy { order: 2; }
       .f-social { order: 3; }
@@ -282,36 +357,23 @@
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo">
-    <svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting">
-      <text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text>
-      <circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/>
-      <rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/>
-      <rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/>
-      <rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/>
-      <rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/>
-      <rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/>
-      <rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/>
-      <rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/>
-      <circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/>
-      <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
-    </svg>
-  </a>
-  <div class="nav-links">
-    <a href="/our-story" class="nav-link active">Our Story</a>
-    <a href="/chief-hype-officer" class="nav-link">The Chief Hype Officer</a>
-    <a href="/support" class="nav-link">Support</a>
-  </div>
+  <a href="/" class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
   <div class="nav-right">
-    <div class="nav-social">
-      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
-      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook">
-        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
-    </div>
     <a href="/#closer" class="nav-btn">Join the Beta</a>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-menu" id="navMenu">
+    <div class="nav-menu-inner">
+      <a href="/our-story" class="menu-link">Our Story</a>
+      <a href="/chief-hype-officer" class="menu-link">The Chief Hype Officer</a>
+      <a href="/support" class="menu-link">Support</a>
+      <div class="menu-social">
+        <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -341,6 +403,11 @@
     </div>
   </div>
 </section>
+
+<!-- PHOTO BREAK -->
+<div class="photo-break">
+  <img src="/andrew-field.jpg" alt="Andrew at the field, running walk-up music for his son's team." loading="lazy" />
+</div>
 
 <!-- SECTION 2: CTA -->
 <section class="cta-section">
@@ -398,6 +465,24 @@
   </div>
 </div>
 
+<script>
+  function toggleNav() {
+    const menu = document.getElementById('navMenu');
+    const btn  = document.getElementById('hamburger');
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  }
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('navMenu');
+    const btn  = document.getElementById('hamburger');
+    if (menu && menu.classList.contains('open') && !e.target.closest('nav')) {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 600, easing: 'ease-out', once: true, offset: 40 });

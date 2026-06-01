@@ -108,17 +108,27 @@
 <main>
   <p class="page-eye">Legal</p>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: May 2026 (v1.0)</p>
+  <p class="updated">Last updated: May 29, 2026 (v1.3)</p>
 
-  <p>This Privacy Policy explains how Now Batting collects, uses, and protects information when you use the Now Batting iOS application and the website at nowbattingapp.com.</p>
+  <p>This Privacy Policy explains how Chief Hype Officer LLC ("we," "us," or "our"), the operator of Now Batting, collects, uses, and protects information when you use the Now Batting iOS application and the website at nowbattingapp.com.</p>
 
   <h2>What We Collect</h2>
 
   <p><strong>On your device.</strong> Now Batting stores all roster data — player names, jersey numbers, batting order, walk-up song selections, and AI-generated announcements — locally on your device. This data stays on your device unless you explicitly use a feature that sends it elsewhere (described below).</p>
 
-  <p><strong>For AI-generated audio (player announcements and The Starting Nine lineup call).</strong> When you generate an AI announcement or a Starting Nine lineup call, the relevant player names, numbers, and roster name are sent to ElevenLabs to synthesize audio. The resulting audio is stored on a private content delivery network (Vercel Blob) so the app can fetch and cache it for offline playback. This audio is never published to a public-facing URL by Now Batting and is never indexed by search engines, social platforms, or any third party. The Starting Nine specifically is designed to play at the field, on your device — Now Batting does not host audio containing children's names on the public internet.</p>
+  <p><strong>For AI-generated audio (player announcements and The Roll Call lineup call).</strong> When you generate an AI announcement or a Roll Call lineup call, the relevant player names, numbers, and roster name are sent to ElevenLabs to synthesize audio. The resulting audio is stored on a content delivery network (Vercel Blob) so the app can fetch and cache it for offline playback. These audio files are served from a public URL that is unlisted — not indexed by search engines or made discoverable by Now Batting — but accessible to anyone who has the URL. The Roll Call specifically is designed to play at the field, on your device.</p>
 
-  <p><strong>For roster sharing.</strong> If you use the Share Roster feature, your roster data (names, numbers, song metadata, and associated audio) is temporarily uploaded to our servers to generate a share link. Shared roster data is automatically deleted after 48 hours.</p>
+  <p>Player announcements can be created two text-based ways: "Quick and Easy," where the app builds a standard introduction from the player's name and jersey number, or "Fully Custom," where you write the exact line you want announced (and can optionally use an AI assist to draft a creative descriptor — see Anthropic below). In both cases, the resulting text is sent to ElevenLabs to synthesize the audio. A third option, BYO Announcer, uses your own recording instead and is described next.</p>
+
+  <p><strong>AI-generated walk-up songs.</strong> When you generate a personalized walk-up song for a player, the player's first name, jersey number, and any descriptors you provide (such as "cleanup hitter" or a nickname) are sent to ElevenLabs Music to compose the song. The player's last name is never included in what we send to compose the lyrics. The resulting audio is stored on our content delivery network alongside other audio for that roster.</p>
+
+  <p><strong>AI-generated Team Hype Songs.</strong> When you generate a hype song for your team, we send ElevenLabs Music your team name, your selected genre and energy, an optional team "vibe" description if you provide one, and the first name and jersey number of each player on the roster. Player last names are not included. The resulting audio is stored on our content delivery network.</p>
+
+  <p><strong>Game Update announcements.</strong> When you announce a live score update during a game, the team names you've entered, the current inning, and the score are sent to ElevenLabs to synthesize the announcement audio. This audio is cached on your device for replay and is rate-limited to protect against abuse.</p>
+
+  <p><strong>BYO Announcer uploads.</strong> If you record or upload your own announcement audio (the BYO Announcer feature), that audio is stored on our content delivery network alongside AI-generated audio for the same player. We store it so the app can play it back on game day. It's automatically removed when you delete the associated roster, and you can also remove specific files by emailing cho@nowbattingapp.com.</p>
+
+  <p><strong>For roster sharing.</strong> If you use the Share Roster feature, your roster data (names, numbers, song metadata, and associated audio) is uploaded to our servers to generate a share link. Shared roster data is stored on our servers until you choose to delete it.</p>
 
   <p><strong>Email address (website only).</strong> If you sign up on our website to join the TestFlight beta, your email address is stored to send you a TestFlight access link. We do not collect email addresses through the app itself, and we do not sell, share, or rent email addresses to anyone.</p>
 
@@ -129,13 +139,11 @@
   <ul>
     <li>Your name (except as part of email signup, if you choose to provide it)</li>
     <li>Your location</li>
-    <li>Your browsing history or app usage analytics</li>
     <li>Device identifiers for advertising or tracking purposes</li>
-    <li>Audio recordings (we generate audio; we do not record it)</li>
     <li>Photos or videos</li>
     <li>Contact lists, calendars, or any other device data</li>
   </ul>
-  <p>We do not use advertising SDKs, tracking SDKs, or any third-party data collection beyond the services described in this policy.</p>
+  <p>We do not use advertising SDKs or sell user data. We do not allow your data to be used to train any third party's AI models. We use product analytics and crash reporting solely to improve the app and fix problems — these services are listed below.</p>
 
   <h2>How We Use Your Information</h2>
   <ul>
@@ -149,21 +157,24 @@
   <p>Now Batting uses the following third-party services:</p>
   <ul>
     <li><strong>Apple Music</strong> — Used for walk-up song search and playback. Your interactions with Apple Music are governed by Apple's Privacy Policy.</li>
-    <li><strong>ElevenLabs</strong> — Used to generate AI-voiced player announcements and lineup calls. Player names, numbers, and roster names are sent to ElevenLabs to synthesize audio. ElevenLabs does not retain this data for model training purposes.</li>
+    <li><strong>ElevenLabs</strong> — Used to generate AI-voiced player announcements (for batters and pitchers, including Bullpen and pitching-change calls) and lineup calls. Player names, numbers, and roster names are sent to ElevenLabs to synthesize audio. ElevenLabs does not retain this data for model training purposes.</li>
     <li><strong>Vercel</strong> — Hosts our API, website, and audio content delivery network. Processes API requests including AI generation and roster sharing.</li>
-    <li><strong>Upstash</strong> — Stores temporary roster-sharing data. Auto-expires after 48 hours.</li>
+    <li><strong>Upstash</strong> — Stores shared roster data (player names, jersey numbers, positions, song selections) so it can be accessed by other coaches you've shared with. Data is retained until you delete the shared roster.</li>
     <li><strong>Sentry</strong> — Anonymized crash reporting. No personally identifiable information is included in crash reports.</li>
+    <li><strong>Anthropic</strong> — Provides the Claude API used to generate creative descriptors for the "Fully Custom" announcement option and to suggest walk-up song drop points. Inputs sent: player names, optional descriptors entered by you, song titles. Anthropic does not retain these inputs for model training.</li>
+    <li><strong>Vercel Blob</strong> — Hosts the audio files we generate (announcements, walk-up songs, team songs, lineup calls) on a content delivery network so your app can fetch and cache them. Generated audio files are served from a public URL that is unlisted (not indexed or made discoverable) but accessible to anyone who has the URL.</li>
+    <li><strong>PostHog</strong> — Product analytics. Collects anonymous, aggregate usage data (which features are used, navigation paths, app lifecycle events) using a device-generated anonymous identifier. PostHog does not receive player names, last names, song selections, or any other personally identifiable information about you or your players.</li>
   </ul>
 
   <h2>Our Commitment to Children's Privacy</h2>
   <p>Now Batting is designed for use by coaches and parents, not by children directly. We do not knowingly collect personal information from children under 13.</p>
-  <p>Although Now Batting is used to celebrate young athletes — including by name in audio announcements — we deliberately design the app to keep this data on the user's device whenever possible. Generated announcement audio is never published to the public internet by Now Batting. We never display children's names in public-facing search results, social feeds, or shareable URLs hosted by us. The adult coach or parent who uses the app retains control over all generated content. If they choose to share an audio recording outside the app, they become the publisher of that content.</p>
+  <p>Although Now Batting is used to celebrate young athletes — including by name in audio announcements — we deliberately design the app to keep this data on the user's device whenever possible. Generated audio is stored on a content delivery network and served from unlisted URLs that we do not index or make publicly discoverable, though anyone with a URL can access it (as described under "What We Collect"). The adult coach or parent who uses the app retains control over all generated content. If they choose to share an audio recording outside the app, they become the publisher of that content.</p>
 
   <h2>Data Retention</h2>
   <ul>
     <li><strong>Local app data</strong> — Retained on your device until you delete the app or remove the data manually.</li>
-    <li><strong>Shared roster data</strong> — Automatically deleted from our servers after 48 hours. To request earlier deletion of a shared roster, email us with the share link.</li>
-    <li><strong>AI-generated audio on Vercel Blob</strong> — Retained as long as the associated roster exists in your app. Deleting a roster removes the corresponding audio assets.</li>
+    <li><strong>Shared roster data</strong> — Stored on our servers for as long as you keep the shared roster active. You can delete a shared roster at any time from within the app, or by emailing cho@nowbattingapp.com with the share link. When you delete a roster from the app, we remove it from our servers.</li>
+    <li><strong>AI-generated audio on Vercel Blob</strong> — Generated audio files (announcements, walk-up songs, team songs, lineup calls) are stored on our content delivery network so the app can fetch and cache them. These audio files are retained while the associated roster exists in your app. When you delete a roster from the app, we automatically remove any associated audio files (announcements, walk-up songs, team songs, lineup calls) from our content delivery network. If you'd like specific audio files removed without deleting the whole roster, email cho@nowbattingapp.com with the roster name and we'll handle it.</li>
     <li><strong>Email addresses (website signup)</strong> — Retained until you request removal.</li>
     <li><strong>Crash reports</strong> — Retained per Sentry's data retention policy (typically 30–90 days).</li>
   </ul>
@@ -173,23 +184,26 @@
   <ul>
     <li><strong>Access your data.</strong> Email us to request a copy of any data we have associated with you.</li>
     <li><strong>Delete your data.</strong> Uninstalling the app removes all local data. Email us to request deletion of your email from our waitlist or removal of any shared roster data.</li>
-    <li><strong>Opt out of crash reporting.</strong> Disable analytics for Now Batting in your iOS Settings under Privacy &amp; Security → Analytics &amp; Improvements.</li>
+    <li><strong>Delete a shared roster.</strong> Open the app, tap your team name, tap •••, and choose Stop sharing. You can also email cho@nowbattingapp.com with the share link.</li>
+    <li><strong>Delete cloud-hosted audio.</strong> Audio files for a roster are automatically removed when you delete that roster from the app. For per-player audio deletion or other specific requests, email cho@nowbattingapp.com with the roster name.</li>
+    <li><strong>Opt out of crash reporting.</strong> Crash reporting is currently not user-disableable from within the app. We're evaluating an in-app opt-out for a future release. If you have questions or concerns about crash reporting in the meantime, contact us at cho@nowbattingapp.com.</li>
   </ul>
-  <p>To exercise any of these rights, email <a href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a>.</p>
+  <p>To exercise any of these rights, email <a href="mailto:cho@nowbattingapp.com">cho@nowbattingapp.com</a>.</p>
 
   <h2>Changes to This Policy</h2>
   <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page reflects the most recent revision. We will not reduce your privacy rights without notifying you. Continued use of Now Batting after changes constitutes acceptance of the revised policy.</p>
 
   <h2>Contact</h2>
-  <p>Questions about this policy, requests for data access or deletion, or any privacy concern? Email us at <a href="mailto:support@nowbattingapp.com">support@nowbattingapp.com</a>.</p>
+  <p>Questions about this policy, requests for data access or deletion, or any privacy concern? Email us at <a href="mailto:cho@nowbattingapp.com">cho@nowbattingapp.com</a>.</p>
 
   <div class="divider"></div>
-  <p style="font-size:13px;">© 2026 Now Batting™ · <a href="/terms">Terms of Use</a></p>
+  <p style="font-size:13px;">v1.3 · Last updated May 29, 2026 — Clarified that announcement audio covers both batters and pitchers, aligned feature naming (Roll Call, Fully Custom), and softened the crash-reporting opt-out language.</p>
+  <p style="font-size:13px;">© 2026 Chief Hype Officer LLC · <a href="/terms">Terms of Use</a></p>
 </main>
 
 <footer>
   <div class="f-logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
-  <p class="f-copy">© 2026 Now Batting™ · <a href="/our-story">Our Story</a> · <a href="/chief-hype-officer">The Chief Hype Officer</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+  <p class="f-copy">© 2026 Chief Hype Officer LLC · <a href="/our-story">Our Story</a> · <a href="/chief-hype-officer">The Chief Hype Officer</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
 </body>
