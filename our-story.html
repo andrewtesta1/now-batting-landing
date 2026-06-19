@@ -172,79 +172,45 @@
     .btn.loading { opacity: 0.5; pointer-events: none; }
     @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
 
-    /* ── SECTION 1: DARK FOUNDER ── */
-    .founder {
-      background: #1F1F1F;
-      padding: 140px 48px 100px;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .founder .eyebrow { color: rgba(246,244,239,0.55); }
-    .founder-headline {
-      font-family: var(--font-sans); font-size: clamp(36px, 5vw, 64px);
-      font-weight: 800; letter-spacing: -0.03em; line-height: 1;
-      color: #F6F4EF; text-align: center;
-      margin-bottom: 64px;
-    }
-    .founder-body {
-      max-width: 620px; width: 100%;
-    }
-    .founder-body p {
-      font-size: clamp(17px, 1.8vw, 20px);
-      line-height: 1.8;
-      color: rgba(246,244,239,0.80);
-      margin-bottom: 28px;
-    }
-    .founder-body p.beat {
-      font-size: clamp(17px, 1.8vw, 20px);
-      color: rgba(246,244,239,0.80);
-      margin-bottom: 28px;
-    }
-    .founder-body p.kicker {
-      font-size: clamp(19px, 2.2vw, 24px);
-      font-weight: 700;
-      color: #F6F4EF;
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-    .neon-rule {
-      width: 48px; height: 3px;
-      background: var(--neon);
-      border-radius: 2px;
-      margin: 56px auto;
-    }
-    .founder-attribution {
-      text-align: center;
-    }
-    .founder-attribution p {
-      font-size: 15px;
-      color: rgba(246,244,239,0.45);
-      line-height: 1.8;
-      margin: 0;
-    }
-    .founder-attribution p strong {
-      color: rgba(246,244,239,0.65);
-      font-weight: 600;
-    }
+    /* ── SECTION 1: FOUNDER LETTER (personal, centered) ── */
+    .founder { background: var(--bg); padding: 130px 24px 92px; }
+    .founder-wrap { max-width: 680px; margin: 0 auto; }
+    .founder-head { text-align: center; margin-bottom: 36px; }
+    .founder-head .eyebrow { color: var(--daylight-dim); margin-bottom: 16px; }
+    .founder-headline { font-family: var(--font-sans); font-size: clamp(34px, 4.6vw, 56px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; color: var(--txt); }
+    .founder-figure { margin: 0 0 48px; }
+    .founder-figure img { width: 100%; border-radius: 18px; display: block; box-shadow: 0 6px 20px rgba(0,0,0,0.10), 0 26px 60px rgba(0,0,0,0.12); }
+    .founder-figure figcaption { margin-top: 13px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.03em; color: var(--txt3); text-align: center; }
+    .founder-letter > p { font-size: 18px; line-height: 1.85; color: var(--txt2); margin-bottom: 24px; }
+    .founder-letter .founder-lead { font-size: 21px; line-height: 1.65; font-weight: 600; color: var(--txt); margin-bottom: 28px; }
+    .founder-letter .pullquote { font-family: var(--font-sans); font-size: clamp(25px, 3.4vw, 34px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; color: var(--txt); margin: 44px 0; padding-left: 22px; border-left: 4px solid var(--daylight); }
+    .founder-letter .closer-line { font-size: 20px; font-weight: 700; color: var(--txt); }
+    .founder-sign { display: flex; align-items: center; gap: 16px; margin-top: 46px; padding-top: 30px; border-top: 1px solid var(--bord); }
+    .founder-sign img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: 50% 28%; flex-shrink: 0; }
+    .founder-sign .nm { font-size: 20px; font-weight: 800; color: var(--txt); letter-spacing: -0.01em; }
+    .founder-sign .rl { font-size: 14px; color: var(--txt3); margin-top: 3px; }
+    .neon-rule { width: 48px; height: 3px; background: var(--neon); border-radius: 2px; margin: 56px auto; }
+    @media (max-width: 768px) { .founder { padding: 116px 22px 72px; } }
 
     /* ── SECTION 2: CREAM CTA ── */
     .cta-section {
-      background: var(--bg);
+      background: #1F1F1F;
       padding: 120px 48px 120px;
       display: flex; flex-direction: column; align-items: center;
       text-align: center;
     }
-    .cta-section .eyebrow { color: var(--txt3); }
+    .cta-section .eyebrow { color: rgba(246,244,239,0.55); }
     .cta-headline {
       font-family: var(--font-sans); font-size: clamp(34px, 4.5vw, 58px);
       font-weight: 800; letter-spacing: -0.03em; line-height: 1;
-      color: var(--txt); margin-bottom: 16px;
+      color: #F6F4EF; margin-bottom: 16px;
     }
     .cta-sub {
-      font-size: 18px; color: var(--txt3); margin-bottom: 40px; line-height: 1.5;
+      font-size: 18px; color: rgba(246,244,239,0.6); margin-bottom: 40px; line-height: 1.5;
     }
     .cta-form-wrap { width: 100%; max-width: 480px; }
     .cta-fine {
-      margin-top: 14px; font-size: 13px; color: var(--txt3);
+      margin-top: 14px; font-size: 13px; color: rgba(246,244,239,0.45);
       font-family: var(--font-mono);
     }
 
@@ -357,9 +323,9 @@
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo"><svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
+  <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
   <div class="nav-right">
-    <a href="/#closer" class="nav-btn">Join the Beta</a>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download Free</a>
     <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -367,7 +333,6 @@
   <div class="nav-menu" id="navMenu">
     <div class="nav-menu-inner">
       <a href="/our-story" class="menu-link">Our Story</a>
-      <a href="/chief-hype-officer" class="menu-link">The Chief Hype Officer</a>
       <a href="/support" class="menu-link">Support</a>
       <div class="menu-social">
         <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -379,68 +344,72 @@
 
 <!-- SECTION 1: FOUNDER LETTER -->
 <section class="founder">
-  <p class="eyebrow" data-aos="fade-up">The Founder</p>
-  <h1 class="founder-headline" data-aos="fade-up" data-aos-delay="60">I built this for a Saturday morning.</h1>
+  <div class="founder-wrap">
+    <div class="founder-head" data-aos="fade-up">
+      <p class="eyebrow">From the Founder</p>
+      <h1 class="founder-headline">Why I built this.</h1>
+    </div>
+    <figure class="founder-figure" data-aos="fade-up" data-aos-delay="60">
+      <img src="/cho-field2-web.jpg" alt="Andrew walking up to Field 2 — folding chair and speaker in hand, looking out at the empty diamond." loading="eager" />
+      <figcaption>Field 2. Folding chair. Coffee going cold.</figcaption>
+    </figure>
+    <div class="founder-letter">
+      <p class="founder-lead">When I did the walk-up music for my son's 7U team, I didn't realize how much work it would be. I ended up spending hours editing songs and announcer voices together into a playlist.</p>
+      <p data-aos="fade-up">So I went looking for an app to make it easier. Something I could set up without a PhD, run from my chair, and hand off in seconds.</p>
+      <p data-aos="fade-up">I tried the ones out there. None of them sounded as good. Most made me pay extra for the voices, or nickel-and-dimed me for features that should've just been included.</p>
+      <p data-aos="fade-up">None of them felt built by someone who'd actually sat by the dugout in a folding chair, Bluetooth speaker going, coffee going cold.</p>
+      <p class="pullquote" data-aos="fade-up">So I built the one I wanted.</p>
+      <p data-aos="fade-up">I spent months building it. When it was finally real, I posted in a travel-baseball group on Facebook and asked for honest feedback. More than 125 people — from Colorado to Minnesota to California to right here in New Jersey — signed up, and so many took the time to tell me exactly what they wanted it to do. I couldn't be more grateful.</p>
+      <p data-aos="fade-up">In the process, I found there are people just like me who pour their heart into making memories for their teams.</p>
+      <p data-aos="fade-up">Showing up early, hauling the gear, knowing every name and every song — it deserves to be celebrated.</p>
+      <p data-aos="fade-up">I'm hoping Now Batting can bring together a community of Chief Hype Officers, all across the country, making sure every kid gets their moment.</p>
+      <p data-aos="fade-up">It's for every parent or coach who gets how much it means — to hear a kid's name announced, their song hit, and watch them walk to the plate with swag.</p>
+      <p data-aos="fade-up">You shouldn't need to be a sound engineer. You shouldn't have to pay for the good stuff piece by piece. It should just be easy, and it should just work.</p>
+      <p class="closer-line" data-aos="fade-up">Life's stressful enough. Game day shouldn't be.</p>
 
-  <div class="founder-body">
-    <p data-aos="fade-up" data-aos-delay="100">When my son started playing 7U baseball, I volunteered to run the walk-up music.</p>
-    <p data-aos="fade-up" data-aos-delay="120">I didn't read the full job description.</p>
-    <p data-aos="fade-up" data-aos-delay="140">I spent seasons collecting song requests, finding audio files, editing tracks, adding voice clips, and rebuilding the playlist before every game.</p>
-    <p data-aos="fade-up" data-aos-delay="160">It took hours.</p>
-    <p data-aos="fade-up" data-aos-delay="180">But the kids loved it. Every time I showed up, they asked if I was doing the music. When their song hit, you could see it — they stood a little taller. Felt like big leaguers for 15 seconds.</p>
-    <p data-aos="fade-up" data-aos-delay="200">That made it worth it.</p>
-    <p data-aos="fade-up" data-aos-delay="220">I looked for an app that made it easier. Something easy to set up, easy to run, and easy to hand off.</p>
-    <p data-aos="fade-up" data-aos-delay="240">I could not find it.</p>
-    <p class="kicker" data-aos="fade-up" data-aos-delay="260">So I built it.</p>
-    <p data-aos="fade-up" data-aos-delay="280">Now Batting was created to give every kid their big-league moment — and to make life easier for the parents and coaches who make those moments happen.</p>
-
-    <div class="neon-rule" data-aos="fade-up" data-aos-delay="300"></div>
-
-    <div class="founder-attribution" data-aos="fade-up" data-aos-delay="320">
-      <p><strong>— Andrew Testa</strong></p>
-      <p>Dad. Coach. Chief Hype Officer.</p>
-      <p>Denville, NJ</p>
+      <div class="founder-sign" data-aos="fade-up">
+        <img src="/andrew-avatar.jpg" alt="Andrew, founder of Now Batting" loading="lazy" width="240" height="240" />
+        <div>
+          <div class="nm">— Andrew</div>
+          <div class="rl">Founder · Chief Hype Officer · Denville, NJ</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PHOTO BREAK -->
-<div class="photo-break">
-  <img src="/andrew-field.jpg" alt="Andrew at the field, running walk-up music for his son's team." loading="lazy" />
-</div>
-
 <!-- SECTION 2: CTA -->
 <section class="cta-section">
-  <p class="eyebrow" data-aos="fade-up">Join the Beta</p>
-  <h2 class="cta-headline" data-aos="fade-up" data-aos-delay="60">Every kid deserves their moment.</h2>
+  <p class="eyebrow" data-aos="fade-up">On the App Store</p>
+  <h2 class="cta-headline" data-aos="fade-up" data-aos-delay="60">Every team needs a Chief Hype Officer.</h2>
   <p class="cta-sub" data-aos="fade-up" data-aos-delay="100">Go ahead. Take the job officially.</p>
   <div class="cta-form-wrap" data-aos="fade-up" data-aos-delay="140">
-    <div class="form-row">
-      <input type="email" placeholder="Enter your email address..." id="sEmail" />
-      <button class="btn" onclick="signup('sEmail',this)">Join the Beta</button>
-    </div>
-    <p class="cta-fine">Free beta · iOS only</p>
+    <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>
+      Download on the App Store
+    </a>
+    <p class="cta-fine">iOS · Free 7-day trial, then $9.99/year</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="f-logo">
-    <svg class="idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting">
       <text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text>
       <circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/>
-      <rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/>
-      <rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/>
-      <rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/>
+      <rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/>
+      <rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/>
+      <rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/>
       <rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/>
-      <rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/>
-      <rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/>
-      <rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/>
+      <rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/>
+      <rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/>
+      <rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/>
       <circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/>
       <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
     </svg>
   </div>
-  <p class="f-copy">© 2026 Now Batting · Every kid deserves their moment. &nbsp;·&nbsp; <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener">@nowbattingapp</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+  <p class="f-copy">© 2026 Now Batting · Every team needs a Chief Hype Officer. &nbsp;·&nbsp; <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener">@nowbattingapp</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>

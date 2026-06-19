@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Now Batting</title>
+  <title>Now Batting — Walk-Up Song &amp; Announcer App for Youth Baseball &amp; Softball</title>
   <meta name="description" content="Give every kid their big-league moment. Now Batting™ plays personalized walk-up songs, AI-generated announcements, and full pre-game lineup calls for youth baseball and softball. The Chief Hype Officer's app. iOS." />
   <meta name="keywords" content="walk-up songs youth baseball, baseball walk up music app, softball walk up songs, little league walk up music, youth baseball announcer app, stadium announcements youth sports, baseball coach app, walk up song app iOS" />
   <link rel="canonical" href="https://nowbattingapp.com/" />
@@ -42,14 +42,20 @@
           "name": "Andrew Testa"
         },
         "featureList": [
-          "Walk-up song selection from Apple Music",
-          "AI-generated stadium player announcements",
-          "Custom song start timestamps",
-          "Multiple team roster management",
-          "Roster sharing with coaches and parents",
-          "Game-day soundboard with National Anthem, ballpark sounds, and Between Innings music",
-          "My Lineup tab for direct walk-up song playback"
-        ]
+          "AI-composed walk-up songs with the player's name and number in the lyrics",
+          "Walk-up songs from Apple Music with custom start timestamps",
+          "AI-generated stadium announcer calls for each batter",
+          "Roll Call pre-game lineup announcements",
+          "Team hype song that names every player on the roster",
+          "Game-day soundboard and live score calls",
+          "Multiple team roster management and roster sharing"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "9.99",
+          "priceCurrency": "USD",
+          "description": "7-day free trial, then $9.99 per year"
+        }
       },
       {
         "@type": "FAQPage",
@@ -67,7 +73,7 @@
             "name": "What do I need to use Now Batting?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Now Batting requires an iPhone running iOS and an active Apple Music subscription for walk-up song playback. For best results, connect your phone to a Bluetooth speaker or aux cord so the whole field can hear."
+              "text": "Now Batting needs an iPhone. An Apple Music subscription is only required to play full-length Apple Music songs as walk-ups — the AI-composed walk-up songs, announcer calls, Roll Call, and soundboard all work without it. For best results, connect your phone to a Bluetooth speaker or aux cord so the whole field can hear."
             }
           },
           {
@@ -99,7 +105,7 @@
             "name": "Can I share my roster with another coach or parent?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Tap 'Share Roster' and send a link. If the recipient has Now Batting installed, the roster imports in one tap. If they don't have the app yet, they'll see the lineup and an 8-character import code to enter once they download it."
+              "text": "Yes — sharing is part of a paid plan. Tap 'Share Roster' and send a link; anyone you send it to can view and play your whole roster for free, no subscription needed. To make it their own and edit it, they start their own subscription (free trial included)."
             }
           },
           {
@@ -115,7 +121,7 @@
             "name": "Is there a soundboard for game-day sounds?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. The SOUNDS tab has National Anthem, Take Me Out to the Ballgame, Air Horn, Home Run Horn, Stomp, and Charge — all offline. The Between Innings section streams hype music from Apple Music while sides change. My Lineup lets you tap any player's walk-up song directly."
+              "text": "Yes. The game-day soundboard has Air Horn, Home Run Horn, Charge, and Stomp — all offline. The Music Hub streams hype music from Apple Music between innings, and lets you tap any player's walk-up song directly."
             }
           }
         ]
@@ -356,7 +362,7 @@
     }
     .hero-bg-img {
       width: 100%; height: 100%; object-fit: cover;
-      object-position: 62% 22%;
+      object-position: 50% 18%;
       filter: grayscale(35%) contrast(1.08);
       display: block;
     }
@@ -385,6 +391,13 @@
     .hero .hero-h1 { color: #FFFFFF; }
     .hero .hero-h1 .g { color: var(--neon); }
     .hero .hero-sub { color: rgba(246,244,239,0.72); }
+    .hero .hero-bridge-line { color: rgba(246,244,239,0.92); font-size: 17px; line-height: 1.5; font-style: italic; max-width: 540px; margin-bottom: 16px; }
+    .hero .hero-sub .g { color: var(--neon); font-weight: 600; font-style: normal; }
+    .hero .hero-sub strong { color: #F6F4EF; font-weight: 700; }
+    .hero-features { list-style: none; margin: 2px 0 22px; padding: 0; display: flex; flex-direction: column; gap: 8px; max-width: 540px; }
+    .hero-features li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.4; color: rgba(246,244,239,0.78); }
+    .hero-features li::before { content: ''; position: absolute; left: 0; top: 7px; width: 8px; height: 8px; border-radius: 2px; background: var(--neon); }
+    .hero-features strong { color: #F6F4EF; font-weight: 700; }
     .hero .hero-proof { color: rgba(246,244,239,0.50) !important; }
     .hero .hero-proof strong { color: var(--daylight); }
     .hero .hero-store a { color: rgba(246,244,239,0.32); }
@@ -495,6 +508,10 @@
     }
     .hero-sound-btn.playing .sound-dot { animation: sound-pulse 1.2s ease-in-out infinite; }
     .sound-dot { width: 6px; height: 6px; border-radius: 3px; background: var(--daylight); }
+    .hero-sound-note {
+      max-width: 320px; margin: 12px auto 0; text-align: center;
+      font-size: 12px; line-height: 1.5; color: rgba(246,244,239,0.42);
+    }
 
     /* scroll hint */
     .scroll-cue {
@@ -559,9 +576,9 @@
     .persona { padding: 0; }
     .persona-band {
       background: #1A1A18;
-      background-image: url('/cho-field2.jpg');
+      background-image: url('/cho-persona-web.jpg');
       background-size: cover;
-      background-position: center 80%;
+      background-position: center 35%;
       padding: 160px 40px;
       text-align: center;
       position: relative;
@@ -607,6 +624,9 @@
     .tavatar { display: none; }
     .tname { font-weight: 700; font-size: 14px; color: var(--txt); }
     .trole { font-size: 13px; color: var(--txt3); }
+    /* Testimonial author with small circular headshot */
+    .tauthor.tauthor--avatar { flex-direction: row; align-items: center; gap: 13px; }
+    .tavatar-img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: 50% 38%; flex-shrink: 0; }
 
     /* CHO BRIDGE */
     .cho-bridge {
@@ -774,6 +794,10 @@
 
     /* ── 6. CLOSER ── */
     .closer { padding: 100px 0; text-align: center; }
+    .midcta { background: var(--bg); padding: 76px 24px; text-align: center; position: relative; z-index: 1; }
+    .midcta-h { font-family: var(--font-sans); font-size: clamp(24px, 3.2vw, 34px); font-weight: 800; letter-spacing: -0.02em; color: var(--txt); margin: 0 auto 10px; max-width: 620px; line-height: 1.12; }
+    .midcta-p { color: var(--txt2); font-size: 16px; margin: 0 auto 24px; }
+    .midcta .form-row { max-width: 460px; margin: 0 auto; }
     .closer-in { position: relative; z-index: 1; }
     .scar {
       display: inline-flex; align-items: center; gap: 7px;
@@ -1240,6 +1264,29 @@
       color: rgba(246,244,239,0.32);
       letter-spacing: 0.06em;
     }
+
+    /* Compact, scannable game-day grid (Option B) — scoped, does not touch the demo cards */
+    .feat-grid.gd-compact { grid-template-columns: repeat(2, 1fr); gap: 14px; align-items: stretch; }
+    .gd-compact .feat-card-new { padding: 26px 24px; }
+    .gd-compact .feat-card-icon { width: 28px; height: 28px; margin-bottom: 14px; }
+    .gd-compact .feat-card-icon svg { width: 28px; height: 28px; }
+    .gd-compact .feat-card-phase { margin-bottom: 7px; }
+    .gd-compact .feat-card-hed { font-size: 18px; margin-bottom: 8px; }
+    .gd-compact .feat-card-body { font-size: 14px; line-height: 1.6; }
+    .gd-compact .feat-card-new::after { font-size: 56px; right: 14px; bottom: 6px; }
+    .gd-compact .feat-card-action { margin-top: 18px; gap: 12px; }
+    .gd-compact .feat-card-play-btn { width: 40px; height: 40px; }
+    .gd-compact .feat-sb-row { margin-top: 18px; gap: 12px; }
+    @media (max-width: 880px) { .feat-grid.gd-compact { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .feat-grid.gd-compact { grid-template-columns: 1fr; } }
+
+    /* Same tight treatment for the two song-demo cards (stays 2-up) */
+    .feat-grid.demo-compact { gap: 14px; }
+    .demo-compact .feat-card-new { padding: 28px; }
+    .demo-compact .feat-card-hed { font-size: 18px; margin-bottom: 8px; }
+    .demo-compact .feat-card-body { font-size: 14px; line-height: 1.62; }
+    .demo-compact .feat-card-action { margin-top: 18px; gap: 12px; }
+    .demo-compact .feat-card-play-btn { width: 40px; height: 40px; }
 
     /* In-card soundboard */
     .feat-sb-row {
@@ -1864,7 +1911,7 @@
     }
     input[type="email"]:focus, input[type="text"].email-input:focus {
       outline: none;
-      border-color: #DFFF00;
+      border-color: var(--daylight);
       box-shadow: 0 0 0 3px rgba(223,255,0,0.15);
     }
 
@@ -2270,9 +2317,9 @@
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
+  <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></a>
   <div class="nav-right">
-    <a href="#closer" class="nav-btn">Join the Beta</a>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download Free</a>
     <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -2280,7 +2327,6 @@
   <div class="nav-menu" id="navMenu">
     <div class="nav-menu-inner">
       <a href="/our-story" class="menu-link">Our Story</a>
-      <a href="/chief-hype-officer" class="menu-link">The Chief Hype Officer</a>
       <a href="/support" class="menu-link">Support</a>
       <div class="menu-social">
         <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -2294,19 +2340,20 @@
 <section class="hero">
   <!-- Duotone photo background: grayscale + gold screen tint -->
   <div class="hero-bg-photo" aria-hidden="true">
-    <img src="/batter-web.jpg" alt="" class="hero-bg-img" loading="eager" fetchpriority="high">
+    <img src="/cho-hero-web.jpg" alt="" class="hero-bg-img" loading="eager" fetchpriority="high">
   </div>
   <div class="hero-grid">
     <div class="hero-copy">
-      <p class="hero-eye">NOW ON TESTFLIGHT — FREE BETA</p>
-      <h1 class="hero-h1">Every kid deserves their <span class="g" id="typed-callup"></span> moment.</h1>
-      <p class="hero-sub">Now Batting™ — the walk-up song+ app that's easier to set up than finding your kid's other batting glove.</p>
+      <p class="hero-eye">NOW ON THE APP STORE</p>
+      <h1 class="hero-h1">Every team needs a <span class="g">Chief Hype Officer.</span></h1>
+      <p class="hero-bridge-line">That's you — the hero who runs the walk-up music. You're a legend, and you deserve an app worthy of the title.</p>
+      <p class="hero-sub"><strong>Now Batting™</strong> gives every player a walk-up, every team an anthem, and every game a soundtrack — and <span class="g">you're running the show</span>.</p>
       <div class="hero-form-wrap">
-        <div class="form-row">
-          <input type="email" placeholder="Enter your email..." id="hEmail" />
-          <button class="btn" onclick="signup('hEmail',this)">Join the Beta</button>
-        </div>
-        <p class="hero-proof"><strong><span id="coach-count">80</span>+ parents</strong> already on the roster &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Free beta</p>
+        <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>
+          Download on the App Store
+        </a>
+        <p class="hero-proof">iOS &nbsp;·&nbsp; 7-day free trial, then $9.99/year</p>
       </div>
     </div>
     <div class="hero-phone-col">
@@ -2317,24 +2364,100 @@
         <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         TAP TO HEAR IT
       </button>
+      <p class="hero-sound-note">That's an original Now Batting track — the record labels' lawyers won't let us pipe the real hits through a webpage. In the app, you get Apple Music too.</p>
     </div>
   </div>
-  <div class="scroll-cue" onclick="document.querySelector('.persona').scrollIntoView({behavior:'smooth'})">
+  <div class="scroll-cue" onclick="document.querySelector('.kidsong-section').scrollIntoView({behavior:'smooth'})">
     <span>SCROLL</span><div class="scroll-arr">›</div>
   </div>
 </section>
 
 
+<!-- EVERY KID GETS THEIR OWN SONG -->
+<section class="kidsong-section">
+  <div class="wrap">
+    <div class="kidsong-header" data-aos="fade-up">
+      <p class="gameday-eyebrow">SIMPLE OR ALL-OUT</p>
+      <h2 class="gameday-hed">Either way, you look like a walk-up song genius extraordinaire.</h2>
+      <p class="kidsong-intro">Keep it simple with an Apple Music walk-up song, or wow everyone — even the opposing dugout — with originals: a song for every kid, and an anthem for the whole squad. Your call.</p>
+    </div>
+
+    <div class="feat-grid demo-compact" data-aos="fade-up" data-aos-delay="60">
+
+      <!-- Card 1: Player Walk-Up Song -->
+      <div class="feat-card-new">
+        <p class="feat-card-phase">A WALK-UP SONG BUILT FOR ONE PLAYER</p>
+        <h3 class="feat-card-hed">Give every kid their own original walk-up song.</h3>
+        <div class="feat-card-body">
+          <p>Drop three details — it writes them an original, name and number right in the lyrics. Watch the kid light up when they hear it.</p>
+          <div class="feat-card-action">
+            <button class="feat-card-play-btn" id="kidSongBtn" onclick="pagePlayKidSong()" aria-label="Play Mikey Moonshot walk-up song sample"></button>
+            <span class="feat-card-duration">Mikey Moonshot · Demo</span>
+          </div>
+          <audio id="kidSongAudio" src="/mikey-moonshot-walkup.mp3" preload="metadata"></audio>
+        </div>
+      </div>
+
+      <!-- Card 2: Team Song -->
+      <div class="feat-card-new" data-aos-delay="80">
+        <p class="feat-card-phase">THE WHOLE SQUAD'S ANTHEM</p>
+        <h3 class="feat-card-hed">Give the whole squad its own original anthem.</h3>
+        <div class="feat-card-body">
+          <p>Name a vibe — every player lands in the lyrics. Watch heads turn when they realize it's <em>their</em> team.</p>
+          <div class="feat-card-action">
+            <button class="feat-card-play-btn" id="teamSongBtn" onclick="pagePlayTeamSong()" aria-label="Play Blue Dragons team song sample"></button>
+            <span class="feat-card-duration">Blue Dragons team song</span>
+          </div>
+          <audio id="teamSongAudio" src="/blue-dragons-team-song.mp3" preload="metadata"></audio>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- MID CTA + SOCIAL PROOF (testimonial + ask, side by side) -->
+<style>
+  .midcta { padding: 48px 0; }
+  .midcta-row { display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; max-width: 940px; margin: 0 auto; }
+  .midcta-row .tcard { flex: 1 1 400px; max-width: 480px; margin: 0; text-align: left; }
+  .midcta-ask { flex: 0 1 300px; text-align: center; }
+  .midcta-line { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: var(--txt); line-height: 1.25; margin-bottom: 18px; }
+  .midcta-note { margin-top: 13px; font-size: 13px; color: var(--txt3); }
+  @media (max-width: 760px) { .midcta-row { flex-direction: column; gap: 28px; } .midcta-row .tcard { flex: 0 0 auto; } .midcta-ask { flex-basis: auto; } }
+</style>
+<section class="midcta">
+  <div class="wrap" data-aos="fade-up">
+    <div class="midcta-row">
+      <div class="tcard r">
+        <p class="ttext">Super easy to figure out how to use it. The kids absolutely loved it.</p>
+        <div class="tauthor tauthor--avatar">
+          <img class="tavatar-img" src="/coach-avatar.jpg" alt="Coach Matt Schrager" loading="lazy" width="220" height="220">
+          <div>
+            <div class="tname">Matt Schrager</div>
+            <div class="trole">Denville Baseball Secretary · 8U Coach</div>
+          </div>
+        </div>
+      </div>
+      <div class="midcta-ask">
+        <p class="midcta-line">Ready to run the show?</p>
+        <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>Download on the App Store</a>
+        <p class="midcta-note">Free for 7 days, then $9.99/year. Cancel in two taps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- THE WHOLE GAME DAY — FEATURE CARDS -->
 <section class="gameday-section">
   <div class="wrap">
     <div class="gameday-header" data-aos="fade-up">
-      <p class="gameday-eyebrow">The Whole Game Day</p>
-      <p class="gameday-bridge">More than walk-up songs. Built for the moments between at-bats too.</p>
-      <h2 class="gameday-hed">From warm-ups to walk-offs.</h2>
+      <p class="gameday-eyebrow">FROM WARM-UPS TO WALK-OFFS</p>
+      <h2 class="gameday-hed">Run game day like the pros.</h2>
     </div>
 
-    <div class="feat-grid">
+    <div class="feat-grid gd-compact">
 
       <!-- Card 1: Pre-Game — The Roll Call -->
       <div class="feat-card-new" data-num="01" data-aos="fade-up">
@@ -2347,16 +2470,29 @@
         </div>
         <p class="feat-card-phase">Pre-Game</p>
         <h3 class="feat-card-hed">The Roll Call.</h3>
-        <p class="feat-card-body">Imagine how special your kids will feel — and how impressed the parents in the bleachers will be — when the full starting lineup is announced with music blaring underneath. Easy for you, big for them.</p>
+        <p class="feat-card-body">Every starter called by name before first pitch — goosebumps included.</p>
         <div class="feat-card-action">
           <button class="feat-card-play-btn" id="s9Btn" onclick="pagePlay('s9')" aria-label="Play Roll Call sample"></button>
-          <span class="feat-card-duration">~60 sec</span>
+          <span class="feat-card-duration">Listen · ~60 sec</span>
         </div>
         <audio id="gdS9Audio" src="/starting-nine-reference.mp3" preload="metadata"></audio>
       </div>
 
-      <!-- Card 2: During Play — Game Day Soundboard -->
+      <!-- Card 2: Every At-Bat — The Stadium Announcer -->
       <div class="feat-card-new" data-num="02" data-aos="fade-up" data-aos-delay="80">
+        <div class="feat-card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 11 18-5v12L3 14v-3z"/>
+            <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+          </svg>
+        </div>
+        <p class="feat-card-phase">Every At-Bat</p>
+        <h3 class="feat-card-hed">The Stadium Announcer.</h3>
+        <p class="feat-card-body">Pick a voice — Buck or Brooke — then a classic call, a custom line, or your own recording.</p>
+      </div>
+
+      <!-- Card 2: During Play — Game Day Soundboard -->
+      <div class="feat-card-new" data-num="03" data-aos="fade-up" data-aos-delay="80">
         <div class="feat-card-icon" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
@@ -2364,7 +2500,7 @@
         </div>
         <p class="feat-card-phase">During Play</p>
         <h3 class="feat-card-hed">Game Day Soundboard.</h3>
-        <p class="feat-card-body">Every sound the game needs, ready the instant the moment calls. Because no game is complete without an air horn after a big play, or a home run siren after a trip around the bases.</p>
+        <p class="feat-card-body">Every moment gets its sound — one tap from your chair.</p>
         <div class="feat-sb-row">
           <div class="feat-sb-item">
             <button class="feat-sb-btn" id="sbBtn-airhorn" onclick="pageSb('airhorn','/sounds/air_horn.mp3')" aria-label="Air Horn"></button>
@@ -2387,7 +2523,7 @@
       </div>
 
       <!-- Card 3: Between Innings — Your Lineup's Soundtrack -->
-      <div class="feat-card-new" data-num="03" data-aos="fade-up">
+      <div class="feat-card-new" data-num="04" data-aos="fade-up">
         <div class="feat-card-icon" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="17 1 21 5 17 9"/>
@@ -2398,238 +2534,138 @@
         </div>
         <p class="feat-card-phase">Between Innings</p>
         <h3 class="feat-card-hed">Your Lineup's Soundtrack.</h3>
-        <p class="feat-card-body">Your lineup's walk-up songs, auto-playlisted. The season's soundtrack at your fingertips. Plus, Now Batting curated playlists, or import your own. Keep everything easy.</p>
-      </div>
-
-      <!-- Card 4: Pitching Changes — The Bullpen -->
-      <div class="feat-card-new" data-num="04" data-aos="fade-up">
-        <div class="feat-card-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18V5l12-2v13"/>
-            <circle cx="6" cy="18" r="3"/>
-            <circle cx="18" cy="16" r="3"/>
-          </svg>
-        </div>
-        <p class="feat-card-phase">Pitching Changes</p>
-        <h3 class="feat-card-hed">The Bullpen.</h3>
-        <div class="feat-card-body">
-          <p>Why should the batters get all the glory? Pitchers deserve a big-league intro too.</p>
-          <p>Tap.</p>
-          <p class="feat-card-quote">"Now coming in to pitch, number 21..."</p>
-          <p>Your kid the closer?</p>
-          <p class="feat-card-quote">"Coming in to close it out."</p>
-          <p>Each pitcher gets their own moment — the way it should be.</p>
-        </div>
-      </div>
-
-      <!-- Card 5: Live Score — Scoreboard Updates -->
-      <div class="feat-card-new" data-num="05" data-aos="fade-up" data-aos-delay="80">
-        <div class="feat-card-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/>
-            <line x1="8" y1="21" x2="16" y2="21"/>
-            <line x1="12" y1="17" x2="12" y2="21"/>
-          </svg>
-        </div>
-        <p class="feat-card-phase">Live Score</p>
-        <h3 class="feat-card-hed">Scoreboard Updates.</h3>
-        <div class="feat-card-body">
-          <p>No more "What's the score?" questions from the bleachers when you can boldly announce the score between innings in a few taps. (If your team is winning, of course.)</p>
-          <p>Swipe up. Tap +1 on the score. Tap Announce.</p>
-          <p class="feat-card-quote">"Top of the 3rd. Dragons two, Eagles one."</p>
-          <p>Live, mid-game, from the bleachers.</p>
-        </div>
+        <p class="feat-card-body">Every walk-up song auto-playlisted — or bring your own to hype the dugout.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- EVERY KID GETS THEIR OWN SONG -->
-<section class="kidsong-section">
-  <div class="wrap">
-    <div class="kidsong-header" data-aos="fade-up">
-      <p class="gameday-eyebrow">NO OTHER WALK-UP APP DOES THIS</p>
-      <h2 class="gameday-hed">Now Batting writes the song.</h2>
-      <p class="kidsong-intro">Other apps find a song. Now Batting composes one — original music, in about 25 seconds, with your players' names actually in the lyrics.</p>
-    </div>
 
-    <div class="feat-grid" data-aos="fade-up" data-aos-delay="60">
-
-      <!-- Card 1: Team Song -->
-      <div class="feat-card-new">
-        <p class="feat-card-phase">BECAUSE THE WHOLE SQUAD NEEDS ITS OWN ANTHEM</p>
-        <h3 class="feat-card-hed">Your team gets its own song.</h3>
-        <div class="feat-card-body">
-          <p>Tell Now Batting your team name, pick a genre, and tap Generate. In about 25 seconds, it writes and records an original song — every player's name woven into the lyrics. Not listed. Actually in it.</p>
-          <p>Share the link with parents. No app needed to play it.</p>
-          <div class="feat-card-action">
-            <button class="feat-card-play-btn" id="teamSongBtn" onclick="pagePlayTeamSong()" aria-label="Play Blue Dragons team song sample"></button>
-            <span class="feat-card-duration">Blue Dragons team song</span>
-          </div>
-          <audio id="teamSongAudio" src="/blue-dragons-team-song.mp3" preload="metadata"></audio>
-        </div>
-      </div>
-
-      <!-- Card 2: Player Walk-Up Song -->
-      <div class="feat-card-new" data-aos-delay="80">
-        <p class="feat-card-phase">A CUSTOM SONG FOR EVERYONE IN YOUR LINEUP</p>
-        <h3 class="feat-card-hed">Your kid gets their own walk-up song.</h3>
-        <div class="feat-card-body">
-          <p>Tell Now Batting three things about your kid — anything that makes them them. It writes and records an original walk-up song built around those facts. Their name in the lyrics. Their number. Their thing. Original music, composed for that specific kid.</p>
-          <div class="kidsong-chips" aria-label="Example player details">
-            <span class="kidsong-chip">"fastest kid on the team"</span>
-            <span class="kidsong-chip">"teammates call him Big Mac"</span>
-            <span class="kidsong-chip">"never strikes out looking"</span>
-          </div>
-          <p>No Apple Music needed. Just tap Generate.</p>
-          <div class="feat-card-action">
-            <button class="feat-card-play-btn" id="kidSongBtn" onclick="pagePlayKidSong()" aria-label="Play Mikey Moonshot walk-up song sample"></button>
-            <span class="feat-card-duration">Mikey Moonshot · Demo</span>
-          </div>
-          <audio id="kidSongAudio" src="/mikey-moonshot-walkup.mp3" preload="metadata"></audio>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="kidsong-closing" data-aos="fade-up" data-aos-delay="40">No other walk-up app does either of these.</p>
-  </div>
-</section>
 
 <!-- 3. PERSONA + TESTIMONIAL -->
 <section class="persona">
   <div class="persona-band" data-aos="fade-up">
-    <p class="eyebrow r">Who it's for</p>
+    <p class="eyebrow r">Built for the one with the speaker.</p>
     <h2 class="cho-title r d1" style="margin-bottom:24px;">The Chief Hype Officer.</h2>
-    <p class="cho-bridge r d2" style="max-width:520px;margin-left:auto;margin-right:auto;color:#F6F4EF;font-size:17px;line-height:1.65;text-shadow:0 1px 12px rgba(0,0,0,0.9),0 0 32px rgba(0,0,0,0.7);">You showed up with a Bluetooth speaker, set up your chair next to the dugout with a coffee you won't get a chance to drink. Congratulations. You're the Chief Hype Officer.</p>
-<a href="https://www.nowbattingapp.com/chief-hype-officer" class="cho-jd-link r d3">READ THE FULL JOB DESCRIPTION →</a>
+    <div class="cho-bridge r d2" style="max-width:560px;margin-left:auto;margin-right:auto;color:#F6F4EF;font-size:17px;line-height:1.65;text-shadow:0 1px 12px rgba(0,0,0,0.9),0 0 32px rgba(0,0,0,0.7);">
+      <p style="margin:0 0 18px;">While the other parents brought snacks, folding chairs, and entire wagons of gear… you brought the walk-up songs (and a speaker the size of a small appliance).</p>
+      <p style="margin:0 0 18px;">Phone in one hand, coffee in the other, squinting at a screen cranked to max brightness. You know every kid's song.</p>
+      <p style="margin:0 0 18px;">You've felt the panic — thumbing playlists right before the next walk-up.</p>
+      <p style="margin:0 0 18px;font-weight:700;">But not today.</p>
+      <p style="margin:0;">Because you have <strong style="color:var(--daylight);font-weight:700;">Now Batting</strong>. While the moment belongs to the players… the ease belongs to you.</p>
+    </div>
+    <a href="/our-story" class="cho-founder-link r d2" style="display:inline-block;margin-top:28px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.04em;color:var(--daylight);text-decoration:none;border-bottom:1px solid rgba(184,204,0,0.4);padding-bottom:2px;">A note from the founder →</a>
   </div>
 
-  <div class="wrap" style="padding-top:60px; padding-bottom:60px;" data-aos="fade-up">
-    <div class="tcard r" style="max-width:560px; margin:0 auto;">
-      <p class="ttext">Super easy to figure out how to use it. The kids absolutely loved it.</p>
-      <div class="tauthor">
-        <div class="tname">Matt Schrager</div>
-        <div class="trole">Denville Baseball Secretary · 8U Coach</div>
-      </div>
-    </div>
-  </div>
 </section>
 
-<div class="hr"></div>
-
-<!-- HOW IT WORKS -->
-<section class="how">
-  <div class="wrap">
-    <div class="how-grid" data-aos="fade-up">
-      <div class="how-left">
-        <p class="eyebrow r">HOW IT WORKS</p>
-        <h2 class="h2 r d1" style="margin-bottom:16px;">Set up as easy as a 1-2-3 inning.</h2>
-        <p class="r d2" style="font-size:16px; color:var(--txt2); line-height:1.65; margin-bottom:32px;">Choose from professional announcer voices powered by the most advanced AI models. Unlimited rosters. One phone. Game day, handled.</p>
-        <div class="steps how-steps">
-          <div class="step r d2">
-            <div class="step-n">01</div>
-            <div class="step-title">Quick and Easy.</div>
-            <div class="step-body">Pick from 3 ready-to-go intros for each player. Because you've got enough going on to need more choices.</div>
-          </div>
-          <div class="step r d3">
-            <div class="step-n">02</div>
-            <div class="step-title">Fully Custom.</div>
-            <div class="step-body">Write the intro you want, your way. Because your kids deserve the absolute most.</div>
-          </div>
-          <div class="step r d4">
-            <div class="step-n">03</div>
-            <div class="step-title">BYO Announcer.</div>
-            <div class="step-body">Maybe you have a talent for announcing kids — or you already paid for a voice. Upload your own.</div>
-          </div>
-        </div>
-        <hr style="border:none; border-top:1px solid var(--bord); margin:32px 0;">
-        <p class="r" style="font-size:15px; color:var(--txt2); line-height:1.65; margin-bottom:12px;">Choose your walk-up song from Apple Music's library. Clean versions auto-selected by default.</p>
-        <p class="r" style="font-size:15px; color:var(--txt2); line-height:1.65; margin-bottom:20px;">Set the drop point exactly where you want the song to start. We auto-suggest a starting point to get you going.</p>
-        <p class="r" style="font-size:13px; color:var(--txt3); line-height:1.6;">Apple Music only — because reliability matters more than options when you're at Field 2 on Saturday morning.</p>
-      </div>
-      <div class="how-right">
-        <div class="control-phone">
-          <div class="control-phone-slides">
-            <img class="control-phone-slide" src="/control-s1.png" alt="Quick and Easy announcement option" loading="lazy">
-            <img class="control-phone-slide" src="/control-s2.png" alt="Fully Custom announcement option" loading="lazy">
-            <img class="control-phone-slide" src="/control-s3.png" alt="BYO Announcer option" loading="lazy">
-            <img class="control-phone-slide" src="/control-s4.png" alt="Walk-up song drop point" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="hr"></div>
-
-<!-- WHY IT JUST WORKS -->
-<section class="wjw">
+<!-- MID CTA #2 (after Who it's for) -->
+<section style="padding:56px 0; text-align:center;">
   <div class="wrap" data-aos="fade-up">
-    <p class="eyebrow r" style="text-align:center;">Why It Just Works</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Built for Field 2.</h2>
-  </div>
-  <div class="feat-cards" id="featCards">
-    <div class="wjw-card">
-      <div class="wjw-label">Reliability</div>
-      <div class="wjw-title">Runs Without Signal.</div>
-      <p class="wjw-body">Walk-ups work without Wi-Fi. Because Field 2 usually doesn't have great service.</p>
-    </div>
-    <div class="wjw-card">
-      <div class="wjw-label">Game Day</div>
-      <div class="wjw-title">No Surprises on Game Day</div>
-      <p class="wjw-body">The app flags anything missing before the first pitch — not during it.</p>
-    </div>
-    <div class="wjw-card">
-      <div class="wjw-label">The Hand-Off</div>
-      <div class="wjw-title">The Hand-Off Takes Ten Seconds</div>
-      <p class="wjw-body">Send a link. They tap it. They're running the music. No account. No setup. No questions.</p>
-    </div>
-  </div>
-  <div class="feat-dots" id="featDots" aria-hidden="true"></div>
-</section>
-
-<div class="hr"></div>
-
-<!-- WE'RE LISTENING -->
-<section class="listening-section">
-  <div class="wrap" data-aos="fade-up">
-    <p class="eyebrow r" style="text-align:center;">We're Listening</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom:24px;">New updates all the time.</h2>
-    <div class="listening-body r d2">
-      <p>We read every email at <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">cho@nowbattingapp.com</a>. We look at the Facebook comments. We listen to what real Chief Hype Officers actually need. Then we make it.</p>
-      <p>Got an idea? Yell at us. We're listening.</p>
-    </div>
+    <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>Download on the App Store</a>
+    <p style="margin-top:14px; font-size:13px; color:var(--txt3);">Free for 7 days, then $9.99/year. Cancel in two taps.</p>
   </div>
 </section>
 
 <div class="hr"></div>
+
+
 
 <!-- 6. CLOSER -->
+<!-- ===================== PRICING (single plan — staged for launch day, not live until deployed) ===================== -->
+<style>
+  .pr-section { background:#121211; padding:96px 0; border-top:1px solid rgba(255,255,255,0.06); }
+  .pr-head { text-align:center; max-width:640px; margin:0 auto 44px; }
+  .pr-eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--daylight); margin-bottom:16px; }
+  .pr-hed { font-family:var(--font-sans); font-size:clamp(30px,3.8vw,48px); font-weight:800; letter-spacing:-.03em; line-height:1.05; color:#F6F4EF; margin-bottom:16px; }
+  .pr-sub { font-size:17px; color:var(--txt3); line-height:1.6; }
+  .pr-sub b { color:#F6F4EF; font-weight:700; }
+  .pr-plan { max-width:560px; margin:0 auto; background:#18181a; border:1px solid rgba(255,255,255,0.08); border-top:1.5px solid var(--daylight); border-radius:24px; padding:40px 40px 36px; }
+  .pr-planname { text-align:center; font-family:var(--font-mono); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--daylight); margin-bottom:12px; }
+  .pr-price { text-align:center; }
+  .pr-price b { font-family:var(--font-sans); font-size:60px; font-weight:800; color:#F6F4EF; letter-spacing:-.03em; line-height:1; }
+  .pr-price span { font-size:18px; font-weight:600; color:var(--txt3); }
+  .pr-freekicker { text-align:center; font-family:var(--font-mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--daylight); margin-bottom:6px; }
+  .pr-trial { text-align:center; font-size:14px; color:var(--txt3); margin-top:12px; line-height:1.5; }
+  .pr-appstore { display:flex; width:fit-content; align-items:center; gap:12px; background:#000; text-decoration:none; padding:13px 26px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); margin:24px auto 10px; transition:border-color .2s,transform .15s; }
+  .pr-appstore:hover { border-color:var(--daylight); transform:translateY(-1px); }
+  .pr-appstore .ap-txt { color:#fff; text-align:left; }
+  .pr-appstore .ap-sm { font-size:11px; line-height:1.1; opacity:.85; display:block; }
+  .pr-appstore .ap-lg { font-size:19px; font-weight:600; line-height:1.15; }
+  .pr-ctanote { text-align:center; font-size:13px; color:var(--txt3); }
+  .pr-feats { list-style:none; padding:0; margin:32px auto 0; max-width:460px; display:flex; flex-direction:column; gap:15px; }
+  .pr-feats li { display:flex; gap:12px; align-items:flex-start; }
+  .pr-feats .chk { flex:0 0 auto; margin-top:3px; }
+  .pr-feats .ft b { display:block; font-size:15.5px; font-weight:700; color:#F6F4EF; }
+  .pr-feats .ft small { display:block; font-size:13.5px; color:var(--txt3); line-height:1.5; margin-top:2px; }
+  .pr-pool { max-width:460px; margin:18px auto 0; font-size:12.5px; color:var(--txt3); line-height:1.5; }
+  .pr-pool sup { color:var(--daylight); }
+  .pr-upgrade { max-width:560px; margin:26px auto 0; text-align:center; font-size:14.5px; color:#C9C9C1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:16px 22px; line-height:1.55; }
+  .pr-upgrade b { color:#F6F4EF; font-weight:700; }
+  .pr-fine { text-align:center; color:var(--txt3); font-size:12px; margin:28px auto 0; line-height:1.65; max-width:600px; }
+  .pr-fine a { color:var(--txt3); text-decoration:underline; }
+  @media(max-width:640px){ .pr-plan{padding:32px 24px 28px;} .pr-price b{font-size:48px;} .pr-section{padding:72px 0;} }
+</style>
+<section class="pr-section" id="pricing">
+  <div class="wrap">
+    <div class="pr-head" data-aos="fade-up">
+      <p class="pr-eyebrow">Take the job officially</p>
+      <h2 class="pr-hed">One plan. Go run the show.</h2>
+      <p class="pr-sub">You run the show — Now Batting makes every kid a legend for a day, and makes you the one who pulled it off. <b>Everything's included,</b> for less than you spent on gas-station sunflower seeds this season.</p>
+    </div>
+
+    <div class="pr-plan" data-aos="fade-up">
+      <p class="pr-planname">Dedicated Chief Hype Officer</p>
+      <p class="pr-freekicker">7-day free trial</p>
+      <div class="pr-price"><b>$9.99</b> <span>/ year</span></div>
+      <p class="pr-trial">Cancel anytime — if your team somehow doesn't lose their minds.</p>
+
+      <a class="pr-appstore" href="https://apps.apple.com/app/now-batting/id6760744461">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>
+        <span class="ap-txt"><span class="ap-sm">Download on the</span><span class="ap-lg">App Store</span></span>
+      </a>
+      <p class="pr-ctanote">Free for 7 days, then $9.99/year. Cancel in two taps — no charge until your trial ends.</p>
+
+      <ul class="pr-feats">
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Stadium announcer for every player</b><small>One tap, fully custom, or your own PA-guy voice — type how a tricky name sounds and it nails it.</small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Apple Music walk-ups</b><small>Dropped right where you want it — so the song opens on the part that hits, not the slow intro.</small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>A walk-up song for each player</b><small>Original, with their name and number right in the lyrics.</small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>A team hype song for the whole squad</b><small>One original track that names every player on the roster.<sup>*</sup></small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Roll Call</b><small>Your whole lineup announced before first pitch — every player by name, big-league style.</small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Bullpen</b><small>Because the kid coming in to close it out deserves a moment too.</small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Music Hub</b><small>Your team jukebox — walk-ups auto-playlisted, a curated Now Batting playlist, and your own Apple Music playlists imported right in.</small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Game Day Soundboard &amp; live score calls</b><small>Air horn, home run siren, and live score announcements — every sound the game needs.</small></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Multiple teams + roster sharing</b><small>Rec, travel, fall ball — coach 'em all from one phone, and share a roster with another coach or parent.</small></span></li>
+      </ul>
+      <p class="pr-pool"><sup>*</sup>Player songs and team anthems share one yearly pool — 15 on Dedicated, 60 on Headliner.</p>
+    </div>
+
+    <p class="pr-fine" data-aos="fade-up">Need more songs? Headliner is 60 a year for $24.99 — one tap in the app. Subscriptions auto-renew yearly through your Apple ID unless cancelled at least 24 hours before the period ends. Manage or cancel anytime in your Apple ID settings. An Apple Music subscription is needed for full-song Apple Music walk-ups; the songs Now Batting composes need no Apple Music. <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a></p>
+  </div>
+</section>
+
 <section class="closer" id="closer">
   <div class="wrap closer-in" data-aos="fade-up">
-    <div class="scar">TestFlight Beta — Limited Access</div>
-    <p class="closer-pre r" style="font-size:18px; color:var(--txt2); line-height:1.6; margin-bottom:20px;">Every kid deserves their moment.<br>Yours is next Saturday.</p>
-    <h2 class="closer-h r">Go ahead. <span class="g">Take the job officially.</span></h2>
-    <p class="closer-p r d1">Drop your email. We'll have you ready before the next game.</p>
+    <h2 class="closer-h r">Every player gets their <span class="g">moment.</span></h2>
+    <p class="closer-p r d1">Take the job officially — free for 7 days, then $9.99/year.</p>
     <div class="closer-form r d2">
-      <div class="form-row">
-        <input type="email" placeholder="Enter your email address..." id="cEmail" data-source="pricing" />
-        <button class="btn" onclick="signup('cEmail',this)">Join the Beta</button>
-      </div>
+      <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>
+        Download on the App Store
+      </a>
     </div>
   </div>
 </section>
 
 <div class="hr"></div>
+
 
 <!-- FAQ SECTION -->
 <section class="faq" id="faq">
   <div class="wrap" data-aos="fade-up">
-    <p class="eyebrow r" style="text-align:center;">Common Questions</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Everything you need to know.</h2>
+    <p class="eyebrow r" style="text-align:center;">Before you ask…</p>
+    <h2 class="h2 r d1" style="text-align:center; margin-bottom: 40px;">Stuff you're probably wondering.</h2>
     <div class="faq-list">
 
       <div class="faq-item r">
@@ -2637,7 +2673,7 @@
           <span>What do I need to use Now Batting™?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">An iPhone and an active Apple Music subscription. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or plug into an aux cord. That's the whole setup.</div>
+        <div class="faq-a">Just an iPhone. An Apple Music subscription is needed only if you want full-length Apple Music songs as walk-ups — everything else (the AI-composed walk-up songs, announcer calls, Roll Call, soundboard) works without it. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or aux cord. That's the whole setup.</div>
       </div>
 
       <div class="faq-item r d1">
@@ -2646,11 +2682,10 @@
           <span class="faq-arrow">›</span>
         </button>
         <div class="faq-a">
-          Yes — and it takes about 30 seconds.<br><br>
-          <strong>1. Get your roster ready.</strong> Make sure every player has their walk-up song set and their announcement generated. What you have is exactly what they'll get.<br><br>
-          <strong>2. Tap ••• next to your team name, then "Share roster."</strong> The app uploads everything to the cloud and opens your phone's share sheet. Send the link however you want — text, iMessage, email, whatever.<br><br>
-          <strong>3. They tap the link.</strong> If they have Now Batting installed, it imports automatically. If not, they'll see the lineup on the web first, then import once they download the app. Songs, timestamps, announcements — all of it comes through.<br><br>
-          They're ready to run game day exactly like you would.
+          Yes — sharing is part of a paid plan, and it takes about 30 seconds.<br><br>
+          <strong>1. Get your roster ready.</strong> Make sure every player has their walk-up song set and announcement generated — what you have is exactly what they'll get.<br><br>
+          <strong>2. Tap ••• next to your team name, then Share roster.</strong> The app uploads everything and opens your phone's share sheet. Send the link however you want.<br><br>
+          <strong>3. They tap the link.</strong> Whoever you send it to can <strong>view and play</strong> your whole roster on game day — songs, timestamps, announcements, all of it — free, no subscription needed. To make it their own and edit it, they start their own subscription (free trial included).
         </div>
       </div>
 
@@ -2671,9 +2706,8 @@
           <span class="faq-arrow">›</span>
         </button>
         <div class="faq-a">
-          Yes — once imported, the roster is fully editable on their device. They can add players, change songs, regenerate announcements, whatever they need.<br><br>
-          If they want to send their changes back to you: they tap ••• → Share roster. That pushes their version to the shared link. You tap ••• → Get latest version and their changes come through.<br><br>
-          One thing to know: whoever shares last wins. If you both push changes at the same time, the last one to share is what everyone sees. Just coordinate before you both start editing.
+          Playing what you set up is free. To <strong>edit</strong> it themselves — add players, change songs, regenerate announcements — they start their own subscription (the free trial counts). At that point the roster becomes <strong>their own copy</strong> that they fully control.<br><br>
+          One thing to know: once they edit, it's a separate roster, not a live shared one. For a single source of truth, have one person own and edit the roster and share it out for everyone else to play.
         </div>
       </div>
 
@@ -2705,9 +2739,9 @@
           <span class="faq-arrow">›</span>
         </button>
         <div class="faq-a">Each player gets a personalized stadium-style call — "Now batting, number seven, Jake Miller!" You pick how it sounds:<br><br>
-          — <strong>Quick and Easy:</strong> Tap once. The app writes the intro and generates a real announcer call in seconds.<br>
+          — <strong>Quick and Easy:</strong> Tap once. The app writes the intro and generates a stadium-style announcer call in seconds.<br>
           — <strong>Fully Custom:</strong> Write the intro you want, your way. Because your kids deserve the absolute most.<br>
-          — <strong>BYO Announcer:</strong> Maybe you have a talent for announcing kids — or you already paid for a voice. Upload your own.<br><br>
+          — <strong>BYO Announcer:</strong> Maybe you have a talent for announcing players — or you already paid for a voice. Upload your own.<br><br>
           Generate once. Plays instantly every game after.</div>
       </div>
 
@@ -2717,9 +2751,9 @@
           <span class="faq-arrow">›</span>
         </button>
         <div class="faq-a">
-          Two features no other walk-up app has.<br><br>
-          <strong>Team Song</strong> generates a full hype song for your whole team — every player's name woven into the lyrics. Tell us the team name, pick a genre, tap Generate. Done in about 25 seconds.<br><br>
-          <strong>Player Walk-Up Song</strong> generates a custom walk-up song built around one specific kid. Share three facts about them — anything that makes that kid <em>that</em> kid — and Now Batting composes a song that name drops them and those three things. In 25 seconds or so, your kid can hear themselves in their own walk-up song. No Apple Music needed.<br><br>
+          Two of the things that make Now Batting more than a walk-up song app.<br><br>
+          <strong>Team Song</strong> generates a full hype song for your whole team — every player's name woven into the lyrics. Tell us the team name, pick a genre, tap Generate. Done in seconds.<br><br>
+          <strong>Player Walk-Up Song</strong> generates a custom walk-up song built around one specific player. Share three facts about them — anything that makes that kid <em>that</em> kid — and Now Batting composes a song that name drops them and those three things. In seconds, your kid can hear themselves in their own walk-up song. No Apple Music needed.<br><br>
           Both are in the Music Hub and song editor.
         </div>
       </div>
@@ -2737,15 +2771,15 @@
           <span>Is Now Batting™ available for Android?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Not yet. Now Batting is iOS only right now. Android is on the roadmap — if that's you, drop your email and you'll be first on the list when it's ready.</div>
+        <div class="faq-a">Not yet — Now Batting is iOS only. Android is on the roadmap; email <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">cho@nowbattingapp.com</a> to tell us you'd want it.</div>
       </div>
 
       <div class="faq-item r d3">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>When will Now Batting™ launch in the App Store?</span>
+          <span>How much does Now Batting™ cost?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Soon. We're in beta right now and working through the final polish before a full App Store launch. Drop your email to get early access via TestFlight — and you'll be the first to know when we go live.</div>
+        <div class="faq-a">There's a 7-day free trial, then one annual subscription: <strong>$9.99/year</strong> for the Dedicated plan — everything included, with 15 AI-generated songs a year. Want more AI songs? <strong>Headliner is $24.99/year</strong> for 60. Start, manage, or cancel anytime in your Apple ID settings.</div>
       </div>
 
       <div class="faq-item r d3">
@@ -2753,7 +2787,7 @@
           <span>What if I don't have Apple Music?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Apple Music is the only supported music service right now. Apple Music only — because reliability matters more than options when you're at Field 2 on Saturday morning. Reach out at <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">cho@nowbattingapp.com</a> with any questions.</div>
+        <div class="faq-a">You can still use almost everything. Apple Music is only needed for two things: playing full-length Apple Music songs as walk-ups, and the Music Hub's between-innings hype music, which streams from Apple Music. Without it, you can still create AI-composed walk-up songs (with the player's name in the lyrics), the team hype song, announcer calls, the Roll Call, Game Update, and the soundboard — all of which play right in the app, no subscription needed. Apple Music is the streaming service we support right now because at Field 2 on a Saturday morning, reliability beats options. Questions? <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">cho@nowbattingapp.com</a></div>
       </div>
 
     </div>
@@ -2761,9 +2795,68 @@
   </div>
 </section>
 
+<!-- GEO / FACTUAL DESCRIPTION (plain-language, machine-readable) -->
+<style>
+  .about-nb { padding: 64px 0 56px; }
+  .about-nb-card {
+    position: relative; background: var(--mid);
+    border: 1px solid var(--bord); border-left: 3px solid var(--daylight);
+    border-radius: 18px; padding: 36px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 14px 44px rgba(0,0,0,0.05);
+  }
+  .about-nb-eyebrow {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--daylight-dim);
+    margin: 0 0 14px;
+  }
+  .about-nb-lede { font-size: 16px; line-height: 1.72; color: var(--txt2); margin: 0; }
+  .about-nb-lede strong { color: var(--txt); font-weight: 700; }
+  .about-nb-specs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px;
+    margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--bord);
+  }
+  .about-nb-specs .spec { display: flex; flex-direction: column; gap: 3px; }
+  .about-nb-specs .spec--wide { grid-column: 1 / -1; }
+  .about-nb-specs .spec-k {
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--txt3);
+  }
+  .about-nb-specs .spec-v { font-size: 14.5px; font-weight: 600; color: var(--txt); }
+  @media (max-width: 560px) {
+    .about-nb-card { padding: 28px 24px; }
+    .about-nb-specs { grid-template-columns: 1fr; gap: 14px; }
+  }
+</style>
+<section class="about-nb">
+  <div class="wrap" style="max-width:760px;">
+    <div class="about-nb-card" data-aos="fade-up">
+      <p class="about-nb-eyebrow">What is Now Batting?</p>
+      <p class="about-nb-lede"><strong>Now Batting</strong> is an iOS app for youth baseball and softball coaches and parents. It creates a walk-up song for each player — including original, AI-composed songs with the player's name and number in the lyrics — generates spoken stadium announcer calls and full pre-game lineup announcements (the Roll Call), composes a team hype song that names every player on the roster, and runs game-day audio (walk-ups, announcer, soundboard, and live score calls) from one phone. Unlike walk-up apps that only play existing tracks, Now Batting can <strong>compose original music</strong> for a team.</p>
+      <div class="about-nb-specs">
+        <div class="spec"><span class="spec-k">Platform</span><span class="spec-v">iOS (iPhone)</span></div>
+        <div class="spec"><span class="spec-k">Price</span><span class="spec-v">$9.99/year · 7-day free trial</span></div>
+        <div class="spec spec--wide"><span class="spec-k">Made for</span><span class="spec-v">Baseball, softball… any team with a lineup who wants game day to sound incredible.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- WE'RE LISTENING -->
+<section class="listening-section">
+  <div class="wrap" data-aos="fade-up">
+    <p class="eyebrow r" style="text-align:center;">Never finished.</p>
+    <h2 class="h2 r d1" style="text-align:center; margin-bottom:18px;">You ask. We build.</h2>
+    <div class="listening-body r d2">
+      <p>We read every email, watch every comment, and build what real Chief Hype Officers ask for. Got an idea? <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">Yell at us.</a></p>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#8A9900"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#8A9900"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#8A9900"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#8A9900"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#8A9900"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#8A9900"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
-  <p class="f-copy">© 2026 Chief Hype Officer LLC · Every kid deserves their moment. Built for the Chief Hype Officer™ at Field 2. · <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" style="color:var(--txt3);text-decoration:none;">@nowbattingapp</a> · <a href="/support" style="color:var(--txt3);text-decoration:none;">Support</a> · <a href="/privacy" style="color:var(--txt3);text-decoration:none;">Privacy Policy</a> · <a href="/terms" style="color:var(--txt3);text-decoration:none;">Terms</a> · <a href="/chief-hype-officer" style="color:var(--txt3);text-decoration:none;">The Saturday Standard</a></p>
+  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <p class="f-copy">© 2026 Chief Hype Officer LLC · Every team needs a Chief Hype Officer. Built for the Chief Hype Officer™ at Field 2. · <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" style="color:var(--txt3);text-decoration:none;">@nowbattingapp</a> · <a href="/support" style="color:var(--txt3);text-decoration:none;">Support</a> · <a href="/privacy" style="color:var(--txt3);text-decoration:none;">Privacy Policy</a> · <a href="/terms" style="color:var(--txt3);text-decoration:none;">Terms</a></p>
   <div class="f-social">
     <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -2777,28 +2870,11 @@
 <!-- MOBILE STICKY -->
 <div class="msticky" id="msticky">
   <button class="msticky-x" id="msX">×</button>
-  <input type="email" placeholder="Your email — get early access" id="mEmail" />
-  <button class="mbtn" onclick="signup('mEmail',this)">Join the Beta →</button>
+  <span style="flex:1; font-size:13px; color:var(--charcoal); font-weight:600;">Free for 7 days, then $9.99/yr</span>
+  <a class="mbtn" href="https://apps.apple.com/app/now-batting/id6760744461" style="text-decoration:none;">Download →</a>
 </div>
 
-<!-- SUCCESS OVERLAY -->
-<div class="overlay" id="overlay">
-  <div class="obox">
-    <div class="o-ico">★</div>
-    <h2 class="o-hed">YOU'RE ON THE <span class="g">ROSTER.</span></h2>
-    <p class="o-sub">You're on the list for the Now Batting Spring Beta.</p>
-    <p class="o-inbox">We'll be in touch within 48 hours with next steps.</p>
-    <div class="o-div">
-      <p class="o-slbl">Skip the line</p>
-      <div class="o-sbox">
-        <span class="o-url" id="ourl">nowbattingapp.com/waitlist/ref=</span>
-        <button class="o-copy" id="ocopy" onclick="copyLink()">Copy Link</button>
-      </div>
-      <p class="o-inc">Share with other parents. Every signup = <strong>you jump 5 spots ahead.</strong></p>
-    </div>
-    <button class="o-dismiss" onclick="closeOverlay()">I'll share it later</button>
-  </div>
-</div>
+
 
 <script>
   // ── PASTE YOUR APPS SCRIPT URL HERE after deploying ──
@@ -2845,66 +2921,6 @@
   }
   document.getElementById('msX')?.addEventListener('click', () => { msDismissed = true; if (ms) ms.style.display = 'none'; });
 
-  // signup — writes Email(A), Submitted at(B), Ref(C), Source(D)
-  async function signup(id, btn) {
-    const inp = document.getElementById(id);
-    const email = inp.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      inp.classList.add('err'); inp.focus();
-      setTimeout(() => inp.classList.remove('err'), 1200); return;
-    }
-    btn.textContent = 'Joining...'; btn.classList.add('loading');
-    const ref = Math.random().toString(36).substring(2,8).toUpperCase();
-    if (SHEET_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
-      try {
-        await fetch(SHEET_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, ref, source: id }),
-          mode: 'no-cors'
-        });
-      } catch(e) { console.warn('Sheet error:', e); }
-    }
-    btn.textContent = '✓ You\'re on the roster!'; btn.classList.remove('loading'); btn.disabled = true; btn.style.opacity = '0.7';
-    inp.value = ''; inp.disabled = true;
-    document.getElementById('ourl').textContent = 'nowbattingapp.com/waitlist/ref=' + ref;
-    document.getElementById('overlay').classList.add('on');
-    document.body.style.overflow = 'hidden';
-    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#DFFF00','#B8CC00','#1F1F1F','#ffffff'], zIndex: 10000 });
-    setTimeout(() => { confetti({ particleCount: 40, spread: 50, origin: { y: 0.55 }, colors: ['#DFFF00','#B8CC00'], zIndex: 10000 }); }, 300);
-  }
-
-  function copyLink() {
-    const url = document.getElementById('ourl').textContent, btn = document.getElementById('ocopy');
-    const done = () => { btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = 'Copy Link', 2500); };
-    navigator.clipboard?.writeText(url).then(done).catch(() => {
-      const t = document.createElement('textarea'); t.value = url;
-      document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); done();
-    });
-  }
-
-  function closeOverlay() { document.getElementById('overlay').classList.remove('on'); document.body.style.overflow = ''; }
-  document.getElementById('overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeOverlay(); });
-
-  // ── SIGNUP FLOOR — single source of truth; update this number, never the HTML ──
-  const SIGNUP_FLOOR = 80;
-  document.getElementById('coach-count').textContent = SIGNUP_FLOOR;
-
-  // ── 5B: COUNTER ANIMATE UP ──
-  (function() {
-    const el = document.getElementById('coach-count');
-    if (!el) return;
-    const target = SIGNUP_FLOOR;
-    const duration = 900;
-    const start = performance.now();
-    function tick(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(ease * target);
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  })();
 
   // ── CHO REVEAL — fires on scroll into view, respects reduced-motion ──
   (function() {
@@ -3057,7 +3073,7 @@
   AOS.init({ duration: 600, offset: 50, easing: 'ease-out-cubic', once: true });
 
   // ── 5C: TYPED.JS — types "now batting" once, cursor disappears cleanly ──
-  new Typed('#typed-callup', {
+  if (document.getElementById('typed-callup')) new Typed('#typed-callup', {
     strings: ['now batting'],
     typeSpeed: 55,
     showCursor: false,
