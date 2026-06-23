@@ -103,8 +103,11 @@
         <div id="genre" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px"></div>
         <label>Energy</label>
         <div id="energy" style="display:flex;gap:7px;margin-bottom:16px"></div>
-        <label>Details (optional)</label>
-        <input type="text" id="details" placeholder="e.g. loves hitting bombs, fastest on the team" />
+        <label>What makes them special? (optional)</label>
+        <p style="font-size:11px;color:rgba(255,255,255,.4);margin:-4px 0 9px">Add 1–3 things to weave into the song.</p>
+        <input type="text" id="detail1" placeholder='e.g. cleanup hitter, team captain' style="margin-bottom:8px" />
+        <input type="text" id="detail2" placeholder='e.g. nickname is "Big Mac"' style="margin-bottom:8px" />
+        <input type="text" id="detail3" placeholder='e.g. loves hitting to the opposite field' />
       </div>
 
       <div id="pane-none" class="hide">
@@ -206,7 +209,7 @@
       if(!first){$('#formErr').textContent='Please add a first name.';$('#formErr').classList.remove('hide');return}
       var choice={kind:'none'};
       if(state.tab==='song'&&state.song){choice={kind:'apple',trackId:state.song.trackId,title:state.song.title,artist:state.song.artist,preferredStartSec:parseTime($('#drop').value)};}
-      else if(state.tab==='ai'){choice={kind:'ai',genre:state.genre,energy:state.energy,details:$('#details').value.trim()};}
+      else if(state.tab==='ai'){choice={kind:'ai',genre:state.genre,energy:state.energy,details:[$('#detail1').value,$('#detail2').value,$('#detail3').value].map(function(d){return d.trim()}).filter(Boolean)};}
       $('#submit').disabled=true;$('#formErr').classList.add('hide');
       fetch(API+'/api/roster-intake',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
         action:'submit',intakeId:id,firstName:first,lastName:$('#last').value.trim(),phoneticName:$('#phon').value.trim(),number:$('#num').value.trim(),songChoice:choice
