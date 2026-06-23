@@ -7,7 +7,7 @@
     },
     {
       "source": "/setup/:id",
-      "destination": "/setup.html"
+      "destination": "/setup"
     }
   ]
 }
