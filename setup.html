@@ -86,7 +86,7 @@
             <button type="button" id="prevBtn" style="display:flex;align-items:center;gap:6px;background:rgba(223,255,0,.1);border:1px solid rgba(223,255,0,.3);border-radius:10px;padding:9px 12px;color:var(--lime);font-family:inherit;font-size:11px;font-weight:500;cursor:pointer">▶ Preview</button>
             <input type="text" id="drop" value="0:00" style="text-align:center;font-family:'JetBrains Mono',monospace;max-width:90px" />
           </div>
-          <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px">Type when it should kick in (m:ss), or tap Preview to find the spot.</p>
+          <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px">Type when it should kick in (m:ss). Preview plays a short sample — your start time is still saved.</p>
         </div>
         <div id="songSearch">
           <div style="display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:0 12px">
@@ -183,7 +183,7 @@
           Array.prototype.forEach.call($('#results').querySelectorAll('.res'),function(el){
             el.addEventListener('click',function(){
               var s=data[el.getAttribute('data-i')];
-              state.song={trackId:s.id,title:s.attributes.name,artist:s.attributes.artistName,preview:(s.attributes.previews&&s.attributes.previews[0]&&s.attributes.previews[0].url)||''};
+              state.song={trackId:s.id,title:s.attributes.name,artist:s.attributes.artistName,preview:(s.attributes.previews&&s.attributes.previews[0]&&s.attributes.previews[0].url)||'',artwork:(s.attributes.artwork&&s.attributes.artwork.url?s.attributes.artwork.url.replace('{w}','200').replace('{h}','200'):'')};
               $('#selTitle').textContent=state.song.title;$('#selArtist').textContent=state.song.artist;
               $('#drop').value='0:00';
               $('#songSearch').classList.add('hide');$('#songSelected').classList.remove('hide');
@@ -208,7 +208,7 @@
       var first=$('#first').value.trim();
       if(!first){$('#formErr').textContent='Please add a first name.';$('#formErr').classList.remove('hide');return}
       var choice={kind:'none'};
-      if(state.tab==='song'&&state.song){choice={kind:'apple',trackId:state.song.trackId,title:state.song.title,artist:state.song.artist,preferredStartSec:parseTime($('#drop').value)};}
+      if(state.tab==='song'&&state.song){choice={kind:'apple',trackId:state.song.trackId,title:state.song.title,artist:state.song.artist,preferredStartSec:parseTime($('#drop').value),previewUrl:state.song.preview,artworkUrl:state.song.artwork};}
       else if(state.tab==='ai'){choice={kind:'ai',genre:state.genre,energy:state.energy,details:[$('#detail1').value,$('#detail2').value,$('#detail3').value].map(function(d){return d.trim()}).filter(Boolean)};}
       $('#submit').disabled=true;$('#formErr').classList.add('hide');
       fetch(API+'/api/roster-intake',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
