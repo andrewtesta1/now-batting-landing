@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Pick your walk-up — Now Batting</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--lime:#DFFF00;--bg:#141414;--card:#1F1F1F;--mut:rgba(255,255,255,.45);--bord:rgba(255,255,255,.1)}
+    body{background:#0A0A0A;color:#F5F5F2;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+    .wrap{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg)}
+    .mono{font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+    .head{background:#0E0E0E;padding:18px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+    .mark{display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:9px;font-size:16px;font-weight:500}
+    .bars{display:flex;align-items:flex-end;gap:2px;height:14px}
+    .bars span{width:2.5px;background:var(--lime);border-radius:1px}
+    .chip{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--lime)}
+    .body{padding:22px 18px 30px}
+    h1{font-size:21px;font-weight:600;margin-bottom:5px}
+    .sub{font-size:13px;color:var(--mut);margin-bottom:22px}
+    label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+    input[type=text],input[type=number]{width:100%;background:#161616;border:1px solid rgba(255,255,255,.14);border-radius:11px;color:#F5F5F2;font-size:16px;font-family:inherit;padding:12px 13px}
+    input::placeholder{color:rgba(255,255,255,.3)}
+    input:focus{outline:none;border-color:var(--lime)}
+    .row{display:flex;gap:10px;margin-bottom:13px}
+    .seg{display:flex;gap:5px;background:#000;border:1px solid var(--bord);border-radius:13px;padding:4px;margin-bottom:16px}
+    .seg button{flex:1;border:none;background:transparent;color:var(--mut);font-size:12.5px;font-weight:500;font-family:inherit;padding:9px 4px;border-radius:10px;cursor:pointer}
+    .seg button.on{background:var(--lime);color:#141414}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:13px}
+    .pill{padding:8px 13px;border-radius:18px;border:1px solid rgba(255,255,255,.16);font-size:13px;color:rgba(255,255,255,.7);cursor:pointer;background:transparent;font-family:inherit}
+    .pill.on{background:rgba(223,255,0,.12);border-color:var(--lime);color:var(--lime)}
+    .res{display:flex;align-items:center;gap:11px;padding:11px 6px;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
+    .submit{width:100%;background:var(--lime);border:none;color:#141414;font-size:15px;font-weight:600;font-family:inherit;border-radius:14px;padding:15px;margin-top:24px;cursor:pointer}
+    .submit:disabled{opacity:.5}
+    .link{color:var(--lime);font-size:12px;font-weight:500;cursor:pointer}
+    .hide{display:none}
+    .center{text-align:center;padding:60px 24px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="mark"><span>now</span><span class="bars"><span style="height:6px"></span><span style="height:11px"></span><span style="height:14px"></span><span style="height:8px"></span></span><span>batting</span></div>
+      <div class="chip"><span class="dot"></span><span id="teamName">Loading…</span></div>
+    </div>
+
+    <div id="loading" class="center"><p class="mono" style="color:var(--mut);font-size:13px">Loading…</p></div>
+
+    <div id="error" class="center hide">
+      <p style="font-size:17px;font-weight:500;margin-bottom:8px">This link isn't active</p>
+      <p style="font-size:13px;color:var(--mut)">Ask your coach for an up-to-date link.</p>
+    </div>
+
+    <div id="form" class="body hide">
+      <h1>Pick your player's walk-up</h1>
+      <p class="sub" id="intro">Takes 30 seconds — your coach will get it game-ready.</p>
+
+      <div class="row">
+        <div style="flex:1"><label>First name</label><input type="text" id="first" placeholder="Jaden" /></div>
+        <div style="flex:1"><label>Last name</label><input type="text" id="last" placeholder="Washington" /></div>
+      </div>
+      <div style="margin-bottom:13px"><label>How do you say it? (optional)</label><input type="text" id="phon" placeholder="e.g. JAY-den" /></div>
+      <div style="margin-bottom:22px;width:130px"><label>Number</label><input type="number" id="num" inputmode="numeric" placeholder="23" /></div>
+
+      <label>Walk-up song</label>
+      <div class="seg">
+        <button type="button" class="on" data-tab="song">Pick a song</button>
+        <button type="button" data-tab="ai">AI song</button>
+        <button type="button" data-tab="none">No pref</button>
+      </div>
+
+      <div id="pane-song">
+        <div id="songSelected" class="card hide">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+            <div style="width:46px;height:46px;border-radius:9px;background:#2a2a2a;display:flex;align-items:center;justify-content:center;font-size:22px">♪</div>
+            <div style="flex:1;min-width:0"><div id="selTitle" style="font-weight:500" ></div><div id="selArtist" style="font-size:13px;color:var(--mut)"></div></div>
+            <span class="link" id="changeSong">Change</span>
+          </div>
+          <label>Where should it start?</label>
+          <div style="display:flex;align-items:center;gap:9px">
+            <button type="button" id="prevBtn" style="display:flex;align-items:center;gap:6px;background:rgba(223,255,0,.1);border:1px solid rgba(223,255,0,.3);border-radius:10px;padding:9px 12px;color:var(--lime);font-family:inherit;font-size:11px;font-weight:500;cursor:pointer">▶ Preview</button>
+            <input type="text" id="drop" value="0:00" style="text-align:center;font-family:'JetBrains Mono',monospace;max-width:90px" />
+          </div>
+          <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px">Type when it should kick in (m:ss), or tap Preview to find the spot.</p>
+        </div>
+        <div id="songSearch">
+          <div style="display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:0 12px">
+            <span style="color:var(--mut)">⌕</span>
+            <input type="text" id="q" placeholder="Search any song…" style="border:none;background:transparent;padding:11px 0" />
+          </div>
+          <div id="results" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+      <div id="pane-ai" class="hide">
+        <p style="font-size:12px;color:var(--mut);margin-bottom:16px">Your coach's AI writes an original walk-up with your player's name + number in it. Pick the vibe:</p>
+        <label>Genre</label>
+        <div id="genre" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px"></div>
+        <label>Energy</label>
+        <div id="energy" style="display:flex;gap:7px;margin-bottom:16px"></div>
+        <label>Details (optional)</label>
+        <input type="text" id="details" placeholder="e.g. loves hitting bombs, fastest on the team" />
+      </div>
+
+      <div id="pane-none" class="hide">
+        <div class="card" style="border-style:dashed;text-align:center;padding:20px">
+          <div style="font-size:24px">🔀</div>
+          <p style="font-size:13px;color:rgba(255,255,255,.65);margin-top:8px">No problem — your coach will pick something great.</p>
+        </div>
+      </div>
+
+      <button type="button" class="submit" id="submit">Send to <span id="coachLabel">your coach</span></button>
+      <p id="formErr" style="font-size:12px;color:#FF8A8A;text-align:center;margin-top:10px" class="hide"></p>
+      <p style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:16px;line-height:1.6">Your coach uses this to set up the team. <a href="/privacy" style="color:rgba(255,255,255,.45)">Privacy</a></p>
+    </div>
+
+    <div id="done" class="center hide">
+      <div style="width:64px;height:64px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:32px;color:#141414">✓</div>
+      <h1 id="doneName" style="margin-bottom:8px">You're in the lineup!</h1>
+      <p style="font-size:14px;color:var(--mut);line-height:1.6">Your coach will get the walk-up ready for game day. See you at the field.</p>
+    </div>
+  </div>
+
+  <audio id="audio"></audio>
+  <script>
+    var API='https://walkup-hero.vercel.app';
+    var id=(location.pathname.split('/').filter(Boolean).pop()||'').toUpperCase();
+    var $=function(s){return document.querySelector(s)};
+    var state={tab:'song',song:null,genre:'Hip-Hop',energy:'Hype'};
+
+    function mmss(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+    function parseTime(v){var m=String(v).split(':');if(m.length===2){return (parseInt(m[0],10)||0)*60+(parseInt(m[1],10)||0)}return parseInt(v,10)||0}
+
+    function fail(){$('#loading').classList.add('hide');$('#error').classList.remove('hide')}
+
+    if(!id){fail()} else {
+      fetch(API+'/api/roster-intake?id='+encodeURIComponent(id)+'&form=1')
+        .then(function(r){if(!r.ok)throw 0;return r.json()})
+        .then(function(m){
+          if(m.closed)return fail();
+          $('#loading').classList.add('hide');$('#form').classList.remove('hide');
+          $('#teamName').textContent=m.team||'Your team';
+          if(m.coach){$('#coachLabel').textContent='Coach '+m.coach;$('#intro').textContent='Coach '+m.coach+' set this up. Takes 30 seconds — they’ll get it game-ready.';}
+        }).catch(fail);
+    }
+
+    // tabs
+    Array.prototype.forEach.call(document.querySelectorAll('.seg button'),function(b){
+      b.addEventListener('click',function(){
+        state.tab=b.getAttribute('data-tab');
+        Array.prototype.forEach.call(document.querySelectorAll('.seg button'),function(x){x.classList.toggle('on',x===b)});
+        ['song','ai','none'].forEach(function(t){$('#pane-'+t).classList.toggle('hide',t!==state.tab)});
+      });
+    });
+
+    // AI chips
+    function chips(host,vals,key){
+      host.innerHTML=vals.map(function(v){return '<button type="button" class="pill'+(v===state[key]?' on':'')+'" data-v="'+v+'">'+v+'</button>'}).join('');
+      Array.prototype.forEach.call(host.querySelectorAll('button'),function(b){b.addEventListener('click',function(){state[key]=b.getAttribute('data-v');chips(host,vals,key)})});
+    }
+    chips($('#genre'),['Hip-Hop','Rock','Pop','Country','Latin','Electronic'],'genre');
+    chips($('#energy'),['Hype','Pump-Up','Smooth'],'energy');
+
+    // search (debounced)
+    var t;
+    $('#q').addEventListener('input',function(){
+      clearTimeout(t);var q=this.value.trim();
+      if(!q){$('#results').innerHTML='';return}
+      t=setTimeout(function(){
+        fetch(API+'/api/music-search?q='+encodeURIComponent(q)).then(function(r){return r.json()}).then(function(j){
+          var data=(j&&j.results&&j.results.songs&&j.results.songs.data)||[];
+          $('#results').innerHTML=data.slice(0,8).map(function(s,i){
+            return '<div class="res" data-i="'+i+'"><div style="width:38px;height:38px;border-radius:8px;background:#2a2a2a;display:flex;align-items:center;justify-content:center">♪</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">'+(s.attributes&&s.attributes.name||'')+'</div><div style="font-size:12px;color:var(--mut)">'+(s.attributes&&s.attributes.artistName||'')+'</div></div></div>';
+          }).join('');
+          Array.prototype.forEach.call($('#results').querySelectorAll('.res'),function(el){
+            el.addEventListener('click',function(){
+              var s=data[el.getAttribute('data-i')];
+              state.song={trackId:s.id,title:s.attributes.name,artist:s.attributes.artistName,preview:(s.attributes.previews&&s.attributes.previews[0]&&s.attributes.previews[0].url)||''};
+              $('#selTitle').textContent=state.song.title;$('#selArtist').textContent=state.song.artist;
+              $('#drop').value='0:00';
+              $('#songSearch').classList.add('hide');$('#songSelected').classList.remove('hide');
+            });
+          });
+        }).catch(function(){});
+      },350);
+    });
+    $('#changeSong').addEventListener('click',function(){$('#songSelected').classList.add('hide');$('#songSearch').classList.remove('hide')});
+
+    // preview
+    var audio=$('#audio'),playing=false;
+    $('#prevBtn').addEventListener('click',function(){
+      if(!state.song||!state.song.preview)return;
+      if(playing){audio.pause();playing=false;$('#prevBtn').innerHTML='▶ Preview';return}
+      audio.src=state.song.preview;audio.play();playing=true;$('#prevBtn').innerHTML='❚❚ Stop';
+      audio.onended=function(){playing=false;$('#prevBtn').innerHTML='▶ Preview'};
+    });
+
+    // submit
+    $('#submit').addEventListener('click',function(){
+      var first=$('#first').value.trim();
+      if(!first){$('#formErr').textContent='Please add a first name.';$('#formErr').classList.remove('hide');return}
+      var choice={kind:'none'};
+      if(state.tab==='song'&&state.song){choice={kind:'apple',trackId:state.song.trackId,title:state.song.title,artist:state.song.artist,preferredStartSec:parseTime($('#drop').value)};}
+      else if(state.tab==='ai'){choice={kind:'ai',genre:state.genre,energy:state.energy,details:$('#details').value.trim()};}
+      $('#submit').disabled=true;$('#formErr').classList.add('hide');
+      fetch(API+'/api/roster-intake',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        action:'submit',intakeId:id,firstName:first,lastName:$('#last').value.trim(),phoneticName:$('#phon').value.trim(),number:$('#num').value.trim(),songChoice:choice
+      })}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(){
+        $('#form').classList.add('hide');$('#done').classList.remove('hide');
+        $('#doneName').textContent=first+'’s in the lineup!';
+      }).catch(function(){$('#submit').disabled=false;$('#formErr').textContent='Couldn’t send — check your connection and try again.';$('#formErr').classList.remove('hide')});
+    });
+  </script>
+</body>
+</html>
