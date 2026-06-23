@@ -4,6 +4,10 @@
     {
       "source": "/join/:id",
       "destination": "https://walkup-hero.vercel.app/join/:id"
+    },
+    {
+      "source": "/setup/:id",
+      "destination": "/setup.html"
     }
   ]
 }
