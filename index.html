@@ -572,11 +572,13 @@
     /* "You will be..." intro line */
     .persona-you { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--txt3); text-transform: uppercase; margin-bottom: 16px; margin-top: -8px; }
 
-    /* ── Field establishing band (Gardner) ── */
-    .fieldband { background: var(--bg); padding: 80px 24px; }
-    .fieldband-wrap { max-width: 1040px; margin: 0 auto; }
-    .fieldband-img { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.16); }
-    @media (max-width: 768px) { .fieldband { padding: 48px 18px; } .fieldband-img { border-radius: 12px; } }
+    /* ── Field establishing band (Gardner) — full-bleed, no frame ── */
+    .fieldband { padding: 0; background: #1A1A18; line-height: 0; position: relative; }
+    .fieldband-wrap { max-width: none; margin: 0; position: relative; }
+    .fieldband-img { width: 100%; height: 62vh; max-height: 600px; min-height: 340px; object-fit: cover; object-position: 50% 40%; display: block; }
+    /* soft fade into the dark persona section below so it doesn't read as a hard cut */
+    .fieldband-wrap::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(to bottom, rgba(26,26,24,0) 0%, #1A1A18 100%); pointer-events: none; }
+    @media (max-width: 768px) { .fieldband-img { height: 48vh; max-height: 440px; min-height: 300px; } }
 
     /* ── 3. PERSONA ── */
     .persona { padding: 0; }
@@ -820,7 +822,7 @@
     .spots strong { color: var(--daylight); }
     /* Closer capstone photo */
     .closer-grid { display: grid; grid-template-columns: minmax(260px, 340px) 1fr; gap: 56px; align-items: center; max-width: 960px; margin: 0 auto; text-align: left; }
-    .closer-photo img { width: 100%; height: auto; border-radius: 20px; display: block; box-shadow: 0 24px 60px rgba(0,0,0,0.18); }
+    .closer-photo img { width: 100%; height: auto; display: block; -webkit-mask-image: radial-gradient(ellipse 98% 94% at 50% 44%, #000 64%, transparent 100%); mask-image: radial-gradient(ellipse 98% 94% at 50% 44%, #000 64%, transparent 100%); }
     .closer-grid .closer-h { text-align: left; margin-left: 0; margin-right: 0; max-width: none; }
     .closer-grid .closer-p { text-align: left; margin-left: 0; margin-right: 0; }
     .closer-grid .closer-form { margin-left: 0; margin-right: 0; }
