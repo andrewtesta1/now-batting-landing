@@ -572,14 +572,6 @@
     /* "You will be..." intro line */
     .persona-you { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: var(--txt3); text-transform: uppercase; margin-bottom: 16px; margin-top: -8px; }
 
-    /* ── Field establishing band (Gardner) — full-bleed, no frame ── */
-    .fieldband { padding: 0; background: #1A1A18; line-height: 0; position: relative; }
-    .fieldband-wrap { max-width: none; margin: 0; position: relative; }
-    .fieldband-img { width: 100%; height: 62vh; max-height: 600px; min-height: 340px; object-fit: cover; object-position: 50% 40%; display: block; }
-    /* soft fade into the dark persona section below so it doesn't read as a hard cut */
-    .fieldband-wrap::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(to bottom, rgba(26,26,24,0) 0%, #1A1A18 100%); pointer-events: none; }
-    @media (max-width: 768px) { .fieldband-img { height: 48vh; max-height: 440px; min-height: 300px; } }
-
     /* ── 3. PERSONA ── */
     .persona { padding: 0; }
     .persona-band {
@@ -2563,12 +2555,6 @@
 
 
 <!-- 3. PERSONA + TESTIMONIAL -->
-<section class="fieldband">
-  <div class="fieldband-wrap" data-aos="fade-up">
-    <img src="/cho-gardner-web.jpg" class="fieldband-img" loading="lazy" alt="A youth ballfield behind the backstop; the field sign reads: We are kids, it's just a game, our coaches are volunteers, the umpires are human." width="1600" height="1067">
-  </div>
-</section>
-
 <section class="persona">
   <div class="persona-band" data-aos="fade-up">
     <p class="eyebrow r">Built for the one with the speaker.</p>
