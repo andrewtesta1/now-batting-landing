@@ -164,9 +164,9 @@
   <footer>© 2026 Chief Hype Officer LLC · Every team needs a Chief Hype Officer.</footer>
 
   <script>
-    // Email capture reuses the SAME backend index.html defines (Google Apps
-    // Script web app → Sheet columns A=Email B=Submitted C=Ref D=Source).
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxEMdiflBkC6ttAdrhR-nINeCrv7gY351L7nLG43royyvUFrDdW-hIpCUEham87b2E2/exec';
+    // Email capture → dedicated Android-waitlist Google Sheet (its own Apps Script
+    // web app, separate from the retired beta list). Columns: A=Email B=Submitted C=Ref D=Source.
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwW0t8gwTc-Buc0S68tRFx07eJjFzxp_18txcmUrTU27twLccg54sYLag0Jxh-dS5nG/exec';
 
     const form  = document.getElementById('waitlist');
     const input = document.getElementById('email');
