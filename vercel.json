@@ -8,6 +8,10 @@
     {
       "source": "/setup/:id",
       "destination": "/setup"
+    },
+    {
+      "source": "/get",
+      "destination": "/api/get"
     }
   ]
 }

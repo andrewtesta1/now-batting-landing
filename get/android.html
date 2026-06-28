@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Android's on deck — Now Batting</title>
+  <meta name="description" content="Now Batting is on iPhone today — Android is coming. Drop your email and you'll be the first to know when it lands." />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://nowbattingapp.com/get/android" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <style>
+    /* Tokens lifted verbatim from index.html — no new colors introduced. */
+    :root {
+      --bg:           #F6F4EF;
+      --mid:          #FFFFFF;
+      --surf:         #EDEAD9;
+      --bord:         rgba(0,0,0,0.09);
+      --neon:         #DFFF00;
+      --daylight:     #B8CC00;
+      --daylight-dim: #8A9900;
+      --txt:          #1F1F1F;
+      --txt2:         #4A4A4A;
+      --txt3:         #7A7A7A;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+      --radius-md:    12px;
+      --radius-lg:    16px;
+      --btn-height:   52px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--txt); font-family: var(--font-sans);
+      font-size: 16px; -webkit-font-smoothing: antialiased;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    /* Subtle film grain — same technique as index.html's body::before. */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    .nav {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px 24px;
+    }
+
+    .wrap {
+      position: relative; z-index: 1; flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 24px 24px 64px; width: 100%;
+      max-width: 540px; margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono); font-weight: 600; font-size: 11px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--daylight-dim);
+      margin-bottom: 18px;
+    }
+    .badge-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--daylight); margin-right: 7px; vertical-align: middle; }
+
+    h1 {
+      font-family: var(--font-sans); font-weight: 800;
+      font-size: clamp(40px, 9vw, 64px); line-height: 0.95; letter-spacing: -0.02em;
+      color: var(--txt); margin-bottom: 20px;
+    }
+    .sub {
+      font-size: 17px; line-height: 1.55; color: var(--txt2);
+      max-width: 420px; margin: 0 auto 36px;
+    }
+    .sub strong { color: var(--txt); font-weight: 700; }
+
+    form {
+      display: flex; gap: 10px; width: 100%; max-width: 440px; margin: 0 auto;
+    }
+    input[type="email"] {
+      flex: 1; min-width: 0; height: var(--btn-height);
+      background: var(--mid); border: 1px solid var(--bord); border-radius: var(--radius-md);
+      padding: 0 16px; font-family: var(--font-sans); font-size: 15px; color: var(--txt);
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+    input[type="email"]::placeholder { color: var(--txt3); }
+    input[type="email"]:focus {
+      outline: none; border-color: var(--daylight);
+      box-shadow: 0 0 0 3px rgba(223,255,0,0.15);
+    }
+    .btn {
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 15px; padding: 15px 26px; height: var(--btn-height);
+      border-radius: var(--radius-md); border: none; cursor: pointer; white-space: nowrap;
+      transition: transform 0.12s, background 0.15s;
+    }
+    .btn:hover { background: var(--daylight-dim); }
+    .btn:active { transform: scale(0.98); }
+    .btn.loading { opacity: 0.5; pointer-events: none; }
+
+    .note { min-height: 20px; margin-top: 16px; font-size: 14px; line-height: 1.5; color: var(--txt2); }
+    .note a { color: var(--daylight-dim); }
+
+    .fineprint { margin-top: 28px; font-size: 13px; color: var(--txt3); line-height: 1.6; }
+    .fineprint a { color: var(--txt2); text-decoration: none; }
+    .fineprint a:hover { color: var(--daylight-dim); }
+
+    /* For the rare mis-detected iPhone visitor who still lands here. */
+    .ios-out { margin-top: 14px; font-size: 13px; }
+    .ios-out a { color: var(--daylight-dim); text-decoration: none; font-weight: 600; }
+
+    footer { position: relative; z-index: 1; text-align: center; padding: 24px; font-size: 12px; color: var(--txt3); }
+
+    @media (max-width: 520px) {
+      form { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+  <!-- Vercel Analytics (same as index.html) -->
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <div class="nav">
+    <a href="/" aria-label="Now Batting home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting">
+        <text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text>
+        <circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/>
+        <rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/>
+        <rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/>
+        <rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/>
+        <rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/>
+        <rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/>
+        <rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/>
+        <rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/>
+        <circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/>
+        <text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text>
+      </svg>
+    </a>
+  </div>
+
+  <main class="wrap">
+    <div class="eyebrow"><span class="badge-dot"></span>Android · Coming soon</div>
+    <h1>Android's on deck.</h1>
+    <p class="sub">Now Batting is on <strong>iPhone</strong> today — <strong>Android is coming</strong>. Drop your email and you'll be the first to know the second it lands.</p>
+
+    <form id="waitlist" novalidate>
+      <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+      <button type="submit" class="btn" id="submit">Notify me</button>
+    </form>
+    <div class="note" id="note" role="status" aria-live="polite"></div>
+
+    <p class="ios-out">On an iPhone? <a href="https://apps.apple.com/app/now-batting/id6760744461">Download Now Batting →</a></p>
+
+    <p class="fineprint">
+      One email when Android ships — no spam, ever.<br>
+      Trouble signing up? <a href="mailto:cho@nowbattingapp.com?subject=Android%20waitlist&amp;body=Add%20me%20to%20the%20Android%20list.">Email cho@nowbattingapp.com</a>
+    </p>
+  </main>
+
+  <footer>© 2026 Chief Hype Officer LLC · Every team needs a Chief Hype Officer.</footer>
+
+  <script>
+    // Email capture reuses the SAME backend index.html defines (Google Apps
+    // Script web app → Sheet columns A=Email B=Submitted C=Ref D=Source).
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxEMdiflBkC6ttAdrhR-nINeCrv7gY351L7nLG43royyvUFrDdW-hIpCUEham87b2E2/exec';
+
+    const form  = document.getElementById('waitlist');
+    const input = document.getElementById('email');
+    const btn   = document.getElementById('submit');
+    const note  = document.getElementById('note');
+    const params = new URLSearchParams(location.search);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input.value.trim();
+      if (!email || !email.includes('@')) {
+        note.textContent = 'Enter a valid email and we’ll take it from there.';
+        return;
+      }
+      btn.classList.add('loading');
+      btn.disabled = true;
+      note.textContent = '';
+      try {
+        // no-cors: Apps Script doesn't send CORS headers, so we fire-and-forget
+        // and optimistically confirm. The mailto fallback below always remains
+        // available if anything goes sideways.
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            email,
+            ref: params.get('utm_campaign') || document.referrer || '',
+            source: 'android-waitlist',
+          }),
+        });
+        note.style.color = 'var(--daylight-dim)';
+        note.textContent = 'You’re on the list. We’ll email you the second Android goes live.';
+        form.reset();
+      } catch (err) {
+        note.innerHTML = 'Hmm, that didn’t go through — <a href="mailto:cho@nowbattingapp.com?subject=Android%20waitlist&amp;body=Add%20me%20to%20the%20Android%20list.">email us and we’ll add you</a>.';
+      } finally {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
