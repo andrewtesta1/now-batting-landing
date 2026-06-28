@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Pick your walk-up — Now Batting</title>
+  <title>Set up your player's walk-up music — Now Batting</title>
   <meta name="robots" content="noindex" />
+  <meta property="og:title" content="Set up your player's walk-up music" />
+  <meta property="og:description" content="Your Chief Hype Officer needs your help — add your player's name, number, and walk-up song. 30 seconds, no app needed." />
+  <meta property="og:image" content="https://nowbattingapp.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -45,7 +49,7 @@
 <body>
   <div class="wrap">
     <div class="head">
-      <div class="mark"><span>now</span><span class="bars"><span style="height:6px"></span><span style="height:11px"></span><span style="height:14px"></span><span style="height:8px"></span></span><span>batting</span></div>
+      <div class="mark"><svg viewBox="0 0 332 60" height="20" xmlns="http://www.w3.org/2000/svg" aria-label="Now Batting" style="display:block"><text x="0" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><text x="188.38" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">batting</text></svg></div>
       <div class="chip"><span class="dot"></span><span id="teamName">Loading…</span></div>
     </div>
 
@@ -53,12 +57,12 @@
 
     <div id="error" class="center hide">
       <p style="font-size:17px;font-weight:500;margin-bottom:8px">This link isn't active</p>
-      <p style="font-size:13px;color:var(--mut)">Ask your coach for an up-to-date link.</p>
+      <p style="font-size:13px;color:var(--mut)">Ask your Chief Hype Officer for an up-to-date link.</p>
     </div>
 
     <div id="form" class="body hide">
-      <h1>Pick your player's walk-up</h1>
-      <p class="sub" id="intro">Takes 30 seconds — your coach will get it game-ready.</p>
+      <h1>Set up your player's walk-up music</h1>
+      <p class="sub" id="intro">Takes 30 seconds — your Chief Hype Officer will get it game-ready.</p>
 
       <div class="row">
         <div style="flex:1"><label>First name</label><input type="text" id="first" placeholder="Jaden" /></div>
@@ -68,9 +72,10 @@
       <div style="margin-bottom:22px;width:130px"><label>Number</label><input type="number" id="num" inputmode="numeric" placeholder="23" /></div>
 
       <label>Walk-up song</label>
+      <p style="font-size:12px;color:var(--mut);margin:-2px 0 9px">Choose a song from Apple Music, or have Now Batting create an original one just for them.</p>
       <div class="seg">
-        <button type="button" class="on" data-tab="song">Pick a song</button>
-        <button type="button" data-tab="ai">AI song</button>
+        <button type="button" class="on" data-tab="song">Apple Music</button>
+        <button type="button" data-tab="ai">Custom song</button>
         <button type="button" data-tab="none">No pref</button>
       </div>
 
@@ -83,7 +88,7 @@
           </div>
           <label>When should it kick in? <span style="color:rgba(255,255,255,.4);font-weight:400">(optional)</span></label>
           <input type="text" id="drop" value="0:00" style="text-align:center;font-family:'JetBrains Mono',monospace;max-width:120px" />
-          <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px">Type the start time (m:ss) if you know it — your coach can fine-tune it later.</p>
+          <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px">Type the start time (m:ss) if you know it — your Chief Hype Officer can fine-tune it later.</p>
         </div>
         <div id="songSearch">
           <div style="display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:0 12px">
@@ -95,7 +100,7 @@
       </div>
 
       <div id="pane-ai" class="hide">
-        <p style="font-size:12px;color:var(--mut);margin-bottom:16px">Your coach's AI writes an original walk-up with your player's name + number in it. Pick the vibe:</p>
+        <p style="font-size:12px;color:var(--mut);margin-bottom:16px">Now Batting writes an original, one-of-one walk-up song with your player's name and number right in the lyrics. Pick the vibe:</p>
         <label>Genre</label>
         <div id="genre" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px"></div>
         <label>Energy</label>
@@ -110,19 +115,19 @@
       <div id="pane-none" class="hide">
         <div class="card" style="border-style:dashed;text-align:center;padding:20px">
           <div style="font-size:24px">🔀</div>
-          <p style="font-size:13px;color:rgba(255,255,255,.65);margin-top:8px">No problem — your coach will pick something great.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,.65);margin-top:8px">No problem — your Chief Hype Officer will pick something great.</p>
         </div>
       </div>
 
-      <button type="button" class="submit" id="submit">Send to <span id="coachLabel">your coach</span></button>
+      <button type="button" class="submit" id="submit">Send to <span id="coachLabel">your CHO</span></button>
       <p id="formErr" style="font-size:12px;color:#FF8A8A;text-align:center;margin-top:10px" class="hide"></p>
-      <p style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:16px;line-height:1.6">Your coach uses this to set up the team. <a href="/privacy" style="color:rgba(255,255,255,.45)">Privacy</a></p>
+      <p style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:16px;line-height:1.6">Your Chief Hype Officer uses this to set up the team. <a href="/privacy" style="color:rgba(255,255,255,.45)">Privacy</a></p>
     </div>
 
     <div id="done" class="center hide">
       <div style="width:64px;height:64px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:32px;color:#141414">✓</div>
       <h1 id="doneName" style="margin-bottom:8px">You're in the lineup!</h1>
-      <p style="font-size:14px;color:var(--mut);line-height:1.6">Your coach will get the walk-up ready for game day. See you at the field.</p>
+      <p style="font-size:14px;color:var(--mut);line-height:1.6">Your Chief Hype Officer will get the walk-up ready for game day. See you at the field.</p>
     </div>
   </div>
 
@@ -144,7 +149,7 @@
           if(m.closed)return fail();
           $('#loading').classList.add('hide');$('#form').classList.remove('hide');
           $('#teamName').textContent=m.team||'Your team';
-          if(m.coach){$('#coachLabel').textContent='Coach '+m.coach;$('#intro').textContent='Coach '+m.coach+' set this up. Takes 30 seconds — they’ll get it game-ready.';}
+          if(m.coach){$('#coachLabel').textContent=m.coach;$('#intro').textContent=m.coach+', your Chief Hype Officer, set this up. Takes 30 seconds — they’ll get it game-ready.';}
         }).catch(fail);
     }
 
