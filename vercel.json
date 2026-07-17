@@ -2,6 +2,10 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/og.png",
+      "destination": "https://walkup-hero.vercel.app/api/site-og"
+    },
+    {
       "source": "/join/:id",
       "destination": "https://walkup-hero.vercel.app/join/:id"
     },
