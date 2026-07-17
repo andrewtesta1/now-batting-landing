@@ -6,6 +6,10 @@
       "destination": "https://walkup-hero.vercel.app/join/:id"
     },
     {
+      "source": "/hype/og-home",
+      "destination": "https://walkup-hero.vercel.app/hype/og-home"
+    },
+    {
       "source": "/hype/og/:id",
       "destination": "https://walkup-hero.vercel.app/hype/og/:id"
     },
