@@ -14,6 +14,10 @@
       "destination": "https://walkup-hero.vercel.app/hype/og-home"
     },
     {
+      "source": "/hype/story/:id",
+      "destination": "https://walkup-hero.vercel.app/hype/story/:id"
+    },
+    {
       "source": "/hype/og/:id",
       "destination": "https://walkup-hero.vercel.app/hype/og/:id"
     },
