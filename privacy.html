@@ -93,7 +93,7 @@
 <main>
   <p class="page-eye">Legal</p>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: June 18, 2026</p>
+  <p class="updated">Last updated: July 19, 2026</p>
 
   <p>This Privacy Policy explains how Chief Hype Officer LLC ("we," "us," or "our"), the operator of Now Batting, collects, uses, and protects information when you use the Now Batting iOS application and the website at nowbattingapp.com (collectively "Now Batting" or the "App").</p>
 
@@ -161,7 +161,7 @@
   <h3>AI-generated Team Hype Songs</h3>
   <p>When you generate a hype song for your team, we send ElevenLabs Music your team name, your selected genre and energy, an optional team "vibe" description if you provide one, and the first name and jersey number of each player on the roster. Player last names are never included in the lyrics we compose. The resulting audio is stored on our content delivery network.</p>
 
-  <h3>Game Update announcements</h3>
+  <h3>Live Score Call announcements</h3>
   <p>When you announce a live score update during a game, the team names you've entered, the current inning, and the score are sent to ElevenLabs to synthesize the announcement audio. This audio is cached on your device for replay and is rate-limited to protect against abuse.</p>
 
   <h3>BYO Announcer uploads</h3>
@@ -181,6 +181,21 @@
 
   <h3>Anonymized crash data</h3>
   <p>We use Sentry for crash reporting. Crash reports include diagnostic information (device model, OS version, error stack trace) but do not include personally identifiable information. Sentry retains this data per its standard data retention policy.</p>
+
+  <h2>The Hype Booth (Free Web Tool)</h2>
+  <p>The Hype Booth is a free tool on our website at nowbattingapp.com/hype that lets anyone create a short, personalized walk-up song for a player and share it. It does not require an account, a subscription, or the App. Because it is a public web tool that works differently from the App, we describe it separately here.</p>
+
+  <h3>What the Hype Booth collects</h3>
+  <p>To create a song, a visitor enters a player's <strong>first name</strong> and, optionally, a <strong>jersey number</strong>, selects a musical genre and energy level, and may add up to three short optional free-text details to personalize the lyrics. We do not ask for, and the tool does not accept, a player's last name. We do not collect an email address, phone number, or any other contact information through the Hype Booth.</p>
+
+  <h3>How a Hype Booth song is made and stored</h3>
+  <p>The first name, jersey number, and any details you enter are sent to ElevenLabs Music to compose the song. The resulting audio, along with its lyrics and word timings, is stored on our content delivery network (Vercel Blob); the audio filename contains the first name only. A share record — the first name, jersey number, song title, and audio URL — is stored on Upstash so that a link you share plays that specific song. As with our other generated audio, these files are served from public URLs that are unlisted (not indexed or made discoverable by us) but accessible to anyone who has the link. If you choose to share a song, you become the publisher of that content.</p>
+
+  <h3>Content safeguards</h3>
+  <p>The Hype Booth is intended to be youth-appropriate. The free-text details are length-limited and screened for inappropriate input before a song is composed, and any song the music generator flags as explicit is discarded — never stored or served. The tool is protected against automated abuse by a bot-detection check (Cloudflare Turnstile) and by per-visitor and overall daily generation limits.</p>
+
+  <h3>Hype Booth retention</h3>
+  <p>Songs created with the Hype Booth, along with their lyrics and share records, are automatically deleted 30 days after they are created. You do not need to take any action for this to happen. You may also request earlier removal by emailing <a href="mailto:cho@nowbattingapp.com">cho@nowbattingapp.com</a>.</p>
 
   <h2>What We Don't Collect</h2>
   <p>Now Batting does not collect:</p>
@@ -211,6 +226,7 @@
     <li><strong>RevenueCat</strong> — Subscription-management service used to determine your subscription and entitlement status. Receives your App-specific account identifier and subscription status; does not receive payment card details.</li>
     <li><strong>ElevenLabs</strong> — Used to generate AI-voiced player announcements (batters and pitchers, including Bullpen and pitching-change calls), lineup calls, walk-up songs, team hype songs, and live Game Update announcements. We have opted out of ElevenLabs using our submitted content to train their models. ElevenLabs operates infrastructure in the United States, Netherlands, and Singapore; per their published policy, submitted data is stored in the United States.</li>
     <li><strong>Vercel</strong> — Hosts our API, website, and audio content delivery network. Processes API requests including AI generation and roster sharing.</li>
+    <li><strong>Cloudflare</strong> — Provides the bot-detection check (Turnstile) that protects the free Hype Booth web tool from automated abuse. Cloudflare receives a challenge token and the requesting IP address to verify a request is not automated; it does not receive player information.</li>
     <li><strong>Upstash</strong> — Stores shared roster data (player names, jersey numbers, positions, song selections) so it can be accessed by other users you've shared with. Data is retained until you delete the shared roster.</li>
     <li><strong>Vercel Blob</strong> — Hosts the audio files we generate on a content delivery network so your downloaded version of the App can fetch and cache them. Generated audio files are served from a public URL that is unlisted (not indexed or made discoverable) but accessible to anyone who has the URL.</li>
     <li><strong>Anthropic</strong> — Provides the Claude API used to generate creative descriptors for the "Fully Custom" announcement option and to suggest walk-up song drop points. Per Anthropic's published API terms, inputs submitted through the Claude API are not used to train Anthropic's models.</li>
