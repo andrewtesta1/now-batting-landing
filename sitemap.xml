@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nowbattingapp.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://nowbattingapp.com/our-story</loc><priority>0.7</priority></url>
-  <url><loc>https://nowbattingapp.com/setup</loc><priority>0.7</priority></url>
-  <url><loc>https://nowbattingapp.com/support</loc><priority>0.5</priority></url>
-  <url><loc>https://nowbattingapp.com/get/android</loc><priority>0.4</priority></url>
-  <url><loc>https://nowbattingapp.com/chief-hype-officer/nominate</loc><priority>0.4</priority></url>
-  <url><loc>https://nowbattingapp.com/privacy</loc><priority>0.3</priority></url>
-  <url><loc>https://nowbattingapp.com/terms</loc><priority>0.3</priority></url>
+  <url><loc>https://www.nowbattingapp.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.nowbattingapp.com/our-story</loc><priority>0.7</priority></url>
+  <url><loc>https://www.nowbattingapp.com/setup</loc><priority>0.7</priority></url>
+  <url><loc>https://www.nowbattingapp.com/support</loc><priority>0.5</priority></url>
+  <url><loc>https://www.nowbattingapp.com/get/android</loc><priority>0.4</priority></url>
+  <url><loc>https://www.nowbattingapp.com/chief-hype-officer/nominate</loc><priority>0.4</priority></url>
+  <url><loc>https://www.nowbattingapp.com/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://www.nowbattingapp.com/terms</loc><priority>0.3</priority></url>
 </urlset>

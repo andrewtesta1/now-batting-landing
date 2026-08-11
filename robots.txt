@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nowbattingapp.com/sitemap.xml
+Sitemap: https://www.nowbattingapp.com/sitemap.xml
