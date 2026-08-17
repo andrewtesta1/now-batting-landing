@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Now Batting — feature preview</title>
+<style>
+  :root{
+    --neon:#DFFF00;
+    --screen:#F1EEE6; --white:#FFFFFF; --sub:#E9E5DB;
+    --appink:#1A1A1A; --appdark:#1F1F1F;
+    --appmut:rgba(31,31,31,.52); --applbl:rgba(31,31,31,.42); --appline:rgba(0,0,0,.10);
+    --track:#D9D5CB; --gold:#B8CC00;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#151517}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.5;color:var(--appink)}
+  .frame{display:flex;align-items:center;justify-content:center;padding:10px 14px 22px}
+  .fp{display:none;width:100%;justify-content:center}
+  .fp.active{display:flex}
+
+  .app{width:344px;max-width:100%;background:var(--screen);border-radius:24px;box-shadow:0 18px 46px rgba(0,0,0,.46);padding:16px 15px 18px;color:var(--appink);position:relative}
+  .scrlabel{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--applbl);text-align:center;margin:2px 0 12px}
+  .grab{width:38px;height:4px;border-radius:2px;background:rgba(0,0,0,.14);margin:0 auto 14px}
+  .tabs{display:flex;gap:6px;background:rgba(0,0,0,.05);border-radius:14px;padding:5px;margin-bottom:9px}
+  .tab{flex:1;text-align:center;padding:11px 6px;border-radius:10px;font-weight:700;font-size:14px;color:var(--appmut)}
+  .tab.on{background:var(--appdark);color:#fff}
+  .tabsub{font-size:11.5px;color:var(--appmut);text-align:center;margin:0 0 14px}
+
+  .songwrap{background:var(--white);border-radius:16px;padding:14px;margin-bottom:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .search{display:flex;align-items:center;gap:9px;border:1.5px solid var(--appline);border-radius:11px;padding:10px 12px;background:#faf9f5}
+  .mag{opacity:.4;font-size:13px}
+  .q{font-size:14px;font-weight:600;color:var(--appink)}
+  .caret{display:inline-block;width:1.5px;height:15px;background:var(--gold);margin-left:1px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .result{display:flex;align-items:center;gap:11px;margin-top:10px;padding:8px;border-radius:11px;transition:background .25s}
+  .songwrap.pick .result{background:rgba(184,204,0,.14)}
+  .songcard{display:none;align-items:center;gap:12px}
+  .songwrap.picked .search,.songwrap.picked .result{display:none}
+  .songwrap.picked .songcard{display:flex}
+  .art{width:52px;height:52px;border-radius:10px;flex:none;background:linear-gradient(135deg,#38402a,#5f7326 60%,#8aa32e);display:grid;place-items:center;color:#eaf3c0;font-size:20px}
+  .sname{font-weight:800;font-size:14px;margin:0;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+  .sart{font-size:12px;color:var(--appmut);margin:2px 0 0;font-weight:600}
+  .change{margin-left:auto;color:var(--gold);font-weight:800;font-size:13.5px;padding-left:8px}
+
+  .meter{margin-top:4px}
+  .meter.card{background:var(--sub);border-radius:14px;padding:14px 14px 13px;margin-top:12px}
+  .mlbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--applbl);margin:0 0 14px}
+  .rail{position:relative;height:5px;border-radius:3px;background:var(--track);margin:0 4px}
+  .fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--gold);width:6%;transition:width .7s cubic-bezier(.4,0,.2,1)}
+  .knob{position:absolute;top:50%;width:30px;height:30px;border-radius:50%;background:var(--appdark);border:3px solid var(--gold);transform:translate(-50%,-50%);left:6%;box-shadow:0 2px 6px rgba(0,0,0,.28),0 0 0 4px rgba(184,204,0,.16);transition:left .7s cubic-bezier(.4,0,.2,1)}
+  .ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--applbl);margin-top:12px;padding:0 2px}
+  .mrow{display:flex;align-items:center;gap:10px;margin-top:12px}
+  .chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--gold);border-radius:11px;padding:9px 12px;font-family:var(--mono);font-weight:700;font-size:15px;color:var(--appink)}
+  .chip .clk{color:var(--gold);font-size:13px}
+  .preview{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--appdark);color:#fff;border-radius:24px;padding:13px;font-weight:800;font-size:14px}
+  .preview .pl{font-size:11px}
+  .confirm{display:flex;align-items:center;justify-content:space-between;margin-top:12px;opacity:0;transition:opacity .4s}
+  .meter.set .confirm{opacity:1}
+  .cset{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--appmut);font-weight:600}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  .cset b{color:var(--appink);font-family:var(--mono);font-weight:700}
+  .redo{color:var(--gold);font-weight:800;font-size:13.5px}
+  .div{height:1px;background:var(--appline);margin:16px 2px}
+
+  .appttl{font-weight:800;font-size:19px;letter-spacing:-.02em;margin:0}
+  .appsub{font-size:12.5px;color:var(--appmut);margin:3px 0 0}
+  .lbl{font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.15em;color:var(--applbl);margin:0 0 8px}
+  .field{border:1.5px solid var(--appline);border-radius:12px;background:var(--white);padding:11px 13px;font-size:14.5px;font-weight:600;color:var(--appink)}
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border-radius:20px;background:var(--white);border:1.5px solid var(--appline);font-size:13px;font-weight:700;color:var(--appink)}
+  .pill.on{background:var(--gold);border-color:var(--gold)}
+  .pill .tri{width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid rgba(31,31,31,.5)}
+  .pill.on .tri{border-left-color:var(--appink)}
+  .build{margin-top:16px;background:var(--appdark);color:#fff;border:0;border-radius:14px;width:100%;padding:15px;font-weight:800;font-size:14.5px;font-family:var(--sans)}
+  .mt16{margin-top:16px}
+
+  .subttl{font-size:12.5px;color:var(--appmut);text-align:center;margin:0 0 16px;line-height:1.45}
+  .mode{background:var(--white);border:1.5px solid var(--appline);border-radius:16px;padding:15px;margin-bottom:10px;transition:border-color .3s,background .3s}
+  .mode.sel{background:rgba(223,255,0,.06);border-color:var(--neon)}
+  .moderow{display:flex;gap:13px;align-items:flex-start}
+  .radio{width:20px;height:20px;border-radius:50%;border:2px solid rgba(0,0,0,.20);flex:none;margin-top:1px;display:grid;place-items:center;transition:border-color .3s}
+  .mode.sel .radio{border-color:var(--neon)}
+  .rdot{width:10px;height:10px;border-radius:50%;background:var(--gold);opacity:0;transform:scale(.4);transition:opacity .3s,transform .3s}
+  .mode.sel .rdot{opacity:1;transform:scale(1)}
+  .modet{font-weight:800;font-size:15px;margin:0;letter-spacing:-.01em}
+  .moded{font-size:12px;color:var(--appmut);margin:2px 0 0;font-weight:500;line-height:1.4}
+  .mbody{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s ease,margin .3s}
+  .mode.sel .mbody{max-height:340px;opacity:1;margin-top:14px}
+  .pills.moment .pill.on{background:var(--neon);border-color:var(--neon)}
+  .player{display:flex;align-items:center;gap:14px;background:var(--appink);border-radius:14px;padding:14px 16px;margin-top:14px}
+  .playbtn{width:34px;height:34px;border-radius:50%;background:var(--neon);color:var(--appink);display:grid;place-items:center;font-size:13px;flex:none;padding-left:2px}
+  .ptext{color:#fff;font-weight:700;font-size:14px}
+  .regen{text-align:center;color:var(--appmut);font-weight:700;font-size:13px;margin:13px 0 2px}
+  .scriptcard{background:var(--white);border:1.5px solid var(--appline);border-radius:12px;padding:13px}
+  .scripttext{font-weight:600;font-size:14px;color:var(--appink);margin:0;line-height:1.5}
+  .hl{background:rgba(184,204,0,.35);padding:0 2px;border-radius:3px}
+  .scriptfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+  .scriptfoot .credit{font-size:11px;color:var(--appmut)}
+  .tryanother{font-size:11px;font-weight:800;color:var(--gold);flex:none}
+  .upload{border:1.5px dashed rgba(0,0,0,.18);border-radius:12px;padding:18px 14px;text-align:center;background:#faf9f5}
+  .upicon{width:34px;height:34px;border-radius:50%;background:var(--neon);color:var(--appink);display:grid;place-items:center;font-size:16px;margin:0 auto 9px;font-weight:800}
+  .uptext{font-size:12.5px;color:var(--appmut);margin:0 0 12px;font-weight:500}
+  .upbtn{display:inline-block;background:var(--appdark);color:#fff;font-weight:800;font-size:13px;border-radius:11px;padding:10px 18px}
+
+  .flabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--applbl);margin:16px 0 7px;font-weight:600}
+  .flabel:first-of-type{margin-top:2px}
+  .flabel .opt{font-family:var(--sans);text-transform:none;letter-spacing:0;font-weight:500}
+  .hint{font-size:11.5px;color:var(--appmut);margin:0 0 12px;line-height:1.45}
+  .dpills{display:flex;flex-wrap:wrap;gap:8px}
+  .dpill{background:rgba(0,0,0,.06);border-radius:100px;padding:9px 14px;font-weight:700;font-size:13px;color:rgba(31,31,31,.62)}
+  .dpill.on{background:var(--appdark);color:#fff}
+  .epills{display:flex;gap:8px}
+  .epill{flex:1;text-align:center;background:rgba(0,0,0,.06);border-radius:12px;padding:11px 6px}
+  .epill.on{background:var(--appdark)}
+  .epill .et{font-weight:700;font-size:13px;color:rgba(31,31,31,.62)}
+  .epill.on .et{color:#fff}
+  .epill .es{font-size:10px;color:rgba(31,31,31,.38);margin-top:3px}
+  .epill.on .es{color:rgba(255,255,255,.55)}
+  .dinput{border:1.5px solid var(--appline);background:var(--white);border-radius:11px;padding:11px 13px;font-size:13.5px;color:rgba(31,31,31,.42);font-weight:500;margin-bottom:8px}
+  .genbtn{margin-top:16px;background:var(--appdark);border-radius:14px;width:100%;padding:15px;text-align:center;font-weight:800;font-size:14.5px;color:var(--neon)}
+  .genbtn.neon{background:var(--neon);color:var(--appink)}
+
+  .gloading{display:none;flex-direction:column;align-items:center;text-align:center;padding:26px 10px 20px}
+  .app.gen .gform{display:none}
+  .app.gen .gloading{display:flex}
+  .spinner{width:26px;height:26px;border-radius:50%;border:3px solid rgba(0,0,0,.12);border-top-color:var(--gold);animation:spin .8s linear infinite;margin-bottom:14px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .gphase{font-weight:800;font-size:15px;color:var(--appink);margin:0 0 4px}
+  .gsub{font-size:12px;color:var(--appmut);margin:0}
+  .gcancel{margin-top:16px;font-weight:800;font-size:13px;color:var(--appmut)}
+  .npills{display:flex;flex-wrap:wrap;gap:8px}
+  .npill{border:1.5px solid var(--appline);background:#faf9f5;border-radius:20px;padding:8px 14px;font-weight:600;font-size:13px;color:var(--appmut)}
+  .npill.on{background:var(--appink);border-color:var(--neon);color:var(--neon);font-weight:800}
+  .tphases{display:flex;flex-direction:column;gap:14px;margin:6px 0 22px;text-align:left;width:100%}
+  .tprow{display:flex;align-items:center;gap:11px}
+  .tpdot{width:18px;height:18px;display:grid;place-items:center;flex:none}
+  .tpdot .pend{width:8px;height:8px;border-radius:4px;background:var(--track)}
+  .tpdot .act{width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(184,204,0,.2)}
+  .tpdot .done{color:var(--gold);font-size:15px;font-weight:800}
+  .tplabel{font-size:14px;color:var(--appmut);font-weight:600}
+  .tprow.on .tplabel{color:var(--appink);font-weight:800}
+  .tprow.done .tplabel{color:var(--appink)}
+  .tptrack{width:100%;height:4px;border-radius:2px;background:var(--track);overflow:hidden;margin-bottom:12px}
+  .tpfill{display:block;height:4px;border-radius:2px;background:var(--gold);width:0;transition:width .6s ease}
+  .test{font-size:11px;color:var(--appmut);text-align:center}
+
+  .phone{width:344px;max-width:100%;height:592px;position:relative;overflow:hidden;border-radius:26px;background:#141414;border:1px solid rgba(255,255,255,.10);box-shadow:0 18px 46px rgba(0,0,0,.5)}
+  .dimtop{padding:16px 16px 0;opacity:.45}
+  .dwm{width:118px;height:auto;display:block;margin:4px auto 12px}
+  .teamchip{display:flex;align-items:center;gap:8px;background:#242424;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:11px 14px;font-weight:800;font-size:14px;color:#F5F5F2}
+  .teamchip .g{width:8px;height:8px;border-radius:50%;background:var(--neon)}
+  .teamchip .cv{margin-left:auto;color:rgba(245,245,242,.4);font-size:11px}
+  .batlbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.4);margin:16px 0 12px}
+  .whoup{font-weight:800;font-size:20px;color:#F5F5F2;margin:8px 0 2px}
+  .whoup2{font-size:13px;color:rgba(255,255,255,.4);margin:0}
+  .gdsheet{position:absolute;left:0;right:0;bottom:0;height:74%;background:#1b1b1b;border-top:2px solid var(--neon);border-radius:16px 16px 0 0;padding:14px 15px 0;box-shadow:0 -12px 30px rgba(0,0,0,.45);animation:rise .6s cubic-bezier(.2,.7,.2,1)}
+  @keyframes rise{from{transform:translateY(74%)}to{transform:translateY(0)}}
+  .gdhead{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.45);margin-bottom:12px}
+  .gdhead .cv{font-size:13px}
+  .qtiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .qtile{background:rgba(184,204,0,.09);border:1px solid rgba(223,255,0,.22);border-radius:12px;padding:11px 4px 9px;text-align:center}
+  .qtile svg{width:20px;height:20px;display:block;margin:0 auto 7px}
+  .qtile .ql{font-family:var(--mono);font-size:7.5px;letter-spacing:.06em;color:var(--neon);font-weight:600}
+  .sctoggle{display:flex;gap:4px;background:#101010;border-radius:22px;padding:5px;margin:14px auto 4px;width:max-content}
+  .sctoggle span{padding:9px 18px;border-radius:18px;font-weight:800;font-size:13.5px;color:rgba(255,255,255,.5)}
+  .sctoggle span.on{background:var(--neon);color:var(--appink)}
+  .gdview{height:210px;overflow:hidden;position:relative;margin-top:6px;-webkit-mask-image:linear-gradient(180deg,#000 86%,transparent);mask-image:linear-gradient(180deg,#000 86%,transparent)}
+  .gdscroll{animation:gdscroll 15s ease-in-out 1s infinite alternate}
+  @keyframes gdscroll{0%{transform:translateY(0)}100%{transform:translateY(-42%)}}
+  .seclbl{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin:14px 0 8px}
+  .seclbl.first{margin-top:6px}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .mcard{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:9px 11px;min-width:0}
+  .mcard.play{background:var(--neon);border-color:var(--neon)}
+  .mctop{display:flex;align-items:center;gap:6px}
+  .mclbl{flex:1;font-family:var(--mono);font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--neon);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mcard.play .mclbl{color:#141414}
+  .mpin,.mdots{color:rgba(255,255,255,.3);font-size:11px;flex:none}
+  .mcard.play .mpin,.mcard.play .mdots{color:rgba(0,0,0,.5)}
+  .mtitle{font-weight:700;font-size:12px;color:#F5F5F2;margin:5px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mcard.play .mtitle{color:#141414}
+  .martist{font-size:10px;color:rgba(255,255,255,.45);margin:1px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mcard.play .martist{color:rgba(0,0,0,.55)}
+
+  @media (prefers-reduced-motion:reduce){.fill,.knob,.confirm,.mbody{transition:none}.caret,.spinner,.gdscroll,.tpfill,.gdsheet{animation:none}}
+</style>
+</head>
+<body>
+<div class="frame" id="frame">
+
+  <!-- announcer -->
+  <div class="fp" data-fp="announcer">
+    <div class="app">
+      <p class="scrlabel">HOW THEY'RE ANNOUNCED</p>
+      <p class="subttl">Simple, custom, or bring your own announcer.<br>Your call — change it any time.</p>
+      <div class="mode sel" id="mA">
+        <div class="moderow"><span class="radio"><span class="rdot"></span></span><div><p class="modet">Quick and Easy</p><p class="moded">Our announcer voice, the classic template.</p></div></div>
+        <div class="mbody">
+          <p class="mlbl" style="margin:0 0 8px">PICK THE MOMENT</p>
+          <div class="pills moment"><span class="pill on">Now Batting</span><span class="pill">Leading Off</span><span class="pill">Coming Up</span><span class="pill">Stepping Up</span></div>
+          <div class="player"><span class="playbtn">▶</span><span class="ptext">"Now Batting, #21, Calvin Testa!"</span></div>
+          <p class="regen">↺ Regenerate</p>
+        </div>
+      </div>
+      <div class="mode" id="mB">
+        <div class="moderow"><span class="radio"><span class="rdot"></span></span><div><p class="modet">Fully Custom</p><p class="moded">Your script. Our announcer voice reads what you wrote.</p></div></div>
+        <div class="mbody">
+          <div class="scriptcard"><p class="scripttext">"Now batting, <span class="hl">the ice-cold assassin from center field</span>, number 21, Calvin Testa!"</p><div class="scriptfoot"><span class="credit">✨ AI added a creative touch.</span><span class="tryanother">↻ Try another</span></div></div>
+          <div class="genbtn">🎙 Generate Announcement</div>
+        </div>
+      </div>
+      <div class="mode" id="mC">
+        <div class="moderow"><span class="radio"><span class="rdot"></span></span><div><p class="modet">BYO Announcer</p><p class="moded">Upload your own announcement.</p></div></div>
+        <div class="mbody"><div class="upload"><div class="upicon">↑</div><p class="uptext">Upload your own announcer here.</p><span class="upbtn">Choose a recording</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- songeditor -->
+  <div class="fp" data-fp="songeditor">
+    <div class="app" id="editor">
+      <p class="scrlabel">WALK-UP SONG</p>
+      <div class="tabs"><div class="tab on">Apple Music</div><div class="tab">✨ Make an Original</div></div>
+      <p class="tabsub">Whichever tab is selected plays on game day.</p>
+      <div class="songwrap" id="songwrap">
+        <div class="search"><span class="mag">🔍</span><span class="q" id="q"></span></div>
+        <div class="result"><div class="art">♪</div><div><p class="sname">Yeah! (feat. Lil Jon &amp; Lu…</p><p class="sart">USHER</p></div></div>
+        <div class="songcard"><div class="art">♪</div><div><p class="sname">Yeah! (feat. Lil Jon &amp; Lu…</p><p class="sart">USHER</p></div><span class="change">Change</span></div>
+      </div>
+      <div class="meter" id="mDrop">
+        <p class="mlbl">DROP POINT</p>
+        <div class="rail"><span class="fill" style="width:6%"></span><span class="knob" style="left:6%"></span></div>
+        <div class="ends"><span>0:00</span><span>4:00</span></div>
+        <div class="mrow"><span class="chip"><span class="clk">◷</span>0:15</span><span class="preview"><span class="pl">▶</span> Preview</span></div>
+        <div class="confirm"><span class="cset"><span class="dot"></span>Drop point set at <b>0:15</b></span><span class="redo">Redo</span></div>
+      </div>
+      <div class="div"></div>
+      <div class="meter card" id="mStop">
+        <p class="mlbl">SONG STOP</p>
+        <div class="rail"><span class="fill" style="width:98%"></span><span class="knob" style="left:98%"></span></div>
+        <div class="ends"><span>0:00</span><span>4:00</span></div>
+        <div class="mrow"><span class="chip"><span class="clk">◷</span>4:00</span></div>
+        <div class="confirm"><span class="cset"><span class="dot"></span>Song fades out at <b>4:00</b></span><span class="redo">Redo</span></div>
+      </div>
+      <div class="meter card" id="mAnn">
+        <p class="mlbl">ANNOUNCER DROP POINT</p>
+        <div class="rail"><span class="fill" style="width:15%"></span><span class="knob" style="left:15%"></span></div>
+        <div class="ends"><span>0:00</span><span>0:10</span></div>
+        <div class="mrow"><span class="chip"><span class="clk">◷</span>0:01.5</span></div>
+        <div class="confirm"><span class="cset"><span class="dot"></span>Announcer drop set at <b>0:16.5</b></span><span class="redo">Redo</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- rollcall -->
+  <div class="fp" data-fp="rollcall">
+    <div class="app">
+      <div class="grab"></div>
+      <p class="appttl">Customize your Roll Call</p>
+      <p class="appsub">Set the matchup, the moment, and the music.</p>
+      <p class="lbl mt16">OPPONENT (OPTIONAL)</p>
+      <div class="field">Hawks</div>
+      <p class="lbl mt16">WHEN</p>
+      <div class="pills"><span class="pill on">Today</span><span class="pill">Tonight</span><span class="pill">Morning</span><span class="pill">Afternoon</span></div>
+      <p class="lbl mt16">MUSIC BED</p>
+      <div class="pills"><span class="pill">None</span><span class="pill on"><span class="tri"></span>Classic</span><span class="pill"><span class="tri"></span>Rock</span><span class="pill"><span class="tri"></span>Hip-Hop</span><span class="pill"><span class="tri"></span>Electro</span><span class="pill"><span class="tri"></span>Country</span></div>
+      <button class="build">Build Your Roll Call</button>
+    </div>
+  </div>
+
+  <!-- original -->
+  <div class="fp" data-fp="original">
+    <div class="app" id="moiApp">
+      <div class="gform">
+        <p class="scrlabel">MAKE AN ORIGINAL ✨</p>
+        <p class="hint" style="text-align:center;margin-bottom:16px">A one-of-a-kind walk-up song with their name in it.</p>
+        <p class="flabel">GENRE</p>
+        <div class="dpills"><span class="dpill on">Hip-Hop</span><span class="dpill">Rock</span><span class="dpill">Pop</span><span class="dpill">Country</span><span class="dpill">Latin</span><span class="dpill">Electronic</span></div>
+        <p class="flabel">ENERGY</p>
+        <div class="epills"><div class="epill on"><div class="et">Hype</div><div class="es">Max intensity</div></div><div class="epill"><div class="et">Pump-Up</div><div class="es">Building hype</div></div><div class="epill"><div class="et">Smooth</div><div class="es">Cool swagger</div></div></div>
+        <p class="flabel">LENGTH</p>
+        <div class="dpills"><span class="dpill">30s</span><span class="dpill on">45s</span><span class="dpill">60s</span></div>
+        <p class="flabel">DETAILS ABOUT CALVIN</p>
+        <p class="hint">What makes them special? Add 1–3 things to weave into the song.</p>
+        <div class="dinput">Lefty power hitter</div>
+        <div class="dinput">Ice in his veins with two strikes</div>
+        <div class="dinput">Wears #21, plays center field</div>
+        <div class="genbtn">✨ Generate Walk-Up Song</div>
+      </div>
+      <div class="gloading">
+        <div class="spinner"></div>
+        <p class="gphase" id="moiPhase">Writing lyrics...</p>
+        <p class="gsub">This takes about 30 seconds</p>
+        <p class="gcancel">Cancel</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- teamsong -->
+  <div class="fp" data-fp="teamsong">
+    <div class="app" id="teamApp">
+      <div class="gform">
+        <p class="appttl">Create Team Song</p>
+        <p class="appsub">A hype song with every player's name woven in</p>
+        <p class="flabel">TEAM NAME</p>
+        <div class="field">Blue Dragons</div>
+        <p class="flabel">GENRE</p>
+        <div class="npills"><span class="npill">Hip-Hop</span><span class="npill on">Rock</span><span class="npill">Pop</span><span class="npill">Country</span><span class="npill">Latin</span><span class="npill">Electronic</span></div>
+        <p class="flabel">ENERGY</p>
+        <div class="npills"><span class="npill on">Hype</span><span class="npill">Pump-Up</span><span class="npill">Smooth</span></div>
+        <p class="flabel">ANYTHING SPECIAL ABOUT THIS TEAM? <span class="opt">(optional)</span></p>
+        <div class="field" style="color:rgba(31,31,31,.42);font-weight:500">undefeated season</div>
+        <div class="genbtn neon">Generate · 12 players</div>
+      </div>
+      <div class="gloading">
+        <p class="appttl" style="text-align:center;width:100%">Creating your song...</p>
+        <p class="appsub" style="text-align:center;width:100%;margin-bottom:20px">Blue Dragons · Rock · Hype</p>
+        <div class="tphases" id="teamPhases">
+          <div class="tprow on" data-p="1"><span class="tpdot"><span class="act"></span></span><span class="tplabel">Writing your song...</span></div>
+          <div class="tprow" data-p="2"><span class="tpdot"><span class="pend"></span></span><span class="tplabel">Composing the music...</span></div>
+          <div class="tprow" data-p="3"><span class="tpdot"><span class="pend"></span></span><span class="tplabel">Saving your song</span></div>
+        </div>
+        <div class="tptrack"><span class="tpfill" id="teamFill"></span></div>
+        <p class="test" id="teamEst">About 30 seconds left</p>
+        <p class="gcancel">Cancel</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- sounds -->
+  <div class="fp" data-fp="sounds">
+    <div class="phone">
+      <div class="dimtop">
+        <span class="dwm" data-wm></span>
+        <div class="teamchip"><span class="g"></span>Denville Dragons<span class="cv">▾</span></div>
+        <p class="batlbl">BATTER</p>
+        <p class="whoup">Who's up first?</p>
+        <p class="whoup2">Tap a player to start game day</p>
+      </div>
+      <div class="gdsheet">
+        <div class="gdhead"><span>GAME DAY</span><span class="cv">⌄</span></div>
+        <div class="qtiles">
+          <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#DFFF00"/><path d="M17 8a5 5 0 0 1 0 8" stroke="#DFFF00" stroke-width="2" stroke-linecap="round"/></svg><div class="ql">AIR HORN</div></div>
+          <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#DFFF00"/></svg><div class="ql">CHARGE</div></div>
+          <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-7 8 7" stroke="#DFFF00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#DFFF00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="ql">HOME RUN</div></div>
+          <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h14M5 17h14" stroke="#DFFF00" stroke-width="2" stroke-linecap="round"/></svg><div class="ql">STOMP</div></div>
+        </div>
+        <div class="sctoggle"><span class="on">Sounds</span><span>Score Call · 0–0</span></div>
+        <div class="gdview">
+          <div class="gdscroll">
+            <p class="seclbl first">Hype</p>
+            <div class="mgrid">
+              <div class="mcard"><div class="mctop"><span class="mclbl">Clap along</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">HandClap</p><p class="martist">Fitz and The Tantrums</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Day-O</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Day-O (The Banana Boat…</p><p class="martist">Harry Belafonte</p></div>
+              <div class="mcard play"><div class="mctop"><span class="mclbl">Crowd hype</span><span class="mpin">⚲</span><span class="mdots">▶</span></div><p class="mtitle">Turn Down for What</p><p class="martist">DJ Snake &amp; Lil Jon · playing…</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Run scored</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Rock and Roll, Pt. 2</p><p class="martist">Gary Glitter</p></div>
+            </div>
+            <p class="seclbl">Game Moments</p>
+            <div class="mgrid">
+              <div class="mcard"><div class="mctop"><span class="mclbl">Walk</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">I'm Gonna Be (500 Miles)</p><p class="martist">The Proclaimers</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Pitching change</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Hit the Road Jack</p><p class="martist">Ray Charles</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Home run</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Whoomp! (There It Is)</p><p class="martist">Tag Team</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Strikeout</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Another One Bites the Dust</p><p class="martist">Queen</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Stolen base</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Smooth Criminal</p><p class="martist">Michael Jackson</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Full count</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">The Final Countdown</p><p class="martist">Europe</p></div>
+            </div>
+            <p class="seclbl">Organ</p>
+            <div class="mgrid">
+              <div class="mcard"><div class="mctop"><span class="mclbl">Charge ×3</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Charge!</p><p class="martist">Stadium organ</p></div>
+              <div class="mcard"><div class="mctop"><span class="mclbl">Take me out</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Take Me Out to the Ball Game</p><p class="martist">Stadium organ</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var WM='<svg viewBox="0 0 332 60" xmlns="http://www.w3.org/2000/svg" aria-label="Now Batting"><text x="0" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><text x="188.38" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">batting</text></svg>';
+  document.querySelectorAll('[data-wm]').forEach(function(e){e.innerHTML=WM;});
+
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var which=(location.hash||'#announcer').slice(1);
+  var valid={announcer:1,songeditor:1,rollcall:1,original:1,teamsong:1,sounds:1};
+  if(!valid[which]) which='announcer';
+  var active=document.querySelector('.fp[data-fp="'+which+'"]');
+  if(active) active.classList.add('active');
+
+  // Report height to the parent (monotonic max so the iframe never jumps shorter).
+  var maxH=0;
+  function report(){
+    var h=document.getElementById('frame').offsetHeight;
+    if(h>maxH){maxH=h; parent.postMessage({nbFeatId:which,nbFeatHeight:maxH},'*');}
+  }
+  window.addEventListener('load',report);
+  if(window.ResizeObserver){ new ResizeObserver(report).observe(document.getElementById('frame')); }
+  setTimeout(report,120); setTimeout(report,700);
+
+  // ── Animations (only the active panel runs) ──
+  function run_songeditor(root){
+    var sw=root.querySelector('#songwrap'),q=root.querySelector('#q');
+    var mDrop=root.querySelector('#mDrop'),mStop=root.querySelector('#mStop'),mAnn=root.querySelector('#mAnn');
+    var QUERY='yeah usher',timers=[];
+    function T(fn,ms){timers.push(setTimeout(fn,ms));}
+    function reset(){timers.forEach(clearTimeout);timers=[];sw.className='songwrap';q.textContent='';
+      [mDrop,mStop,mAnn].forEach(function(m){m.classList.remove('set');m.querySelector('.fill').style.width='0%';m.querySelector('.knob').style.left='0%';});}
+    function go(){reset();var i=0;
+      (function type(){if(i<=QUERY.length){q.textContent=QUERY.slice(0,i++);T(type,90);}})();
+      T(function(){sw.classList.add('pick');},1500);
+      T(function(){sw.classList.add('picked');},2100);
+      T(function(){mDrop.querySelector('.fill').style.width='6%';mDrop.querySelector('.knob').style.left='6%';mDrop.classList.add('set');},2700);
+      T(function(){mStop.querySelector('.fill').style.width='98%';mStop.querySelector('.knob').style.left='98%';mStop.classList.add('set');},3500);
+      T(function(){mAnn.querySelector('.fill').style.width='15%';mAnn.querySelector('.knob').style.left='15%';mAnn.classList.add('set');},4200);
+      T(go,7800);}
+    if(reduce){sw.classList.add('picked');q.textContent=QUERY;[mDrop,mStop,mAnn].forEach(function(m){m.classList.add('set');});}else go();
+  }
+  function run_announcer(root){
+    if(reduce)return;var modes=['mA','mB','mC'],i=0;
+    setInterval(function(){root.querySelector('#'+modes[i]).classList.remove('sel');i=(i+1)%3;root.querySelector('#'+modes[i]).classList.add('sel');},3200);
+  }
+  function run_original(root){
+    if(reduce)return;var app=root.querySelector('#moiApp'),ph=root.querySelector('#moiPhase');
+    (function loop(){
+      setTimeout(function(){app.classList.add('gen');ph.textContent='Writing lyrics...';},3200);
+      setTimeout(function(){ph.textContent='Composing music...';},5800);
+      setTimeout(function(){app.classList.remove('gen');},8600);
+      setTimeout(loop,9400);
+    })();
+  }
+  function run_teamsong(root){
+    if(reduce)return;var app=root.querySelector('#teamApp'),fill=root.querySelector('#teamFill'),est=root.querySelector('#teamEst');
+    var rows=app.querySelectorAll('.tprow');
+    function setPhase(n){rows.forEach(function(r){var p=+r.dataset.p;r.classList.remove('on','done');var dot=r.querySelector('.tpdot');
+      if(p<n){r.classList.add('done');dot.innerHTML='<span class="done">✓</span>';}
+      else if(p===n){r.classList.add('on');dot.innerHTML='<span class="act"></span>';}
+      else{dot.innerHTML='<span class="pend"></span>';}});}
+    (function loop(){
+      setTimeout(function(){app.classList.add('gen');setPhase(1);fill.style.width='18%';est.textContent='About 30 seconds left';},3200);
+      setTimeout(function(){setPhase(2);fill.style.width='60%';est.textContent='About 20 seconds left';},5600);
+      setTimeout(function(){setPhase(3);fill.style.width='100%';est.textContent='Almost there…';},8000);
+      setTimeout(function(){app.classList.remove('gen');setPhase(1);fill.style.width='0%';},9800);
+      setTimeout(loop,10600);
+    })();
+  }
+  var runners={songeditor:run_songeditor,announcer:run_announcer,original:run_original,teamsong:run_teamsong};
+  if(active&&runners[which]) runners[which](active);
+</script>
+</body>
+</html>

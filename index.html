@@ -2242,7 +2242,7 @@
     <div class="hero-copy">
       <div class="hero-eye-block">
         <p class="hero-eye-brand">Now Batting</p>
-        <p class="hero-eye-line">For the one who hauled the speaker from the parking lot.</p>
+        <p class="hero-eye-line">For the busy parent in charge of running the walk-up music.</p>
       </div>
       <div class="hero-stack">
         <h1 class="l2">The walk-up song app that brings <span class="g">the hype without the headache.</span></h1>
@@ -2392,7 +2392,20 @@
   .r3-offline{display:flex;align-items:center;justify-content:center;gap:10px;margin:26px auto 0;max-width:660px;font-size:13.5px;line-height:1.5;color:rgba(246,244,239,.55);text-align:center}
   .r3-offline svg{color:#DFFF00;flex:none}
   .r3-offline b{color:rgba(246,244,239,.85);font-weight:600}
-  @media(max-width:620px){ .r3-frow{flex-direction:column;align-items:flex-start;gap:14px;padding:22px 8px 22px 18px} .r3-fplay,.r3-fnoaudio,.r3-voices{align-self:flex-start} }
+  /* expandable app-UX preview per feature */
+  .r3-fitem{border-bottom:1px solid rgba(246,244,239,.12)}
+  .r3-fitem .r3-frow{border-bottom:0;cursor:pointer;user-select:none}
+  .r3-fright{display:flex;align-items:center;gap:12px;flex:none}
+  .r3-fchev{flex:none;width:26px;height:26px;border-radius:50%;border:1px solid rgba(246,244,239,.22);display:grid;place-items:center;color:rgba(246,244,239,.55);transition:transform .3s ease,border-color .2s,color .2s}
+  .r3-fchev svg{width:12px;height:12px}
+  .r3-fitem.open .r3-fchev{transform:rotate(180deg);border-color:#DFFF00;color:#DFFF00}
+  .r3-fitem.open .r3-frow::before{transform:scaleY(1)}
+  .r3-fitem.open .r3-frow{background:linear-gradient(90deg,rgba(223,255,0,.05),transparent 42%)}
+  .r3-fpanel{max-height:0;overflow:hidden;transition:max-height .55s ease}
+  .r3-fitem.open .r3-fpanel{max-height:1500px}
+  .r3-fifr{width:100%;border:0;display:block;height:0;background:#151517}
+  .r3-fhint{font-size:11px;color:rgba(246,244,239,.42);font-weight:600;flex:none}
+  @media(max-width:620px){ .r3-frow{flex-direction:column;align-items:flex-start;gap:14px;padding:22px 8px 22px 18px} .r3-fplay,.r3-fnoaudio,.r3-voices,.r3-fright{align-self:flex-start} }
   @media(prefers-reduced-motion:reduce){ .r3-frow,.r3-frow::before,.r3-fplay{transition:none} .r3-fplay .eq i{animation:none;height:8px} }
 </style>
 
@@ -2433,32 +2446,74 @@
   </div>
   <div class="r3-listwrap" data-aos="fade-up">
     <div class="r3-flist">
-      <div class="r3-frow">
-        <div class="r3-fmain"><h3>Call every player by name.</h3><p>Your own announcer, Classic or Energetic — every name said right, every time.</p></div>
-        <div class="r3-voices">
-          <button class="r3-fplay" data-audio="/voice-classic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Classic</button>
-          <button class="r3-fplay" data-audio="/voice-energetic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Energetic</button>
+      <div class="r3-fitem" id="fi-announcer">
+        <div class="r3-frow" onclick="ftoggle('announcer')">
+          <div class="r3-fmain"><h3>Call every player by name.</h3><p>Your own announcer, Classic or Energetic — every name said right, every time.</p></div>
+          <div class="r3-fright">
+            <div class="r3-voices">
+              <button class="r3-fplay" data-audio="/voice-classic.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Classic</button>
+              <button class="r3-fplay" data-audio="/voice-energetic.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Energetic</button>
+            </div>
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
         </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-announcer" data-src="/feature-panels#announcer" title="How players are announced in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
-      <div class="r3-frow">
-        <div class="r3-fmain"><h3>Drop the song right where it hits.</h3><p>Any Apple Music track, cued to the exact second — then your announcer takes over.</p></div>
-        <button class="r3-fplay" data-audio="/demo_walkup.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear it</button>
+      <div class="r3-fitem" id="fi-songeditor">
+        <div class="r3-frow" onclick="ftoggle('songeditor')">
+          <div class="r3-fmain"><h3>Drop the song right where it hits.</h3><p>Any Apple Music track, cued to the exact second — then your announcer takes over.</p></div>
+          <div class="r3-fright">
+            <button class="r3-fplay" data-audio="/demo_walkup.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear it</button>
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-songeditor" data-src="/feature-panels#songeditor" title="The song editor in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
-      <div class="r3-frow">
-        <div class="r3-fmain"><h3>Put their name in the lyrics.</h3><p>An original walk-up song, written from scratch for one player.</p></div>
-        <button class="r3-fplay" data-audio="/mikey-moonshot-walkup.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Mikey Moonshot</button>
+      <div class="r3-fitem" id="fi-rollcall">
+        <div class="r3-frow" onclick="ftoggle('rollcall')">
+          <div class="r3-fmain"><h3>Roll out the lineup, big-league style.</h3><p>The Roll Call — your whole batting order announced before first pitch.</p></div>
+          <div class="r3-fright">
+            <button class="r3-fplay" data-audio="/starting-nine-reference.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear it</button>
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-rollcall" data-src="/feature-panels#rollcall" title="Customizing the Roll Call in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
-      <div class="r3-frow">
-        <div class="r3-fmain"><h3>Name the whole squad in one anthem.</h3><p>An original team anthem that calls out every player.</p></div>
-        <button class="r3-fplay" data-audio="/blue-dragons-team-song.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Blue Dragons</button>
+      <div class="r3-fitem" id="fi-original">
+        <div class="r3-frow" onclick="ftoggle('original')">
+          <div class="r3-fmain"><h3>Put their name in the lyrics.</h3><p>An original walk-up song, written from scratch for one player.</p></div>
+          <div class="r3-fright">
+            <button class="r3-fplay" data-audio="/mikey-moonshot-walkup.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Mikey Moonshot</button>
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-original" data-src="/feature-panels#original" title="Making an original walk-up song in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
-      <div class="r3-frow">
-        <div class="r3-fmain"><h3>Roll out the lineup, big-league style.</h3><p>The Roll Call — your whole batting order announced before first pitch.</p></div>
-        <button class="r3-fplay" data-audio="/starting-nine-reference.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear it</button>
+      <div class="r3-fitem" id="fi-teamsong">
+        <div class="r3-frow" onclick="ftoggle('teamsong')">
+          <div class="r3-fmain"><h3>Name the whole squad in one anthem.</h3><p>An original team anthem that calls out every player.</p></div>
+          <div class="r3-fright">
+            <button class="r3-fplay" data-audio="/blue-dragons-team-song.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Blue Dragons</button>
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-teamsong" data-src="/feature-panels#teamsong" title="Creating a team anthem in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
-      <div class="r3-frow">
-        <div class="r3-fmain"><h3>Bring the noise on cue.</h3><p>Air horn, home-run siren, charge — one tap from your chair.</p></div>
-        <button class="r3-fplay" data-audio="/sounds/air_horn.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Air horn</button>
+      <div class="r3-fitem" id="fi-sounds">
+        <div class="r3-frow" onclick="ftoggle('sounds')">
+          <div class="r3-fmain"><h3>Bring the noise on cue.</h3><p>Air horn, home-run siren, charge — one tap from your chair.</p></div>
+          <div class="r3-fright">
+            <button class="r3-fplay" data-audio="/sounds/air_horn.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Air horn</button>
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-sounds" data-src="/feature-panels#sounds" title="The game-day sound tray in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
     </div>
     <p class="r3-offline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download before you leave home — every walk-up, call, and sound fires the instant you tap. <b>No signal needed.</b></span></p>
@@ -2486,6 +2541,26 @@
       a.addEventListener('ended',function(){ btn.classList.remove('playing'); if(window.__nbaudio===a) window.__nbaudio=null; });
     }
   }
+
+  // expand/collapse a feature row to reveal its in-app preview (one open at a time)
+  function ftoggle(id){
+    var it=document.getElementById('fi-'+id);
+    if(!it) return;
+    var open=it.classList.toggle('open');
+    if(open){
+      document.querySelectorAll('.r3-fitem.open').forEach(function(o){ if(o!==it) o.classList.remove('open'); });
+      var f=it.querySelector('.r3-fifr');
+      if(f && !f.src) f.src=f.getAttribute('data-src'); // lazy-load on first open
+    }
+  }
+  // size each preview iframe to its content
+  window.addEventListener('message',function(e){
+    var d=e.data;
+    if(d && d.nbFeatId && d.nbFeatHeight){
+      var f=document.getElementById('fifr-'+d.nbFeatId);
+      if(f) f.style.height=d.nbFeatHeight+'px';
+    }
+  });
 </script>
 <!-- /r3 sections -->
 
