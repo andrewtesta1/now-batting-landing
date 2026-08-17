@@ -4,17 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Now Batting — Walk-Up Song &amp; Announcer App for Youth Baseball &amp; Softball</title>
-  <meta name="description" content="Every team needs a Chief Hype Officer. Now Batting™ plays walk-up songs — including original songs with a player's name in the lyrics — your team's own announcer, and full pre-game lineup calls (the Roll Call) for youth baseball and softball. iOS." />
+  <meta name="description" content="The walk-up song app that brings the hype without the headache. Now Batting™ plays walk-up songs — including originals with a player's name in the lyrics — your team's own announcer, and a customizable pre-game Roll Call that calls your whole lineup by name, for youth baseball and softball. iOS." />
   <meta name="keywords" content="walk-up songs youth baseball, baseball walk up music app, softball walk up songs, little league walk up music, youth baseball announcer app, baseball coach app, walk up song app iOS" />
   <link rel="canonical" href="https://www.nowbattingapp.com/" />
   <meta name="google-site-verification" content="IPd7A33yZ-OKkdC1HsTAFSNdDBcL_i4Ud3jmUjORdLA" />
+  <!-- Smart App Banner: ties this domain to the official Now Batting app (id 6760744461) -->
+  <meta name="apple-itunes-app" content="app-id=6760744461" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nowbattingapp.com/" />
   <meta property="og:site_name" content="Now Batting" />
   <meta property="og:title" content="Now Batting — Walk-Up Songs & Announcer Calls for Youth Baseball" />
-  <meta property="og:description" content="Every team needs a Chief Hype Officer. Walk-up songs and your team's own announcer for youth baseball and softball — set up in minutes, awesome every game." />
+  <meta property="og:description" content="The walk-up song app that brings the hype without the headache. Walk-up songs, your team's own announcer, and a customizable Roll Call for youth baseball and softball — set up in minutes, awesome every game." />
   <meta property="og:image" content="https://nowbattingapp.com/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -22,7 +24,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Now Batting — Walk-Up Songs & Announcer Calls for Youth Baseball" />
-  <meta name="twitter:description" content="Every team needs a Chief Hype Officer. Walk-up songs and your team's own announcer for youth baseball and softball." />
+  <meta name="twitter:description" content="The walk-up song app that brings the hype without the headache. Walk-up songs, your team's own announcer, and a customizable Roll Call for youth baseball and softball." />
   <meta name="twitter:image" content="https://nowbattingapp.com/og.png" />
 
   <!-- JSON-LD Structured Data -->
@@ -461,10 +463,10 @@
     }
     .hero-grid {
       position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1fr 230px;
-      gap: 72px; align-items: center;
+      display: grid; grid-template-columns: 1fr;
+      gap: 0; align-items: center; justify-items: center;
     }
-    .hero-copy { text-align: left; }
+    .hero-copy { text-align: center; max-width: 800px; }
     .hero-eye {
       font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.12em;
       color: var(--txt3); margin-bottom: 14px;
@@ -488,7 +490,7 @@
       opacity: 0; animation: fadeUp 0.5s ease forwards 0.38s;
     }
     .ai-dot { width: 6px; height: 6px; border-radius: 3px; background: var(--daylight); animation: blink 1.4s ease infinite; }
-    .hero-form-wrap { opacity: 0; animation: fadeUp 0.5s ease forwards 0.52s; max-width: 480px; }
+    .hero-form-wrap { opacity: 0; animation: fadeUp 0.5s ease forwards 0.52s; max-width: 480px; margin-left: auto; margin-right: auto; }
     .hero-proof { margin-top: 13px; font-size: 13px; color: var(--txt3); opacity: 0; animation: fadeUp 0.5s ease forwards 0.6s; }
     .hero-proof strong { color: var(--daylight); }
     /* Hero v2 — two-line eyebrow + stacked bridge line (rhetorical type hierarchy) */
@@ -501,7 +503,7 @@
     .hero-stack .l2 .g { color: var(--daylight); }
     .hero-stack .l3 { font-family: var(--font-sans); font-size: clamp(19px, 2.5vw, 28px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; color: rgba(246,244,239,0.92); margin: 24px 0 0; opacity: 0; animation: fadeUp 0.5s ease forwards 0.42s; }
     .hero-stack .l3 .g { color: var(--daylight); font-weight: 800; }
-    .hero-sub-cho { font-family: var(--font-sans); font-size: 16px; line-height: 1.6; color: rgba(246,244,239,0.72); margin-bottom: 14px; max-width: 460px; opacity: 0; animation: fadeUp 0.5s ease forwards 0.5s; }
+    .hero-sub-cho { font-family: var(--font-sans); font-size: 16px; line-height: 1.6; color: rgba(246,244,239,0.72); margin: 0 auto 14px; max-width: 460px; opacity: 0; animation: fadeUp 0.5s ease forwards 0.5s; }
     .hero-sub-cho .g { color: rgba(246,244,239,0.92); font-weight: 600; }
     .hero-store { margin-top: 10px; font-size: 12px; opacity: 0; animation: fadeUp 0.5s ease forwards 0.7s; }
     .hero-store a { color: rgba(246,244,239,0.38); text-decoration: none; transition: color 0.15s; }
@@ -2398,15 +2400,13 @@
   <div class="hero-grid">
     <div class="hero-copy">
       <div class="hero-eye-block">
-        <h1 class="hero-eye-brand">Now Batting · the walk-up song app</h1>
+        <p class="hero-eye-brand">Now Batting</p>
         <p class="hero-eye-line">For the one who hauled the speaker from the parking lot.</p>
       </div>
       <div class="hero-stack">
-        <p class="l1">Players love walking up to a song they know.</p>
-        <p class="l2">Wait till they walk up to <span class="g">one that says their name.</span></p>
-        <p class="l3">Now Batting <span class="g">does both.</span></p>
+        <h1 class="l2">The walk-up song app that brings <span class="g">the hype without the headache.</span></h1>
       </div>
-      <p class="hero-sub-cho">You're the Chief Hype Officer — take full control of game day.</p>
+      <p class="hero-sub-cho">Run the songs they already love on Apple Music — or make them one with their name in the lyrics.</p>
       <div class="hero-form-wrap">
         <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>
@@ -2415,404 +2415,268 @@
         <p class="hero-proof">iOS &nbsp;·&nbsp; 7-day free trial, then $9.99/year</p>
       </div>
     </div>
-    <div class="hero-phone-col">
-      <div class="hero-phone-frame">
-        <video id="heroVideo" src="/demo-walkup.mp4" autoplay muted loop playsinline preload="metadata"></video>
-      </div>
-      <button class="hero-sound-btn" id="heroSoundBtn" onclick="heroToggleSound()" aria-label="Tap to hear the walk-up experience">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        TAP TO HEAR IT
-      </button>
-      <p class="hero-sound-note">That's an original Now Batting track — the record labels' lawyers won't let us pipe the real hits through a webpage. In the app, you get Apple Music too.</p>
-    </div>
   </div>
-  <div class="scroll-cue" onclick="document.querySelector('.kidsong-section').scrollIntoView({behavior:'smooth'})">
+  <div class="scroll-cue" onclick="document.querySelector('#proof').scrollIntoView({behavior:'smooth'})">
     <span>SCROLL</span><div class="scroll-arr">›</div>
   </div>
 </section>
 
 
 <!-- TRY THE HYPE BOOTH (interactive demo → /hype) -->
-<section style="background:#1F1F1F;color:#F6F4EF;padding:66px 20px;text-align:center">
-  <div style="max-width:720px;margin:0 auto" data-aos="fade-up">
-    <p style="font-family:ui-monospace,'JetBrains Mono',SFMono-Regular,monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#B8CC00;margin:0 0 16px">Try it free · no app needed</p>
-    <h2 style="font-family:inherit;font-size:clamp(28px,5.4vw,44px);line-height:1.06;font-weight:800;letter-spacing:-.02em;margin:0 0 14px">Don't take our word for it.<br><span style="color:#DFFF00">Hear it with your own player.</span></h2>
-    <p style="font-family:inherit;font-size:17px;line-height:1.5;color:#B7B7AE;margin:0 auto 28px;max-width:34em">Type your player's name and hear their walk-up song — their name right in the lyrics — free, right now. Then bring it to the app.</p>
-    <a href="/hype" style="display:inline-flex;align-items:center;gap:9px;background:#DFFF00;color:#161600;font-family:inherit;font-weight:800;font-size:17px;text-decoration:none;padding:15px 28px;border-radius:12px;box-shadow:0 10px 30px -12px rgba(223,255,0,.5)">Try the Hype Booth →</a>
-  </div>
-</section>
-
-<!-- EVERY PLAYER GETS THEIR OWN SONG -->
-<section class="kidsong-section">
-  <div class="wrap">
-    <div class="kidsong-header" data-aos="fade-up">
-      <p class="gameday-eyebrow">EVERY PLAYER'S SONG</p>
-      <h2 class="gameday-hed">Either way, you look like a walk-up song genius extraordinaire.</h2>
-      <p class="kidsong-intro">Keep it simple with an Apple Music walk-up song, or go original — a 1-of-1 for every player, and a team anthem for the whole squad.</p>
-    </div>
-
-    <div class="feat-grid demo-compact" data-aos="fade-up" data-aos-delay="60">
-
-      <!-- Card 1: Player Walk-Up Song -->
-      <div class="feat-card-new">
-        <p class="feat-card-phase">A WALK-UP SONG BUILT FOR ONE PLAYER</p>
-        <h3 class="feat-card-hed">Give every player their own original walk-up song.</h3>
-        <div class="feat-card-body">
-          <p>Drop three details — it writes them an original, with their name and number right in the lyrics. Watch the player light up when they hear it.</p>
-          <div class="feat-card-action">
-            <button class="feat-card-play-btn" id="kidSongBtn" onclick="pagePlayKidSong()" aria-label="Play Mikey Moonshot walk-up song sample"></button>
-            <span class="feat-card-duration">Mikey Moonshot · Demo</span>
-          </div>
-          <audio id="kidSongAudio" src="/mikey-moonshot-walkup.mp3" preload="metadata"></audio>
-        </div>
-      </div>
-
-      <!-- Card 2: Team Song -->
-      <div class="feat-card-new" data-aos-delay="80">
-        <p class="feat-card-phase">THE WHOLE SQUAD'S ANTHEM</p>
-        <h3 class="feat-card-hed">Give the whole squad its own original anthem.</h3>
-        <div class="feat-card-body">
-          <p>Name a vibe — every player lands in the lyrics. Watch heads turn when they realize it's <em>their</em> team.</p>
-          <div class="feat-card-action">
-            <button class="feat-card-play-btn" id="teamSongBtn" onclick="pagePlayTeamSong()" aria-label="Play Blue Dragons team song sample"></button>
-            <span class="feat-card-duration">Blue Dragons team song</span>
-          </div>
-          <audio id="teamSongAudio" src="/blue-dragons-team-song.mp3" preload="metadata"></audio>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- GET YOUR TEAM IN — three-feed roster onboarding -->
-<section class="gameday-section">
-  <div class="wrap">
-    <div class="gameday-header" data-aos="fade-up">
-      <p class="gameday-eyebrow">WE TAKE THE BUSY WORK, YOU TAKE THE BOW</p>
-      <h2 class="gameday-hed">Get your whole team in before the coffee gets cold.</h2>
-      <p class="kidsong-intro">Switching from another app or starting from scratch, you're CHO ready in minutes.</p>
-    </div>
-
-    <div class="feat-grid gd-compact">
-
-      <!-- Card 1: Parents fill it in -->
-      <div class="feat-card-new" data-num="01" data-aos="fade-up">
-        <p class="feat-card-phase">LET THE PARENTS DO IT</p>
-        <h3 class="feat-card-hed">Text one link. Watch the roster build itself.</h3>
-        <p class="feat-card-body">Drop a link in the group chat. Each parent fills in their own player — name, number, song, drop point. You just review and go.</p>
-      </div>
-
-      <!-- Card 2: Import -->
-      <div class="feat-card-new" data-num="02" data-aos="fade-up" data-aos-delay="80">
-        <p class="feat-card-phase">BRING YOUR LIST</p>
-        <h3 class="feat-card-hed">Already have a roster? Import it.</h3>
-        <p class="feat-card-body">Paste a list or import a CSV. Your whole lineup, in one shot.</p>
-      </div>
-
-      <!-- Card 3: Add manually -->
-      <div class="feat-card-new" data-num="03" data-aos="fade-up" data-aos-delay="160">
-        <p class="feat-card-phase">OR DO IT YOURSELF</p>
-        <h3 class="feat-card-hed">Add players by hand.</h3>
-        <p class="feat-card-body">Old-school? Add players one by one in a few taps.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- MID CTA + SOCIAL PROOF (testimonial + ask, side by side) -->
+<!-- ==================== RESTRUCTURED MIDDLE (r2-) ==================== -->
 <style>
-  .midcta { padding: 48px 0; }
-  .midcta-row { display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; max-width: 940px; margin: 0 auto; }
-  .midcta-row .tcard { flex: 1 1 400px; max-width: 480px; margin: 0; text-align: left; }
-  .midcta-ask { flex: 0 1 300px; text-align: center; }
-  .midcta-line { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: var(--txt); line-height: 1.25; margin-bottom: 18px; }
-  .midcta-note { margin-top: 13px; font-size: 13px; color: var(--txt3); }
-  @media (max-width: 760px) { .midcta-row { flex-direction: column; gap: 28px; } .midcta-row .tcard { flex: 0 0 auto; } .midcta-ask { flex-basis: auto; } }
-  .reviews { max-width: 940px; margin: 46px auto 0; }
-  .reviews-head { text-align: center; font-size: 14px; font-weight: 700; color: var(--txt); margin-bottom: 22px; letter-spacing: -0.01em; }
-  .reviews-head .rstars { color: var(--daylight); letter-spacing: 2px; margin-right: 9px; }
-  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .rcard { background: #fff; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.06); padding: 24px 26px; border-top: 3px solid var(--daylight); text-align: left; }
-  .rcard .rstars { display: block; color: var(--daylight); font-size: 14px; letter-spacing: 2px; margin-bottom: 11px; }
-  .rtitle { font-size: 15px; font-weight: 800; color: var(--txt); letter-spacing: -0.01em; margin: 0 0 8px; }
-  .rtext { font-size: 14.5px; line-height: 1.55; color: var(--txt); margin: 0 0 14px; }
-  .rby { font-size: 12.5px; color: var(--txt3); font-weight: 600; margin: 0; }
-  @media (max-width: 760px) { .reviews-grid { grid-template-columns: 1fr; } }
+  .r2-wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  .r2-eyebrow{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8f9e00;margin:0 0 14px}
+  .r2-h2{font-size:clamp(28px,4.6vw,46px);line-height:1.04;letter-spacing:-.025em;font-weight:800;margin:0;text-wrap:balance}
+  .r2-g{color:#B8CC00}
+  .r2-btn{display:inline-flex;align-items:center;gap:9px;background:#DFFF00;color:#161600;font-weight:800;font-size:17px;text-decoration:none;padding:15px 26px;border-radius:12px;border:0;box-shadow:0 12px 34px -14px rgba(223,255,0,.55)}
+
+  /* ---- Social proof ---- */
+  .r2-proof{background:#F6F4EF;color:#18180F;padding:70px 0 64px;text-align:center}
+  .r2-stars{color:#B8CC00;letter-spacing:2px;font-size:15px;margin:0}
+  .r2-proofhead{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.025em;margin:8px 0 6px;text-wrap:balance}
+  .r2-proofsub{font-size:14px;color:#6d6d64;margin:0 auto;max-width:40ch}
+  .r2-reviews{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:34px;text-align:left}
+  .r2-rcard{background:#fff;border-radius:15px;border-top:3px solid #DFFF00;box-shadow:0 2px 8px rgba(0,0,0,.05),0 14px 30px -18px rgba(0,0,0,.22);padding:22px;display:flex;flex-direction:column}
+  .r2-rstars{color:#B8CC00;font-size:13px;letter-spacing:2px;display:block;margin-bottom:9px}
+  .r2-rtitle{font-weight:800;font-size:15px;margin:0 0 7px;letter-spacing:-.01em}
+  .r2-rtext{font-size:13.5px;line-height:1.55;color:#4a4a42;margin:0 0 14px}
+  .r2-rby{font-size:12px;color:#6d6d64;font-weight:600;margin:auto 0 0;display:flex;align-items:center;gap:9px}
+  .r2-rby img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+  .r2-rby .badge{color:#8f9e00}
+
+  /* ---- Features (dark premium) ---- */
+  .r2-feats{background:radial-gradient(90% 60% at 50% -5%,rgba(223,255,0,.08),transparent 60%),#161616;color:#F6F4EF;padding:74px 0}
+  .r2-feathead{text-align:center}
+  .r2-feathead .r2-eyebrow{color:#B8CC00}
+  .r2-featsub{font-size:16px;color:rgba(246,244,239,.62);margin:14px auto 0;max-width:44ch}
+  .r2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+  .r2-feat{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid rgba(246,244,239,.10);border-radius:18px;padding:24px;transition:border-color .2s,transform .2s}
+  .r2-feat:hover{border-color:rgba(223,255,0,.4);transform:translateY(-3px)}
+  .r2-feat.lead{grid-column:1 / -1;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;background:linear-gradient(110deg,rgba(223,255,0,.10),rgba(255,255,255,.02) 46%);border-color:rgba(223,255,0,.28)}
+  .r2-ic{width:46px;height:46px;border-radius:12px;background:rgba(223,255,0,.12);border:1px solid rgba(223,255,0,.28);display:flex;align-items:center;justify-content:center;color:#DFFF00;flex:0 0 46px}
+  .r2-ic svg{width:23px;height:23px}
+  .r2-feat h3{margin:15px 0 6px;font-size:19px;letter-spacing:-.015em;font-weight:700;color:#F6F4EF}
+  .r2-feat.lead h3{margin:0 0 6px;font-size:23px}
+  .r2-feat p{margin:0;font-size:14px;line-height:1.5;color:rgba(246,244,239,.62)}
+  .r2-feat.lead p{max-width:52ch}
+  .r2-play{margin-top:15px;display:inline-flex;align-items:center;gap:8px;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#DFFF00;background:transparent;border:1px solid rgba(223,255,0,.45);border-radius:999px;padding:8px 14px;cursor:pointer;transition:background .2s}
+  .r2-play:hover{background:rgba(223,255,0,.10)}
+  .r2-feat.lead .r2-play{margin-top:0}
+  .r2-tri{width:0;height:0;border-left:8px solid #DFFF00;border-top:5px solid transparent;border-bottom:5px solid transparent}
+  .r2-sb-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .r2-sb{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(246,244,239,.7);background:rgba(255,255,255,.04);border:1px solid rgba(246,244,239,.10);border-radius:8px;padding:7px 10px;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .r2-sb .dot{width:5px;height:5px;border-radius:50%;background:#DFFF00}
+  /* Hype Booth closer */
+  .r2-booth{position:relative;margin-top:20px;background:radial-gradient(120% 130% at 50% 0,rgba(223,255,0,.10),transparent 60%),#1b1b1b;border:1px solid rgba(223,255,0,.30);border-radius:20px;padding:44px 30px;text-align:center;box-shadow:0 30px 70px -34px rgba(0,0,0,.7)}
+  .r2-booth .r2-eyebrow{color:#B8CC00}
+  .r2-booth h3{font-size:clamp(22px,3.2vw,32px);font-weight:800;letter-spacing:-.02em;margin:0 0 12px;color:#F6F4EF;text-wrap:balance}
+  .r2-booth p{color:rgba(246,244,239,.62);font-size:16px;max-width:54ch;margin:0 auto 22px;line-height:1.5}
+  .r2-booth .note{font-size:13px;color:rgba(246,244,239,.55);margin:13px 0 0}
+
+  /* ---- Busy work + demo ---- */
+  .r2-busy{background:#F6F4EF;color:#18180F;padding:70px 0 60px}
+  .r2-demowrap{border-radius:24px;overflow:hidden;background:#191919;box-shadow:0 40px 90px -40px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.08)}
+  .r2-demo{display:block;width:100%;border:0;height:1180px}
+  .r2-chips{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+  .r2-chip{border:1px solid rgba(0,0,0,.10);background:#fff;border-radius:16px;padding:24px;box-shadow:0 12px 30px -22px rgba(0,0,0,.3)}
+  .r2-chip .k{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8f9e00;margin:0 0 9px}
+  .r2-chip h3{margin:0 0 7px;font-size:19px;letter-spacing:-.015em;color:#18180F}
+  .r2-chip p{margin:0;font-size:14.5px;color:#4a4a42;line-height:1.5}
+  .r2-chip b{color:#18180F}
+
+  /* ---- mid CTA ---- */
+  .r2-cta{background:#1F1F1F;color:#F6F4EF;padding:56px 0;text-align:center}
+  .r2-ctaline{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:0 0 20px}
+  .r2-ctanote{font-size:13px;color:rgba(246,244,239,.55);margin:14px 0 0}
+
+  @media(max-width:900px){ .r2-grid{grid-template-columns:1fr 1fr} .r2-feat.lead{grid-template-columns:auto 1fr;gap:18px} .r2-feat.lead .r2-play{grid-column:1 / -1;margin-top:6px} }
+  @media(max-width:640px){ .r2-reviews{grid-template-columns:1fr} .r2-grid{grid-template-columns:1fr} .r2-chips{grid-template-columns:1fr} }
+  @media(prefers-reduced-motion:reduce){ .r2-feat{transition:none} }
 </style>
-<section class="midcta">
-  <div class="wrap" data-aos="fade-up">
-    <div class="midcta-row">
-      <div class="tcard r">
-        <p class="ttext">Super easy to figure out how to use it. The kids absolutely loved it.</p>
-        <div class="tauthor tauthor--avatar">
-          <img class="tavatar-img" src="/coach-avatar.jpg" alt="Coach Matt Schrager" loading="lazy" width="220" height="220">
-          <div>
-            <div class="tname">Matt Schrager</div>
-            <div class="trole">Denville Baseball Secretary · 8U Coach</div>
-          </div>
-        </div>
-      </div>
-      <div class="midcta-ask">
-        <p class="midcta-line">Ready to run the show?</p>
-        <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>Download on the App Store</a>
-        <p class="midcta-note">Free for 7 days, then $9.99/year. Cancel in two taps.</p>
-      </div>
-    </div>
 
-    <div class="reviews" data-aos="fade-up">
-      <p class="reviews-head"><span class="rstars">★★★★★</span>5.0 on the App Store</p>
-      <div class="reviews-grid">
-        <div class="rcard r">
-          <div class="rstars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="rtitle">Easy, fun and energizing</p>
-          <p class="rtext">Love how simple and customizable it is. The kids (and parents) love it. It sounds way better than Ballpark DJ. The standouts: the Roll Call that announces the lineup before the game, custom songs with each kid's name in it, and the soundboard for fun sounds — a foul ball, a home-run siren. Really keeps the fun and energy up!</p>
-          <p class="rby">Just Jenny_1 · App Store</p>
-        </div>
-        <div class="rcard r">
-          <div class="rstars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="rtitle">A must have for every Little League team.</p>
-          <p class="rtext">This app is awesome! The kids absolutely love picking their walkup songs, some a little too much. 😉 As a little league coach I see how excited the kids get when their teammates walkup song comes on, pure joy.</p>
-          <p class="rby">Dragon-24 · App Store</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- THE WHOLE GAME DAY — FEATURE CARDS -->
-<section class="gameday-section">
-  <div class="wrap">
-    <div class="gameday-header" data-aos="fade-up">
-      <p class="gameday-eyebrow">FROM WARM-UPS TO WALK-OFFS</p>
-      <h2 class="gameday-hed">Run game day like the pros.</h2>
-    </div>
-
-    <div class="feat-grid gd-compact">
-
-      <!-- Card 1: Pre-Game — The Roll Call -->
-      <div class="feat-card-new" data-num="01" data-aos="fade-up">
-        <div class="feat-card-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-            <line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/>
-          </svg>
-        </div>
-        <p class="feat-card-phase">Pre-Game</p>
-        <h3 class="feat-card-hed">The Roll Call.</h3>
-        <p class="feat-card-body">Your whole starting lineup called by name and position before first pitch. Name the opponent, pick a music bed, and preview the script before game day — goosebumps included.</p>
-        <div class="feat-card-action">
-          <button class="feat-card-play-btn" id="s9Btn" onclick="pagePlay('s9')" aria-label="Play Roll Call sample"></button>
-          <span class="feat-card-duration">Listen · ~60 sec</span>
-        </div>
-        <audio id="gdS9Audio" src="/starting-nine-reference.mp3" preload="metadata"></audio>
-      </div>
-
-      <!-- Card 2: Every At-Bat — Your Team's Own Announcer -->
-      <div class="feat-card-new" data-num="02" data-aos="fade-up" data-aos-delay="80">
-        <div class="feat-card-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m3 11 18-5v12L3 14v-3z"/>
-            <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-          </svg>
-        </div>
-        <p class="feat-card-phase">Every At-Bat</p>
-        <h3 class="feat-card-hed">Your Team's Own Announcer.</h3>
-        <p class="feat-card-body">Pick your announcer — Classic or Energetic — then a standard call, a custom line, or your own recording.</p>
-      </div>
-
-      <!-- Card 3: Every Name — Name Lock -->
-      <div class="feat-card-new" data-num="03" data-aos="fade-up" data-aos-delay="80">
-        <div class="feat-card-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <p class="feat-card-phase">Every Name</p>
-        <h3 class="feat-card-hed">Say Every Name Right.</h3>
-        <p class="feat-card-body">Lock how a tricky name is said once — the announcer nails it every time, from the walk-up to the Roll Call to the Bullpen. No more cringing at the plate.</p>
-      </div>
-
-      <!-- Card 4: During Play — Game Day Soundboard -->
-      <div class="feat-card-new" data-num="04" data-aos="fade-up" data-aos-delay="80">
-        <div class="feat-card-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
-        </div>
-        <p class="feat-card-phase">During Play</p>
-        <h3 class="feat-card-hed">Game Day Soundboard.</h3>
-        <p class="feat-card-body">Every moment gets its sound — one tap from your chair.</p>
-        <div class="feat-sb-row">
-          <div class="feat-sb-item">
-            <button class="feat-sb-btn" id="sbBtn-airhorn" onclick="pageSb('airhorn','/sounds/air_horn.mp3')" aria-label="Air Horn"></button>
-            <span class="feat-sb-label">Air Horn</span>
-          </div>
-          <div class="feat-sb-item">
-            <button class="feat-sb-btn" id="sbBtn-siren" onclick="pageSb('siren','/sounds/home_run_siren.mp3')" aria-label="Home Run Siren"></button>
-            <span class="feat-sb-label">Home Run</span>
-          </div>
-          <div class="feat-sb-item">
-            <button class="feat-sb-btn" id="sbBtn-charge" onclick="pageSb('charge','/sounds/organ_cavalry.mp3')" aria-label="Charge"></button>
-            <span class="feat-sb-label">Charge</span>
-          </div>
-          <div class="feat-sb-item">
-            <button class="feat-sb-btn" id="sbBtn-stomp" onclick="pageSb('stomp','/sounds/stomp.mp3')" aria-label="Stomp"></button>
-            <span class="feat-sb-label">Stomp</span>
-          </div>
-        </div>
-        <audio id="sbAudio" preload="none"></audio>
-      </div>
-
-      <!-- Card 5: Between Innings — Your Lineup's Soundtrack -->
-      <div class="feat-card-new" data-num="05" data-aos="fade-up">
-        <div class="feat-card-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="17 1 21 5 17 9"/>
-            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
-            <polyline points="7 23 3 19 7 15"/>
-            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
-          </svg>
-        </div>
-        <p class="feat-card-phase">Between Innings</p>
-        <h3 class="feat-card-hed">Your Lineup's Soundtrack.</h3>
-        <p class="feat-card-body">Every walk-up song auto-playlisted — or bring your own to hype the dugout.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ===================== THE RANGE — SIMPLE OR ALL OUT ===================== -->
+<!-- SOCIAL PROOF (card-less) — r3 -->
 <style>
-  .range-section { background: var(--bg); padding: 88px 0 96px; position: relative; overflow: hidden; }
-  .range-head { text-align: center; max-width: 640px; margin: 0 auto 44px; padding: 0 20px; }
-  .range-head .eyebrow { justify-content: center; }
-  .range-head h2 { font-family: var(--font-sans); font-size: clamp(30px, 4vw, 46px); font-weight: 800; letter-spacing: -0.02em; line-height: 0.98; color: var(--txt); margin: 0 0 14px; }
-  .range-sub { font-size: 16px; line-height: 1.6; color: var(--txt2); max-width: 540px; margin: 0 auto; }
+  .r3-wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  .r3-eyebrow{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#B8CC00;margin:0 0 16px}
+  .r3-g{color:#DFFF00}
 
-  .range-grid { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  /* card-less testimonials */
+  .r3-proof{background:#F6F4EF;color:#18180F;padding:84px 0}
+  .r3-ptop{text-align:center;margin-bottom:52px}
+  .r3-ptop .stars{color:#B8CC00;letter-spacing:3px;font-size:16px}
+  .r3-ptop h2{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.025em;margin:10px 0 5px;color:#18180F}
+  .r3-ptop .sub{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#6d6d64}
+  .r3-rating{display:inline-flex;align-items:center;gap:14px;margin-bottom:14px}
+  .r3-rnum{font-size:clamp(46px,7vw,70px);font-weight:900;letter-spacing:-.04em;line-height:.85;color:#18180F}
+  .r3-rmeta{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+  .r3-rmeta .stars{color:#B8CC00;letter-spacing:2px;font-size:19px}
+  .r3-ronapp{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6d6d64}
+  .r3-qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 40px}
+  .r3-quote{position:relative}
+  .r3-quote .mk{font-family:Georgia,'Times New Roman',serif;font-size:56px;line-height:.5;color:#B8CC00;display:block;height:26px;opacity:.9}
+  .r3-quote p{font-size:16px;line-height:1.62;color:#18180F;font-weight:500;margin:14px 0 18px;letter-spacing:-.005em}
+  .r3-quote .by{display:flex;align-items:center;gap:10px;font-size:12.5px;color:#6d6d64;flex-wrap:wrap}
+  .r3-quote .by img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+  .r3-quote .by .who{font-weight:700;color:#18180F}
+  .r3-quote .by .st{color:#B8CC00;letter-spacing:1px}
+  @media(max-width:800px){ .r3-qgrid{grid-template-columns:1fr;gap:36px} .r3-qgrid .r3-quote{border-top:1px solid rgba(0,0,0,.12);padding-top:26px} }
 
-  /* desktop legend */
-  .range-legend { display: grid; grid-template-columns: 210px 1fr 1fr; gap: 14px; margin-bottom: 12px; padding: 0 4px; }
-  .range-legend span { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-  .range-legend .lg-simple { grid-column: 2; color: var(--txt3); }
-  .range-legend .lg-allout { grid-column: 3; color: var(--daylight-dim); display: flex; align-items: center; gap: 7px; }
-  .range-legend .lg-allout::before { content: ""; width: 14px; height: 2px; border-radius: 2px; background: var(--daylight); }
-
-  .range-row { display: grid; grid-template-columns: 210px 1fr 1fr; gap: 14px; align-items: stretch; margin-bottom: 14px; }
-
-  .range-feature { display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 4px 2px; }
-  .range-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--mid); border: 1px solid var(--bord); display: flex; align-items: center; justify-content: center; color: var(--txt); }
-  .range-icon svg { width: 19px; height: 19px; }
-  .range-fname { font-family: var(--font-sans); font-size: 16px; font-weight: 800; letter-spacing: -0.01em; color: var(--txt); line-height: 1.15; }
-
-  .range-cell { position: relative; border-radius: var(--radius-lg); padding: 18px 18px; display: flex; flex-direction: column; gap: 6px; transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s ease, border-color .28s ease; }
-  .range-cell-label { font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; display: none; }
-  .range-cell p { margin: 0; font-size: 14.5px; line-height: 1.5; }
-
-  /* simple = calm, light */
-  .range-simple { background: var(--mid); border: 1px solid var(--bord); }
-  .range-simple .range-cell-label { color: var(--txt3); }
-  .range-simple p { color: var(--txt2); }
-
-  /* all out = charcoal, daylight energy */
-  .range-allout { background: var(--txt); border: 1px solid var(--txt); }
-  .range-allout .range-cell-label { color: var(--daylight); }
-  .range-allout p { color: #F1EFEA; }
-  .range-allout p strong { color: var(--daylight); font-weight: 700; }
-  .range-allout::after { content: ""; position: absolute; left: -14px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 50%; background: var(--bg); border: 2px solid var(--daylight); box-shadow: 0 0 0 4px var(--bg); z-index: 2; display: flex; }
-  .range-allout::before { content: ""; position: absolute; left: -30px; top: 50%; transform: translateY(-50%); width: 30px; height: 2px; background: linear-gradient(90deg, transparent, var(--daylight)); z-index: 1; }
-  .range-row:hover .range-allout { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(31,31,31,0.16); }
-
-  .range-tagline { text-align: center; margin: 40px auto 0; font-family: var(--font-sans); font-size: clamp(22px, 3vw, 30px); font-weight: 800; letter-spacing: -0.02em; color: var(--txt); }
-  .range-tagline b { color: var(--daylight-dim); }
-
-  @media (max-width: 760px) {
-    .range-section { padding: 64px 0 68px; }
-    .range-legend { display: none; }
-    .range-row { grid-template-columns: 1fr; gap: 8px; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--bord); }
-    .range-row:last-child { border-bottom: none; }
-    .range-feature { flex-direction: row; align-items: center; gap: 12px; margin-bottom: 4px; }
-    .range-cell-label { display: block; }
-    .range-allout::after, .range-allout::before { display: none; }
-    .range-row:hover .range-allout { transform: none; box-shadow: none; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .range-cell { transition: none; }
-    .range-row:hover .range-allout { transform: none; }
-  }
+  /* features minimal list + audio + light polish */
+  .r3-feats{position:relative;background:#151517;color:#F6F4EF;padding:84px 0 88px;overflow:hidden}
+  .r3-feats::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 45% at 50% 0,rgba(223,255,0,.07),transparent 62%);pointer-events:none}
+  .r3-feathead{position:relative;text-align:center;margin-bottom:20px;max-width:840px;margin-left:auto;margin-right:auto;padding:0 24px}
+  .r3-feathead h2{font-size:clamp(30px,4.8vw,50px);line-height:1.02;letter-spacing:-.03em;font-weight:800;text-wrap:balance}
+  .r3-feathead .sub{color:rgba(246,244,239,.60);font-size:16px;margin-top:16px}
+  .r3-listwrap{position:relative;max-width:840px;margin:26px auto 0;padding:0 24px}
+  .r3-flist{border-top:1px solid rgba(246,244,239,.12)}
+  .r3-frow{position:relative;display:flex;align-items:center;gap:22px;padding:24px 8px 24px 20px;border-bottom:1px solid rgba(246,244,239,.12);transition:padding .25s ease,background .25s ease}
+  .r3-frow::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;background:#DFFF00;transform:scaleY(0);transform-origin:center;transition:transform .28s cubic-bezier(.22,1,.36,1);border-radius:2px}
+  .r3-frow:hover{padding-left:28px;background:linear-gradient(90deg,rgba(223,255,0,.04),transparent 40%)}
+  .r3-frow:hover::before{transform:scaleY(1)}
+  .r3-fmain{flex:1;min-width:0}
+  .r3-fmain h3{font-size:clamp(19px,2.3vw,23px);font-weight:700;letter-spacing:-.015em;color:#F6F4EF}
+  .r3-fmain p{font-size:14.5px;line-height:1.5;color:rgba(246,244,239,.60);margin-top:5px;max-width:52ch}
+  .r3-fplay{flex:none;display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(246,244,239,.12);border-radius:999px;padding:9px 16px 9px 14px;color:#F6F4EF;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+  .r3-fplay:hover{border-color:rgba(223,255,0,.5);color:#DFFF00}
+  .r3-fplay .ic{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+  .r3-fplay.playing{border-color:#DFFF00;color:#DFFF00;background:rgba(223,255,0,.08)}
+  .r3-fplay .eq{display:none;align-items:flex-end;gap:2px;height:12px}
+  .r3-fplay .eq i{width:2.5px;background:#DFFF00;border-radius:1px;animation:r3eq .85s ease-in-out infinite}
+  .r3-fplay .eq i:nth-child(2){animation-delay:.15s}.r3-fplay .eq i:nth-child(3){animation-delay:.3s}.r3-fplay .eq i:nth-child(4){animation-delay:.45s}
+  .r3-fplay.playing .ic{display:none}.r3-fplay.playing .eq{display:inline-flex}
+  @keyframes r3eq{0%,100%{height:3px}50%{height:12px}}
+  .r3-fnoaudio{flex:none;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,244,239,.40);border:1px solid rgba(246,244,239,.12);border-radius:999px;padding:8px 14px}
+  .r3-voices{display:flex;gap:8px;flex-wrap:wrap;flex:none}
+  .r3-offline{display:flex;align-items:center;justify-content:center;gap:10px;margin:26px auto 0;max-width:660px;font-size:13.5px;line-height:1.5;color:rgba(246,244,239,.55);text-align:center}
+  .r3-offline svg{color:#DFFF00;flex:none}
+  .r3-offline b{color:rgba(246,244,239,.85);font-weight:600}
+  @media(max-width:620px){ .r3-frow{flex-direction:column;align-items:flex-start;gap:14px;padding:22px 8px 22px 18px} .r3-fplay,.r3-fnoaudio,.r3-voices{align-self:flex-start} }
+  @media(prefers-reduced-motion:reduce){ .r3-frow,.r3-frow::before,.r3-fplay{transition:none} .r3-fplay .eq i{animation:none;height:8px} }
 </style>
-<section class="range-section" id="range">
-  <div class="range-head" data-aos="fade-up">
-    <p class="eyebrow">Simple or all out</p>
-    <h2>You hold the dial.</h2>
-    <p class="range-sub">Every feature meets you at tap-and-go — and takes it as far as you want.</p>
-  </div>
 
-  <div class="range-grid">
-    <div class="range-legend" data-aos="fade-up">
-      <span class="lg-simple">Keep it simple</span>
-      <span class="lg-allout">Take it over the top</span>
-    </div>
-
-    <!-- Announcer -->
-    <div class="range-row" data-aos="fade-up">
-      <div class="range-feature">
-        <div class="range-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
-        <span class="range-fname">The Announcer</span>
+<section class="r3-proof" id="proof">
+  <div class="r3-wrap">
+    <div class="r3-ptop" data-aos="fade-up">
+      <div class="r3-rating">
+        <span class="r3-rnum">5.0</span>
+        <span class="r3-rmeta"><span class="stars">★★★★★</span><span class="r3-ronapp">on the App Store</span></span>
       </div>
-      <div class="range-cell range-simple"><span class="range-cell-label">Keep it simple</span><p>Quick and Easy. Pick the moment, tap once — the call's ready.</p></div>
-      <div class="range-cell range-allout"><span class="range-cell-label">Take it over the top</span><p><strong>Fully Custom</strong> — write the exact line. Or <strong>BYO Announcer</strong> — your own voice.</p></div>
+      <h2>The bleachers have spoken.</h2>
     </div>
-
-    <!-- Song -->
-    <div class="range-row" data-aos="fade-up" data-aos-delay="40">
-      <div class="range-feature">
-        <div class="range-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-        <span class="range-fname">The Song</span>
+    <div class="r3-qgrid">
+      <div class="r3-quote" data-aos="fade-up">
+        <span class="mk">&ldquo;</span>
+        <p>Love how simple and customizable it is. The kids (and parents) love it. It sounds way better than Ballpark DJ. The standouts: the Roll Call that announces the lineup before the game, custom songs with each kid's name in it, and the soundboard for fun sounds — a foul ball, a home-run siren. Really keeps the fun and energy up!</p>
+        <div class="by"><span class="st">★★★★★</span><span class="who">Just Jenny_1</span> · App Store</div>
       </div>
-      <div class="range-cell range-simple"><span class="range-cell-label">Keep it simple</span><p>Grab any track off Apple Music and set the drop.</p></div>
-      <div class="range-cell range-allout"><span class="range-cell-label">Take it over the top</span><p>An <strong>original</strong> written for them — their name right in the lyrics.</p></div>
-    </div>
-
-    <!-- Lineup -->
-    <div class="range-row" data-aos="fade-up">
-      <div class="range-feature">
-        <div class="range-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
-        <span class="range-fname">The Lineup</span>
+      <div class="r3-quote" data-aos="fade-up" data-aos-delay="80">
+        <span class="mk">&ldquo;</span>
+        <p>Super easy to figure out how to use it. The kids absolutely loved it.</p>
+        <div class="by"><img src="/coach-avatar.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="who">Matt Schrager</span> · Denville 8U Coach</div>
       </div>
-      <div class="range-cell range-simple"><span class="range-cell-label">Keep it simple</span><p>Yell it out over a pile of players all begging to bat cleanup.</p></div>
-      <div class="range-cell range-allout"><span class="range-cell-label">Take it over the top</span><p>The <strong>Roll Call</strong> — your whole order announced pregame, every name and position.</p></div>
-    </div>
-
-    <!-- Pump-up -->
-    <div class="range-row" data-aos="fade-up" data-aos-delay="40">
-      <div class="range-feature">
-        <div class="range-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <span class="range-fname">Pump-Up Music</span>
+      <div class="r3-quote" data-aos="fade-up" data-aos-delay="160">
+        <span class="mk">&ldquo;</span>
+        <p>This app is awesome! The kids absolutely love picking their walkup songs, some a little too much. 😉 As a little league coach I see how excited the kids get when their teammates walkup song comes on, pure joy.</p>
+        <div class="by"><span class="st">★★★★★</span><span class="who">Dragon-24</span> · App Store</div>
       </div>
-      <div class="range-cell range-simple"><span class="range-cell-label">Keep it simple</span><p>Your team's walk-ups or the curated Now Batting playlist.</p></div>
-      <div class="range-cell range-allout"><span class="range-cell-label">Take it over the top</span><p>The <strong>Team Song</strong> — an anthem with every player's name in the lyrics.</p></div>
     </div>
-
-    <!-- Situational Sounds -->
-    <div class="range-row" data-aos="fade-up">
-      <div class="range-feature">
-        <div class="range-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
-        <span class="range-fname">Situational Sounds</span>
-      </div>
-      <div class="range-cell range-simple"><span class="range-cell-label">Keep it simple</span><p>Air horn, charge, home run — one tap from your chair.</p></div>
-      <div class="range-cell range-allout"><span class="range-cell-label">Take it over the top</span><p>The exact clip cut for the moment. Somebody with <strong>taste</strong> already made it.</p></div>
-    </div>
-
-    <p class="range-tagline" data-aos="fade-up">Simple or all out. <b>Your call.</b></p>
   </div>
 </section>
 
+<section class="r3-feats" id="features">
+  <div class="r3-feathead" data-aos="fade-up">
+    <p class="r3-eyebrow">From warm-ups to walk-offs</p>
+    <h2>Run the whole show. <span class="r3-g">From your chair.</span></h2>
+    <p class="sub">One app runs your team's entire game-day audio — the music, the announcer, the moments.</p>
+  </div>
+  <div class="r3-listwrap" data-aos="fade-up">
+    <div class="r3-flist">
+      <div class="r3-frow">
+        <div class="r3-fmain"><h3>Call every player by name.</h3><p>Your own announcer, Classic or Energetic — every name said right, every time.</p></div>
+        <div class="r3-voices">
+          <button class="r3-fplay" data-audio="/voice-classic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Classic</button>
+          <button class="r3-fplay" data-audio="/voice-energetic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Energetic</button>
+        </div>
+      </div>
+      <div class="r3-frow">
+        <div class="r3-fmain"><h3>Drop the song right where it hits.</h3><p>Any Apple Music track, cued to the exact second — then your announcer takes over.</p></div>
+        <button class="r3-fplay" data-audio="/demo_walkup.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear it</button>
+      </div>
+      <div class="r3-frow">
+        <div class="r3-fmain"><h3>Put their name in the lyrics.</h3><p>An original walk-up song, written from scratch for one player.</p></div>
+        <button class="r3-fplay" data-audio="/mikey-moonshot-walkup.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Mikey Moonshot</button>
+      </div>
+      <div class="r3-frow">
+        <div class="r3-fmain"><h3>Name the whole squad in one anthem.</h3><p>An original team anthem that calls out every player.</p></div>
+        <button class="r3-fplay" data-audio="/blue-dragons-team-song.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Blue Dragons</button>
+      </div>
+      <div class="r3-frow">
+        <div class="r3-fmain"><h3>Roll out the lineup, big-league style.</h3><p>The Roll Call — your whole batting order announced before first pitch.</p></div>
+        <button class="r3-fplay" data-audio="/starting-nine-reference.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear it</button>
+      </div>
+      <div class="r3-frow">
+        <div class="r3-fmain"><h3>Bring the noise on cue.</h3><p>Air horn, home-run siren, charge — one tap from your chair.</p></div>
+        <button class="r3-fplay" data-audio="/sounds/air_horn.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Air horn</button>
+      </div>
+    </div>
+    <p class="r3-offline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download before you leave home — every walk-up, call, and sound fires the instant you tap. <b>No signal needed.</b></span></p>
+
+    <div class="r2-booth" data-aos="fade-up" style="margin-top:34px">
+      <p class="r2-eyebrow">Want to go all-out?</p>
+      <h3>Hear your player's name in <span class="r2-g" style="color:#DFFF00">their own walk-up song.</span></h3>
+      <p>Most teams run the Apple Music songs their players already love. When you want to take it further, Now Batting writes a 1-of-1 song with your player's name right in the lyrics.</p>
+      <a class="r2-btn" href="/hype">Try the Hype Booth →</a>
+      <p class="note">Try it free — no app needed.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // features audio: real playback + EQ visual (one at a time)
+  function fplay(btn){
+    var src=btn.getAttribute('data-audio');
+    var was=btn.classList.contains('playing');
+    document.querySelectorAll('.r3-fplay.playing').forEach(function(b){b.classList.remove('playing');});
+    if(window.__nbaudio){ try{window.__nbaudio.pause();}catch(e){} window.__nbaudio=null; }
+    if(!was){
+      btn.classList.add('playing');
+      var a=new Audio(src); window.__nbaudio=a; a.play().catch(function(){});
+      a.addEventListener('ended',function(){ btn.classList.remove('playing'); if(window.__nbaudio===a) window.__nbaudio=null; });
+    }
+  }
+</script>
+<!-- /r3 sections -->
+
+
+<!-- BUSY WORK + DEMO -->
+<section class="r2-busy" id="setup">
+  <div class="r2-wrap">
+    <div class="r2-demowrap" data-aos="fade-up">
+      <iframe class="r2-demo" id="rosterDemo" src="/roster-demo" title="Watch the roster build itself — text one link and your lineup fills in" loading="lazy" scrolling="no"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- MID CTA -->
+<section class="r2-cta" data-aos="fade-up">
+  <p class="r2-ctaline">Ready to run the show?</p>
+  <a class="r2-btn" href="https://apps.apple.com/app/now-batting/id6760744461"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>Download on the App Store</a>
+  <p class="r2-ctanote">Free for 7 days, then $9.99/year. Cancel in two taps.</p>
+</section>
+
+<script>
+  // self-contained audio sample toggle for the features section
+  function r2audio(btn){
+    var src=btn.getAttribute('data-audio');
+    if(window.__r2a){ window.__r2a.pause(); if(window.__r2src===src){ window.__r2a=null; window.__r2src=null; return; } }
+    var a=new Audio(src); window.__r2a=a; window.__r2src=src; a.play().catch(function(){});
+    a.addEventListener('ended',function(){ if(window.__r2src===src){window.__r2a=null;window.__r2src=null;} });
+  }
+  // auto-size the embedded roster demo iframe
+  window.addEventListener('message',function(e){ if(e.data&&e.data.nbDemoHeight){ var f=document.getElementById('rosterDemo'); if(f) f.style.height=e.data.nbDemoHeight+'px'; } });
+</script>
+<!-- ==================== /RESTRUCTURED MIDDLE ==================== -->
 
 
 <!-- 3. PERSONA + TESTIMONIAL -->
@@ -2951,7 +2815,7 @@
           <span>What is Now Batting?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a"><strong>Now Batting</strong> is the walk-up song app that gives the Chief Hype Officer full control of the game-day audio operation — as simple or all out as they want it. Walk-up songs for every player (including originals with their name in the lyrics), an announcer who calls each name, a pre-game Roll Call of your whole lineup, a Team Song, and a soundboard — all from one phone. iOS-only, $9.99/year with a 7-day free trial.</div>
+        <div class="faq-a"><strong>Now Batting</strong> is the walk-up song app that brings the hype without the headache — as simple or all out as you want it. Walk-up songs for every player (including originals with their name in the lyrics), your own announcer who calls each name, a customizable pre-game Roll Call of your whole lineup (name the opponent, pick a music bed, preview the script), a Team Song, and a soundboard — all from one phone. iOS-only, $9.99/year with a 7-day free trial.</div>
       </div>
 
       <div class="faq-item r">

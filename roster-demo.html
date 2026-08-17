@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Now Batting — "Watch the roster build itself" showcase</title>
+<style>
+  :root{
+    --bg:#191919; --surf:#242424; --surf2:#2A2A2A;
+    --neon:#DFFF00; --gold:#B8CC00; --moss:#B8CC00;
+    --line:rgba(246,244,239,.10); --line2:rgba(223,255,0,.24);
+    --t1:#F6F4EF; --t2:rgba(246,244,239,.62); --t3:rgba(246,244,239,.40);
+    --charcoal:#1F1F1F; --midnight:#0B1A35; --white:#FFFFFF; --cream:#F6F4EF; --chalk:#F4F1E8; --chalkDark:#E8E2D0;
+    --ink2:#4A5568; --ink3:#6B7785; --numbg:#EFECE1; --amber:#B5760A; --amberBd:rgba(200,120,0,.35); --amberBg:#FBF6EC;
+    --web-bg:#141414; --web-head:#0E0E0E; --web-card:#1F1F1F; --web-input:#161616; --web-bd:rgba(255,255,255,.14); --web-mut:rgba(255,255,255,.45); --web-t:#F5F5F2;
+    --sans:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --mono:ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--t1);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{overflow-x:hidden}
+  .frame{max-width:1120px;margin:0 auto;padding:40px 22px 60px}
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--moss);margin-bottom:14px}
+  .h1{font-size:clamp(30px,5.2vw,52px);font-weight:800;letter-spacing:-.025em;line-height:1.0}
+  .h1 .g{color:var(--neon)}
+  .sub{margin-top:16px;font-size:clamp(15px,1.7vw,18px);line-height:1.55;color:var(--t2);max-width:560px}
+  .layout{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center;margin-top:clamp(30px,5vw,54px)}
+  @media(max-width:840px){.layout{grid-template-columns:1fr;gap:34px}}
+  .rail{display:flex;flex-direction:column;gap:10px;order:2}
+  @media(max-width:840px){.stage-col{order:1}}
+  .chap{position:relative;text-align:left;background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:18px 20px 18px 22px;cursor:pointer;overflow:hidden;transition:border-color .3s,background .3s;color:inherit;font-family:inherit;width:100%}
+  .chap:hover{border-color:var(--line2)}
+  .chap .bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--neon);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease)}
+  .chap.active{background:var(--surf2);border-color:var(--line2)}
+  .chap.active .bar{transform:scaleY(1)}
+  .chap-top{display:flex;align-items:center;gap:11px}
+  .chap-n{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--moss)}
+  .chap-badge{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--charcoal);background:var(--neon);border-radius:4px;padding:3px 6px;line-height:1}
+  .chap-title{display:block;font-size:17px;font-weight:800;letter-spacing:-.01em;margin-top:9px;color:var(--t1)}
+  .chap-body{display:block;font-size:13.5px;line-height:1.5;color:var(--t2);max-height:0;opacity:0;overflow:hidden;transition:max-height .4s var(--ease),opacity .3s,margin .3s}
+  .chap.active .chap-body{max-height:150px;opacity:1;margin-top:8px}
+  .chap .prog{position:absolute;left:0;bottom:0;height:2px;width:100%}
+  .chap .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--moss),var(--neon))}
+  .chap.active.playing .prog i{width:100%;transition:width var(--dur,7s) linear}
+
+  .stage-col{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .phone{position:relative;width:300px;height:620px;border-radius:48px;background:#0c0c0c;border:1px solid rgba(246,244,239,.14);padding:11px;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6);flex:none}
+  .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:112px;height:26px;background:#0c0c0c;border-radius:0 0 16px 16px;z-index:40}
+  .screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;background:var(--cream)}
+  .scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s var(--ease);display:flex;flex-direction:column}
+  .scene.on{opacity:1;visibility:visible}
+  .status{height:34px;flex:none}
+  /* real wordmark */
+  .wmr{display:inline-flex;line-height:0}
+  .wmr svg{height:16px;display:block}
+  .wmc{display:flex;justify-content:center}
+
+  /* Scene 0 — chooser */
+  .gdhead{background:var(--charcoal);padding:6px 14px 12px;flex:none}
+  .gddrop{margin-top:11px;display:flex;align-items:center;gap:8px;background:#2b2b2b;border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:9px 13px}
+  .gddrop .dot{width:8px;height:8px;border-radius:50%;background:var(--neon)}
+  .gddrop .tm{font-weight:700;font-size:13px;color:var(--white)}
+  .gddrop .cv{margin-left:auto;color:var(--t3);font-size:9px}
+  .gdbody{flex:1;overflow:hidden;background:var(--cream);padding:16px 15px 0;display:flex;flex-direction:column}
+  .gdhero{text-align:center;margin-bottom:14px}
+  .gdhero h2{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.04;color:var(--midnight)}
+  .gdhero p{font-size:11.5px;line-height:1.45;color:var(--ink2);margin-top:8px;padding:0 6px}
+  .gdhero p .g{color:var(--gold)}
+  .kick{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+  .ramp{position:relative;display:flex;align-items:center;gap:11px;background:var(--white);border:1.5px solid var(--chalkDark);border-radius:14px;padding:12px;margin-bottom:9px;overflow:hidden}
+  .ramp.easy{border-color:rgba(31,31,31,.18)}
+  .ramp.easy::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--neon)}
+  .ramp.pick{animation:tap .5s var(--ease)}
+  @keyframes tap{0%{transform:scale(1)}40%{transform:scale(.97)}100%{transform:scale(1)}}
+  .ramp .ico{width:38px;height:38px;border-radius:10px;background:var(--chalk);display:flex;align-items:center;justify-content:center;flex:none;color:var(--ink2);font-size:17px}
+  .ramp.easy .ico{background:rgba(223,255,0,.20);color:var(--charcoal)}
+  .ramp .info{flex:1;min-width:0}
+  .ramp .lrow{display:flex;align-items:center;gap:7px}
+  .ramp .lbl{font-weight:800;font-size:13.5px;color:var(--charcoal);letter-spacing:.15px}
+  .ramp .easypill{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.8px;color:var(--charcoal);background:var(--neon);border-radius:4px;padding:2px 5px}
+  .ramp .rsub{font-size:11px;color:var(--ink3);line-height:1.32;margin-top:3px}
+  .ramp .chev{color:rgba(31,31,31,.25);flex:none}
+  .gdnote{text-align:center;font-size:10.5px;color:var(--ink3);line-height:1.4;margin-top:4px;padding:0 8px}
+  .tabbar{flex:none;display:flex;background:var(--cream);border-top:1px solid rgba(0,0,0,.07);padding:9px 0 12px}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--ink3);font-weight:600}
+  .tab.on{color:var(--gold)}
+  .tab svg{width:19px;height:19px}
+
+  /* iMessage (shared styles) */
+  .imsg{position:absolute;inset:0;background:#fff;transform:translateY(100%);transition:transform .5s var(--ease);z-index:30;display:flex;flex-direction:column}
+  .imsg.up{transform:translateY(0)}
+  .imsgfull{background:#fff;height:100%;display:flex;flex-direction:column}
+  .inav{padding:44px 16px 12px;text-align:center;position:relative;border-bottom:1px solid rgba(0,0,0,.08);flex:none}
+  .inav b{font-size:15px;font-weight:700;color:#111}
+  .inav .x{position:absolute;right:14px;top:42px;width:26px;height:26px;border-radius:50%;background:#e6e6e6;display:flex;align-items:center;justify-content:center;color:#666;font-size:13px}
+  .ito{display:flex;gap:8px;align-items:center;padding:11px 16px;border-bottom:1px solid rgba(0,0,0,.07);font-size:13px;color:#111;flex:none}
+  .ito .lab{color:#8a8a8e}
+  .ito .cur{width:2px;height:15px;background:#0a84ff;animation:blink 1s steps(2) infinite}
+  .thread{flex:1;padding:16px 14px;display:flex;flex-direction:column;align-items:flex-end;overflow:hidden}
+  .bubble{max-width:88%;background:#e9e9eb;color:#111;border-radius:18px;padding:10px 13px;font-size:12.5px;line-height:1.4}
+  .hoMsg{opacity:0;transform:translateY(14px);transition:.55s var(--ease)}
+  .hoMsg.in{opacity:1;transform:none}
+  .ogcard{margin-top:8px;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .og-top{position:relative;background:radial-gradient(90% 80% at 50% 30%,rgba(223,255,0,.14),transparent 60%),#161616;padding:13px 12px 14px;text-align:center}
+  .og-top .ox{position:absolute;right:9px;top:9px;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:#ccc;font-size:9px}
+  .og-h{font-size:16px;font-weight:800;letter-spacing:-.02em;color:#F5F5F2;margin-top:9px;line-height:1.08}
+  .og-h .g{color:var(--neon)}
+  .og-sub{font-size:9.5px;color:rgba(255,255,255,.6);margin-top:6px}
+  .og-foot{font-family:var(--mono);font-size:7px;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-top:11px;text-transform:uppercase}
+  .og-top .wmr svg{height:12px}
+  .og-bottom{background:#3a3a3c;padding:9px 12px}
+  .og-bottom .t{font-size:11.5px;font-weight:600;color:#fff}
+  .og-bottom .u{font-size:10px;color:rgba(255,255,255,.5);margin-top:1px}
+
+  /* Scene 1 — parent form */
+  .web{background:var(--web-bg);color:var(--web-t)}
+  .brow{padding:44px 12px 9px;display:flex;align-items:center;gap:7px;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.06);flex:none}
+  .brow .url{flex:1;background:#111;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 9px;font-family:var(--mono);font-size:9px;color:var(--web-mut);display:flex;align-items:center;gap:6px;overflow:hidden;white-space:nowrap}
+  .brow .url .lk{color:var(--moss)}
+  .webhead{background:var(--web-head);padding:11px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);flex:none}
+  .webhead .chip{display:inline-flex;align-items:center;gap:7px;background:var(--web-card);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:5px 12px;font-size:11.5px;font-weight:500;margin-top:8px}
+  .webhead .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--neon)}
+  .webbody{flex:1;overflow:hidden;padding:12px 15px 10px}
+  .webbody h2{font-size:15.5px;font-weight:600;margin-bottom:3px;letter-spacing:-.01em}
+  .webbody .wsub{font-size:10.5px;color:var(--web-mut);margin-bottom:13px;line-height:1.4}
+  .wlabel{font-family:var(--mono);font-size:8.5px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:5px;display:block}
+  .winp{width:100%;background:var(--web-input);border:1px solid var(--web-bd);border-radius:10px;color:var(--web-t);font-size:13px;padding:9px 11px;min-height:35px;display:flex;align-items:center}
+  .winp .cursor{display:inline-block;width:1.5px;height:14px;background:var(--neon);margin-left:1px;animation:blink 1s steps(2) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .wrow{display:flex;gap:9px}.wrow>div{flex:1}
+  .field{margin-bottom:8px}
+  .wseg{display:flex;gap:5px;background:#000;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:4px;margin:3px 0 11px}
+  .wseg span{flex:1;text-align:center;font-size:11px;font-weight:500;color:var(--web-mut);padding:7px 3px;border-radius:9px}
+  .wseg span.on{background:var(--neon);color:#141414}
+  .songcard{background:var(--web-card);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:10px;display:flex;align-items:center;gap:11px}
+  .songcard .art{width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#3a3a1a,var(--moss));display:flex;align-items:center;justify-content:center;font-size:16px;flex:none}
+  .songcard .st{font-size:12.5px;font-weight:600}.songcard .sa{font-size:11px;color:var(--web-mut);margin-top:1px}
+  .songcard .drop{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--neon);border:1px solid var(--line2);border-radius:7px;padding:5px 8px}
+  .wsubmit{width:100%;background:var(--neon);border:none;color:#141414;font-size:13.5px;font-weight:600;border-radius:13px;padding:12px;margin-top:13px;font-family:inherit}
+  .wsubmit.pressed{animation:tap .5s var(--ease)}
+  .sent-ov{position:absolute;inset:0;background:rgba(10,10,10,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;visibility:hidden;transition:opacity .4s;text-align:center;padding:30px}
+  .sent-ov.on{opacity:1;visibility:visible}
+  .sent-ov .chk{width:58px;height:58px;border-radius:50%;background:var(--neon);display:flex;align-items:center;justify-content:center}
+  .sent-ov b{font-size:16px;font-weight:700;color:var(--web-t)}.sent-ov span{font-size:12px;color:var(--web-mut);max-width:210px;line-height:1.5}
+
+  /* in-app light nav */
+  .appnav{padding:44px 16px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,0,0,.06);background:var(--cream);flex:none}
+  .appnav .ttl{font-weight:800;font-size:14.5px;color:var(--charcoal)}
+  .appnav .back{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--charcoal);font-weight:500}
+  .appbody{flex:1;overflow:hidden;padding:15px;display:flex;flex-direction:column;background:var(--cream)}
+
+  /* Scene 2 review */
+  .countlab{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--ink3);text-transform:uppercase;padding:12px 4px 8px}
+  .countlab b{color:var(--charcoal)}
+  .subs{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+  .subrow{display:flex;align-items:center;gap:11px;background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:13px;padding:12px;opacity:0;transform:translateY(12px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+  .subrow.in{opacity:1;transform:none}
+  .subrow.flag{border-color:var(--amberBd);background:var(--amberBg)}
+  .subrow .ck{width:22px;height:22px;border-radius:7px;border:2px solid rgba(0,0,0,.25);flex:none;display:flex;align-items:center;justify-content:center}
+  .subrow.on .ck{background:var(--gold);border-color:var(--gold)}
+  .subrow .num{width:36px;height:36px;border-radius:9px;background:var(--numbg);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11.5px;color:var(--ink2);flex:none}
+  .subrow .who{flex:1;min-width:0}
+  .subrow .who b{display:block;font-size:13.5px;font-weight:700;color:var(--charcoal)}
+  .subrow .who span{display:block;font-size:11.5px;color:var(--ink3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .subrow.flag .who span{color:var(--amber)}
+  .revfoot{padding-top:12px;margin-top:auto}
+  .importb{background:var(--gold);color:var(--charcoal);border:none;border-radius:13px;padding:14px;font-size:14px;font-weight:800;width:100%;text-align:center;font-family:inherit}
+  .importb.pressed{animation:tap .5s var(--ease)}
+  .importb.busy{opacity:.55}
+
+  /* Scene 3 roster + alert */
+  .rlabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);padding:14px 4px 10px}
+  .plist{display:flex;flex-direction:column;gap:8px;overflow:hidden}
+  .prow{display:flex;align-items:center;gap:11px;background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:11px;opacity:0;transform:translateX(-10px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+  .prow.in{opacity:1;transform:none}
+  .prow .n{width:32px;height:32px;border-radius:8px;background:var(--numbg);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--ink2);flex:none}
+  .prow .nm{flex:1;min-width:0}
+  .prow .nm b{display:block;font-size:13px;font-weight:700;color:var(--charcoal)}
+  .prow .nm span{display:block;font-size:11px;color:var(--ink3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .prow .note{font-size:15px;color:var(--gold)}
+  .alertov{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:26px;opacity:0;visibility:hidden;transition:opacity .4s;z-index:20}
+  .alertov.on{opacity:1;visibility:visible}
+  .alertbox{background:rgba(250,250,248,.99);border-radius:16px;padding:20px 18px 0;width:100%;max-width:250px;text-align:center;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+  .alertbox .at{font-size:15px;font-weight:800;color:var(--charcoal);letter-spacing:-.01em;line-height:1.22}
+  .alertbox .ab{font-size:11.5px;color:var(--ink2);line-height:1.45;margin:8px 4px 16px}
+  .alertbox .abtn{border-top:1px solid rgba(0,0,0,.1);margin:0 -18px;padding:12px;color:#0a84ff;font-size:15px;font-weight:600}
+
+  .caption{min-height:22px;text-align:center;font-size:13px;color:var(--t2);max-width:310px;line-height:1.45;transition:opacity .3s}
+  .caption b{color:var(--neon);font-weight:700}
+  .controls{display:flex;align-items:center;gap:14px}
+  .ctrl{background:var(--surf);border:1px solid var(--line);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t1)}
+  .ctrl:hover{border-color:var(--line2)}
+  .dots{display:flex;gap:7px}
+  .dot{width:7px;height:7px;border-radius:50%;background:rgba(246,244,239,.20);cursor:pointer;transition:.3s;border:none;padding:0}
+  .dot.active{background:var(--neon);width:22px;border-radius:4px}
+  .foot{margin-top:44px;text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--t3);text-transform:uppercase}
+  .foot b{color:var(--moss)}
+  @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.12s!important}.chap.active.playing .prog i{transition:none;width:100%}}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <p class="eyebrow">We take the busy work, you take the bow</p>
+  <h1 class="h1">Text one link.<br>Watch the roster <span class="g">build itself.</span></h1>
+  <p class="sub">Drop a link in the group chat, and your whole lineup — songs, numbers, and all — walks in on its own. You just review and hit go.</p>
+
+  <div class="layout">
+    <div class="rail" id="rail">
+      <button class="chap active" data-i="0"><span class="bar"></span><span class="chap-top"><span class="chap-n">01</span><span class="chap-badge">Easiest</span></span><span class="chap-title">Drop the link in the group chat</span><span class="chap-body">One tap gives you a link — no app for parents to download. Text it, or post it in TeamSnap.</span><span class="prog"><i></i></span></button>
+      <button class="chap" data-i="1"><span class="bar"></span><span class="chap-top"><span class="chap-n">02</span></span><span class="chap-title">Parents fill in their own player</span><span class="chap-body">Name, number, walk-up song — 30 seconds, right in the browser. They do the typing; you do the coaching.</span><span class="prog"><i></i></span></button>
+      <button class="chap" data-i="2"><span class="bar"></span><span class="chap-top"><span class="chap-n">03</span></span><span class="chap-title">Picks stream in. You just review.</span><span class="chap-body">Submissions land in a tidy list. Duplicate numbers get flagged for you. Tap Import — that's the whole job.</span><span class="prog"><i></i></span></button>
+      <button class="chap" data-i="3"><span class="bar"></span><span class="chap-top"><span class="chap-n">04</span></span><span class="chap-title">Whole lineup, announced &amp; ready</span><span class="chap-body">Tap Import and every player is set with their walk-up and announced by name — in your team's announcer voice.</span><span class="prog"><i></i></span></button>
+    </div>
+
+    <div class="stage-col">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen" id="screen">
+
+          <!-- SCENE 0 — chooser -->
+          <div class="scene on" data-scene="0">
+            <div class="gdhead"><div class="status"></div><div class="wmc"><span class="wmr" data-wm></span></div><div class="gddrop"><span class="dot"></span><span class="tm">Tigers 10U</span><span class="cv">▾</span></div></div>
+            <div class="gdbody">
+              <div class="gdhero"><h2>You're the<br>Chief Hype Officer.</h2><p>A walk-up for every player, a Roll Call for the whole lineup, an anthem for the team — <span class="g">you're running the show.</span></p></div>
+              <div class="kick">Get your team in</div>
+              <div class="ramp easy" id="rampEasy"><span class="ico">👥</span><span class="info"><span class="lrow"><span class="lbl">Have parents fill it in</span><span class="easypill">EASIEST</span></span><span class="rsub">We give you a link you can send in a text or post in TeamSnap. It doesn't get any easier.</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="ramp"><span class="ico">📋</span><span class="info"><span class="lrow"><span class="lbl">Import your roster</span></span><span class="rsub">Upload a CSV or literally just tell us.</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="ramp"><span class="ico">＋</span><span class="info"><span class="lrow"><span class="lbl">Add players myself</span></span><span class="rsub">Add each player yourself. Super easy and fast.</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <p class="gdnote">Pick the way that's least work for you. You'll be game-ready in about a minute.</p>
+            </div>
+            <div class="tabbar">
+              <div class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>GAME DAY</div>
+              <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg>MANAGE</div>
+              <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>MUSIC HUB</div>
+            </div>
+            <div class="imsg" id="sheet">
+              <div class="inav"><b>New Message</b><span class="x">✕</span></div>
+              <div class="ito"><span class="lab">To:</span><span class="cur"></span></div>
+              <div class="thread">
+                <div class="bubble">The Chief Hype Officer of Tigers 10U needs your help! Fill in your player's name, jersey number, walk-up song, and where you want the music to start. Takes 30 seconds, no app needed:
+                  <div class="ogcard">
+                    <div class="og-top"><span class="ox">✕</span><div class="wmc"><span class="wmr" data-wm></span></div><div class="og-h">Every team needs a<br><span class="g">Chief Hype Officer.</span></div><div class="og-sub">Walk-up songs + your own announcer, every game.</div><div class="og-foot">Youth Baseball &amp; Softball · nowbattingapp.com</div></div>
+                    <div class="og-bottom"><div class="t">Set up your player's walk-up music</div><div class="u">nowbattingapp.com</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCENE 1 — parent form -->
+          <div class="scene web" data-scene="1">
+            <div class="brow"><span class="url"><span class="lk">🔒</span> nowbattingapp.com/setup/TG10U</span></div>
+            <div class="webhead"><div class="wmc"><span class="wmr" data-wm></span></div><div class="chip"><span class="dot"></span>Tigers 10U</div></div>
+            <div class="webbody">
+              <h2>Set up your player's walk-up music</h2>
+              <p class="wsub">Coach Rivera set this up — 30 seconds, they'll make it game-ready.</p>
+              <div class="wrow">
+                <div class="field"><label class="wlabel">First name</label><div class="winp" id="fName">Mikey</div></div>
+                <div class="field"><label class="wlabel">Last name</label><div class="winp">Moonshot</div></div>
+              </div>
+              <div class="wrow">
+                <div class="field" style="flex:0 0 80px"><label class="wlabel">Number</label><div class="winp" id="fNum">7</div></div>
+                <div class="field"><label class="wlabel">Say it like</label><div class="winp" id="fPhon">MY-kee</div></div>
+              </div>
+              <label class="wlabel">Walk-up song</label>
+              <div class="wseg"><span class="on">Apple Music</span><span>Original song</span><span>No pref</span></div>
+              <div class="songcard"><span class="art">♪</span><span><span class="st">Renegade</span><span class="sa">Styx</span></span><span class="drop">▸ 0:42</span></div>
+              <button class="wsubmit" id="submitBtn">Send to Coach Rivera</button>
+            </div>
+            <div class="sent-ov" id="sentOv"><div class="chk"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#141414" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><b>Mikey's in the lineup!</b><span>Your Chief Hype Officer will get the walk-up ready for game day. See you at the field.</span></div>
+          </div>
+
+          <!-- SCENE 2 — review -->
+          <div class="scene" data-scene="2">
+            <div class="appnav"><span class="back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#1F1F1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Settings</span><span class="ttl">From your team</span><span style="width:56px"></span></div>
+            <div class="appbody">
+              <div class="countlab"><b id="subCount">0</b> NEW PICKS</div>
+              <div class="subs" id="subs">
+                <div class="subrow on"><span class="ck"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#1F1F1F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="num">#7</span><span class="who"><b>Mikey Moonshot</b><span>Renegade · Styx</span></span></div>
+                <div class="subrow on"><span class="ck"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#1F1F1F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="num">#4</span><span class="who"><b>Ava Rocket</b><span>Confident · Demi Lovato</span></span></div>
+                <div class="subrow on"><span class="ck"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#1F1F1F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="num">#12</span><span class="who"><b>Diego Slugger</b><span>Eye of the Tiger · Survivor</span></span></div>
+                <div class="subrow on"><span class="ck"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#1F1F1F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="num">#23</span><span class="who"><b>Priya Blaze</b><span>Girl on Fire · Alicia Keys</span></span></div>
+                <div class="subrow flag"><span class="ck"></span><span class="num">#7</span><span class="who"><b>Sam Wheeler</b><span>#7 already on roster</span></span></div>
+              </div>
+              <div class="revfoot"><button class="importb" id="importBtn">Import 4 players</button></div>
+            </div>
+          </div>
+
+          <!-- SCENE 3 — roster + real success alert -->
+          <div class="scene" data-scene="3">
+            <div class="gdhead"><div class="status"></div><div class="wmc"><span class="wmr" data-wm></span></div><div class="gddrop"><span class="dot"></span><span class="tm">Tigers 10U</span><span class="cv">▾</span></div></div>
+            <div class="appbody">
+              <div class="rlabel">Batting order</div>
+              <div class="plist" id="plist">
+                <div class="prow"><span class="n">1</span><span class="nm"><b>Mikey Moonshot&nbsp; #7</b><span>Renegade · Styx</span></span><span class="note">♪</span></div>
+                <div class="prow"><span class="n">2</span><span class="nm"><b>Ava Rocket&nbsp; #4</b><span>Confident · Demi Lovato</span></span><span class="note">♪</span></div>
+                <div class="prow"><span class="n">3</span><span class="nm"><b>Diego Slugger&nbsp; #12</b><span>Eye of the Tiger · Survivor</span></span><span class="note">♪</span></div>
+                <div class="prow"><span class="n">4</span><span class="nm"><b>Priya Blaze&nbsp; #23</b><span>Girl on Fire · Alicia Keys</span></span><span class="note">♪</span></div>
+              </div>
+            </div>
+            <div class="alertov" id="readyAlert"><div class="alertbox"><div class="at">4 players in — announced &amp; ready 🎙️</div><div class="ab">Walk-ups set, names called. Your dugout just got louder — go run the show.</div><div class="abtn">Let's go</div></div></div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="caption" id="caption">One tap gives you a link — text it or post it in TeamSnap.</div>
+      <div class="controls">
+        <button class="ctrl" id="prev" aria-label="Previous"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="ctrl" id="play" aria-label="Play / pause"><svg id="playIco" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+        <div class="dots" id="dots"></div>
+        <button class="ctrl" id="next" aria-label="Next"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">No accounts · No logins · <b>Set up once, awesome every game</b></div>
+</div>
+
+<script>
+(function(){
+  var WM='<svg viewBox="0 0 332 60" xmlns="http://www.w3.org/2000/svg" aria-label="Now Batting"><text x="0" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><text x="188.38" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">batting</text></svg>';
+  document.querySelectorAll('[data-wm]').forEach(function(e){e.innerHTML=WM;});
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var N = 4;
+  // per-scene durations, matched to each scene's own animation length
+  var DURS = reduce ? [2200,2600,2200,2000] : [5600,7400,5600,5200];
+  var i = 0, playing = !reduce, timer = null, running = [];
+  var captions = [
+    "One tap gives you a link — text it or post it in TeamSnap.",
+    "Parents fill it in from any browser. No app, no account.",
+    "Picks stream in. Dupe numbers flagged. You just review.",
+    "Tap Import — walk-ups set, every name called."
+  ];
+  var chaps=[].slice.call(document.querySelectorAll('.chap')), scenes=[].slice.call(document.querySelectorAll('.scene'));
+  var dotsWrap=document.getElementById('dots'), caption=document.getElementById('caption'), playIco=document.getElementById('playIco');
+  for(var d=0;d<N;d++){var b=document.createElement('button');b.className='dot'+(d===0?' active':'');b.setAttribute('data-i',d);dotsWrap.appendChild(b);}
+  var dots=[].slice.call(dotsWrap.children);
+  function clearRunning(){running.forEach(clearTimeout);running=[];}
+  function later(fn,t){var id=setTimeout(fn,reduce?Math.min(t,300):t);running.push(id);return id;}
+  ['fName','fNum','fPhon'].forEach(function(id){var e=document.getElementById(id);e.dataset.full=e.textContent.trim();});
+  function resetScene(){
+    document.getElementById('sheet').classList.remove('up'); document.getElementById('rampEasy').classList.remove('pick');
+    document.getElementById('sentOv').classList.remove('on'); document.getElementById('submitBtn').classList.remove('pressed');
+    ['fName','fNum','fPhon'].forEach(function(id){document.getElementById(id).textContent=document.getElementById(id).dataset.full;});
+    document.querySelectorAll('#subs .subrow').forEach(function(r){r.classList.remove('in');});
+    document.getElementById('subCount').textContent='0';
+    var ib=document.getElementById('importBtn'); ib.classList.remove('pressed','busy'); ib.textContent='Import 4 players';
+    document.querySelectorAll('#plist .prow').forEach(function(r){r.classList.remove('in');});
+    document.getElementById('readyAlert').classList.remove('on');
+  }
+  function typeInto(el,full,done){
+    if(reduce){el.textContent=full;if(done)done();return;}
+    el.textContent='';var k=0;(function step(){if(k<=full.length){el.innerHTML=full.slice(0,k)+'<span class="cursor"></span>';k++;later(step,52);}else{el.textContent=full;if(done)done();}})();
+  }
+  function runScene(n){
+    clearRunning(); resetScene();
+    if(n===0){ later(function(){document.getElementById('rampEasy').classList.add('pick');},700); later(function(){document.getElementById('sheet').classList.add('up');},1300); }
+    else if(n===1){
+      var f1=document.getElementById('fName'),f2=document.getElementById('fNum'),f3=document.getElementById('fPhon');
+      var v1=f1.dataset.full,v2=f2.dataset.full,v3=f3.dataset.full; f1.textContent='';f2.textContent='';f3.textContent='';
+      later(function(){ typeInto(f1,v1,function(){ later(function(){ typeInto(f3,v3,function(){ later(function(){ typeInto(f2,v2,function(){
+        later(function(){ document.getElementById('submitBtn').classList.add('pressed'); later(function(){document.getElementById('sentOv').classList.add('on');},480); },520);
+      }); },250); }); },250); }); },520);
+    }
+    else if(n===2){
+      var rows=document.querySelectorAll('#subs .subrow'),cnt=document.getElementById('subCount'),c=0;
+      rows.forEach(function(r,idx){ later(function(){ r.classList.add('in'); c++; cnt.textContent=c;
+        if(idx===rows.length-1){ later(function(){ var ib=document.getElementById('importBtn'); ib.classList.add('pressed'); later(function(){ib.classList.add('busy');ib.textContent='Importing 4/4…';},480); },780); }
+      }, 480+idx*640); });
+    }
+    else if(n===3){
+      var prows=document.querySelectorAll('#plist .prow');
+      prows.forEach(function(r,idx){ later(function(){ r.classList.add('in'); },300+idx*380); });
+      later(function(){ document.getElementById('readyAlert').classList.add('on'); }, 300+prows.length*380+500);
+    }
+  }
+  function go(n){
+    i=(n+N)%N;
+    chaps.forEach(function(c,k){c.classList.toggle('active',k===i);c.classList.remove('playing');});
+    scenes.forEach(function(s,k){s.classList.toggle('on',k===i);});
+    dots.forEach(function(dd,k){dd.classList.toggle('active',k===i);});
+    caption.style.opacity=0; setTimeout(function(){caption.innerHTML=captions[i];caption.style.opacity=1;},180);
+    runScene(i); clearTimeout(timer);
+    if(playing){ var a=chaps[i]; var dur=DURS[i]||6000; a.style.setProperty('--dur',(dur/1000)+'s'); void a.offsetWidth; a.classList.add('playing'); timer=setTimeout(function(){go(i+1);},dur); }
+  }
+  function setPlaying(p){ playing=p; playIco.innerHTML=p?'<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>':'<path d="M7 4l13 8-13 8z"/>'; if(p){go(i);}else{clearTimeout(timer);chaps.forEach(function(c){c.classList.remove('playing');});} }
+  chaps.forEach(function(c){c.addEventListener('click',function(){go(+c.getAttribute('data-i'));});});
+  dots.forEach(function(dd){dd.addEventListener('click',function(){go(+dd.getAttribute('data-i'));});});
+  document.getElementById('next').addEventListener('click',function(){go(i+1);});
+  document.getElementById('prev').addEventListener('click',function(){go(i-1);});
+  document.getElementById('play').addEventListener('click',function(){setPlaying(!playing);});
+  setPlaying(!reduce); if(reduce){go(0);}
+})();
+</script>
+<script>
+(function(){function h(){try{parent.postMessage({nbDemoHeight:document.body.scrollHeight},'*');}catch(e){}}window.addEventListener('load',h);window.addEventListener('resize',h);setInterval(h,800);})();
+</script>
+</body>
+</html>
