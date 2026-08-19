@@ -15,7 +15,7 @@
     --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;background:#151517}
+  html,body{margin:0;background:#151517;overflow-x:hidden}
   body{font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.5;color:var(--appink)}
   .frame{display:flex;align-items:center;justify-content:center;padding:10px 14px 22px}
   .fp{display:none;width:100%;justify-content:center}
@@ -41,7 +41,8 @@
   .songwrap.picked .search,.songwrap.picked .result{display:none}
   .songwrap.picked .songcard{display:flex}
   .art{width:52px;height:52px;border-radius:10px;flex:none;background:linear-gradient(135deg,#38402a,#5f7326 60%,#8aa32e);display:grid;place-items:center;color:#eaf3c0;font-size:20px}
-  .sname{font-weight:800;font-size:14px;margin:0;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+  .result>div:not(.art),.songcard>div:not(.art){min-width:0;flex:1}
+  .sname{font-weight:800;font-size:14px;margin:0;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .sart{font-size:12px;color:var(--appmut);margin:2px 0 0;font-weight:600}
   .change{margin-left:auto;color:var(--gold);font-weight:800;font-size:13.5px;padding-left:8px}
 

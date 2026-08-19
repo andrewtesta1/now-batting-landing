@@ -26,7 +26,7 @@
   .h1 .g{color:var(--neon)}
   .sub{margin-top:16px;font-size:clamp(15px,1.7vw,18px);line-height:1.55;color:var(--t2);max-width:560px}
   .layout{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center;margin-top:clamp(30px,5vw,54px)}
-  @media(max-width:840px){.layout{grid-template-columns:1fr;gap:34px}}
+  @media(max-width:840px){.layout{grid-template-columns:minmax(0,1fr);gap:34px}}
   .rail{display:flex;flex-direction:column;gap:10px;order:2}
   @media(max-width:840px){.stage-col{order:1}}
   .chap{position:relative;text-align:left;background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:18px 20px 18px 22px;cursor:pointer;overflow:hidden;transition:border-color .3s,background .3s;color:inherit;font-family:inherit;width:100%}
@@ -46,6 +46,9 @@
 
   .stage-col{display:flex;flex-direction:column;align-items:center;gap:18px}
   .phone{position:relative;width:300px;height:620px;border-radius:48px;background:#0c0c0c;border:1px solid rgba(246,244,239,.14);padding:11px;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6);flex:none}
+  /* narrow phones: trim the frame gutters, then scale the fixed-width phone so it never clips */
+  @media(max-width:520px){ .frame{padding:26px 10px 42px} }
+  @media(max-width:374px){ .phone{transform:scale(.84);transform-origin:top center} .stage-col{margin-bottom:-96px} }
   .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:112px;height:26px;background:#0c0c0c;border-radius:0 0 16px 16px;z-index:40}
   .screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;background:var(--cream)}
   .scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s var(--ease);display:flex;flex-direction:column}
