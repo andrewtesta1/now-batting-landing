@@ -595,6 +595,38 @@
     .persona-band .eyebrow { color: rgba(246,244,239,0.55); }
     .persona-band .persona-hed { color: #F6F4EF; max-width: 760px; margin: 0 auto 16px; }
     .persona-band .cho-bridge { color: rgba(246,244,239,0.6); }
+    /* Chief Hype Officer TikTok — dark click-to-play card, swaps to the live embed on tap */
+    .cho-tiktok { margin: 44px auto 0; max-width: 300px; }
+    .ctk-card {
+      position: relative; display: block; width: 100%; aspect-ratio: 9 / 16;
+      border-radius: 18px; overflow: hidden; cursor: pointer; padding: 0;
+      border: 1px solid rgba(246,244,239,0.14);
+      background-size: cover; background-position: center;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+    }
+    .ctk-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 42%, rgba(10,9,7,0.88) 100%);
+    }
+    .ctk-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 58px; height: 58px; border-radius: 50%; background: var(--daylight);
+      display: flex; align-items: center; justify-content: center; z-index: 2;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.55); transition: transform .18s;
+    }
+    .ctk-card:hover .ctk-play { transform: translate(-50%,-50%) scale(1.08); }
+    .ctk-play svg { margin-left: 3px; }
+    .ctk-label {
+      position: absolute; left: 16px; right: 16px; bottom: 36px; z-index: 2; text-align: left;
+      font-family: var(--font-sans); font-weight: 700; font-size: 16px; color: #F6F4EF;
+      line-height: 1.25; text-shadow: 0 1px 8px rgba(0,0,0,0.85);
+    }
+    .ctk-handle {
+      position: absolute; left: 16px; bottom: 14px; z-index: 2;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: rgba(246,244,239,0.72);
+    }
+    .cho-tiktok.loaded { max-width: 340px; }
+    .cho-tiktok .tiktok-embed { margin: 0 auto !important; }
     .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .persona-hed { font-family: var(--font-sans); font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; letter-spacing: -0.015em; line-height: 0.95; color: var(--txt); margin-bottom: 16px; }
     .persona-hed .g { color: var(--daylight); }
@@ -2606,9 +2638,29 @@
       <p style="margin:0;">We built <strong style="color:var(--daylight);font-weight:700;">Now Batting</strong> for you.</p>
     </div>
     <a href="/our-story" class="cho-founder-link r d2" style="display:inline-block;margin-top:28px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.04em;color:var(--daylight);text-decoration:none;border-bottom:1px solid rgba(184,204,0,0.4);padding-bottom:2px;">A note from the founder →</a>
+
+    <div class="cho-tiktok r d2" id="choTikTok">
+      <button class="ctk-card" type="button" aria-label="Watch: why we built Now Batting, on TikTok" onclick="loadChoTikTok()" style="background-image:url('/tiktok-cho-poster.jpg');">
+        <span class="ctk-play" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#121110"/></svg></span>
+        <span class="ctk-label">Why we built Now Batting</span>
+        <span class="ctk-handle">@nowbattingapp · TikTok</span>
+      </button>
+    </div>
   </div>
 
 </section>
+<script>
+  function loadChoTikTok(){
+    var wrap = document.getElementById('choTikTok');
+    if(!wrap || wrap.dataset.loaded) return;
+    wrap.dataset.loaded = '1';
+    wrap.classList.add('loaded');
+    wrap.innerHTML = '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nowbattingapp/video/7676336716986305822" data-video-id="7676336716986305822" style="max-width:340px;min-width:280px;margin:0 auto;"><section></section></blockquote>';
+    var s = document.createElement('script');
+    s.async = true; s.src = 'https://www.tiktok.com/embed.js';
+    document.body.appendChild(s);
+  }
+</script>
 
 <div class="hr"></div>
 
