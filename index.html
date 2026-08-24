@@ -146,6 +146,14 @@
           },
           {
             "@type": "Question",
+            "name": "Does Now Batting work with Spotify, Amazon Music, or YouTube Music?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Now Batting supports Apple Music. Apple Music lets the app play a song itself, which is what makes a walk-up work: the song starts at the exact second you chose, ducks under the announcer, swells back and fades on cue. Spotify's iOS SDK works by remote-controlling the Spotify app rather than handing the audio to a third-party app, so a walk-up could be started but not shaped that way. Amazon Music and YouTube Music do not currently give iPhone apps a way to play their catalogs. Radio-style services do not let you choose a specific track, so there is no drop point to set. The original walk-up songs Now Batting writes need no music service at all, and the sound effects are stored on your phone."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Does Now Batting work with a Bluetooth speaker without lag or cutting off the first word?",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -2920,10 +2928,10 @@
 
       <div class="faq-item r d3">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          <span>Does Now Batting work with Spotify?</span>
+          <span>Does it work with Spotify, Amazon Music, or YouTube Music?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a"><strong>No — and it's a reliability call.</strong> Spotify only lets an app <em>remote-control</em> the Spotify app; you can't reliably hit the drop, duck under the announcer, or fade on cue — the exact moves a walk-up lives on. Apple Music plays <em>inside</em> Now Batting, so the app controls the song to the second, every time. And the originals we write need no music service at all. Want Spotify anyway? <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">cho@nowbattingapp.com</a></div>
+        <div class="faq-a"><strong>Apple Music only</strong> — and it comes down to how much control an app is handed. Apple Music lets Now Batting play the song <em>itself</em>, which is the whole reason a walk-up works: the drop lands on the second you picked, the song ducks under the announcer, swells back, and fades on cue. Spotify's iOS SDK works by remote-controlling the Spotify app rather than handing the audio over, so we could start a track but couldn't shape it that way. Amazon Music and YouTube Music don't currently give iPhone apps like ours a way to play their catalogs. And radio-style services don't let you choose the track, so there's nothing to set a drop point on. Two things worth knowing either way: the original songs we write for your players need no music service at all, and the sound effects live on your phone. Want us to support something else? <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">cho@nowbattingapp.com</a></div>
       </div>
 
     </div>
