@@ -135,6 +135,11 @@
   .npills{display:flex;flex-wrap:wrap;gap:8px}
   .npill{border:1.5px solid var(--appline);background:#faf9f5;border-radius:20px;padding:8px 14px;font-weight:600;font-size:13px;color:var(--appmut)}
   .npill.on{background:var(--appink);border-color:var(--neon);color:var(--neon);font-weight:800}
+  /* Team Hype Song got the Roll Call visual treatment in 1.1.8: gold active pills
+     (#B8CC00, dark label) and a charcoal Generate button, not the old neon pair.
+     Scoped to this panel so the announcer/sounds panels keep their neon accent. */
+  [data-fp="teamsong"] .npill.on{background:var(--gold);border-color:var(--gold);color:#1A1A1A}
+  [data-fp="teamsong"] .genbtn.neon{background:#1F1F1F;color:#fff}
   .tphases{display:flex;flex-direction:column;gap:14px;margin:6px 0 22px;text-align:left;width:100%}
   .tprow{display:flex;align-items:center;gap:11px}
   .tpdot{width:18px;height:18px;display:grid;place-items:center;flex:none}
@@ -266,6 +271,8 @@
       <div class="field">Hawks</div>
       <p class="lbl mt16">WHEN</p>
       <div class="pills"><span class="pill on">Today</span><span class="pill">Tonight</span><span class="pill">Morning</span><span class="pill">Afternoon</span></div>
+      <p class="lbl mt16">OCCASION (OPTIONAL)</p>
+      <div class="field">opening day</div>
       <p class="lbl mt16">MUSIC BED</p>
       <div class="pills"><span class="pill">None</span><span class="pill on"><span class="tri"></span>Classic</span><span class="pill"><span class="tri"></span>Rock</span><span class="pill"><span class="tri"></span>Hip-Hop</span><span class="pill"><span class="tri"></span>Electro</span><span class="pill"><span class="tri"></span>Country</span></div>
       <button class="build">Build Your Roll Call</button>
@@ -304,7 +311,7 @@
   <div class="fp" data-fp="teamsong">
     <div class="app" id="teamApp">
       <div class="gform">
-        <p class="appttl">Create Team Song</p>
+        <p class="appttl">Create Team Hype Song</p>
         <p class="appsub">A hype song with every player's name woven in</p>
         <p class="flabel">TEAM NAME</p>
         <div class="field">Blue Dragons</div>
