@@ -21,15 +21,21 @@
 // everywhere — there is no env var for it in this repo). App Store ID: 6760744461.
 const APP_STORE_URL = 'https://apps.apple.com/app/now-batting/id6760744461';
 
-// PostHog capture. The project token is a PUBLIC, write-only ingestion key (the
-// same one shipped inside the iOS app), so it is safe to hardcode here; an env
-// var overrides it if ever set. Capture is fire-and-forget with a hard timeout —
-// it can never slow down or break a scan.
+// PostHog capture. The token comes from the environment ONLY — no hardcoded
+// fallback. It is a public, write-only ingestion key and cannot read data, but
+// THIS REPO IS PUBLIC, and a key sitting in public source is trivially scraped
+// and replayed to spam events into the project. That does not leak anything; it
+// poisons the analytics, which is the thing the numbers are supposed to be
+// trustworthy for. An IPA can be unpacked too, but that is real work — a
+// git-grep is not.
+//
+// Set POSTHOG_PROJECT_TOKEN in Vercel → Production. Deliberately NOT set on
+// Preview, so preview deployments cannot emit real qr_scan events.
+// Unset means captureScan() no-ops below and the redirect still works.
 // Minimal Node global decl — this repo has no @types/node / build step.
 declare const process: { env: Record<string, string | undefined> };
 const POSTHOG_HOST = process.env.POSTHOG_HOST || 'https://us.i.posthog.com';
-const POSTHOG_TOKEN =
-  process.env.POSTHOG_PROJECT_TOKEN || 'phc_yfUXreiWksqhzb64LfeZ9EGGc6KANmcU2fvXWkRgQtf6';
+const POSTHOG_TOKEN = process.env.POSTHOG_PROJECT_TOKEN;
 
 async function captureScan(props: Record<string, unknown>): Promise<void> {
   if (!POSTHOG_TOKEN) return;
