@@ -104,6 +104,45 @@
     .email-btn:hover { background: var(--daylight-dim); text-decoration: none; }
 
     /* FAQ */
+    /* ── How-to videos ───────────────────────────────────────────────────────
+       Click-to-play cards: the TikTok embed script only loads when someone
+       actually taps one, so the page stays fast and no third-party tracking
+       runs for people who never watch. Same pattern as the founder video on
+       the landing page. Designed cards rather than video stills, so adding a
+       tutorial doesn't mean sourcing a screenshot every time. */
+    .howto-sub { font-size: 15px; color: var(--txt2); line-height: 1.7; margin: 6px 0 20px; }
+    .howto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 268px)); gap: 20px; margin-bottom: 40px; }
+    .tok {
+      position: relative; display: block; width: 100%; aspect-ratio: 9 / 16;
+      border: 0; padding: 0; cursor: pointer; overflow: hidden;
+      border-radius: 16px; background: #1F1F1F; text-align: left;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.16);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .tok:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    .tok::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(120% 80% at 50% 18%, rgba(184,204,0,0.20) 0%, rgba(31,31,31,0) 62%);
+    }
+    .tok-play {
+      position: absolute; top: 42%; left: 50%; transform: translate(-50%,-50%);
+      width: 54px; height: 54px; border-radius: 50%; background: var(--daylight);
+      display: flex; align-items: center; justify-content: center; z-index: 2;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4); transition: transform .18s ease;
+    }
+    .tok:hover .tok-play { transform: translate(-50%,-50%) scale(1.08); }
+    .tok-play svg { margin-left: 3px; }
+    .tok-title {
+      position: absolute; left: 16px; right: 16px; bottom: 34px; z-index: 2;
+      font-family: var(--font-sans); font-weight: 700; font-size: 15.5px; line-height: 1.28;
+      color: #F6F4EF;
+    }
+    .tok-handle {
+      position: absolute; left: 16px; bottom: 14px; z-index: 2;
+      font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; color: rgba(246,244,239,0.66);
+    }
+    .howto-grid .tiktok-embed { margin: 0 !important; }
+    @media (max-width: 560px) { .howto-grid { grid-template-columns: 1fr; } }
     .faq-head { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: var(--txt); margin-bottom: 4px; }
     .faq-list { margin-top: 16px; }
     .faq-item { border-top: 1px solid var(--bord); padding: 22px 0; }
@@ -187,6 +226,20 @@
     <a class="email-btn" href="mailto:cho@nowbattingapp.com">cho@nowbattingapp.com</a>
   </div>
 
+  <p class="faq-head" id="how-to">Watch how it's done</p>
+  <p class="howto-sub">Short walkthroughs from the field. Start here if you'd rather see it than read it.</p>
+  <div class="howto-grid">
+    <div class="howto-card">
+      <button class="tok" type="button" data-video-id="7678144309148929310"
+              aria-label="Watch on TikTok: set up your roster in under 45 seconds"
+              onclick="loadTok(this)">
+        <span class="tok-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></span>
+        <span class="tok-title">Set up your roster in under 45 seconds</span>
+        <span class="tok-handle">@nowbattingapp · TikTok</span>
+      </button>
+    </div>
+  </div>
+
   <p class="faq-head">Common questions</p>
   <div class="faq-list">
 
@@ -201,8 +254,8 @@
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">The AI announcement is mispronouncing a name. Can I fix it?</p>
-      <p class="faq-a">Yes — open the player in the editor and use the <strong>Phonetic Name</strong> field. Type the name exactly how it should sound (e.g., "Juh-VONTAY" instead of "Javontae"). Tap Generate and the announcer uses your spelling.</p>
+      <p class="faq-q">The announcer is saying a name wrong. Can I fix it?</p>
+      <p class="faq-a">Yes, and you only have to do it once. Open the player and use <strong>Name Lock</strong> — you'll hear how the name will be said, and if it's wrong you can pick from a few takes or spell it out the way it sounds. Once you lock it, that exact pronunciation is used everywhere: the walk-up, the Roll Call, and the Bullpen. If you later change the player's name or the announcer voice, Name Lock asks you to give it one more listen.</p>
     </div>
 
     <div class="faq-item">
@@ -218,12 +271,12 @@
 
     <div class="faq-item">
       <p class="faq-q">The field has no cell service. Will the app still work?</p>
-      <p class="faq-a">Yes, if you prepare before you leave. Make sure each player's announcement is generated (green dot in the lineup) and use the offline checklist to save walk-up songs. Once that's done, the whole game runs from your device — no signal needed.</p>
+      <p class="faq-a">Yes, if you set it up before you leave. Everything Now Batting makes for you — announcer calls, original songs, sound effects — is saved to your phone the moment it's made. Apple Music tracks are the one part that needs a step, because an Apple Music song only plays without signal once Apple Music has downloaded it. So while you still have wifi, tap <strong>Save</strong> on the Manage screen: it gathers your walk-ups, the Situational Sounds and the Now Batting playlist into one place and pulls it all down at once. After that the whole game runs in airplane mode.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How do I change the announcer voice?</p>
-      <p class="faq-a">Tap the roster name at the top of the main screen, then tap <strong>Roster Settings</strong>. You'll see the two announcer voices — Classic (a pro-ballpark voice) and Energetic (a crowd-ready voice). Switching voices will prompt you to regenerate your player announcements.</p>
+      <p class="faq-a">Tap the roster name at the top of the main screen, then open <strong>Settings</strong>. You'll see the two voices — <strong>Classic</strong> and <strong>Energetic</strong>. The new voice applies to everything you generate from then on. Announcements you'd already made keep the old voice until you regenerate them, so if you want the whole lineup to match, re-generate each player. Your other teams aren't affected. Roll Call will show <strong>Rebuild</strong>, and any locked names will ask for a quick re-listen in the new voice.</p>
     </div>
 
     <div class="faq-item">
@@ -242,5 +295,25 @@
   <p class="f-copy">© 2026 Chief Hype Officer LLC · <a href="/our-story">Our Story</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
+<script>
+  // Swap the designed card for the real TikTok embed on tap, and load embed.js
+  // once for the whole page. Nothing from TikTok is requested until a click.
+  function loadTok(btn){
+    var wrap = btn.parentNode;
+    if (wrap.dataset.loaded) return;
+    wrap.dataset.loaded = '1';
+    var id = btn.dataset.videoId;
+    wrap.innerHTML = '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nowbattingapp/video/' + id +
+      '" data-video-id="' + id + '" style="max-width:268px;min-width:240px;margin:0;"><section></section></blockquote>';
+    if (!window.__tokScript) {
+      window.__tokScript = true;
+      var sc = document.createElement('script');
+      sc.async = true; sc.src = 'https://www.tiktok.com/embed.js';
+      document.body.appendChild(sc);
+    } else if (window.tiktokEmbed && window.tiktokEmbed.lib) {
+      window.tiktokEmbed.lib.render(wrap.querySelectorAll('.tiktok-embed'));
+    }
+  }
+</script>
 </body>
 </html>
