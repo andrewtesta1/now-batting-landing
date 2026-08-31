@@ -714,7 +714,11 @@
     .persona { padding: 0; }
     .persona-band {
       background: #1A1A18;
+      /* AVIF won here (264 KB vs 340 KB WebP). image-set lets the browser pick;
+         the plain url() above it is the floor for anything that ignores image-set,
+         and the JPEG stays last in the list for Safari below 16.4, which has no AVIF. */
       background-image: url('/cho-persona-web.jpg');
+      background-image: image-set(url('/cho-persona-web.avif') type('image/avif'), url('/cho-persona-web.webp') type('image/webp'), url('/cho-persona-web.jpg') type('image/jpeg'));
       background-size: cover;
       background-position: center 35%;
       padding: 160px 40px;
@@ -2404,8 +2408,18 @@
   <!-- Duotone photo background: grayscale + gold screen tint -->
   <div class="hero-bg-photo" aria-hidden="true">
     <picture>
-      <source srcset="/cho-hero-walk-web.webp" type="image/webp">
-      <img src="/cho-hero-walk-web.jpg" alt="" class="hero-bg-img" loading="eager" fetchpriority="high">
+      <!-- The LCP element. Measured with REAL throttling (Lighthouse --throttling-method=devtools),
+           LCP was 5,288 ms of image LOAD time and only 32 ms of render delay — the default Lantern
+           simulation misreported the same load as 3,759 ms of "render delay", which sent an earlier
+           diagnosis down the wrong path. One 1920px file was being sent to every phone; the ladder
+           below lets a 375pt screen take the 640-960px variant instead.
+           No preload: fetchpriority="high" + eager in the initial HTML already gets it discovered
+           at parse time, so a preload tag would only duplicate the parser. -->
+      <source type="image/avif" sizes="100vw"
+              srcset="/cho-hero-walk-640.avif 640w, /cho-hero-walk-960.avif 960w, /cho-hero-walk-1280.avif 1280w, /cho-hero-walk-1920.avif 1920w">
+      <source type="image/webp" sizes="100vw"
+              srcset="/cho-hero-walk-640.webp 640w, /cho-hero-walk-960.webp 960w, /cho-hero-walk-1280.webp 1280w, /cho-hero-walk-1920.webp 1920w">
+      <img src="/cho-hero-walk-web.jpg" alt="" class="hero-bg-img" loading="eager" fetchpriority="high" width="1920" height="1280">
     </picture>
   </div>
   <div class="hero-grid">
@@ -2597,7 +2611,7 @@
       <div class="r3-quote" data-aos="fade-up" data-aos-delay="80">
         <span class="mk">&ldquo;</span>
         <p>Super easy to figure out how to use it. The kids absolutely loved it.</p>
-        <div class="by"><img src="/coach-avatar.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="who">Matt Schrager</span> · Denville 8U Coach</div>
+        <div class="by"><picture><source srcset="/coach-avatar.avif" type="image/avif"><source srcset="/coach-avatar.webp" type="image/webp"><img src="/coach-avatar.jpg" alt="" loading="lazy" width="48" height="48" onerror="this.style.display='none'"></picture><span class="who">Matt Schrager</span> · Denville 8U Coach</div>
       </div>
       <div class="r3-quote" data-aos="fade-up" data-aos-delay="160">
         <span class="mk">&ldquo;</span>
@@ -2778,7 +2792,7 @@
     <a href="/our-story" class="cho-founder-link r d2" style="display:inline-block;margin-top:28px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.04em;color:var(--daylight);text-decoration:none;border-bottom:1px solid rgba(184,204,0,0.4);padding-bottom:2px;">A note from the founder →</a>
 
     <div class="cho-tiktok r d2" id="choTikTok">
-      <button class="ctk-card" type="button" aria-label="Watch: why we built Now Batting, on TikTok" onclick="loadChoTikTok()" style="background-image:url('/tiktok-cho-poster.jpg');">
+      <button class="ctk-card" type="button" aria-label="Watch: why we built Now Batting, on TikTok" onclick="loadChoTikTok()" style="background-image:url('/tiktok-cho-poster.jpg');background-image:image-set(url('/tiktok-cho-poster.avif') type('image/avif'), url('/tiktok-cho-poster.webp') type('image/webp'), url('/tiktok-cho-poster.jpg') type('image/jpeg'));">
         <span class="ctk-play" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#121110"/></svg></span>
         <span class="ctk-label">Why we built Now Batting</span>
         <span class="ctk-handle">@nowbattingapp · TikTok</span>
@@ -2891,7 +2905,11 @@
 <section class="closer" id="closer">
   <div class="wrap closer-in closer-grid" data-aos="fade-up">
     <div class="closer-photo">
-      <img src="/kid-moment-web.jpg" alt="A young player at the plate, eye black on, grinning" loading="lazy" width="1931" height="3710">
+      <picture>
+        <!-- WebP, not AVIF: 127 KB vs 130 KB for this image. Format is chosen per image. -->
+        <source srcset="/kid-moment-web.webp" type="image/webp">
+        <img src="/kid-moment-web.jpg" alt="A young player at the plate, eye black on, grinning" loading="lazy" width="1931" height="3710">
+      </picture>
     </div>
     <div class="closer-text">
     <h2 class="closer-h r">Every player gets their <span class="g">moment.</span></h2>
