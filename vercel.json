@@ -1,4 +1,6 @@
 {
+  "buildCommand": "node scripts/build-seo.mjs",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
     {
