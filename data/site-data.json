@@ -1,5 +1,5 @@
 {
-  "_comment": "SINGLE SOURCE OF TRUTH for anything that appears in both prose and structured data. Nothing here may be duplicated as a literal in an HTML file without scripts/build-seo.mjs verifying the two agree — see the price assertion in that script. If you change a price, change it HERE and run the script; it will tell you every visible string that no longer matches.",
+  "_comment": "SINGLE SOURCE OF TRUTH for anything that appears in both prose and structured data. Nothing here may be duplicated as a literal in an HTML file without scripts/build-seo.mjs verifying the two agree \u2014 see the price assertion in that script. If you change a price, change it HERE and run the script; it will tell you every visible string that no longer matches.",
   "appStoreId": "6760744461",
   "appStoreUrl": "https://apps.apple.com/app/now-batting/id6760744461",
   "siteUrl": "https://www.nowbattingapp.com",
@@ -22,11 +22,6 @@
       "trialEligibility": "none"
     }
   ],
-  "_trialNote": "trialEligibility is recorded here so it is never silently promoted into offer markup. Apple decides eligibility per Apple ID, so an Offer — which can only state unconditional terms — must not mention the trial at all. The conditional wording lives in visible copy and in terms.html.",
-  "ratingFallback": {
-    "_comment": "Used ONLY if the iTunes lookup is unreachable at build time. Committed so a network blip degrades to a stale-but-real number instead of dropping the AggregateRating block or emitting a zero. Refreshed automatically on every successful build.",
-    "ratingValue": "5",
-    "ratingCount": "5",
-    "fetchedOn": "2026-08-31"
-  }
+  "_trialNote": "trialEligibility is recorded here so it is never silently promoted into offer markup. Apple decides eligibility per Apple ID, so an Offer \u2014 which can only state unconditional terms \u2014 must not mention the trial at all. The conditional wording lives in visible copy and in terms.html.",
+  "_ratingNote": "The App Store rating is NOT stored here. It is fetched from Apple on every build and published only if that fetch succeeds \u2014 a committed fallback would republish a stale number, which is the bug the generator exists to prevent. See the rating section of .scripts/build-seo.mjs."
 }

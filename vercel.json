@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node scripts/build-seo.mjs",
+  "buildCommand": "node .scripts/build-seo.mjs",
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
