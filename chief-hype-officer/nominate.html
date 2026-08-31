@@ -336,10 +336,9 @@
   <p>© 2026 Chief Hype Officer LLC · <a href="/our-story">Our Story</a> · <a href="/chief-hype-officer">The Chief Hype Officer</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
-<script defer src="/vendor/aos.js"></script>
+<script src="/vendor/aos.js"></script>
 <script>
-  /* aos.js is deferred, so it is not defined until after parsing. */
-  document.addEventListener('DOMContentLoaded', () => AOS.init({ duration: 600, easing: 'ease-out', once: true, offset: 40 }));
+  AOS.init({ duration: 600, easing: 'ease-out', once: true, offset: 40 });
 
   // ── Analytics ──
   function track(event, props) {

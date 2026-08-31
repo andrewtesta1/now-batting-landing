@@ -478,10 +478,9 @@
     }
   });
 </script>
-<script defer src="/vendor/aos.js"></script>
+<script src="/vendor/aos.js"></script>
 <script>
-  /* aos.js is deferred, so it is not defined until after parsing. */
-  document.addEventListener('DOMContentLoaded', () => AOS.init({ duration: 600, easing: 'ease-out', once: true, offset: 40 }));
+  AOS.init({ duration: 600, easing: 'ease-out', once: true, offset: 40 });
 
   /* One-shot loader for canvas-confetti. Caches the promise so repeated signups
      don't re-fetch, and fails silently — a missing celebration must never break

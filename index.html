@@ -280,7 +280,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/vendor/aos.css">
-  <script defer src="/vendor/typed.umd.js"></script>
   <style>
     /* Self-hosted variable fonts. Previously three third-party round trips
        (2 preconnects + a render-blocking stylesheet from fonts.googleapis.com,
@@ -3296,21 +3295,16 @@
     }
   });
 </script>
-<script defer src="/vendor/aos.js"></script>
+<script src="/vendor/aos.js"></script>
 <script>
   // ── AOS INIT ──
-  /* aos.js is deferred, so it is not defined until after parsing. */
-  document.addEventListener('DOMContentLoaded', () => AOS.init({ duration: 600, offset: 50, easing: 'ease-out-cubic', once: true }));
+  AOS.init({ duration: 600, offset: 50, easing: 'ease-out-cubic', once: true });
 
   // ── 5C: TYPED.JS — types "now batting" once, cursor disappears cleanly ──
-  /* typed.umd.js is deferred, so it is not defined until after parsing. */
-  document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('typed-callup')) new Typed('#typed-callup', {
-      strings: ['now batting'],
-      typeSpeed: 55,
-      showCursor: false,
-    });
-  });
+  /* The typed-in "now batting" effect was removed from the markup at some point but
+     its library and init were left behind: #typed-callup does not exist anywhere in
+     this page and is never created at runtime, so the guard below was always false.
+     typed.js was 9.6 KB downloaded — and 780 ms of render-blocking — for nothing. */
 </script>
 
 <script>
