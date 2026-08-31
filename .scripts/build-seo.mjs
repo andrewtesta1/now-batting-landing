@@ -106,11 +106,25 @@ async function fetchRating(appStoreId) {
  * thumbnail; the watch page carries duration and upload date. Nothing about a video is
  * hand-written in this repo except which video it is.
  *
- * Same rule as the rating: if it can't be verified it is not published. A VideoObject
- * asserting a wrong duration or a stale title is exactly the drift this file exists to
- * prevent, and Google treats a mismatched VideoObject as a reason to drop the result.
+ * MUTABLE vs IMMUTABLE — the line that decides what may be cached:
+ *
+ *   title, thumbnail   MUTABLE. A video can be renamed at any time, so these are fetched
+ *                      from oEmbed on every build and never cached. Same rule as the
+ *                      App Store rating.
+ *   duration, uploadDate
+ *                      IMMUTABLE for a given video id. A published video's length and
+ *                      publish date cannot change, so a cached value can never become a
+ *                      lie — which is precisely why caching the RATING was wrong and
+ *                      caching these is not. They are cached in site-data, written back
+ *                      automatically on any build that can fetch them.
+ *
+ * Why the cache is needed at all: YouTube's watch page does not return player JSON to
+ * Vercel's build environment (verified — it works from a laptop and fails from CI, which
+ * is how this was found: the build refused to publish rather than emitting a partial
+ * VideoObject). oEmbed works from both. If a fact is available from neither the network
+ * nor the cache, the build still fails.
  */
-async function fetchVideo(id) {
+async function fetchVideo(id, cached = {}) {
   const ctl = new AbortController();
   const t = setTimeout(() => ctl.abort(), 10_000);
   try {
@@ -127,20 +141,35 @@ async function fetchVideo(id) {
     const secs = html.match(/"lengthSeconds":"(\d+)"/);
     const date = html.match(/"publishDate":"([^"]+)"/) || html.match(/"uploadDate":"([^"]+)"/);
     const desc = html.match(/"shortDescription":"(.*?)","/s);
-    if (!secs || !date) throw new Error('duration or upload date not found on the watch page');
 
-    const n = Number(secs[1]);
+    // Immutable facts: prefer the network, fall back to the cache, fail if neither has them.
+    const durationSecs = secs ? Number(secs[1]) : cached.durationSeconds;
+    const uploadDate = date ? date[1] : cached.uploadDate;
+    if (durationSecs == null || !uploadDate) {
+      throw new Error('duration/upload date unavailable from YouTube and not cached in site-data');
+    }
+    if (!secs || !date) log(`video ${id}: watch page gave no player JSON (normal from CI) — using cached duration/uploadDate`);
+
+    const n = durationSecs;
     const iso = `PT${Math.floor(n / 60) ? Math.floor(n / 60) + 'M' : ''}${n % 60 ? (n % 60) + 'S' : ''}` || 'PT0S';
 
     return {
       id,
       name: meta.title,
+      // Description is MUTABLE, so it does not qualify for the immutable cache above —
+      // but it is also only available from the watch page, which CI cannot read. Left
+      // uncached it would flip between the real description locally and the title on
+      // Vercel, so the output would depend on where the build ran. Cached instead, and
+      // refreshed on every build that can reach the watch page. This is a deliberate,
+      // narrow exception: unlike a rating, a slightly stale video description is not a
+      // claim anyone acts on.
       description: desc
         ? JSON.parse('"' + desc[1].replace(/"/g, '\\"') + '"').split('\n').filter(Boolean)[0].slice(0, 300)
-        : meta.title,
+        : (cached.description || meta.title),
       thumbnailUrl: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
-      uploadDate: date[1],
+      uploadDate,
       duration: iso,
+      durationSeconds: n,
       embedUrl: `https://www.youtube.com/embed/${id}`,
       url: `https://www.youtube.com/watch?v=${id}`,
     };
@@ -280,7 +309,15 @@ const main = async () => {
       fail(`video ${v.id} is registered in site-data but its id does not appear in index.html.\n` +
            `  A VideoObject must correspond to a video embedded on the page. Embed it, or remove it from site-data.`);
     }
-    const meta = await fetchVideo(v.id);
+    const meta = await fetchVideo(v.id, v);
+    // Write the immutable facts back so the next CI build has them even if YouTube
+    // gives that environment nothing. Safe to cache precisely because they cannot change.
+    if (v.durationSeconds !== meta.durationSeconds || v.uploadDate !== meta.uploadDate || v.description !== meta.description) {
+      v.durationSeconds = meta.durationSeconds;
+      v.uploadDate = meta.uploadDate;
+      v.description = meta.description;
+      await writeFile(DATA, JSON.stringify(data, null, 2) + '\n');
+    }
     log(`video ${v.id}: "${meta.name}" ${meta.duration}, uploaded ${meta.uploadDate.slice(0, 10)}`);
     videoNodes.push({
       '@type': 'VideoObject',
