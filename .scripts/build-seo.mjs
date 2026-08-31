@@ -102,6 +102,54 @@ async function fetchRating(appStoreId) {
 }
 
 /**
+ * Video facts come from YouTube, not from us. oEmbed gives the authoritative title and
+ * thumbnail; the watch page carries duration and upload date. Nothing about a video is
+ * hand-written in this repo except which video it is.
+ *
+ * Same rule as the rating: if it can't be verified it is not published. A VideoObject
+ * asserting a wrong duration or a stale title is exactly the drift this file exists to
+ * prevent, and Google treats a mismatched VideoObject as a reason to drop the result.
+ */
+async function fetchVideo(id) {
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), 10_000);
+  try {
+    const o = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`, { signal: ctl.signal });
+    if (!o.ok) throw new Error(`oembed HTTP ${o.status}`);
+    const meta = await o.json();
+
+    const w = await fetch(`https://www.youtube.com/watch?v=${id}`, {
+      signal: ctl.signal, headers: { 'User-Agent': 'Mozilla/5.0' },
+    });
+    if (!w.ok) throw new Error(`watch page HTTP ${w.status}`);
+    const html = await w.text();
+
+    const secs = html.match(/"lengthSeconds":"(\d+)"/);
+    const date = html.match(/"publishDate":"([^"]+)"/) || html.match(/"uploadDate":"([^"]+)"/);
+    const desc = html.match(/"shortDescription":"(.*?)","/s);
+    if (!secs || !date) throw new Error('duration or upload date not found on the watch page');
+
+    const n = Number(secs[1]);
+    const iso = `PT${Math.floor(n / 60) ? Math.floor(n / 60) + 'M' : ''}${n % 60 ? (n % 60) + 'S' : ''}` || 'PT0S';
+
+    return {
+      id,
+      name: meta.title,
+      description: desc
+        ? JSON.parse('"' + desc[1].replace(/"/g, '\\"') + '"').split('\n').filter(Boolean)[0].slice(0, 300)
+        : meta.title,
+      thumbnailUrl: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
+      uploadDate: date[1],
+      duration: iso,
+      embedUrl: `https://www.youtube.com/embed/${id}`,
+      url: `https://www.youtube.com/watch?v=${id}`,
+    };
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+/**
  * Every price in site-data must appear in the visible copy, and no OTHER price-looking
  * string may appear that site-data doesn't know about. The second half is the one that
  * catches real drift: a stale "$14.99" left in a sentence after a price change.
@@ -222,8 +270,43 @@ const main = async () => {
     delete app.aggregateRating;
   }
 
+  // ── Videos, taken from YouTube ─────────────────────────────────────────────
+  // Only a video that is ACTUALLY EMBEDDED on the page gets a VideoObject. The id must
+  // appear in the page's own markup — schema for an off-page asset is a claim the page
+  // does not support, and the guard makes that impossible rather than merely discouraged.
+  const videoNodes = [];
+  for (const v of data.videos || []) {
+    if (!html.includes(v.id)) {
+      fail(`video ${v.id} is registered in site-data but its id does not appear in index.html.\n` +
+           `  A VideoObject must correspond to a video embedded on the page. Embed it, or remove it from site-data.`);
+    }
+    const meta = await fetchVideo(v.id);
+    log(`video ${v.id}: "${meta.name}" ${meta.duration}, uploaded ${meta.uploadDate.slice(0, 10)}`);
+    videoNodes.push({
+      '@type': 'VideoObject',
+      name: meta.name,
+      description: meta.description,
+      thumbnailUrl: meta.thumbnailUrl,
+      uploadDate: meta.uploadDate,
+      duration: meta.duration,
+      embedUrl: meta.embedUrl,
+      contentUrl: meta.url,
+      publisher: { '@type': 'Organization', name: data.siteName, url: data.siteUrl + '/' },
+    });
+  }
+
   const graph = [
     app,
+    // WebSite exists for entity disambiguation: a same-named app sits on the App Store,
+    // and this node is how Google is told which entity owns this domain.
+    {
+      '@type': 'WebSite',
+      name: data.siteName,
+      alternateName: `${data.siteName} — walk-up songs & announcer app`,
+      url: data.siteUrl + '/',
+      publisher: { '@type': 'Organization', name: data.siteName, url: data.siteUrl + '/' },
+    },
+    ...videoNodes,
     {
       '@type': 'FAQPage',
       mainEntity: faq.map(({ q, a }) => ({

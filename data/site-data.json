@@ -23,5 +23,14 @@
     }
   ],
   "_trialNote": "trialEligibility is recorded here so it is never silently promoted into offer markup. Apple decides eligibility per Apple ID, so an Offer \u2014 which can only state unconditional terms \u2014 must not mention the trial at all. The conditional wording lives in visible copy and in terms.html.",
-  "_ratingNote": "The App Store rating is NOT stored here. It is fetched from Apple on every build and published only if that fetch succeeds \u2014 a committed fallback would republish a stale number, which is the bug the generator exists to prevent. See the rating section of .scripts/build-seo.mjs."
+  "_ratingNote": "The App Store rating is NOT stored here. It is fetched from Apple on every build and published only if that fetch succeeds \u2014 a committed fallback would republish a stale number, which is the bug the generator exists to prevent. See the rating section of .scripts/build-seo.mjs.",
+  "_siteNameNote": "Published as WebSite.name for entity disambiguation. A same-named app exists on the App Store; the WebSite node tells Google which entity this domain is, so keep this exact string stable and matching the App Store name.",
+  "videos": [
+    {
+      "id": "0g1sBRqhazU",
+      "page": "index.html",
+      "intent": "why-we-built-it",
+      "_comment": "YouTube is the canonical player for this video. The same cut is also on TikTok (7676336716986305822); only ONE of them is embedded and only the embedded one gets a VideoObject. Title, thumbnail, duration and upload date are fetched from YouTube at build time \u2014 nothing about the video is typed here except which video it is."
+    }
+  ]
 }
