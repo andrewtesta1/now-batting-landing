@@ -31,7 +31,7 @@
  * deploy via buildCommand, which is what keeps the rating current.
  */
 
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -245,6 +245,22 @@ const main = async () => {
   await writeFile(INDEX, html);
 
   log(`wrote ${graph.length} top-level nodes: ${graph.map((n) => n['@type']).join(', ')}`);
+
+  // ── Keep this script out of the deployed output ────────────────────────────
+  // outputDirectory is '.', so every source file is also a served file. A dot
+  // prefix does NOT protect it — Vercel serves /.scripts/build-seo.mjs happily
+  // (verified against a preview deployment). A build script is not a served
+  // asset, so remove it from the build workspace once its work is done.
+  //
+  // Guarded on VERCEL so a local run never deletes the developer's own copy.
+  // Node has already loaded this module into memory, so unlinking it mid-run
+  // is safe. Vercel builds from a fresh checkout every time, so the repo is
+  // untouched — only the output loses it.
+  if (process.env.VERCEL === '1') {
+    await rm(join(ROOT, '.scripts'), { recursive: true, force: true });
+    log('removed .scripts/ from the deployed output');
+  }
+
   console.log('\nbuild-seo: done\n');
 };
 
