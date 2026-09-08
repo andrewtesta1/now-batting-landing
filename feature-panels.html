@@ -91,6 +91,17 @@
   .mbody{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s ease,margin .3s}
   .mode.sel .mbody{max-height:340px;opacity:1;margin-top:14px}
   .pills.moment .pill.on{background:var(--neon);border-color:var(--neon)}
+  /* Announcer voice dropdown — mirrors the app's Manage switcher (🎙 voice ⌄) + Choose-your-voice list */
+  .vswitch{margin:0 0 18px}
+  .vpill{display:inline-flex;align-items:center;gap:6px;background:rgba(31,31,31,.07);border-radius:20px;padding:7px 12px 7px 11px;font-size:13px;font-weight:700;color:var(--appink)}
+  .vpill .vchev{color:var(--appmut);font-size:11px;font-weight:700}
+  .vmenu{margin-top:8px;background:var(--white);border:1.5px solid var(--appline);border-radius:14px;overflow:hidden}
+  .vrow{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid var(--appline)}
+  .vrow:last-child{border-bottom:none}
+  .vrow .vn{font-size:13px;font-weight:700;color:var(--appink)}
+  .vrow .vd{font-size:11px;color:var(--appmut);margin-left:auto;padding-right:8px}
+  .vrow.on{background:rgba(223,255,0,.16)}
+  .vrow .vck{color:#2f7a2a;font-size:13px;font-weight:800}
   .player{display:flex;align-items:center;gap:14px;background:var(--appink);border-radius:14px;padding:14px 16px;margin-top:14px}
   .playbtn{width:34px;height:34px;border-radius:50%;background:var(--neon);color:var(--appink);display:grid;place-items:center;font-size:13px;flex:none;padding-left:2px}
   .ptext{color:#fff;font-weight:700;font-size:14px}
@@ -201,13 +212,23 @@
   <div class="fp" data-fp="announcer">
     <div class="app">
       <p class="scrlabel">HOW THEY'RE ANNOUNCED</p>
-      <p class="subttl">Simple, custom, or bring your own announcer.<br>Your call — change it any time.</p>
+      <p class="subttl">Six announcer voices, simple, custom, or bring your own.<br>Change the voice any time — the whole team re-records.</p>
+      <div class="vswitch">
+        <p class="mlbl" style="text-align:center;margin:0 0 8px">ANNOUNCER VOICE</p>
+        <div style="display:flex;justify-content:center"><span class="vpill">🎙 Classic <span class="vchev">⌄</span></span></div>
+        <div class="vmenu">
+          <div class="vrow on"><span class="vn">Classic</span><span class="vd">Male · pro ballpark</span><span class="vck">✓</span></div>
+          <div class="vrow"><span class="vn">Energetic</span><span class="vd">Female · crowd-ready</span></div>
+          <div class="vrow"><span class="vn">Vintage Radio</span><span class="vd">Male · old-time broadcast</span></div>
+          <div class="vrow"><span class="vn">Hype</span><span class="vd">Male · over-the-top energy</span></div>
+          <div class="vrow"><span class="vn">Latino</span><span class="vd">Male · Latin ballpark</span></div>
+          <div class="vrow"><span class="vn">Softball Energy</span><span class="vd">Female · softball hype</span></div>
+        </div>
+      </div>
       <div class="mode sel" id="mA">
         <div class="moderow"><span class="radio"><span class="rdot"></span></span><div><p class="modet">Quick and Easy</p><p class="moded">Our announcer voice, the classic template.</p></div></div>
         <div class="mbody">
-          <p class="mlbl" style="margin:0 0 8px">ANNOUNCER VOICE</p>
-          <div class="pills voices"><span class="pill on">Classic</span><span class="pill">Energetic</span><span class="pill">Vintage Radio</span><span class="pill">Hype</span><span class="pill">Latino</span><span class="pill">Softball</span></div>
-          <p class="mlbl" style="margin:14px 0 8px">PICK THE MOMENT</p>
+          <p class="mlbl" style="margin:0 0 8px">PICK THE MOMENT</p>
           <div class="pills moment"><span class="pill on">Now Batting</span><span class="pill">Leading Off</span><span class="pill">Coming Up</span><span class="pill">Stepping Up</span></div>
           <div class="player"><span class="playbtn">▶</span><span class="ptext">"Now Batting, #21, Calvin Testa!"</span></div>
           <p class="regen">↺ Regenerate</p>
