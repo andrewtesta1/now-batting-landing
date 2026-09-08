@@ -58,7 +58,7 @@
         "featureList": [
           "Original songs with the player's name and number in the lyrics",
           "Walk-up songs from Apple Music with custom start timestamps",
-          "Announcer calls for each batter (Classic or Energetic)",
+          "Announcer calls for each batter (six voices; change any time and the whole team re-records)",
           "Name Lock — a locked pronunciation so every player's name is said right in the walk-up, Roll Call, and Bullpen",
           "Customizable Roll Call — opponent, time of day, occasion, and a music bed",
           "Roll Call pre-game lineup announcements",
@@ -229,7 +229,15 @@
             "name": "How do the player announcements work?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Each player gets their own big-league call — \"Now batting, number seven, Mikey Moonshot!\" You pick how it sounds: — Quick and Easy: Tap once. The app writes the intro and generates a big-league announcer call in seconds. — Fully Custom: Write the intro you want, your way. Because your players deserve the absolute most. — BYO Announcer: Maybe you have a talent for announcing players — or you already paid for a voice. Upload your own. Generate once. Plays instantly every game after."
+              "text": "Each player gets their own big-league call — \"Now batting, number seven, Mikey Moonshot!\" You pick how it sounds: — Quick and Easy: Tap once. The app writes the intro and generates a big-league announcer call in seconds. — Fully Custom: Write the intro you want, your way. Because your players deserve the absolute most. — BYO Announcer: Maybe you have a talent for announcing players — or you already paid for a voice. Upload your own. Generate once. Plays instantly every game after. Pick from six announcer voices — Classic, Energetic, Vintage Radio, Hype, Latino, and Softball Energy — and if a player has a song but no call yet, the app flags it so nobody steps up to silence."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I change the announcer voice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Any time. There are six voices — Classic, Energetic, Vintage Radio, Hype, Latino, and Softball Energy — and you can switch from Settings or right on the Manage screen in a couple of taps. When you switch, the whole team re-records in the new voice automatically in the background (about 20–30 seconds), including any players you've added or edited; the rest are reused instantly. Switch back to a voice you've used before and it's instant — no re-recording. Two things it doesn't touch: an announcer call you uploaded yourself stays as it is, and after a switch it's worth playing a few names back and Name Locking any that should sound a certain way."
             }
           },
           {
@@ -245,7 +253,7 @@
             "name": "How does it handle hard-to-say names?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Every player's name gets said right — that's the point. If a name is tricky, Name Lock lets you lock how it's said once (pick from a few takes, or spell it your way). From then on the announcer nails it every time — in the walk-up, the Roll Call, and the Bullpen. No more cringing at the plate."
+              "text": "Every player's name gets said right — that's the point. If a name is tricky, Name Lock lets you lock how it's said once (pick from a few takes, or spell it your way). From then on the announcer nails it every time — in the walk-up, the Roll Call, and the Bullpen. No more cringing at the plate. If you switch announcer voices later, give the tricky names a quick listen and Name Lock any that need it in the new voice."
             }
           },
           {
@@ -261,7 +269,7 @@
             "name": "Does it work for softball, T-ball, and multiple teams?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes to all. Baseball, softball (down to the four-outfielder lineup, with left- and right-center called by name in the Roll Call), Little League, travel ball, T-ball — any team with a batting order. Run as many rosters as you want in one app and switch teams with a tap. No limit."
+              "text": "Yes to all. Baseball, softball (down to the four-outfielder lineup, with left- and right-center called by name in the Roll Call), Little League, travel ball, T-ball — any team with a batting order. Run as many rosters as you want in one app and switch teams with a tap. No limit. Coaching more than one team, or a player moving up a level? Move a player to another roster and their song and announcement come with them."
             }
           },
           {
@@ -2609,7 +2617,8 @@
   .r3-fplay.playing .ic{display:none}.r3-fplay.playing .eq{display:inline-flex}
   @keyframes r3eq{0%,100%{height:3px}50%{height:12px}}
   .r3-fnoaudio{flex:none;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,244,239,.40);border:1px solid rgba(246,244,239,.12);border-radius:999px;padding:8px 14px}
-  .r3-voices{display:flex;gap:8px;flex-wrap:wrap;flex:none}
+  .r3-voices{display:flex;gap:8px;flex-wrap:wrap;flex:0 1 auto;max-width:400px;justify-content:flex-end}
+  @media(max-width:620px){ .r3-voices{justify-content:flex-start;max-width:100%} }
   .r3-offline{display:flex;align-items:center;justify-content:center;gap:10px;margin:26px auto 0;max-width:660px;font-size:13.5px;line-height:1.5;color:rgba(246,244,239,.55);text-align:center}
   .r3-offline svg{color:#DFFF00;flex:none}
   .r3-offline b{color:rgba(246,244,239,.85);font-weight:600}
@@ -2669,11 +2678,15 @@
     <div class="r3-flist">
       <div class="r3-fitem" id="fi-announcer">
         <div class="r3-frow" onclick="ftoggle('announcer')">
-          <div class="r3-fmain"><h3>Call every player by name.</h3><p>Your own announcer, Classic or Energetic — every name said right, every time.</p></div>
+          <div class="r3-fmain"><h3>Call every player by name.</h3><p>Your own announcer — six voices to pick from, every name said right, every time. Change the voice any time and the whole team re-records itself.</p></div>
           <div class="r3-fright">
             <div class="r3-voices">
               <button class="r3-fplay" data-audio="/voice-classic.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Classic</button>
               <button class="r3-fplay" data-audio="/voice-energetic.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Energetic</button>
+              <button class="r3-fplay" data-audio="/voice-vintage.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Vintage Radio</button>
+              <button class="r3-fplay" data-audio="/voice-hype.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hype</button>
+              <button class="r3-fplay" data-audio="/voice-latino.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Latino</button>
+              <button class="r3-fplay" data-audio="/voice-softball.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Softball Energy</button>
             </div>
             <span class="r3-fhint">See it</span>
             <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -3043,7 +3056,15 @@
           — <strong>Quick and Easy:</strong> Tap once. The app writes the intro and generates a big-league announcer call in seconds.<br>
           — <strong>Fully Custom:</strong> Write the intro you want, your way. Because your players deserve the absolute most.<br>
           — <strong>BYO Announcer:</strong> Maybe you have a talent for announcing players — or you already paid for a voice. Upload your own.<br><br>
-          Generate once. Plays instantly every game after.</div>
+          Generate once. Plays instantly every game after. Pick from <strong>six announcer voices</strong> — Classic, Energetic, Vintage Radio, Hype, Latino, and Softball Energy — and if a player has a song but no call yet, the app flags it so nobody steps up to silence.</div>
+      </div>
+
+      <div class="faq-item r d2">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Can I change the announcer voice?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">Any time. There are six voices — Classic, Energetic, Vintage Radio, Hype, Latino, and Softball Energy — and you can switch from Settings or right on the Manage screen in a couple of taps. When you switch, the whole team re-records in the new voice automatically in the background (about 20–30 seconds), including any players you've added or edited; the rest are reused instantly. Switch back to a voice you've used before and it's instant — no re-recording. Two things it doesn't touch: an announcer call you uploaded yourself stays as it is, and after a switch it's worth playing a few names back and Name Locking any that should sound a certain way.</div>
       </div>
 
       <div class="faq-item r d2">
@@ -3059,7 +3080,7 @@
           <span>How does it handle hard-to-say names?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Every player's name gets said right — that's the point. If a name is tricky, Name Lock lets you lock how it's said once (pick from a few takes, or spell it your way). From then on the announcer nails it every time — in the walk-up, the Roll Call, and the Bullpen. No more cringing at the plate.</div>
+        <div class="faq-a">Every player's name gets said right — that's the point. If a name is tricky, Name Lock lets you lock how it's said once (pick from a few takes, or spell it your way). From then on the announcer nails it every time — in the walk-up, the Roll Call, and the Bullpen. No more cringing at the plate. If you switch announcer voices later, give the tricky names a quick listen and Name Lock any that need it in the new voice.</div>
       </div>
 
       <div class="faq-item r d2">
@@ -3077,7 +3098,7 @@
           <span>Does it work for softball, T-ball, and multiple teams?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Yes to all. Baseball, softball (down to the four-outfielder lineup, with left- and right-center called by name in the Roll Call), Little League, travel ball, T-ball — any team with a batting order. Run as many rosters as you want in one app and switch teams with a tap. No limit.</div>
+        <div class="faq-a">Yes to all. Baseball, softball (down to the four-outfielder lineup, with left- and right-center called by name in the Roll Call), Little League, travel ball, T-ball — any team with a batting order. Run as many rosters as you want in one app and switch teams with a tap. No limit. Coaching more than one team, or a player moving up a level? Move a player to another roster and their song and announcement come with them.</div>
       </div>
 
       <div class="faq-item r d3">
