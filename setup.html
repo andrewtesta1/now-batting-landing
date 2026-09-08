@@ -116,6 +116,7 @@
             <span style="color:var(--mut)">⌕</span>
             <input type="text" id="q" placeholder="Search any song…" style="border:none;background:transparent;padding:11px 0" />
           </div>
+          <p style="font-size:11px;line-height:1.4;color:var(--mut);margin:8px 2px 0">Each result shows Apple's rating — Clean, Explicit, or Unrated (unrated may still have explicit lyrics). Search by song title: you'll get the clean version when one exists — and if a song shows only Explicit, there's no clean version of it.</p>
           <div id="results" style="margin-top:8px"></div>
         </div>
       </div>
@@ -200,7 +201,12 @@
         fetch(API+'/api/music-search?q='+encodeURIComponent(q)).then(function(r){return r.json()}).then(function(j){
           var data=(j&&j.results&&j.results.songs&&j.results.songs.data)||[];
           $('#results').innerHTML=data.slice(0,8).map(function(s,i){
-            return '<div class="res" data-i="'+i+'"><div style="width:38px;height:38px;border-radius:8px;background:#2a2a2a;display:flex;align-items:center;justify-content:center">♪</div><div style="flex:1;min-width:0"><div style="font-weight:500;font-size:14px">'+(s.attributes&&s.attributes.name||'')+'</div><div style="font-size:12px;color:var(--mut)">'+(s.attributes&&s.attributes.artistName||'')+'</div></div></div>';
+            // Honest per-result rating — absent contentRating means UNRATED, never assume clean.
+            var cr=s.attributes&&s.attributes.contentRating;
+            var lbl=cr==='explicit'?'EXPLICIT':cr==='clean'?'CLEAN':'UNRATED';
+            var col=cr==='explicit'?['rgba(224,50,40,.18)','#FF9A90']:cr==='clean'?['rgba(120,220,120,.16)','#8FE38F']:['rgba(255,255,255,.1)','rgba(255,255,255,.55)'];
+            var badge='<span style="flex-shrink:0;font-family:ui-monospace,monospace;font-size:8px;letter-spacing:.8px;border-radius:4px;padding:1px 5px;background:'+col[0]+';color:'+col[1]+'">'+lbl+'</span>';
+            return '<div class="res" data-i="'+i+'"><div style="width:38px;height:38px;border-radius:8px;background:#2a2a2a;display:flex;align-items:center;justify-content:center;flex-shrink:0">♪</div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;min-width:0"><div style="font-weight:500;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(s.attributes&&s.attributes.name||'')+'</div>'+badge+'</div><div style="font-size:12px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(s.attributes&&s.attributes.artistName||'')+'</div></div></div>';
           }).join('');
           Array.prototype.forEach.call($('#results').querySelectorAll('.res'),function(el){
             el.addEventListener('click',function(){
