@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Does Now Batting Work Offline? | Walk-Up Music Without Cell Service</title>
+  <meta name="description" content="Yes. Now Batting is built for youth fields with no cell service. Get game-ready on Wi-Fi in one step — announcer calls, walk-up songs, originals, and Situational Sounds all play with zero bars." />
+  <link rel="canonical" href="https://www.nowbattingapp.com/offline" />
+  <meta property="og:title" content="Zero Bars. Full Production. — Using Now Batting Offline" />
+  <meta property="og:description" content="Now Batting is built for fields with no signal. One step on Wi-Fi and your whole game runs in airplane mode." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nowbattingapp.com/offline" />
+  <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/jetbrains-mono-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    /* Self-hosted variable fonts (zero third-party round trips). */
+    @font-face {
+      font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap;
+      src: url('/fonts/inter-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap;
+      src: url('/fonts/inter-var-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 700; font-display: swap;
+      src: url('/fonts/jetbrains-mono-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:           #F6F4EF;
+      --mid:          #FFFFFF;
+      --surf:         #EDEAD9;
+      --bord:         rgba(0,0,0,0.09);
+      --neon:         #DFFF00;
+      --daylight:     #B8CC00;
+      --daylight-dim: #8A9900;
+      --txt:          #1F1F1F;
+      --txt2:         #4A4A4A;
+      --txt3:         #666666;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm:    8px;
+      --radius-md:    12px;
+      --radius-lg:    16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--txt); font-family: var(--font-sans); font-size: 16px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 18px 48px;
+      background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bord);
+    }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-link { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--txt); }
+    .nav-link.active { color: var(--txt); }
+    .nav-btn {
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.01em; padding: 10px 20px; border-radius: var(--radius-sm);
+      border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover { background: var(--daylight-dim); }
+
+    /* PAGE */
+    main {
+      position: relative; z-index: 1;
+      max-width: 720px; margin: 0 auto;
+      padding: 120px 48px 80px;
+    }
+    .eyebrow { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.12em; color: var(--daylight); margin-bottom: 12px; text-transform: uppercase; }
+    h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 18px; color: var(--txt); }
+    .subtitle { font-size: 17px; color: var(--txt2); line-height: 1.65; margin-bottom: 12px; }
+
+    .section-h { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--txt); margin: 52px 0 6px; }
+    .lead { font-size: 15px; color: var(--txt2); line-height: 1.7; margin-bottom: 20px; }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 12px; margin: 6px 0 14px; }
+    .step { display: flex; gap: 14px; align-items: flex-start; background: var(--mid); border: 1px solid var(--bord); border-radius: var(--radius-md); padding: 16px 18px; }
+    .step-n { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; background: #1F1F1F; color: #fff; font-family: var(--font-mono); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .step-b { flex: 1; }
+    .step-t { font-size: 15px; color: var(--txt); font-weight: 700; margin-bottom: 3px; }
+    .step-d { font-size: 14px; color: var(--txt2); line-height: 1.6; }
+    .after { font-size: 14px; color: var(--txt3); line-height: 1.7; margin-top: 4px; }
+
+    /* WHAT WORKS — 2x2 */
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 6px 0 12px; }
+    .cell { background: var(--mid); border: 1px solid var(--bord); border-radius: var(--radius-md); padding: 16px 18px; }
+    .cell-h { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--txt); margin-bottom: 4px; }
+    .cell-h .ck { color: var(--daylight-dim); font-weight: 800; font-size: 16px; }
+    .cell-d { font-size: 13.5px; color: var(--txt3); line-height: 1.55; }
+    .cell-d.prep { color: var(--daylight-dim); font-weight: 600; }
+    .cell-wide { grid-column: 1 / -1; }
+    @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+
+    /* AIRPLANE-MODE CALLOUT */
+    .airplane { background: #1F1F1F; color: #F6F4EF; border-radius: var(--radius-lg); padding: 28px 26px; margin: 20px 0 8px; }
+    .airplane .eyebrow { color: var(--neon); }
+    .airplane h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; color: #fff; }
+    .airplane p { font-size: 15px; color: rgba(246,244,239,0.82); line-height: 1.7; }
+    .airplane strong { color: var(--neon); font-weight: 700; }
+
+    /* FAQ (visible only — no schema) */
+    .faq-head { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: var(--txt); margin: 52px 0 4px; }
+    .faq-list { margin-top: 12px; }
+    .faq-item { border-top: 1px solid var(--bord); padding: 20px 0; }
+    .faq-item:last-child { border-bottom: 1px solid var(--bord); }
+    .faq-q { font-size: 15px; font-weight: 700; color: var(--txt); margin-bottom: 8px; }
+    .faq-a { font-size: 15px; color: var(--txt2); line-height: 1.75; }
+    .faq-a strong { color: var(--txt); font-weight: 600; }
+    .faq-a a { color: var(--txt); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+    /* More-questions accordion — advanced/support answers collapsed by default so the
+       primary page keeps its landing-page energy. Native <details>, no JS. */
+    .more-faq { margin-top: 2px; }
+    .more-faq > summary { cursor: pointer; list-style: none; font-family: var(--font-sans); font-weight: 700; font-size: 14px; color: var(--txt2); padding: 18px 0 6px; display: flex; align-items: center; gap: 8px; }
+    .more-faq > summary::-webkit-details-marker { display: none; }
+    .more-faq > summary::after { content: '+'; margin-left: auto; color: var(--txt3); font-weight: 400; font-size: 18px; line-height: 1; }
+    .more-faq[open] > summary::after { content: '\2013'; }
+    .more-faq > summary:hover { color: var(--txt); }
+    .more-faq .faq-item:first-child { border-top: none; }
+
+    /* CTA */
+    .cta-row { margin: 44px 0 8px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .cta { display: inline-block; background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 800; font-size: 15px; padding: 14px 28px; border-radius: var(--radius-sm); text-decoration: none; transition: background 0.15s; }
+    .cta:hover { background: var(--daylight-dim); }
+    .cta-alt { font-size: 14px; color: var(--txt3); text-decoration: none; }
+    .cta-alt a { color: var(--txt); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+    .divider { height: 1px; background: var(--bord); margin: 52px 0 24px; }
+    .foot-note { font-size: 13px; color: var(--txt3); }
+    .foot-note a { color: var(--txt3); }
+    .foot-note a:hover { color: var(--daylight); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--bord); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .f-logo { display: flex; align-items: center; line-height: 1; }
+    .f-copy { font-size: 12px; color: var(--txt3); }
+    .f-copy a { color: var(--txt3); text-decoration: none; }
+    .f-copy a:hover { color: var(--daylight); }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 14px 18px; }
+      .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid var(--bord); padding-top: 10px; gap: 20px; }
+      .nav-social { display: none; }
+      main { padding: 100px 24px 60px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nowbattingapp.com/"},
+    {"@type":"ListItem","position":2,"name":"Using Now Batting Offline","item":"https://www.nowbattingapp.com/offline"}
+  ]}
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="/" style="display:flex;align-items:center;line-height:1;text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg>
+  </a>
+  <div class="nav-links">
+    <a href="/our-story" class="nav-link">Our Story</a>
+    <a href="/support" class="nav-link">Support</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@nowbattingapp" target="_blank" rel="noopener" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@NowBattingApp" target="_blank" rel="noopener" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download</a>
+  </div>
+</nav>
+
+<main>
+  <p class="eyebrow">Offline mode</p>
+  <h1>Zero Bars. Full Production.</h1>
+  <p class="subtitle">Now Batting keeps your game-day audio rolling even when the field has no signal.</p>
+
+  <h2 class="section-h">We do the setup. You finish the download.</h2>
+  <p class="lead">Do this at home, on Wi-Fi, before game day.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-b">
+        <div class="step-t">Tap Save</div>
+        <div class="step-d">On the Manage screen. Now Batting gathers the Apple Music songs your team needs — walk-ups, Situational Sounds, and the Now Batting Top Walk-Ups playlist — into one place.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-b">
+        <div class="step-t">Open in Apple Music</div>
+        <div class="step-d">We take you straight there.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-b">
+        <div class="step-t">Tap Download</div>
+        <div class="step-d">That's the one step Apple requires to actually put those songs on your phone.</div>
+      </div>
+    </div>
+  </div>
+  <p class="after">That's it. No hunting down songs one at a time. No trying to remember what still needs downloading.</p>
+  <p class="after">While you're on Wi-Fi, set your announcer voice and build your Roll Call too — anything Now Batting creates for you needs signal to make, but plays offline once it's made.</p>
+
+  <h2 class="section-h">What runs offline?</h2>
+  <div class="grid2">
+    <div class="cell">
+      <div class="cell-h"><span class="ck">✓</span> Announcer calls</div>
+      <div class="cell-d">Already on your phone.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-h"><span class="ck">✓</span> Original songs</div>
+      <div class="cell-d">Already on your phone.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-h"><span class="ck">✓</span> Apple Music walk-ups</div>
+      <div class="cell-d prep">One Save + Download.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-h"><span class="ck">✓</span> Situational Sounds</div>
+      <div class="cell-d prep">One Save + Download.</div>
+    </div>
+    <div class="cell cell-wide">
+      <div class="cell-h"><span class="ck">✓</span> Roll Call</div>
+      <div class="cell-d prep">Build it on Wi-Fi first.</div>
+    </div>
+  </div>
+  <p class="after">Only Apple Music tracks need downloading. The Save flow gathers them for you.</p>
+
+  <div class="airplane">
+    <p class="eyebrow">The real test</p>
+    <h3>Want to be sure? Go airplane mode.</h3>
+    <p>Before you leave Wi-Fi, turn on <strong>Airplane Mode</strong> and run a batter. If everything plays, you're field-ready. That's the proof.</p>
+  </div>
+
+  <p class="faq-head">Quick answers</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <p class="faq-q">Do I have to download every song one by one?</p>
+      <p class="faq-a">No. Now Batting builds the one playlist for you — you just tap <strong>Download</strong> on it in Apple Music.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if I add a new walk-up song later?</p>
+      <p class="faq-a">Tap <strong>Save</strong> again to rebuild the playlist, then download it once more. Quick, and worth doing before game day.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does Roll Call work offline?</p>
+      <p class="faq-a">Yes — build it on Wi-Fi first. Once generated, the full Roll Call is saved to your phone and plays with no signal. Creating a new one still needs a connection, so build it before you go.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What about Situational Sounds?</p>
+      <p class="faq-a">They're Apple Music tracks, so make sure you finish the Save + Download step before game day. After that, they're ready to play with no signal.</p>
+    </div>
+  </div>
+
+  <details class="more-faq">
+    <summary>More offline questions</summary>
+    <div class="faq-list">
+    <div class="faq-item">
+      <p class="faq-q">Do original Now Batting songs need downloading?</p>
+      <p class="faq-a">No. Your original songs are saved to your phone the moment they're made — they play offline with nothing extra to do.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do announcer calls work offline?</p>
+      <p class="faq-a">Yes. They're stored on your phone too, so every "Now batting…" plays with no signal.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do the curated Music Hub playlists work offline?</p>
+      <p class="faq-a">When you tap Save, Now Batting builds one playlist with your players' walk-up songs and folds in the curated <strong>Now Batting</strong> list too — that's what downloads for the field. The other themed playlists in the Music Hub are for browsing on Wi-Fi; they aren't downloaded on their own. Want songs from one at the field? Assign them to your players — then Save covers them like the rest of your lineup.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if I switch the announcer voice?</p>
+      <p class="faq-a">Switching re-records your team in the new voice, which needs a connection — so do it on Wi-Fi before you go. Once it's done, the new calls are saved to your phone and play offline. Switching back to a voice you've used before works even with no signal.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Someone else is running the game — will it work offline for them?</p>
+      <p class="faq-a">Yes. Have them import the roster on Wi-Fi, then tap <strong>Save</strong> and download the Apple Music playlist on their own phone (they'll need their own Apple Music). After that, they're field-ready too.</p>
+    </div>
+    </div>
+  </details>
+
+  <div class="cta-row">
+    <a class="cta" href="https://apps.apple.com/app/now-batting/id6760744461">Download Now Batting</a>
+    <span class="cta-alt">Still stuck at the field? <a href="/support">We've got you →</a></span>
+  </div>
+
+  <div class="divider"></div>
+  <p class="foot-note">© 2026 Chief Hype Officer LLC · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Use</a></p>
+</main>
+
+<footer>
+  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <p class="f-copy">© 2026 Chief Hype Officer LLC · <a href="/our-story">Our Story</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+</footer>
+
+</body>
+</html>
