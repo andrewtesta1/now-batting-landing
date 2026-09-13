@@ -106,6 +106,21 @@
     .step-d { font-size: 14px; color: var(--txt2); line-height: 1.6; }
     .after { font-size: 14px; color: var(--txt3); line-height: 1.7; margin-top: 4px; }
 
+    /* PRO TIP callout */
+    .protip { background: rgba(184,204,0,0.08); border: 1px solid rgba(184,204,0,0.35); border-radius: var(--radius-md); padding: 16px 18px; margin: 10px 0 20px; }
+    .protip .lbl { font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 0.1em; color: var(--daylight-dim); text-transform: uppercase; margin-bottom: 6px; }
+    .protip p { font-size: 14px; color: var(--txt2); line-height: 1.7; }
+
+    /* CRITICAL block — wraps steps 2–3, the do-or-it-won't-work download step.
+       Mirrors the app's red "NOT DOWNLOADED YET" callout so the stakes are unmissable. */
+    .critical { border: 2px solid #B91C1C; border-radius: var(--radius-md); overflow: hidden; margin: 8px 0 14px; background: rgba(185,28,28,0.035); }
+    .critical-hd { background: #B91C1C; color: #fff; padding: 11px 16px; display: flex; align-items: center; gap: 8px; }
+    .critical-hd .ic { font-size: 15px; line-height: 1; }
+    .critical-hd .t { font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .critical-why { font-size: 13.5px; color: var(--txt2); line-height: 1.65; padding: 13px 16px 2px; }
+    .critical-why strong { color: #B91C1C; font-weight: 700; }
+    .critical .steps { padding: 10px 12px 12px; margin: 0; }
+
     /* WHAT WORKS — 2x2 */
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 6px 0 12px; }
     .cell { background: var(--mid); border: 1px solid var(--bord); border-radius: var(--radius-md); padding: 16px 18px; }
@@ -209,66 +224,53 @@
 
 <main>
   <p class="eyebrow">Offline mode</p>
-  <h1>Zero Bars. Full Production.</h1>
-  <p class="subtitle">Now Batting keeps your game-day audio rolling even when the field has no signal.</p>
+  <h1>Run the walk-up music with no internet at the field.</h1>
+  <p class="subtitle">With Field Ready, Now Batting keeps your game-day audio rolling even when the field has no signal.</p>
 
-  <h2 class="section-h">We do the setup. You finish the download.</h2>
-  <p class="lead">Do this at home, on Wi-Fi, before game day.</p>
+  <h2 class="section-h">Your Field Ready checklist</h2>
+  <p class="lead">While you're on Wi-Fi or have good cell service, set your announcer voice — and if you want to run a Roll Call, build that too (if you can, grab the lineup beforehand from the coach group chat).</p>
+
+  <div class="protip">
+    <div class="lbl">Pro tip</div>
+    <p>Anything Now Batting creates for you needs a connection to build, but plays offline once it's made — including Original walk-ups, Team Hype Songs, Roll Calls, and announcements. If you know the field has no service, set these up before you go.</p>
+  </div>
+
   <div class="steps">
     <div class="step">
       <div class="step-n">1</div>
       <div class="step-b">
-        <div class="step-t">Tap Save</div>
-        <div class="step-d">On the Manage screen. Now Batting gathers the Apple Music songs your team needs — walk-ups, Situational Sounds, and the Now Batting Top Walk-Ups playlist — into one place.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">2</div>
-      <div class="step-b">
-        <div class="step-t">Open in Apple Music</div>
-        <div class="step-d">We take you straight there.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-n">3</div>
-      <div class="step-b">
-        <div class="step-t">Tap Download</div>
-        <div class="step-d">That's the one step Apple requires to actually put those songs on your phone.</div>
+        <div class="step-t">Tap Field Ready</div>
+        <div class="step-d">On the Manage screen. Now Batting gathers the Apple Music songs — the ones that typically stream — walk-ups, Situational Sounds, and the Now Batting Top Walk-Ups playlist — into one playlist named after your roster. You can also check off any of your Music Hub playlists to fold in too.</div>
       </div>
     </div>
   </div>
-  <p class="after">That's it. No hunting down songs one at a time. No trying to remember what still needs downloading.</p>
-  <p class="after">While you're on Wi-Fi, set your announcer voice and build your Roll Call too — anything Now Batting creates for you needs signal to make, but plays offline once it's made.</p>
 
-  <h2 class="section-h">What runs offline?</h2>
-  <div class="grid2">
-    <div class="cell">
-      <div class="cell-h"><span class="ck">✓</span> Announcer calls</div>
-      <div class="cell-d">Already on your phone.</div>
-    </div>
-    <div class="cell">
-      <div class="cell-h"><span class="ck">✓</span> Original songs</div>
-      <div class="cell-d">Already on your phone.</div>
-    </div>
-    <div class="cell">
-      <div class="cell-h"><span class="ck">✓</span> Apple Music walk-ups</div>
-      <div class="cell-d prep">One Save + Download.</div>
-    </div>
-    <div class="cell">
-      <div class="cell-h"><span class="ck">✓</span> Situational Sounds</div>
-      <div class="cell-d prep">One Save + Download.</div>
-    </div>
-    <div class="cell cell-wide">
-      <div class="cell-h"><span class="ck">✓</span> Roll Call</div>
-      <div class="cell-d prep">Build it on Wi-Fi first.</div>
+  <div class="critical">
+    <div class="critical-hd"><span class="ic">⚠</span><span class="t">Don't skip — this is what puts the music on your phone</span></div>
+    <p class="critical-why">Field Ready <em>gathers</em> your songs into the playlist. But Apple only plays offline what it has actually <strong>downloaded</strong> — so these two steps are what make it work at the field. Miss them and nothing plays with no signal.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-b">
+          <div class="step-t">Open the playlist in Apple Music</div>
+          <div class="step-d">Once the gathering is done, Now Batting prompts you to download the playlist to your phone. The button takes you straight there.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b">
+          <div class="step-t">Tap the Download button (it has a down arrow)</div>
+          <div class="step-d">That's the one step Apple requires to actually put those songs on your phone.</div>
+        </div>
+      </div>
     </div>
   </div>
-  <p class="after">Only Apple Music tracks need downloading. The Save flow gathers them for you.</p>
+  <p class="after">That's it. Head to Now Batting.</p>
 
   <div class="airplane">
     <p class="eyebrow">The real test</p>
     <h3>Want to be sure? Go airplane mode.</h3>
-    <p>Before you leave Wi-Fi, turn on <strong>Airplane Mode</strong> and run a batter. If everything plays, you're field-ready. That's the proof.</p>
+    <p>Before you leave Wi-Fi, turn on <strong>Airplane Mode</strong> and run a walk-up, hit a Situational Sound, and tap a playlist you want to use. If everything plays, you're field-ready. That's the proof.</p>
   </div>
 
   <p class="faq-head">Quick answers</p>
@@ -279,7 +281,7 @@
     </div>
     <div class="faq-item">
       <p class="faq-q">What if I add a new walk-up song later?</p>
-      <p class="faq-a">Tap <strong>Save</strong> again to rebuild the playlist, then download it once more. Quick, and worth doing before game day.</p>
+      <p class="faq-a">Tap <strong>Field Ready</strong> again to rebuild the playlist, then download it once more. Quick, and worth doing before game day.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Does Roll Call work offline?</p>
@@ -287,7 +289,7 @@
     </div>
     <div class="faq-item">
       <p class="faq-q">What about Situational Sounds?</p>
-      <p class="faq-a">They're Apple Music tracks, so make sure you finish the Save + Download step before game day. After that, they're ready to play with no signal.</p>
+      <p class="faq-a">They're Apple Music tracks, so make sure you finish the Field Ready + Download step before game day. After that, they're ready to play with no signal.</p>
     </div>
   </div>
 
@@ -304,7 +306,7 @@
     </div>
     <div class="faq-item">
       <p class="faq-q">Do the curated Music Hub playlists work offline?</p>
-      <p class="faq-a">When you tap Save, Now Batting builds one playlist with your players' walk-up songs and folds in the curated <strong>Now Batting</strong> list too — that's what downloads for the field. The other themed playlists in the Music Hub are for browsing on Wi-Fi; they aren't downloaded on their own. Want songs from one at the field? Assign them to your players — then Save covers them like the rest of your lineup.</p>
+      <p class="faq-a">Yes — if you add them. When you tap Field Ready, the essentials come in automatically: your players' walk-up songs, your Situational Sounds, and the curated <strong>Now Batting</strong> Top Walk-Ups list. The same screen lets you check off any of the themed Music Hub playlists (Pregame Hype, Latin Heat, and the rest) to fold into the download too, so they play at the field with no signal. Anything you don't pick stays online-only for browsing on Wi-Fi.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">What if I switch the announcer voice?</p>
@@ -312,7 +314,7 @@
     </div>
     <div class="faq-item">
       <p class="faq-q">Someone else is running the game — will it work offline for them?</p>
-      <p class="faq-a">Yes. Have them import the roster on Wi-Fi, then tap <strong>Save</strong> and download the Apple Music playlist on their own phone (they'll need their own Apple Music). After that, they're field-ready too.</p>
+      <p class="faq-a">Yes. Have them import the roster on Wi-Fi, then tap <strong>Field Ready</strong> and download the Apple Music playlist on their own phone (they'll need their own Apple Music). After that, they're field-ready too.</p>
     </div>
     </div>
   </details>
