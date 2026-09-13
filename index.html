@@ -2771,7 +2771,6 @@
         <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-sounds" data-src="/feature-panels#sounds" title="The game-day sound tray in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
     </div>
-    <p class="r3-offline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download before you leave home. Every walk-up, call and sound is queued up and fires the instant you tap — no buffering, no clipped first word, <b>no signal needed.</b></span></p>
 
     <div class="r2-booth" data-aos="fade-up" style="margin-top:34px">
       <p class="r2-eyebrow">Want to go all-out?</p>
@@ -2826,6 +2825,36 @@
     <div class="r2-demowrap" data-aos="fade-up">
       <iframe class="r2-demo" id="rosterDemo" src="/roster-demo" title="Watch the roster build itself — text one link and your lineup fills in" loading="lazy" scrolling="no"></iframe>
     </div>
+  </div>
+</section>
+
+<!-- OFFLINE CALLOUT -->
+<style>
+  .nb-off{background:#1F1F1F;color:#F6F4EF;padding:74px 0 30px;text-align:center;position:relative;overflow:hidden}
+  .nb-off::before{content:"";position:absolute;inset:0;background:radial-gradient(58% 46% at 50% 0,rgba(184,204,0,.10),transparent 62%);pointer-events:none}
+  .nb-off .wrap{position:relative;max-width:720px;margin:0 auto;padding:0 32px}
+  .nb-off .icn{width:56px;height:56px;border-radius:50%;background:rgba(184,204,0,.12);border:1px solid rgba(184,204,0,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+  .nb-off .icn svg{width:28px;height:28px;color:var(--daylight)}
+  .nb-off .nb-eyebrow{font-family:var(--font-mono);font-weight:600;font-size:12px;letter-spacing:.14em;color:var(--daylight);text-transform:uppercase;margin-bottom:14px}
+  .nb-off h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:0 0 16px;color:#F6F4EF;text-wrap:balance}
+  .nb-off .hook{font-size:17px;line-height:1.6;color:rgba(246,244,239,.72);max-width:600px;margin:0 auto 28px}
+  .nb-off .hook b{color:#F6F4EF;font-weight:600}
+  .nb-off .nb-cta{display:inline-flex;align-items:center;gap:8px;background:var(--daylight);color:#1F1F1F;font-family:var(--font-sans);font-weight:800;font-size:15px;padding:13px 26px;border-radius:9px;text-decoration:none;transition:background .15s}
+  .nb-off .nb-cta:hover{background:var(--daylight-dim)}
+</style>
+<section class="nb-off">
+  <div class="wrap" data-aos="fade-up">
+    <div class="icn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><path d="M12 20h.01"/>
+      </svg>
+    </div>
+    <p class="nb-eyebrow">Offline mode</p>
+    <h2>Run the walk-up music with no internet at the field.</h2>
+    <p class="hook">Because trusting one bar of service with the walk-up music is the kind of negligence that gets a Chief Hype Officer <b>removed from command.</b></p>
+    <a class="nb-cta" href="/offline">Get the full scoop on getting Field Ready
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
