@@ -185,6 +185,18 @@
       main { padding: 100px 24px 60px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
     }
+
+    /* VIDEO — click-to-load facade (no third-party request until tap); vertical Short */
+    .vidwrap { max-width: 300px; margin: 26px auto 8px; }
+    .vid-facade { position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; background: #1F1F1F; border: 1px solid rgba(0,0,0,0.12); }
+    .vid-btn { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 20px; }
+    .vid-btn::before { content: ''; position: absolute; inset: 0; background: radial-gradient(72% 50% at 50% 42%, rgba(184,204,0,0.14), transparent 70%); pointer-events: none; }
+    .vid-play { position: relative; width: 62px; height: 62px; border-radius: 50%; background: var(--daylight); display: flex; align-items: center; justify-content: center; transition: transform 0.15s; }
+    .vid-btn:hover .vid-play { transform: scale(1.06); }
+    .vid-play svg { width: 25px; height: 25px; margin-left: 3px; }
+    .vid-label { position: relative; font-family: var(--font-sans); font-weight: 800; font-size: 15px; color: #F6F4EF; letter-spacing: -0.01em; }
+    .vid-sub { position: relative; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(246,244,239,0.5); }
+    .vid-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -226,6 +238,16 @@
   <p class="eyebrow">Offline mode</p>
   <h1>Run the walk-up music with no internet at the field.</h1>
   <p class="subtitle">With Field Ready, Now Batting keeps your game-day audio rolling even when the field has no signal.</p>
+
+  <div class="vidwrap">
+    <div class="vid-facade" id="offlineVideo">
+      <button class="vid-btn" onclick="loadOfflineVideo()" aria-label="Play video: running the walk-up music with no signal">
+        <span class="vid-play"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></span>
+        <span class="vid-label">See it run with no signal</span>
+        <span class="vid-sub">@NowBattingApp · YouTube</span>
+      </button>
+    </div>
+  </div>
 
   <h2 class="section-h">Your Field Ready checklist</h2>
   <p class="lead">While you're on Wi-Fi or have good cell service, set your announcer voice — and if you want to run a Roll Call, build that too (if you can, grab the lineup beforehand from the coach group chat).</p>
@@ -333,5 +355,21 @@
   <p class="f-copy">© 2026 Chief Hype Officer LLC · <a href="/our-story">Our Story</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
+<script>
+  /* Click-to-load facade: nothing is requested from YouTube until someone taps play.
+     youtube-nocookie so no tracking cookie is set even after a play. */
+  function loadOfflineVideo(){
+    var w = document.getElementById('offlineVideo');
+    if(!w || w.dataset.loaded) return;
+    w.dataset.loaded = '1';
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/X6_dd3vKa8o?autoplay=1&rel=0&playsinline=1';
+    f.title = 'Now Batting — run the walk-up music with no signal';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    f.allowFullscreen = true;
+    w.replaceChildren(f);
+  }
+</script>
 </body>
 </html>
