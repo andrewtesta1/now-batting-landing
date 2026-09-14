@@ -47,7 +47,7 @@
   .stage-col{display:flex;flex-direction:column;align-items:center;gap:18px}
   .phone{position:relative;width:300px;height:620px;border-radius:48px;background:#0c0c0c;border:1px solid rgba(246,244,239,.14);padding:11px;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6);flex:none}
   /* narrow phones: trim the frame gutters, then scale the fixed-width phone so it never clips */
-  @media(max-width:520px){ .frame{padding:26px 10px 42px} }
+  @media(max-width:520px){ .frame{padding:26px 20px 42px} }
   @media(max-width:374px){ .phone{transform:scale(.84);transform-origin:top center} .stage-col{margin-bottom:-96px} }
   .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:112px;height:26px;background:#0c0c0c;border-radius:0 0 16px 16px;z-index:40}
   .screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;background:var(--cream)}
@@ -231,7 +231,6 @@
               <div class="ramp easy" id="rampEasy"><span class="ico">👥</span><span class="info"><span class="lrow"><span class="lbl">Have parents fill it in</span><span class="easypill">EASIEST</span></span><span class="rsub">We give you a link you can send in a text or post in TeamSnap. It doesn't get any easier.</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <div class="ramp"><span class="ico">📋</span><span class="info"><span class="lrow"><span class="lbl">Import your roster</span></span><span class="rsub">Upload a CSV or literally just tell us.</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <div class="ramp"><span class="ico">＋</span><span class="info"><span class="lrow"><span class="lbl">Add players myself</span></span><span class="rsub">Add each player yourself. Super easy and fast.</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="ramp"><span class="ico">🔁</span><span class="info"><span class="lrow"><span class="lbl">Bring players from another team</span></span><span class="rsub">Coaching two teams, or a player moving up? They come over with their song and announcer call.</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <p class="gdnote">Pick the way that's least work for you. You'll be game-ready in about a minute.</p>
             </div>
             <div class="tabbar">
@@ -332,7 +331,7 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var N = 4;
   // per-scene durations, matched to each scene's own animation length
-  var DURS = reduce ? [2600,2600,2200,2000] : [7000,7400,5600,5200];
+  var DURS = reduce ? [2200,2600,2200,2000] : [5600,7400,5600,5200];
   var i = 0, playing = !reduce, timer = null, running = [];
   var captions = [
     "One tap gives you a link — text it or post it in TeamSnap.",
@@ -363,7 +362,7 @@
   }
   function runScene(n){
     clearRunning(); resetScene();
-    if(n===0){ later(function(){document.getElementById('rampEasy').classList.add('pick');},1700); later(function(){document.getElementById('sheet').classList.add('up');},2700); }
+    if(n===0){ later(function(){document.getElementById('rampEasy').classList.add('pick');},900); later(function(){document.getElementById('sheet').classList.add('up');},1700); }
     else if(n===1){
       var f1=document.getElementById('fName'),f2=document.getElementById('fNum'),f3=document.getElementById('fPhon');
       var v1=f1.dataset.full,v2=f2.dataset.full,v3=f3.dataset.full; f1.textContent='';f2.textContent='';f3.textContent='';
