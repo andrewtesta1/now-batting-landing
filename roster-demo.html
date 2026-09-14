@@ -332,7 +332,7 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var N = 4;
   // per-scene durations, matched to each scene's own animation length
-  var DURS = reduce ? [2200,2600,2200,2000] : [5600,7400,5600,5200];
+  var DURS = reduce ? [2600,2600,2200,2000] : [7000,7400,5600,5200];
   var i = 0, playing = !reduce, timer = null, running = [];
   var captions = [
     "One tap gives you a link — text it or post it in TeamSnap.",
@@ -363,7 +363,7 @@
   }
   function runScene(n){
     clearRunning(); resetScene();
-    if(n===0){ later(function(){document.getElementById('rampEasy').classList.add('pick');},700); later(function(){document.getElementById('sheet').classList.add('up');},1300); }
+    if(n===0){ later(function(){document.getElementById('rampEasy').classList.add('pick');},1700); later(function(){document.getElementById('sheet').classList.add('up');},2700); }
     else if(n===1){
       var f1=document.getElementById('fName'),f2=document.getElementById('fNum'),f3=document.getElementById('fPhon');
       var v1=f1.dataset.full,v2=f2.dataset.full,v3=f3.dataset.full; f1.textContent='';f2.textContent='';f3.textContent='';
