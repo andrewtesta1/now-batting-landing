@@ -3245,7 +3245,7 @@
 </style>
 <section class="spread">
   <div class="wrap" data-aos="fade-up">
-    <p class="sp-eyebrow">Your first assignment</p>
+    <p class="sp-eyebrow">Share the Hype</p>
     <h2>Help us identify other parents who should not be trusted with this much audio authority.</h2>
     <p class="sp-intro">Now Batting is a small operation, so every review, share, and recommendation goes a ridiculously long way. Seriously — it helps more than you probably realize.</p>
     <div class="sp-cards">
@@ -3259,7 +3259,7 @@
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
         <h3>Spread the word</h3>
         <p>Send Now Batting to your team chat, favorite Facebook group, or another Speaker Parent.</p>
-        <a class="sp-btn ghost" href="https://www.nowbattingapp.com" onclick="shareNB(event,this)">Share Now Batting</a>
+        <a class="sp-btn ghost" href="sms:?&body=I%20found%20the%20walk-up%20song%20app%20that%20understood%20the%20assignment%20and%20then%20wildly%20overproduced%20it.%20Check%20out%20Now%20Batting.%20Free%20to%20try%20for%207%20days.%20https%3A%2F%2Fapps.apple.com%2Fapp%2Fid6760744461">Text a Parent</a>
       </div>
       <div class="sp-card">
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -3275,13 +3275,6 @@
     </div>
   </div>
 </section>
-<script>
-  function shareNB(e, btn){
-    var url='https://www.nowbattingapp.com';
-    if(navigator.share){ e.preventDefault(); navigator.share({title:'Now Batting', text:'Every team needs a Chief Hype Officer.', url:url}).catch(function(){}); return; }
-    if(navigator.clipboard){ e.preventDefault(); navigator.clipboard.writeText(url).then(function(){ var t=btn.textContent; btn.textContent='Link copied!'; setTimeout(function(){ btn.textContent=t; },1800); }).catch(function(){}); }
-  }
-</script>
 
 <footer>
   <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
