@@ -197,25 +197,24 @@
   /* Both rails scroll in the app. A hard cut mid-letter reads as broken; a fade reads as
      "there's more". */
   [data-fp="sounds"] .hdchips,[data-fp="sounds"] .deckrow{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
-  /* ── MAGIC LINEUP (faithful to app/magiclineup.tsx — GOLD #B8CC00, never neon: the
-         palette reserves neon for in-product accents, never a CTA) ── */
-  [data-fp="lineup"] .phone.ml{padding:18px 22px;background:#1F1F1F;height:564px}
-  [data-fp="lineup"] .mltop{display:flex;justify-content:center;margin-bottom:22px}
-  [data-fp="lineup"] .mltop .dwm svg{width:108px;height:auto;display:block}
+  /* ── MAGIC LINEUP — the CONFIRM screen from app/magiclineup.tsx.
+         GOLD #B8CC00, never neon: theme/colors.ts reserves neon for in-product accents and
+         it measures ~1:1 against cream, so it is never the action colour here. ── */
+  [data-fp="lineup"] .phone.ml{padding:16px 20px;background:#1F1F1F;height:592px;overflow:hidden}
+  [data-fp="lineup"] .mltop{display:flex;justify-content:center;margin-bottom:16px}
+  [data-fp="lineup"] .mltop .dwm svg{width:100px;height:auto;display:block}
   [data-fp="lineup"] .mleyebrow{font-weight:700;font-size:10px;letter-spacing:.19em;color:#B8CC00;margin:0}
-  [data-fp="lineup"] .mlh{font-weight:800;font-size:26px;line-height:1.06;letter-spacing:-1px;color:#F6F4EF;margin:10px 0 0}
-  [data-fp="lineup"] .mlbody{font-size:14px;line-height:1.45;color:rgba(246,244,239,.72);margin:13px 0 0}
-  [data-fp="lineup"] .mlcta{display:flex;align-items:center;gap:13px;margin-top:24px;border:1.5px solid #B8CC00;background:rgba(184,204,0,.12);border-radius:14px;padding:12px 15px;font-weight:800;font-size:15px;color:#F6F4EF}
-  [data-fp="lineup"] .mlicn{flex:none;width:34px;height:34px;border-radius:10px;background:#B8CC00;display:flex;align-items:center;justify-content:center}
-  [data-fp="lineup"] .mlicn svg{width:19px;height:19px}
-  [data-fp="lineup"] .mlnote{font-size:12.5px;line-height:1.45;color:rgba(246,244,239,.5);margin:12px 0 0}
-  [data-fp="lineup"] .mlrule{height:1px;background:rgba(246,244,239,.1);margin:22px 0 14px}
-  [data-fp="lineup"] .mldisc{font-size:11.5px;line-height:1.5;color:rgba(246,244,239,.55);margin:0}
-  [data-fp="lineup"] .mllink{font-weight:700;font-size:11.5px;color:#B8CC00;text-decoration:underline;margin:7px 0 0}
-  [data-fp="songeditor"] .ctxtab{display:flex;gap:8px;margin-bottom:16px}
-  [data-fp="songeditor"] .ctx{flex:1;text-align:center;padding:10px 0;border-radius:11px;background:rgba(0,0,0,.06);font-weight:800;font-size:13.5px;letter-spacing:-.2px;color:rgba(31,31,31,.55)}
-  [data-fp="songeditor"] .ctx.on{background:#1F1F1F;color:#fff}
-  [data-fp="original"] .balline{font-size:11px;color:rgba(31,31,31,.45);margin:0 0 12px}
+  [data-fp="lineup"] .mlh{font-weight:800;font-size:27px;line-height:1.05;letter-spacing:-1px;color:#F6F4EF;margin:8px 0 0}
+  [data-fp="lineup"] .mlcard{margin-top:14px;background:#F6F4EF;border-radius:12px;padding:13px 15px;transform:rotate(-.5deg)}
+  [data-fp="lineup"] .mlct{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;color:rgba(31,31,31,.5);margin:0 0 7px}
+  [data-fp="lineup"] .mllist{margin:0;padding-left:20px;color:#1F1F1F;font-size:12.5px;line-height:1.72;font-weight:600}
+  [data-fp="lineup"] .mlbody{font-size:12.5px;line-height:1.45;color:rgba(246,244,239,.72);margin:13px 0 0}
+  [data-fp="lineup"] .mldisc{font-size:11px;line-height:1.5;color:rgba(246,244,239,.5);margin:11px 0 0;border-top:1px solid rgba(246,244,239,.1);padding-top:11px}
+  [data-fp="lineup"] .mllink{font-weight:700;font-size:11px;color:#B8CC00;text-decoration:underline;margin:5px 0 0}
+  [data-fp="lineup"] .mlcta{display:flex;align-items:center;gap:12px;margin-top:15px;border:1.5px solid #B8CC00;background:rgba(184,204,0,.12);border-radius:14px;padding:11px 14px;font-weight:800;font-size:15px;color:#F6F4EF}
+  [data-fp="lineup"] .mlicn{flex:none;width:32px;height:32px;border-radius:9px;background:#B8CC00;display:flex;align-items:center;justify-content:center}
+  [data-fp="lineup"] .mlicn svg{width:18px;height:18px}
+  [data-fp="lineup"] .mlalt{text-align:center;font-weight:700;font-size:13px;color:rgba(246,244,239,.5);margin:12px 0 0}
   /* ── HYPE DECK (rebuilt 2026-10-01, faithful to SituationalBoard.tsx + hypeDeck.ts) ── */
   [data-fp="sounds"] .hdhandle{display:flex;align-items:center;gap:8px;margin-bottom:11px;min-width:0}
   [data-fp="sounds"] .hdlbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.5);flex:none}
@@ -406,14 +405,17 @@
   <div class="fp" data-fp="lineup">
     <div class="phone ml">
       <div class="mltop"><span class="dwm" data-wm></span></div>
-      <p class="mleyebrow">MAGIC LINEUP</p>
-      <h3 class="mlh">Set your batting order from a photo in seconds.</h3>
-      <p class="mlbody">Screenshot GameChanger, snap the clipboard on the fence, or use the scorebook. Magic Lineup matches the names to your roster and puts them in order.</p>
-      <div class="mlcta"><span class="mlicn"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="15" height="12" rx="2" stroke="#1F1F1F" stroke-width="2"/><path d="M6 14l3-3 3 3 2-2 3 3" stroke="#1F1F1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="8" r="1.4" fill="#1F1F1F"/></svg></span>Choose a photo</div>
-      <p class="mlnote">You&apos;ll confirm it before anything leaves your phone.</p>
-      <div class="mlrule"></div>
+      <p class="mleyebrow">ONE TAP AWAY</p>
+      <h3 class="mlh">That&rsquo;s the one?</h3>
+      <div class="mlcard">
+        <p class="mlct">BLUE DRAGONS &mdash; 5/14</p>
+        <ol class="mllist"><li>Alvarez</li><li>Brennan</li><li>Okafor</li><li>Whitfield</li><li>Mazpule</li><li>Trimble</li><li>Santos</li></ol>
+      </div>
+      <p class="mlbody">Nobody gets added or removed &mdash; this sets the order for players already on your team, and anyone not in the photo moves to the bench.</p>
       <p class="mldisc">Your photo is securely sent to Anthropic to read the batting order. Your original stays on your device.</p>
       <p class="mllink">Privacy details</p>
+      <div class="mlcta"><span class="mlicn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.4L12 15l-1.9-4.6L5.5 9l4.6-1.4L12 3z" fill="#1F1F1F"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" fill="#1F1F1F"/></svg></span>Send it &amp; set my lineup</div>
+      <p class="mlalt">Pick a different photo</p>
     </div>
   </div>
 
