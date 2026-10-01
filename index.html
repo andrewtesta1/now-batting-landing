@@ -2874,7 +2874,9 @@
       // behind a "See it" toggle, so it reports under the same id with its own element.
       if(d.nbFeatId==='lineup'){
         var m=document.getElementById('mlDemo');
-        if(m) m.style.height=d.nbFeatHeight+'px';
+        // Clamped: the reporter takes a monotonic max and never shrinks, so one tall
+        // measurement during layout would strand this copy in the middle of a void.
+        if(m) m.style.height=Math.min(d.nbFeatHeight,660)+'px';
       }
       // A panel growing moves every element below it, and AOS reveals against offsets it
       // cached at init — stale ones leave sections stuck at opacity:0 for a visitor who
@@ -2905,7 +2907,7 @@
   .nb-ease .hook{font-size:17px;line-height:1.6;color:var(--txt2);max-width:620px;margin:0 0 44px}
   /* Hero card — charcoal, gold. Gold is the action colour on a dark ground; neon is an
      in-product accent and measures ~1:1 against cream. */
-  .ml-hero{background:#1F1F1F;color:#F6F4EF;border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+  .ml-hero{background:#1F1F1F;color:#F6F4EF;border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;position:relative;overflow:hidden}
   .ml-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(52% 44% at 12% 0,rgba(184,204,0,.12),transparent 64%);pointer-events:none}
   .ml-copy{position:relative}
   .ml-copy .eyebrow{font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.19em;color:var(--daylight);text-transform:uppercase;margin:0 0 12px}
