@@ -189,6 +189,66 @@
   .mtitle{font-weight:700;font-size:12px;color:#F5F5F2;margin:5px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .mcard.play .mtitle{color:#141414}
   .martist{font-size:10px;color:rgba(255,255,255,.45);margin:1px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* The deck adds two rows the old soundboard didn't have (the chip rail and the pill
+     rail), so this panel gets a taller sheet and a shorter scroll window. Scoped, or it
+     resizes the other five panels. */
+  [data-fp="sounds"] .gdsheet{height:81%}
+  [data-fp="sounds"] .gdview{height:240px}
+  /* Both rails scroll in the app. A hard cut mid-letter reads as broken; a fade reads as
+     "there's more". */
+  [data-fp="sounds"] .hdchips,[data-fp="sounds"] .deckrow{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  /* ── MAGIC LINEUP (faithful to app/magiclineup.tsx — GOLD #B8CC00, never neon: the
+         palette reserves neon for in-product accents, never a CTA) ── */
+  [data-fp="lineup"] .phone.ml{padding:18px 22px;background:#1F1F1F;height:auto;min-height:480px}
+  [data-fp="lineup"] .mltop{display:flex;justify-content:center;margin-bottom:22px}
+  [data-fp="lineup"] .mltop .dwm svg{width:108px;height:auto;display:block}
+  [data-fp="lineup"] .mleyebrow{font-weight:700;font-size:10px;letter-spacing:.19em;color:#B8CC00;margin:0}
+  [data-fp="lineup"] .mlh{font-weight:800;font-size:26px;line-height:1.06;letter-spacing:-1px;color:#F6F4EF;margin:10px 0 0}
+  [data-fp="lineup"] .mlbody{font-size:14px;line-height:1.45;color:rgba(246,244,239,.72);margin:13px 0 0}
+  [data-fp="lineup"] .mlcta{display:flex;align-items:center;gap:13px;margin-top:24px;border:1.5px solid #B8CC00;background:rgba(184,204,0,.12);border-radius:14px;padding:12px 15px;font-weight:800;font-size:15px;color:#F6F4EF}
+  [data-fp="lineup"] .mlicn{flex:none;width:34px;height:34px;border-radius:10px;background:#B8CC00;display:flex;align-items:center;justify-content:center}
+  [data-fp="lineup"] .mlicn svg{width:19px;height:19px}
+  [data-fp="lineup"] .mlnote{font-size:12.5px;line-height:1.45;color:rgba(246,244,239,.5);margin:12px 0 0}
+  [data-fp="lineup"] .mlrule{height:1px;background:rgba(246,244,239,.1);margin:22px 0 14px}
+  [data-fp="lineup"] .mldisc{font-size:11.5px;line-height:1.5;color:rgba(246,244,239,.55);margin:0}
+  [data-fp="lineup"] .mllink{font-weight:700;font-size:11.5px;color:#B8CC00;text-decoration:underline;margin:7px 0 0}
+  [data-fp="songeditor"] .ctxtab{display:flex;gap:8px;margin-bottom:16px}
+  [data-fp="songeditor"] .ctx{flex:1;text-align:center;padding:10px 0;border-radius:11px;background:rgba(0,0,0,.06);font-weight:800;font-size:13.5px;letter-spacing:-.2px;color:rgba(31,31,31,.55)}
+  [data-fp="songeditor"] .ctx.on{background:#1F1F1F;color:#fff}
+  [data-fp="original"] .balline{font-size:11px;color:rgba(31,31,31,.45);margin:0 0 12px}
+  /* ── HYPE DECK (rebuilt 2026-10-01, faithful to SituationalBoard.tsx + hypeDeck.ts) ── */
+  [data-fp="sounds"] .hdhandle{display:flex;align-items:center;gap:8px;margin-bottom:11px;min-width:0}
+  [data-fp="sounds"] .hdlbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.5);flex:none}
+  [data-fp="sounds"] .hdchips{display:flex;gap:5px;flex:1;min-width:0;overflow:hidden}
+  [data-fp="sounds"] .hdchip{flex:none;padding:5px 11px;border-radius:13px;background:#1F1F1F;border:1px solid rgba(255,255,255,.09);font-family:var(--mono);font-weight:700;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);white-space:nowrap}
+  [data-fp="sounds"] .hdchip.on{background:var(--neon);border-color:var(--neon);color:#141414}
+  [data-fp="sounds"] .deckrow{display:flex;gap:9px;margin-top:10px;padding-top:9px;border-top:1px solid rgba(255,255,255,.07);overflow:hidden}
+  [data-fp="sounds"] .dpill{flex:none;height:34px;display:flex;align-items:center;padding:0 15px;border-radius:17px;background:#1F1F1F;border:1px solid rgba(255,255,255,.09);font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#fff;white-space:nowrap}
+  [data-fp="sounds"] .dpill.play{background:var(--neon);border-color:var(--neon);color:#141414}
+  [data-fp="sounds"] .hdnote{font-size:9.5px;line-height:1.45;color:rgba(255,255,255,.5);margin:0 0 12px}
+  [data-fp="sounds"] .hsec{font-family:var(--mono);font-weight:700;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--neon);margin:15px 0 9px;display:flex;align-items:center;gap:8px}
+  [data-fp="sounds"] .hsec.first{margin-top:0}
+  [data-fp="sounds"] .hsec::after{content:"";flex:1;height:1px;background:rgba(223,255,0,.18)}
+  [data-fp="sounds"] .hmom{display:flex;align-items:center;gap:7px;margin:11px 0 5px}
+  [data-fp="sounds"] .hmlbl{flex:1;font-weight:700;font-size:11.5px;color:#fff;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  [data-fp="sounds"] .hmcount{font-family:var(--mono);font-size:7px;letter-spacing:.05em;color:rgba(255,255,255,.35);flex:none}
+  [data-fp="sounds"] .hmadd{flex:none;width:15px;height:15px;border-radius:50%;border:1.2px solid rgba(255,255,255,.32);color:rgba(255,255,255,.32);font-size:10px;line-height:13px;text-align:center}
+  [data-fp="sounds"] .hmadd.on{border-color:var(--neon);color:var(--neon)}
+  [data-fp="sounds"] .hrow{display:flex;align-items:center;gap:8px;background:#1F1F1F;border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:7px 9px;margin-bottom:4px;min-width:0}
+  [data-fp="sounds"] .hrow.sel{border-color:rgba(223,255,0,.45)}
+  [data-fp="sounds"] .hrow.play{background:var(--neon);border-color:var(--neon)}
+  [data-fp="sounds"] .hplay{flex:none;width:14px;font-size:11px;color:rgba(255,255,255,.5);text-align:center;letter-spacing:-1px}
+  [data-fp="sounds"] .hrow.sel .hplay{color:var(--neon)}
+  [data-fp="sounds"] .hrow.play .hplay{color:#141414}
+  [data-fp="sounds"] .hinfo{flex:1;min-width:0;display:block}
+  [data-fp="sounds"] .htitle{display:block;font-weight:700;font-size:11px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  [data-fp="sounds"] .hartist{display:block;font-size:9px;color:rgba(255,255,255,.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  [data-fp="sounds"] .hrow.play .htitle{color:#141414}
+  [data-fp="sounds"] .hrow.play .hartist{color:rgba(0,0,0,.55)}
+  [data-fp="sounds"] .hmeta{flex:none;text-align:right}
+  [data-fp="sounds"] .hsel{display:block;font-family:var(--mono);font-size:6.5px;letter-spacing:.07em;color:var(--neon)}
+  [data-fp="sounds"] .htime{display:block;font-family:var(--mono);font-size:7.5px;color:rgba(255,255,255,.38)}
+  [data-fp="sounds"] .hrow.play .hsel,[data-fp="sounds"] .hrow.play .htime{color:rgba(0,0,0,.6)}
   .mcard.play .martist{color:rgba(0,0,0,.55)}
 
   @media (prefers-reduced-motion:reduce){.fill,.knob,.confirm,.mbody{transition:none}.caret,.spinner,.gdscroll,.tpfill,.gdsheet{animation:none}}
@@ -228,6 +288,9 @@
   <!-- songeditor -->
   <div class="fp" data-fp="songeditor">
     <div class="app" id="editor">
+      <!-- Shown only when the player pitches. Each context has its own song, drop point,
+           fade and announcer timing; one Save commits both. -->
+      <div class="ctxtab"><span class="ctx on">Batting</span><span class="ctx">Pitching</span></div>
       <p class="scrlabel">WALK-UP SONG</p>
       <div class="tabs"><div class="tab on">Apple Music</div><div class="tab">✨ Make an Original</div></div>
       <p class="tabsub">Whichever tab is selected plays on game day.</p>
@@ -283,20 +346,16 @@
   <div class="fp" data-fp="original">
     <div class="app" id="moiApp">
       <div class="gform">
-        <p class="scrlabel">MAKE AN ORIGINAL ✨</p>
-        <p class="hint" style="text-align:center;margin-bottom:16px">A one-of-a-kind walk-up song with their name in it.</p>
+        <p class="scrlabel">MAKE AN ORIGINAL &#10024;</p>
+        <p class="hint" style="text-align:center;margin-bottom:16px">A one-of-a-kind walk-up song with their name in it. Four taps, no homework.</p>
+        <p class="balline">12 AI songs left this year</p>
         <p class="flabel">GENRE</p>
         <div class="dpills"><span class="dpill on">Hip-Hop</span><span class="dpill">Rock</span><span class="dpill">Pop</span><span class="dpill">Country</span><span class="dpill">Latin</span><span class="dpill">Electronic</span></div>
         <p class="flabel">ENERGY</p>
-        <div class="epills"><div class="epill on"><div class="et">Hype</div><div class="es">Max intensity</div></div><div class="epill"><div class="et">Pump-Up</div><div class="es">Building hype</div></div><div class="epill"><div class="et">Smooth</div><div class="es">Cool swagger</div></div></div>
+        <div class="epills"><div class="epill"><div class="et">Feel-Good</div><div class="es">Catchy &amp; fun</div></div><div class="epill on"><div class="et">Hype</div><div class="es">Fired up</div></div><div class="epill"><div class="et">Cool &amp; Confident</div><div class="es">Easy swagger</div></div></div>
         <p class="flabel">LENGTH</p>
-        <div class="dpills"><span class="dpill">30s</span><span class="dpill on">45s</span><span class="dpill">60s</span></div>
-        <p class="flabel">DETAILS ABOUT CALVIN</p>
-        <p class="hint">What makes them special? Add 1–3 things to weave into the song.</p>
-        <div class="dinput">Lefty power hitter</div>
-        <div class="dinput">Ice in his veins with two strikes</div>
-        <div class="dinput">Wears #21, plays center field</div>
-        <div class="genbtn">✨ Generate Walk-Up Song</div>
+        <div class="dpills"><span class="dpill on">30s</span><span class="dpill">45s</span><span class="dpill">60s</span></div>
+        <div class="genbtn">&#10024; Generate Walk-Up Song</div>
       </div>
       <div class="gloading">
         <div class="spinner"></div>
@@ -312,20 +371,25 @@
     <div class="app" id="teamApp">
       <div class="gform">
         <p class="appttl">Create Team Hype Song</p>
-        <p class="appsub">A hype song with every player's name woven in</p>
+        <p class="appsub">A hype song with every player&apos;s name woven in</p>
         <p class="flabel">TEAM NAME</p>
         <div class="field">Blue Dragons</div>
         <p class="flabel">GENRE</p>
         <div class="npills"><span class="npill">Hip-Hop</span><span class="npill on">Rock</span><span class="npill">Pop</span><span class="npill">Country</span><span class="npill">Latin</span><span class="npill">Electronic</span></div>
-        <p class="flabel">ENERGY</p>
-        <div class="npills"><span class="npill on">Hype</span><span class="npill">Pump-Up</span><span class="npill">Smooth</span></div>
+        <p class="flabel">MUSIC STYLE</p>
+        <div class="epills"><div class="epill on"><div class="et">Full Send</div><div class="es">Peak energy</div></div><div class="epill"><div class="et">Slow Build</div><div class="es">Builds to a drop</div></div><div class="epill"><div class="et">Even Keel</div><div class="es">Cool, unbothered</div></div></div>
+        <p class="flabel">WHAT&apos;S IT FOR?</p>
+        <div class="npills"><span class="npill on">Anthem</span><span class="npill">Pregame</span><span class="npill">Comeback</span><span class="npill">Celebration</span></div>
+        <p class="flabel">KNOWN FOR</p>
+        <p class="hint">Optional. Pick one and the song can say it &mdash; skip it and the song won&apos;t claim anything about how your team plays.</p>
+        <div class="npills"><span class="npill">Never quits</span><span class="npill on">Loudest dugout</span><span class="npill">All about the team</span><span class="npill">Brings the energy</span><span class="npill">Plays with heart</span><span class="npill">Here to have fun</span></div>
         <p class="flabel">ANYTHING SPECIAL ABOUT THIS TEAM? <span class="opt">(optional)</span></p>
-        <div class="field" style="color:rgba(31,31,31,.42);font-weight:500">undefeated season</div>
-        <div class="genbtn neon">Generate · 12 players</div>
+        <div class="field" style="color:rgba(31,31,31,.42);font-weight:500">first year as a team</div>
+        <div class="genbtn neon">Generate &middot; 12 players</div>
       </div>
       <div class="gloading">
         <p class="appttl" style="text-align:center;width:100%">Creating your song...</p>
-        <p class="appsub" style="text-align:center;width:100%;margin-bottom:20px">Blue Dragons · Rock · Hype</p>
+        <p class="appsub" style="text-align:center;width:100%;margin-bottom:20px">Blue Dragons &middot; Rock &middot; Full Send</p>
         <div class="tphases" id="teamPhases">
           <div class="tprow on" data-p="1"><span class="tpdot"><span class="act"></span></span><span class="tplabel">Writing your song...</span></div>
           <div class="tprow" data-p="2"><span class="tpdot"><span class="pend"></span></span><span class="tplabel">Composing the music...</span></div>
@@ -338,55 +402,79 @@
     </div>
   </div>
 
+  <!-- lineup -->
+  <div class="fp" data-fp="lineup">
+    <div class="phone ml">
+      <div class="mltop"><span class="dwm" data-wm></span></div>
+      <p class="mleyebrow">MAGIC LINEUP</p>
+      <h3 class="mlh">Set your batting order from a photo in seconds.</h3>
+      <p class="mlbody">Screenshot GameChanger, snap the clipboard on the fence, or use the scorebook. Magic Lineup matches the names to your roster and puts them in order.</p>
+      <div class="mlcta"><span class="mlicn"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="15" height="12" rx="2" stroke="#1F1F1F" stroke-width="2"/><path d="M6 14l3-3 3 3 2-2 3 3" stroke="#1F1F1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="8" r="1.4" fill="#1F1F1F"/></svg></span>Choose a photo</div>
+      <p class="mlnote">You&apos;ll confirm it before anything leaves your phone.</p>
+      <div class="mlrule"></div>
+      <p class="mldisc">Your photo is securely sent to Anthropic to read the batting order. Your original stays on your device.</p>
+      <p class="mllink">Privacy details</p>
+    </div>
+  </div>
+
   <!-- sounds -->
   <div class="fp" data-fp="sounds">
     <div class="phone">
       <div class="dimtop">
         <span class="dwm" data-wm></span>
-        <div class="teamchip"><span class="g"></span>Denville Dragons<span class="cv">▾</span></div>
+        <div class="teamchip"><span class="g"></span>Denville Dragons<span class="cv">&#9662;</span></div>
         <p class="batlbl">BATTER</p>
-        <p class="whoup">Who's up first?</p>
+        <p class="whoup">Who&apos;s up first?</p>
         <p class="whoup2">Tap a player to start game day</p>
       </div>
       <div class="gdsheet">
-        <div class="gdhead"><span>GAME DAY</span><span class="cv">⌄</span></div>
+        <!-- Handle row: the deck switcher lives here, where the words GAME DAY used to be. -->
+        <div class="hdhandle">
+          <span class="hdlbl">Hype deck</span>
+          <div class="hdchips">
+            <span class="hdchip on">At bat</span><span class="hdchip">In field</span><span class="hdchip">Stadium energy</span><span class="hdchip">Anytime</span><span class="hdchip">Organ</span>
+          </div>
+          <span class="cv">&#8964;</span>
+        </div>
+        <!-- Layer 1: the four fixed SFX, the same in every deck. -->
         <div class="qtiles">
           <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#DFFF00"/><path d="M17 8a5 5 0 0 1 0 8" stroke="#DFFF00" stroke-width="2" stroke-linecap="round"/></svg><div class="ql">AIR HORN</div></div>
+          <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-7 8 7" stroke="#DFFF00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#DFFF00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="ql">HR SIREN</div></div>
           <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="#DFFF00"/></svg><div class="ql">CHARGE</div></div>
-          <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-7 8 7" stroke="#DFFF00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="#DFFF00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="ql">HOME RUN</div></div>
           <div class="qtile"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h14M5 17h14" stroke="#DFFF00" stroke-width="2" stroke-linecap="round"/></svg><div class="ql">STOMP</div></div>
         </div>
-        <div class="sctoggle"><span class="on">Sounds</span><span>Score Call · 0–0</span></div>
+        <!-- Layer 2: the active deck. Every pill is named for the PLAY, never the song. -->
+        <div class="deckrow">
+          <span class="dpill play">Hit</span><span class="dpill">Walk</span><span class="dpill">Runs scored</span><span class="dpill">Home run</span><span class="dpill">Stolen base</span><span class="dpill">Double</span>
+        </div>
+        <div class="sctoggle"><span class="on">Hype Deck</span><span>Score Call &middot; 0&ndash;0</span></div>
         <div class="gdview">
           <div class="gdscroll">
-            <p class="seclbl first">Hype</p>
-            <div class="mgrid">
-              <div class="mcard"><div class="mctop"><span class="mclbl">Clap along</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">HandClap</p><p class="martist">Fitz and The Tantrums</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Day-O</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Day-O (The Banana Boat…</p><p class="martist">Harry Belafonte</p></div>
-              <div class="mcard play"><div class="mctop"><span class="mclbl">Crowd hype</span><span class="mpin">⚲</span><span class="mdots">▶</span></div><p class="mtitle">Turn Down for What</p><p class="martist">DJ Snake &amp; Lil Jon · playing…</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Run scored</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Rock and Roll, Pt. 2</p><p class="martist">Gary Glitter</p></div>
-            </div>
-            <p class="seclbl">Game Moments</p>
-            <div class="mgrid">
-              <div class="mcard"><div class="mctop"><span class="mclbl">Walk</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">I'm Gonna Be (500 Miles)</p><p class="martist">The Proclaimers</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Pitching change</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Hit the Road Jack</p><p class="martist">Ray Charles</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Home run</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Whoomp! (There It Is)</p><p class="martist">Tag Team</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Strikeout</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Another One Bites the Dust</p><p class="martist">Queen</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Stolen base</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Smooth Criminal</p><p class="martist">Michael Jackson</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Full count</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">The Final Countdown</p><p class="martist">Europe</p></div>
-            </div>
-            <p class="seclbl">Organ</p>
-            <div class="mgrid">
-              <div class="mcard"><div class="mctop"><span class="mclbl">Charge ×3</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Charge!</p><p class="martist">Stadium organ</p></div>
-              <div class="mcard"><div class="mctop"><span class="mclbl">Take me out</span><span class="mpin">⚲</span><span class="mdots">⋯</span></div><p class="mtitle">Take Me Out to the Ball Game</p><p class="martist">Stadium organ</p></div>
-            </div>
+            <p class="hdnote">Welcome to your personal Hype Deck. Assign a song to a game moment by selecting below. Tap play to preview. Swap out your songs any time from this area.</p>
+            <p class="hsec first">At bat</p>
+            <div class="hmom"><span class="hmlbl">Hit</span><span class="hmcount">2 songs</span><span class="hmadd on">&#10003;</span></div>
+            <div class="hrow sel"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Get a Coin! Mario (Super Sound Ver.)</span><span class="hartist">RiNG-.Games</span></span><span class="hmeta"><span class="hsel">SELECTED</span><span class="htime">0:00 &middot; 3s</span></span></div>
+            <div class="hrow"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Watch Me (Whip / Nae Nae)</span><span class="hartist">Silent&oacute;</span></span><span class="hmeta"><span class="htime">0:13 &middot; 8s</span></span></div>
+            <div class="hmom"><span class="hmlbl">Walk</span><span class="hmcount">5 songs</span><span class="hmadd on">&#10003;</span></div>
+            <div class="hrow sel"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">I&apos;m Gonna Be (500 Miles)</span><span class="hartist">The Proclaimers</span></span><span class="hmeta"><span class="hsel">SELECTED</span><span class="htime">0:36 &middot; 7s</span></span></div>
+            <div class="hrow"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Walk This Way</span><span class="hartist">Aerosmith</span></span><span class="hmeta"><span class="htime">0:58 &middot; 8s</span></span></div>
+            <div class="hrow"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Walk It Out</span><span class="hartist">Unk</span></span><span class="hmeta"><span class="htime">0:02 &middot; 13s</span></span></div>
+            <div class="hmom"><span class="hmlbl">Runs scored</span><span class="hmadd on">&#10003;</span></div>
+            <div class="hrow sel"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Rock and Roll, Pt. 2</span><span class="hartist">Gary Glitter</span></span><span class="hmeta"><span class="hsel">SELECTED</span><span class="htime">0:45 &middot; 30s</span></span></div>
+            <p class="hsec">In field</p>
+            <div class="hmom"><span class="hmlbl">Strikeout</span><span class="hmcount">3 songs</span><span class="hmadd">+</span></div>
+            <div class="hrow sel"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Another One Bites the Dust</span><span class="hartist">Queen</span></span><span class="hmeta"><span class="hsel">SELECTED</span><span class="htime">1:24 &middot; 11s</span></span></div>
+            <div class="hrow play"><span class="hplay">&#10073;&#10073;</span><span class="hinfo"><span class="htitle">Back in Black</span><span class="hartist">AC/DC</span></span><span class="hmeta"><span class="htime">0:00 &middot; 12s</span></span></div>
+            <div class="hrow"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">HUMBLE.</span><span class="hartist">Kendrick Lamar</span></span><span class="hmeta"><span class="htime">0:57 &middot; 9s</span></span></div>
+            <p class="hsec">Stadium energy</p>
+            <div class="hmom"><span class="hmlbl">Crowd hype</span><span class="hmcount">3 songs</span><span class="hmadd on">&#10003;</span></div>
+            <div class="hrow sel"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Turn Down for What</span><span class="hartist">DJ Snake &amp; Lil Jon</span></span><span class="hmeta"><span class="hsel">SELECTED</span><span class="htime">0:13 &middot; 15s</span></span></div>
+            <div class="hrow"><span class="hplay">&#9654;</span><span class="hinfo"><span class="htitle">Black Betty</span><span class="hartist">Ram Jam</span></span><span class="hmeta"><span class="htime">0:00 &middot; 30s</span></span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-</div>
 
 <script>
   var WM='<svg viewBox="0 0 332 60" xmlns="http://www.w3.org/2000/svg" aria-label="Now Batting"><text x="0" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#DFFF00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#DFFF00"/><rect x="112.63" y="10.5" width="7" height="39" rx="3.5" fill="#DFFF00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#DFFF00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#DFFF00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#DFFF00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#DFFF00"/><circle cx="175.88" cy="30" r="3.5" fill="rgba(255,255,255,0.45)"/><text x="188.38" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="36" fill="#F5F5F2" letter-spacing="-1">batting</text></svg>';
@@ -394,7 +482,7 @@
 
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var which=(location.hash||'#announcer').slice(1);
-  var valid={announcer:1,songeditor:1,rollcall:1,original:1,teamsong:1,sounds:1};
+  var valid={announcer:1,songeditor:1,rollcall:1,original:1,teamsong:1,sounds:1,lineup:1};
   if(!valid[which]) which='announcer';
   var active=document.querySelector('.fp[data-fp="'+which+'"]');
   if(active) active.classList.add('active');

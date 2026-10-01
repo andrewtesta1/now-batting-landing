@@ -63,7 +63,7 @@
           "Customizable Roll Call — opponent, time of day, occasion, and a music bed",
           "Roll Call pre-game lineup announcements",
           "Team Hype Song that names every player on the roster",
-          "Game-day soundboard and live score calls",
+          "The Hype Deck — 46 game sounds decked by situation — and live score calls",
           "Multiple team roster management and roster sharing"
         ],
         "offers": {
@@ -142,7 +142,7 @@
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "5",
-          "ratingCount": "8",
+          "ratingCount": "10",
           "bestRating": "5",
           "worstRating": "1"
         }
@@ -181,7 +181,7 @@
             "name": "What is Now Batting?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Now Batting is the walk-up song app that brings the hype without the headache — as simple or all out as you want it. Walk-up songs for every player (including originals with their name in the lyrics), your own announcer who calls each name, a customizable pre-game Roll Call of your whole lineup (name the opponent, pick a music bed, preview the script), a Team Hype Song, and a soundboard — all from one phone. iOS-only, $9.99/year — with a 7-day free trial for new subscribers."
+              "text": "Now Batting is the walk-up song app that brings the hype without the headache — as simple or all out as you want it. Walk-up songs for every player (including originals with their name in the lyrics), your own announcer who calls each name, a customizable pre-game Roll Call of your whole lineup (name the opponent, pick a music bed, preview the script), a Team Hype Song, and the Hype Deck — all from one phone. iOS-only, $9.99/year — with a 7-day free trial for new subscribers."
             }
           },
           {
@@ -189,7 +189,7 @@
             "name": "What do I need to use Now Batting™?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Just an iPhone. An Apple Music subscription is needed for full-length Apple Music songs — the ones you assign as walk-ups and the Situational Sounds, which are real tracks. Everything Now Batting makes itself — original walk-up songs, announcer calls, the Roll Call — plus the built-in sound effects works without it. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or aux cord. That's the whole setup."
+              "text": "Just an iPhone. An Apple Music subscription is needed for full-length Apple Music songs — the ones you assign as walk-ups and the Hype Deck tracks, which are real songs. Everything Now Batting makes itself — original walk-up songs, announcer calls, the Roll Call — plus the built-in sound effects works without it. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or aux cord. That's the whole setup."
             }
           },
           {
@@ -197,7 +197,7 @@
             "name": "Can I share my roster with another coach or parent?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes — about 30 seconds. Get your roster set (songs + announcements), tap ••• next to your team name → Share roster, and send the link. Whoever gets it can play the whole thing — walk-ups, Roll Call, soundboard — free for 30 days, no account needed. (Apple Music songs play through their own Apple Music.) That covers the assistant coach or parent who just runs the speaker. You can share on the free trial too — up to 3 rosters — and a paid plan lifts the cap. Making it their own — editing it, keeping it past 30 days, or sharing their own version — takes their own subscription (free trial included for new subscribers). Keeps it fair: one Chief Hype Officer owns the team, everyone else enjoys game day. Change something later? Share again and they tap Get latest version."
+              "text": "Yes — about 30 seconds. Get your roster set (songs + announcements), tap ••• next to your team name → Share roster, and send the link. Whoever gets it can play the whole thing — walk-ups, Roll Call, the Hype Deck — free for 30 days, no account needed. (Apple Music songs play through their own Apple Music.) That covers the assistant coach or parent who just runs the speaker. You can share on the free trial too — up to 3 rosters — and a paid plan lifts the cap. Making it their own — editing it, keeping it past 30 days, or sharing their own version — takes their own subscription (free trial included for new subscribers). Keeps it fair: one Chief Hype Officer owns the team, everyone else enjoys game day. Change something later? Share again and they tap Get latest version."
             }
           },
           {
@@ -206,6 +206,22 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Yes. Anything Now Batting makes — announcer calls, original songs, sound effects — is on your phone the moment it's made. Apple Music tracks just need one step first: while you're on wifi, tap Field Ready and download the playlist it builds. Then the whole game runs in airplane mode. Full walkthrough: Using Now Batting offline."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I set the batting order from a photo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — that&rsquo;s Magic Lineup. Screenshot GameChanger, snap the clipboard on the fence, or use the scorebook. Magic Lineup matches the names to your roster and puts them in order, and you confirm the photo before anything leaves your phone. Nobody gets added or removed: it sets the order for players already on your team, and anyone not in the photo moves to the bench. If it reads something wrong, Undo puts it back exactly how it was. The photo itself: the image you choose is sent to Anthropic to identify the batting order, and Anthropic receives the entire image, including anything visible in it — so choose one with only what the feature needs. The app creates a temporary copy on your device and attempts to delete it when processing ends, whether the request succeeds or fails; your original photo is not changed or deleted. Our application does not save the submitted image to server-side storage, attach it to your roster, or save it to our audio storage. Anthropic may retain submitted content under its own policies, and under its published commercial API terms, inputs submitted through the Claude API are not used to train Anthropic&rsquo;s models. Full detail in the privacy policy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can my pitcher have a different song than when they bat?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Turn on This player pitches and the song editor gains a Batting / Pitching tab. Each one keeps its own song, its own drop point, its own fade and its own announcer timing — so they can walk up to one track and take the ball to another. You can make them an original for the mound too, written as an entrance rather than a walk-up. One Save commits both, and if you never touch the Pitching tab their batting song just plays, exactly as before."
             }
           },
           {
@@ -293,7 +309,7 @@
             "name": "Switching from Ballpark DJ or another walk-up app?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Easy. Import your roster from a CSV or a shared link — or add players in a couple of taps — then set each song's drop point, and you're ready before the first practice ends. Now Batting runs the whole game-day operation from one phone: walk-up songs, your own announcer, a pre-game Roll Call of the lineup, original songs with a player's name in the lyrics, and a soundboard. Simple on day one, as all out as you want from there."
+              "text": "Easy. Import your roster from a CSV or a shared link — or add players in a couple of taps — then set each song's drop point, and you're ready before the first practice ends. Now Batting runs the whole game-day operation from one phone: walk-up songs, your own announcer, a pre-game Roll Call of the lineup, original songs with a player's name in the lyrics, and the Hype Deck. Simple on day one, as all out as you want from there."
             }
           },
           {
@@ -317,7 +333,7 @@
             "name": "What if I don't have Apple Music?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You can still use a lot of it. Apple Music is needed for full-length Apple Music tracks — the songs you assign as walk-ups, the Situational Sounds, the curated playlists, and the between-innings hype music. Everything Now Batting makes — original walk-up songs, the Team Hype Song, announcer calls, the Roll Call — plus the built-in sound effects plays right in the app, no subscription needed."
+              "text": "You can still use a lot of it. Apple Music is needed for full-length Apple Music tracks — the songs you assign as walk-ups, the Hype Deck tracks, the curated playlists, and the between-innings hype music. Everything Now Batting makes — original walk-up songs, the Team Hype Song, announcer calls, the Roll Call — plus the built-in sound effects plays right in the app, no subscription needed."
             }
           },
           {
@@ -2455,7 +2471,6 @@
     <div class="nav-menu-inner">
       <a href="/our-story" class="menu-link">Our Story</a>
       <a href="/offline" class="menu-link">Offline Mode</a>
-      <a href="/hype" class="menu-link">Hype Booth</a>
       <a href="/support" class="menu-link">Support</a>
       <div class="menu-social">
         <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -2555,7 +2570,7 @@
   .r2-sb-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
   .r2-sb{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(246,244,239,.7);background:rgba(255,255,255,.04);border:1px solid rgba(246,244,239,.10);border-radius:8px;padding:7px 10px;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
   .r2-sb .dot{width:5px;height:5px;border-radius:50%;background:#DFFF00}
-  /* Hype Booth closer */
+  /* "Go all-out" closer */
   .r2-booth{position:relative;margin-top:20px;background:radial-gradient(120% 130% at 50% 0,rgba(223,255,0,.10),transparent 60%),#1b1b1b;border:1px solid rgba(223,255,0,.30);border-radius:20px;padding:44px 30px;text-align:center;box-shadow:0 30px 70px -34px rgba(0,0,0,.7)}
   .r2-booth .r2-eyebrow{color:#B8CC00}
   .r2-booth h3{font-size:clamp(22px,3.2vw,32px);font-weight:800;letter-spacing:-.02em;margin:0 0 12px;color:#F6F4EF;text-wrap:balance}
@@ -2682,7 +2697,7 @@
         <div class="by"><span class="who">J_Grein</span> · App Store</div>
       </div>
       <div class="r3-quote" data-aos="fade-up" data-aos-delay="160">
-        <span class="st">★★★★★</span>
+        <span class="rc-title">Easy, fun and energizing</span><span class="st">★★★★★</span>
         <p>Love how simple and customizable it is. The kids (and parents) love it. It sounds <b>way better than Ballpark DJ.</b> The standouts: the Roll Call that announces the lineup before the game, <b>custom songs with each kid's name in it</b>, and the soundboard for fun sounds — a foul ball, a home-run siren. Really keeps the fun and energy up!</p>
         <div class="by"><span class="who">Just Jenny_1</span> · App Store</div>
       </div>
@@ -2692,7 +2707,7 @@
         <div class="by"><span class="who">Lexi</span> · Baseball Mom</div>
       </div>
       <div class="r3-quote" data-aos="fade-up" data-aos-delay="320">
-        <span class="st">★★★★★</span>
+        <span class="rc-title">A must have for every Little League team.</span><span class="st">★★★★★</span>
         <p>This app is awesome! The kids absolutely love picking their walkup songs, some a little too much. 😉 As a little league coach I see how excited the kids get when their teammates walkup song comes on — <b>pure joy.</b></p>
         <div class="by"><span class="who">Dragon-24</span> · App Store</div>
       </div>
@@ -2803,14 +2818,14 @@
       </div>
       <div class="r3-fitem" id="fi-sounds">
         <div class="r3-frow" onclick="ftoggle('sounds')">
-          <div class="r3-fmain"><h3>Bring the noise on cue.</h3><p>Air horn, home-run siren, charge — one tap from your chair.</p></div>
+          <div class="r3-fmain"><h3>Bring the noise on cue.</h3><p>Your Hype Deck: 46 real tracks, decked by situation — At bat, In field, Stadium energy, Anytime, Organ. Switch decks without leaving the game. Every button says the play, not the song.</p></div>
           <div class="r3-fright">
             <button class="r3-fplay" data-audio="/sounds/air_horn.mp3" onclick="event.stopPropagation();fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Air horn</button>
             <span class="r3-fhint">See it</span>
             <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </div>
         </div>
-        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-sounds" data-src="/feature-panels#sounds" title="The game-day sound tray in the app" scrolling="no" loading="lazy"></iframe></div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-sounds" data-src="/feature-panels#sounds" title="The Hype Deck in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
     </div>
 
@@ -2818,8 +2833,8 @@
       <p class="r2-eyebrow">Want to go all-out?</p>
       <h3>Hear your player's name in <span class="r2-g" style="color:#DFFF00">their own walk-up song.</span></h3>
       <p>Most teams run the Apple Music songs their players already love. When you want to take it further, Now Batting writes a 1-of-1 song with your player's name right in the lyrics.</p>
-      <a class="r2-btn" href="/hype">Try the Hype Booth →</a>
-      <p class="note">Try it free — no app needed.</p>
+      <p class="note" style="font-weight:700;color:#DFFF00">It&rsquo;s built right into Now Batting.</p>
+      <p>And your pitcher isn&rsquo;t stuck with their batting song. Flip to the Pitching tab and they get their own &mdash; their own track, their own drop point, their own original for walking out to take the ball.</p>
     </div>
   </div>
 </section>
@@ -2855,16 +2870,146 @@
     if(d && d.nbFeatId && d.nbFeatHeight){
       var f=document.getElementById('fifr-'+d.nbFeatId);
       if(f) f.style.height=d.nbFeatHeight+'px';
+      // The Magic Lineup panel is embedded directly in the ease section rather than
+      // behind a "See it" toggle, so it reports under the same id with its own element.
+      if(d.nbFeatId==='lineup'){
+        var m=document.getElementById('mlDemo');
+        if(m) m.style.height=d.nbFeatHeight+'px';
+      }
+      // A panel growing moves every element below it, and AOS reveals against offsets it
+      // cached at init — stale ones leave sections stuck at opacity:0 for a visitor who
+      // scrolls once. Re-measure whenever a panel changes the page height.
+      if(window.AOS && AOS.refresh) AOS.refresh();
     }
   });
 </script>
 <!-- /r3 sections -->
 
 
-<!-- BUSY WORK + DEMO -->
-<section class="r2-busy" id="setup">
-  <div class="r2-wrap">
-    <div class="r2-demowrap" data-aos="fade-up">
+<!-- ───────────────────────────────────────────────────────────────────────────
+     WITHOUT THE HEADACHE — the ease half of the hero promise.
+     The hero sells "the hype without the headache" and the body was almost all hype.
+     Four distinct headache-killers, deliberately NOT lumped together as "roster
+     sharing": parents submitting, importing what you have, handing off game day, and
+     Magic Lineup as the centrepiece.
+     ⚠️ The Magic Lineup copy MIRRORS app/magiclineup.tsx and the published Privacy
+     Policy. Do not write fresh claims here — the app's wording is vetted and the policy
+     is the ceiling. The verbatim data-handling language lives in the disclosure below
+     the pitch, never in the pitch itself.
+──────────────────────────────────────────────────────────────────────────── -->
+<style>
+  .nb-ease{padding:84px 0 20px}
+  .nb-ease .wrap{max-width:980px;margin:0 auto;padding:0 32px}
+  .nb-ease .nb-eyebrow{font-family:var(--font-mono);font-weight:600;font-size:12px;letter-spacing:.14em;color:var(--daylight);text-transform:uppercase;margin:0 0 14px}
+  .nb-ease h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.04;margin:0 0 16px;text-wrap:balance}
+  .nb-ease .hook{font-size:17px;line-height:1.6;color:var(--txt2);max-width:620px;margin:0 0 44px}
+  /* Hero card — charcoal, gold. Gold is the action colour on a dark ground; neon is an
+     in-product accent and measures ~1:1 against cream. */
+  .ml-hero{background:#1F1F1F;color:#F6F4EF;border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+  .ml-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(52% 44% at 12% 0,rgba(184,204,0,.12),transparent 64%);pointer-events:none}
+  .ml-copy{position:relative}
+  .ml-copy .eyebrow{font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.19em;color:var(--daylight);text-transform:uppercase;margin:0 0 12px}
+  .ml-copy h3{font-size:clamp(25px,3.1vw,34px);font-weight:800;letter-spacing:-.028em;line-height:1.06;margin:0 0 15px;color:#F6F4EF;text-wrap:balance}
+  .ml-copy p{font-size:15.5px;line-height:1.6;color:rgba(246,244,239,.74);margin:0 0 13px}
+  .ml-copy .fine{font-size:14px;color:rgba(246,244,239,.55);margin-bottom:0}
+  .ml-demo{position:relative;display:flex;justify-content:center}
+  .ml-demo iframe{width:100%;max-width:348px;border:0;display:block}
+  .ml-disc{margin:16px 0 0;border-top:1px solid rgba(246,244,239,.12);padding-top:14px;position:relative}
+  .ml-disc summary{cursor:pointer;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--daylight);list-style:none}
+  .ml-disc summary::-webkit-details-marker{display:none}
+  .ml-disc summary::after{content:" +";font-weight:700}
+  .ml-disc[open] summary::after{content:" \2212"}
+  .ml-disc .body{font-size:13px;line-height:1.62;color:rgba(246,244,239,.62);margin-top:12px}
+  .ml-disc .body p{margin:0 0 9px}
+  .ml-disc .body b{color:rgba(246,244,239,.85);font-weight:600}
+  .ml-disc a{color:var(--daylight)}
+  /* Three more ways the busy work disappears */
+  .ease-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+  .ease-card{background:var(--surface,#fff);border:1px solid rgba(0,0,0,.08);border-radius:18px;padding:26px 24px}
+  .ease-card .n{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--daylight);text-transform:uppercase;margin:0 0 10px}
+  .ease-card h4{font-size:19px;font-weight:800;letter-spacing:-.02em;margin:0 0 9px;line-height:1.15}
+  .ease-card p{font-size:14.5px;line-height:1.6;color:var(--txt2);margin:0}
+  .r2-demowrap{margin-top:26px}
+  @media (max-width:860px){
+    .nb-ease{padding:60px 0 10px}
+    .ml-hero{grid-template-columns:1fr;gap:28px;padding:28px 22px;border-radius:18px}
+    .ease-grid{grid-template-columns:1fr;gap:12px}
+  }
+</style>
+<!-- ⚠️ NO data-aos IN THIS SECTION, deliberately. The embedded panel reports its height
+     after load, which moves every offset AOS cached — and the cards were caught stuck at
+     opacity:0 after a full scroll because of exactly that. A scroll library failing here
+     would blank the ease story, which is the half of the hero promise this section exists
+     to tell. It renders, always. -->
+<section class="nb-ease" id="setup">
+  <div class="wrap">
+    <div>
+      <p class="nb-eyebrow">Without the headache</p>
+      <h2>Game day shouldn&rsquo;t be data entry.</h2>
+      <p class="hook">You volunteered to run the music. Nobody said anything about typing in twelve names, twelve songs and a batting order on a Tuesday night.</p>
+    </div>
+
+    <div class="ml-hero">
+      <div class="ml-copy">
+        <p class="eyebrow">Magic Lineup</p>
+        <h3>A photo of the lineup sets the lineup.</h3>
+        <p>Screenshot GameChanger, snap the clipboard on the fence, or use the scorebook. Magic Lineup matches the names to your roster and puts them in order.</p>
+        <p>You&rsquo;ll confirm it before anything leaves your phone. Nobody gets added or removed &mdash; it sets the order for players already on your team, and anyone not in the photo moves to the bench.</p>
+        <p class="fine">Changed your mind? Undo puts it back exactly how it was.</p>
+
+        <!-- ─────────────────────────────────────────────────────────────────
+             VIDEO SLOT — Magic Lineup.
+             Intentionally EMPTY until the video exists. No empty player, no
+             "coming soon": the demo panel on the right carries this section on
+             its own, and the video drops in later as an upgrade.
+             To add it, uncomment and set the id + poster. Click-to-load facade,
+             matching the homepage founder video (loadChoVideo) — nothing is
+             requested from YouTube until someone taps play.
+
+        <div class="cho-video" id="mlVideo" style="margin-top:24px">
+          <button class="ctk-card" type="button" aria-label="Play: Magic Lineup"
+                  onclick="loadMlVideo()" style="background-image:url('/magic-lineup-poster.jpg')">
+            <span class="ctk-play" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#121110"/></svg></span>
+            <span class="ctk-label">A photo becomes a lineup</span>
+            <span class="ctk-handle">@NowBattingApp &middot; YouTube</span>
+          </button>
+        </div>
+        ───────────────────────────────────────────────────────────────── -->
+
+        <details class="ml-disc">
+          <summary>What happens to the photo</summary>
+          <div class="body">
+            <p>Magic Lineup lets you choose an image of your batting order &mdash; a lineup card, a whiteboard photo, a screenshot &mdash; to reorder players already on your team. The selected image is sent to Anthropic to identify the batting order. Anthropic receives the entire image, including any names, jersey numbers, or other information visible in it. Please choose an image containing only the information needed for this feature.</p>
+            <p><b>Our handling.</b> The App creates a temporary copy of the selected image on your device and attempts to delete that copy when processing ends, whether the request succeeds or fails. Your original photo is not changed or deleted. Our application does not save the submitted image to server-side storage, attach it to your roster, or save it to our audio storage.</p>
+            <p><b>Anthropic&rsquo;s handling.</b> Anthropic processes the image under its applicable commercial terms and data-retention policies. Anthropic may retain submitted content under those policies; deleting the App&rsquo;s temporary copy does not delete any copy retained by Anthropic. Under Anthropic&rsquo;s published commercial API terms, inputs submitted through the Claude API are not used to train Anthropic&rsquo;s models.</p>
+            <p>We use the result only to reorder existing players. Magic Lineup does not add, rename, or remove players. We do not ask for photographs of people. <a href="/privacy#magic-lineup">Full privacy policy</a></p>
+          </div>
+        </details>
+      </div>
+      <div class="ml-demo">
+        <iframe id="mlDemo" src="/feature-panels#lineup" style="height:520px" title="Magic Lineup in the app" scrolling="no" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="ease-grid">
+      <div class="ease-card">
+        <p class="n">Before the season</p>
+        <h4>Let the parents do it.</h4>
+        <p>You are not the one hunting down twelve favorite songs. The parents do that part themselves, from any browser, no app and no account &mdash; and you just approve what comes back.</p>
+      </div>
+      <div class="ease-card">
+        <p class="n">Already have a roster</p>
+        <h4>Bring what you&rsquo;ve got.</h4>
+        <p>Import a CSV, or literally just paste the list. Switching from another app, or taking over a team from last year&rsquo;s coach? Their shared link imports the whole thing &mdash; songs, drop points and all.</p>
+      </div>
+      <div class="ease-card">
+        <p class="n">Can&rsquo;t make the game</p>
+        <h4>Hand off the aux.</h4>
+        <p>Share your setup and another parent runs the music from their phone &mdash; no account needed, free for 30 days. They can even drag the order around for today without touching your copy.</p>
+      </div>
+    </div>
+
+    <div class="r2-demowrap">
       <iframe class="r2-demo" id="rosterDemo" src="/roster-demo" title="Watch the roster build itself — text one link and your lineup fills in" loading="lazy" scrolling="no"></iframe>
     </div>
   </div>
@@ -3037,7 +3182,7 @@
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Roll Call</b></span></li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Name Lock</b></span></li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Bullpen</b></span></li>
-        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Soundboard &amp; score calls</b></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Hype Deck &amp; score calls</b></span></li>
 
         <li class="ft-group">The toolkit</li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Music Hub</b></span></li>
@@ -3069,7 +3214,7 @@
           <span>What is Now Batting?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a"><strong>Now Batting</strong> is the walk-up song app that brings the hype without the headache — as simple or all out as you want it. Walk-up songs for every player (including originals with their name in the lyrics), your own announcer who calls each name, a customizable pre-game Roll Call of your whole lineup (name the opponent, pick a music bed, preview the script), a Team Hype Song, and a soundboard — all from one phone. iOS-only, $9.99/year — with a 7-day free trial for new subscribers.</div>
+        <div class="faq-a"><strong>Now Batting</strong> is the walk-up song app that brings the hype without the headache — as simple or all out as you want it. Walk-up songs for every player (including originals with their name in the lyrics), your own announcer who calls each name, a customizable pre-game Roll Call of your whole lineup (name the opponent, pick a music bed, preview the script), a Team Hype Song, and the Hype Deck — all from one phone. iOS-only, $9.99/year — with a 7-day free trial for new subscribers.</div>
       </div>
 
       <div class="faq-item r">
@@ -3077,7 +3222,7 @@
           <span>What do I need to use Now Batting™?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Just an iPhone. An Apple Music subscription is needed for full-length Apple Music songs — the ones you assign as walk-ups and the Situational Sounds, which are real tracks. Everything Now Batting makes itself — original walk-up songs, announcer calls, the Roll Call — plus the built-in sound effects works without it. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or aux cord. That's the whole setup.</div>
+        <div class="faq-a">Just an iPhone. An Apple Music subscription is needed for full-length Apple Music songs — the ones you assign as walk-ups and the Hype Deck tracks, which are real songs. Everything Now Batting makes itself — original walk-up songs, announcer calls, the Roll Call — plus the built-in sound effects works without it. For everyone at the field to hear it, connect your phone to a Bluetooth speaker or aux cord. That's the whole setup.</div>
       </div>
 
       <div class="faq-item r d1">
@@ -3087,7 +3232,7 @@
         </button>
         <div class="faq-a">
           Yes — about 30 seconds. Get your roster set (songs + announcements), tap ••• next to your team name → <strong>Share roster</strong>, and send the link.<br><br>
-          Whoever gets it can <strong>play</strong> the whole thing — walk-ups, Roll Call, soundboard — <strong>free for 30 days</strong>, no account needed. (Apple Music songs play through their own Apple Music.) That covers the assistant coach or parent who just runs the speaker.<br><br>
+          Whoever gets it can <strong>play</strong> the whole thing — walk-ups, Roll Call, the Hype Deck — <strong>free for 30 days</strong>, no account needed. (Apple Music songs play through their own Apple Music.) That covers the assistant coach or parent who just runs the speaker.<br><br>
           You can share on the <strong>free trial</strong> too — up to 3 rosters — and a paid plan lifts the cap. Making it <strong>their own</strong> — editing it, keeping it past 30 days, or sharing their own version — takes their own subscription (free trial included for new subscribers). Keeps it fair: one Chief Hype Officer owns the team, everyone else enjoys game day. Change something later? Share again and they tap <strong>Get latest version</strong>.
         </div>
       </div>
@@ -3099,6 +3244,28 @@
         </button>
         <div class="faq-a">
           Yes. Anything Now Batting makes — announcer calls, original songs, sound effects — is on your phone the moment it's made. Apple Music tracks just need one step first: while you're on wifi, tap <strong>Field Ready</strong> and download the playlist it builds. Then the whole game runs in airplane mode. Full walkthrough: <a href="/offline">Using Now Batting offline</a>.
+        </div>
+      </div>
+
+      <div class="faq-item r d2">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Can I set the batting order from a photo?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">
+          Yes &mdash; that&rsquo;s <strong>Magic Lineup</strong>. Screenshot GameChanger, snap the clipboard on the fence, or use the scorebook. Magic Lineup matches the names to your roster and puts them in order, and you confirm the photo before anything leaves your phone. Nobody gets added or removed: it sets the order for players already on your team, and anyone not in the photo moves to the bench. If it reads something wrong, Undo puts it back exactly how it was.
+          <br><br>
+          The photo itself: the image you choose is sent to Anthropic to identify the batting order, and Anthropic receives the entire image, including anything visible in it &mdash; so choose one with only what the feature needs. The app creates a temporary copy on your device and attempts to delete it when processing ends, whether the request succeeds or fails; your original photo is not changed or deleted. Our application does not save the submitted image to server-side storage, attach it to your roster, or save it to our audio storage. Anthropic may retain submitted content under its own policies, and under its published commercial API terms, inputs submitted through the Claude API are not used to train Anthropic&rsquo;s models. <a href="/privacy#magic-lineup">Full detail in the privacy policy</a>.
+        </div>
+      </div>
+
+      <div class="faq-item r d2">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          <span>Can my pitcher have a different song than when they bat?</span>
+          <span class="faq-arrow">›</span>
+        </button>
+        <div class="faq-a">
+          Yes. Turn on <strong>This player pitches</strong> and the song editor gains a <strong>Batting / Pitching</strong> tab. Each one keeps its own song, its own drop point, its own fade and its own announcer timing &mdash; so they can walk up to one track and take the ball to another. You can make them an original for the mound too, written as an entrance rather than a walk-up. One Save commits both, and if you never touch the Pitching tab their batting song just plays, exactly as before.
         </div>
       </div>
 
@@ -3193,7 +3360,7 @@
           <span>Switching from Ballpark DJ or another walk-up app?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">Easy. Import your roster from a CSV or a shared link — or add players in a couple of taps — then set each song's drop point, and you're ready before the first practice ends. Now Batting runs the whole game-day operation from one phone: walk-up songs, your own announcer, a pre-game Roll Call of the lineup, original songs with a player's name in the lyrics, and a soundboard. Simple on day one, as all out as you want from there.</div>
+        <div class="faq-a">Easy. Import your roster from a CSV or a shared link — or add players in a couple of taps — then set each song's drop point, and you're ready before the first practice ends. Now Batting runs the whole game-day operation from one phone: walk-up songs, your own announcer, a pre-game Roll Call of the lineup, original songs with a player's name in the lyrics, and the Hype Deck. Simple on day one, as all out as you want from there.</div>
       </div>
 
       <div class="faq-item r d3">
@@ -3217,7 +3384,7 @@
           <span>What if I don't have Apple Music?</span>
           <span class="faq-arrow">›</span>
         </button>
-        <div class="faq-a">You can still use a lot of it. Apple Music is needed for full-length Apple Music tracks — the songs you assign as walk-ups, the Situational Sounds, the curated playlists, and the between-innings hype music. Everything Now Batting makes — original walk-up songs, the Team Hype Song, announcer calls, the Roll Call — plus the built-in sound effects plays right in the app, no subscription needed.</div>
+        <div class="faq-a">You can still use a lot of it. Apple Music is needed for full-length Apple Music tracks — the songs you assign as walk-ups, the Hype Deck tracks, the curated playlists, and the between-innings hype music. Everything Now Batting makes — original walk-up songs, the Team Hype Song, announcer calls, the Roll Call — plus the built-in sound effects plays right in the app, no subscription needed.</div>
       </div>
 
       <div class="faq-item r d3">
