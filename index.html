@@ -2571,8 +2571,6 @@
   .r2-sb .dot{width:5px;height:5px;border-radius:50%;background:#DFFF00}
   /* ---- Busy work + demo ---- */
   .r2-busy{background:#F6F4EF;color:#18180F;padding:70px 0 60px}
-  .r2-demowrap{border-radius:24px;overflow:hidden;background:#191919;box-shadow:0 40px 90px -40px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.08)}
-  .r2-demo{display:block;width:100%;border:0;height:1180px}
   .r2-chips{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
   .r2-chip{border:1px solid rgba(0,0,0,.10);background:#fff;border-radius:16px;padding:24px;box-shadow:0 12px 30px -22px rgba(0,0,0,.3)}
   .r2-chip .k{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8f9e00;margin:0 0 9px}
@@ -2664,7 +2662,8 @@
   .r2-busy .r3-fitem.open .r3-frow{background:linear-gradient(90deg,rgba(184,204,0,.14),transparent 42%)}
   .r2-busy .r3-fhint{color:rgba(24,24,15,.45)}
   .r2-busy .r3-listwrap{margin-top:14px}
-  .r2-busy .r2-demowrap{margin-top:34px}
+  /* The roster demo is far taller than a phone-frame panel; the shared cap clips it. */
+  #fi-intake.open .r3-fpanel{max-height:2600px}
   .r3-fitem:last-child{border-bottom:0}
   .r3-fitem .r3-frow{border-bottom:0;cursor:pointer;user-select:none}
   .r3-fright{display:flex;align-items:center;gap:12px;flex:none}
@@ -2894,6 +2893,16 @@
     </div>
     <div class="r3-listwrap" data-aos="fade-up">
       <div class="r3-flist">
+      <div class="r3-fitem" id="fi-intake">
+        <div class="r3-frow" onclick="ftoggle('intake')">
+          <div class="r3-fmain"><h3>Text one link. Watch the roster build itself.</h3><p>Drop a link in the group chat, and your whole lineup &mdash; songs, numbers, and all &mdash; walks in on its own. You just review and hit go.</p></div>
+          <div class="r3-fright">
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-intake" data-src="/roster-demo#panel" title="Text one link and the roster fills itself in" scrolling="no" loading="lazy"></iframe></div>
+      </div>
       <div class="r3-fitem" id="fi-lineup">
         <div class="r3-frow" onclick="ftoggle('lineup')">
           <div class="r3-fmain"><h3>Set your batting order from a photo.</h3><p>Screenshot GameChanger or snap the clipboard on the fence — Magic Lineup matches the names to your roster and puts them in order.</p></div>
@@ -2904,10 +2913,17 @@
         </div>
         <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-lineup" data-src="/feature-panels#lineup" title="Magic Lineup in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
+      <div class="r3-fitem" id="fi-share">
+        <div class="r3-frow" onclick="ftoggle('share')">
+          <div class="r3-fmain"><h3>Hand the music to another parent.</h3><p>Share your setup and they run game day from their own phone &mdash; free for 30 days, no account needed.</p></div>
+          <div class="r3-fright">
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-share" data-src="/feature-panels#share" title="Handing the music to another parent" scrolling="no" loading="lazy"></iframe></div>
       </div>
-    </div>
-    <div class="r2-demowrap" data-aos="fade-up">
-      <iframe class="r2-demo" id="rosterDemo" src="/roster-demo" title="Watch the roster build itself — text one link and your lineup fills in" loading="lazy" scrolling="no"></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -2958,7 +2974,7 @@
     a.addEventListener('ended',function(){ if(window.__r2src===src){window.__r2a=null;window.__r2src=null;} });
   }
   // auto-size the embedded roster demo iframe
-  window.addEventListener('message',function(e){ if(e.data&&e.data.nbDemoHeight){ var f=document.getElementById('rosterDemo'); if(f) f.style.height=e.data.nbDemoHeight+'px'; } });
+  window.addEventListener('message',function(e){ if(e.data&&e.data.nbDemoHeight){ var f=document.getElementById('fifr-intake'); if(f) f.style.height=e.data.nbDemoHeight+'px'; } });
 </script>
 <!-- ==================== /RESTRUCTURED MIDDLE ==================== -->
 

@@ -201,13 +201,20 @@
   .foot b{color:var(--moss)}
   @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.12s!important}.chap.active.playing .prog i{transition:none;width:100%}}
 </style>
+<style>html.panel .demohead{display:none}html.panel .frame{padding-top:26px}</style>
+<script>if(location.hash==='#panel')document.documentElement.classList.add('panel');</script>
 </head>
 <body>
 <div class="frame">
 
+  <!-- Hidden with #panel: embedded in a feature row, the row already carries this
+       headline and sub, and repeating them inside the panel reads as a stutter. -->
+  <div class="demohead">
   <p class="eyebrow">We take the busy work, you take the bow</p>
   <h1 class="h1">Text one link.<br>Watch the roster <span class="g">build itself.</span></h1>
   <p class="sub">Drop a link in the group chat, and your whole lineup — songs, numbers, and all — walks in on its own. You just review and hit go.</p>
+  </div>
+
 
   <div class="layout">
     <div class="rail" id="rail">

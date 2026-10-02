@@ -197,6 +197,30 @@
   /* Both rails scroll in the app. A hard cut mid-letter reads as broken; a fade reads as
      "there's more". */
   [data-fp="sounds"] .hdchips,[data-fp="sounds"] .deckrow{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  /* ── HAND-OFF — two beats in one frame: the text the coach sends, then the screen the
+         helper lands on. Both verbatim from app source. ── */
+  [data-fp="share"] .phone.sh{height:592px;background:#141414;position:relative;overflow:hidden}
+  [data-fp="share"] .shmsg,[data-fp="share"] .shcard{position:absolute;inset:0;padding:26px 22px;animation:shswap 9s ease-in-out infinite}
+  [data-fp="share"] .shmsg{background:#F6F4EF;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:74px}
+  [data-fp="share"] .shcard{background:#141414;display:flex;flex-direction:column;justify-content:center;animation-name:shswap2}
+  [data-fp="share"] .shwho{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(31,31,31,.42);margin:0 0 12px}
+  [data-fp="share"] .shbub{background:#2B7CF6;color:#fff;border-radius:19px;border-bottom-right-radius:5px;padding:13px 15px;font-size:13.5px;line-height:1.45;align-self:flex-end;max-width:94%}
+  [data-fp="share"] .shlink{display:block;margin-top:8px;color:#fff;text-decoration:underline;word-break:break-all}
+  [data-fp="share"] .shsent{align-self:flex-end;font-size:9.5px;color:rgba(31,31,31,.4);margin:6px 2px 0}
+  [data-fp="share"] .shwm{display:flex;justify-content:center;margin-bottom:18px}
+  [data-fp="share"] .shwm .dwm svg{width:104px;height:auto;display:block}
+  [data-fp="share"] .shttl{font-weight:800;font-size:25px;letter-spacing:-.7px;color:#F5F5F2;text-align:center;margin:0 0 12px}
+  [data-fp="share"] .shbody{font-size:13.5px;line-height:1.5;color:rgba(245,245,242,.72);text-align:center;margin:0 0 14px}
+  [data-fp="share"] .shbody b,[data-fp="share"] .shtip b{color:#F5F5F2;font-weight:700}
+  [data-fp="share"] .shtip{font-size:11.5px;line-height:1.45;color:rgba(245,245,242,.5);text-align:center;margin:0 0 10px}
+  [data-fp="share"] .shbtn{margin-top:6px;background:var(--neon);color:#141414;border-radius:13px;padding:13px;text-align:center;font-weight:800;font-size:15px}
+  [data-fp="share"] .shalt{text-align:center;font-weight:700;font-size:13px;color:rgba(245,245,242,.55);margin:13px 0 0}
+  @keyframes shswap{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+  @keyframes shswap2{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){
+    [data-fp="share"] .shmsg,[data-fp="share"] .shcard{animation:none}
+    [data-fp="share"] .shmsg{opacity:0}
+  }
   /* ── MAGIC LINEUP — the CONFIRM screen from app/magiclineup.tsx.
          GOLD #B8CC00, never neon: theme/colors.ts reserves neon for in-product accents and
          it measures ~1:1 against cream, so it is never the action colour here. ── */
@@ -419,6 +443,30 @@
     </div>
   </div>
 
+  <!-- share -->
+  <div class="fp" data-fp="share">
+    <div class="phone sh">
+      <!-- Beat 1: what the coach sends. Verbatim from app/(tabs)/index.tsx. -->
+      <div class="shmsg">
+        <p class="shwho">To: Dana &middot; Text Message</p>
+        <div class="shbub">The Chief Hype Officer of Denville Dragons wants to tag you in to run the walk-up music. Up for the job? Tap the link, you&rsquo;ll be ready in seconds:
+          <span class="shlink">nowbattingapp.com/join/8fk2qd</span>
+        </div>
+        <p class="shsent">Delivered</p>
+      </div>
+      <!-- Beat 2: what they get. Verbatim from components/RecipientWelcome.tsx. -->
+      <div class="shcard">
+        <div class="shwm"><span class="dwm" data-wm></span></div>
+        <p class="shttl">You&rsquo;ve been tagged in.</p>
+        <p class="shbody">The Denville Dragons lineup is on your phone. Play every walk-up, sound effect and Roll Call &mdash; <b>free for 30 days</b>. No account needed.</p>
+        <p class="shtip">Running the game today? <b>Drag to reorder</b> the lineup and bench players &mdash; no sign-in needed.</p>
+        <p class="shtip"><b>You&rsquo;re set up to play, not to edit</b> &mdash; songs and the announcer stay with the coach.</p>
+        <div class="shbtn">Start playing</div>
+        <p class="shalt">Get my own team</p>
+      </div>
+    </div>
+  </div>
+
   <!-- sounds -->
   <div class="fp" data-fp="sounds">
     <div class="phone">
@@ -484,7 +532,7 @@
 
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var which=(location.hash||'#announcer').slice(1);
-  var valid={announcer:1,songeditor:1,rollcall:1,original:1,teamsong:1,sounds:1,lineup:1};
+  var valid={announcer:1,songeditor:1,rollcall:1,original:1,teamsong:1,sounds:1,lineup:1,share:1};
   if(!valid[which]) which='announcer';
   var active=document.querySelector('.fp[data-fp="'+which+'"]');
   if(active) active.classList.add('active');
