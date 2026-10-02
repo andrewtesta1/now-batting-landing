@@ -2651,6 +2651,20 @@
   .r3-offline b{color:rgba(246,244,239,.85);font-weight:600}
   /* expandable app-UX preview per feature */
   .r3-fitem{border-bottom:1px solid rgba(246,244,239,.12)}
+  /* The same header + row on the cream ground of the "without the headache" half. Neon
+     measures ~1:1 against cream, so the accent here is gold — the marketing accent. */
+  .r2-busy .r3-feathead h2,.r2-busy .r3-fmain h3{color:#18180F}
+  .r2-busy .r3-g{color:#8f9e00}
+  .r2-busy .r3-feathead .sub,.r2-busy .r3-fmain p{color:rgba(24,24,15,.62)}
+  .r2-busy .r3-flist,.r2-busy .r3-fitem{border-color:rgba(24,24,15,.14)}
+  .r2-busy .r3-frow:hover{background:linear-gradient(90deg,rgba(184,204,0,.12),transparent 40%)}
+  .r2-busy .r3-frow::before{background:#B8CC00}
+  .r2-busy .r3-fchev{border-color:rgba(24,24,15,.22);color:rgba(24,24,15,.55)}
+  .r2-busy .r3-fitem.open .r3-fchev{border-color:#B8CC00;color:#B8CC00}
+  .r2-busy .r3-fitem.open .r3-frow{background:linear-gradient(90deg,rgba(184,204,0,.14),transparent 42%)}
+  .r2-busy .r3-fhint{color:rgba(24,24,15,.45)}
+  .r2-busy .r3-listwrap{margin-top:14px}
+  .r2-busy .r2-demowrap{margin-top:34px}
   .r3-fitem:last-child{border-bottom:0}
   .r3-fitem .r3-frow{border-bottom:0;cursor:pointer;user-select:none}
   .r3-fright{display:flex;align-items:center;gap:12px;flex:none}
@@ -2741,7 +2755,7 @@
 
 <section class="r3-feats" id="features">
   <div class="r3-feathead" data-aos="fade-up">
-    <p class="r3-eyebrow">From warm-ups to walk-offs</p>
+    <p class="r3-eyebrow">Bring the hype</p>
     <h2>Congrats. You've been promoted from Speaker Parent to <span class="r3-g">Chief Hype Officer.</span></h2>
     <p class="sub">Here's everything you need to seize control of the game-day audio operation. No further authorization required.</p>
   </div>
@@ -2820,16 +2834,6 @@
         </div>
         <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-sounds" data-src="/feature-panels#sounds" title="The Hype Deck in the app" scrolling="no" loading="lazy"></iframe></div>
       </div>
-      <div class="r3-fitem" id="fi-lineup">
-        <div class="r3-frow" onclick="ftoggle('lineup')">
-          <div class="r3-fmain"><h3>Set your batting order from a photo.</h3><p>Screenshot GameChanger or snap the clipboard on the fence — Magic Lineup matches the names to your roster and puts them in order.</p></div>
-          <div class="r3-fright">
-            <span class="r3-fhint">See it</span>
-            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </div>
-        </div>
-        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-lineup" data-src="/feature-panels#lineup" title="Magic Lineup in the app" scrolling="no" loading="lazy"></iframe></div>
-      </div>
     </div>
 
   </div>
@@ -2881,6 +2885,27 @@
 <!-- BUSY WORK + DEMO -->
 <section class="r2-busy" id="setup">
   <div class="r2-wrap">
+    <!-- The other half of the hero's promise. Same header and row components as the hype
+         list above, on the light ground — see the .r2-busy overrides in the r3- styles. -->
+    <div class="r3-feathead" data-aos="fade-up">
+      <p class="r3-eyebrow">Without the headache</p>
+      <h2>You took the job. Not the <span class="r3-g">paperwork.</span></h2>
+      <p class="sub">A photo of the lineup card, or one link to the group chat. Either way, you are not the one typing it in.</p>
+    </div>
+    <div class="r3-listwrap" data-aos="fade-up">
+      <div class="r3-flist">
+      <div class="r3-fitem" id="fi-lineup">
+        <div class="r3-frow" onclick="ftoggle('lineup')">
+          <div class="r3-fmain"><h3>Set your batting order from a photo.</h3><p>Screenshot GameChanger or snap the clipboard on the fence — Magic Lineup matches the names to your roster and puts them in order.</p></div>
+          <div class="r3-fright">
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-lineup" data-src="/feature-panels#lineup" title="Magic Lineup in the app" scrolling="no" loading="lazy"></iframe></div>
+      </div>
+      </div>
+    </div>
     <div class="r2-demowrap" data-aos="fade-up">
       <iframe class="r2-demo" id="rosterDemo" src="/roster-demo" title="Watch the roster build itself — text one link and your lineup fills in" loading="lazy" scrolling="no"></iframe>
     </div>
