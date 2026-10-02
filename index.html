@@ -2664,6 +2664,8 @@
   .r2-busy .r3-listwrap{margin-top:14px}
   /* The roster demo is far taller than a phone-frame panel; the shared cap clips it. */
   #fi-intake.open .r3-fpanel{max-height:2600px}
+  .ease-more{text-align:center;margin:30px 0 0;font-size:14px}
+  .ease-more a{color:#8f9e00;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(143,158,0,.35);padding-bottom:2px}
   .r3-fitem:last-child{border-bottom:0}
   .r3-fitem .r3-frow{border-bottom:0;cursor:pointer;user-select:none}
   .r3-fright{display:flex;align-items:center;gap:12px;flex:none}
@@ -2923,40 +2925,22 @@
         </div>
         <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-share" data-src="/feature-panels#share" title="Handing the music to another parent" scrolling="no" loading="lazy"></iframe></div>
       </div>
+      <div class="r3-fitem" id="fi-fieldready">
+        <div class="r3-frow" onclick="ftoggle('fieldready')">
+          <div class="r3-fmain"><h3>No signal at the field? Still runs.</h3><p>Field Ready pulls the whole game onto your phone &mdash; walk-ups, your Hype Deck, any playlist you pick &mdash; so every cue plays on zero bars.</p></div>
+          <div class="r3-fright">
+            <span class="r3-fhint">See it</span>
+            <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-fieldready" data-src="/feature-panels#fieldready" title="Field Ready offline prep in the app" scrolling="no" loading="lazy"></iframe></div>
+      </div>
       </div>
     </div>
+    <p class="ease-more"><a href="/offline">The full Field Ready walkthrough &rarr;</a></p>
   </div>
 </section>
 
-<!-- OFFLINE CALLOUT -->
-<style>
-  .nb-off{background:#1F1F1F;color:#F6F4EF;padding:74px 0 30px;text-align:center;position:relative;overflow:hidden}
-  .nb-off::before{content:"";position:absolute;inset:0;background:radial-gradient(58% 46% at 50% 0,rgba(184,204,0,.10),transparent 62%);pointer-events:none}
-  .nb-off .wrap{position:relative;max-width:720px;margin:0 auto;padding:0 32px}
-  .nb-off .icn{width:56px;height:56px;border-radius:50%;background:rgba(184,204,0,.12);border:1px solid rgba(184,204,0,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-  .nb-off .icn svg{width:28px;height:28px;color:var(--daylight)}
-  .nb-off .nb-eyebrow{font-family:var(--font-mono);font-weight:600;font-size:12px;letter-spacing:.14em;color:var(--daylight);text-transform:uppercase;margin-bottom:14px}
-  .nb-off h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:0 0 16px;color:#F6F4EF;text-wrap:balance}
-  .nb-off .hook{font-size:17px;line-height:1.6;color:rgba(246,244,239,.72);max-width:600px;margin:0 auto 28px}
-  .nb-off .hook b{color:#F6F4EF;font-weight:600}
-  .nb-off .nb-cta{display:inline-flex;align-items:center;gap:7px;color:var(--daylight);font-family:var(--font-sans);font-weight:800;font-size:15px;text-decoration:none;border-bottom:2px solid rgba(184,204,0,.35);padding-bottom:3px;transition:border-color .15s}
-  .nb-off .nb-cta:hover{border-color:var(--daylight)}
-</style>
-<section class="nb-off">
-  <div class="wrap" data-aos="fade-up">
-    <div class="icn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><path d="M12 20h.01"/>
-      </svg>
-    </div>
-    <p class="nb-eyebrow">Offline mode</p>
-    <h2>Run the walk-up music with no internet at the field.</h2>
-    <p class="hook">Because trusting one bar of service with the walk-up music is the kind of negligence that gets a Chief Hype Officer <b>removed from command.</b></p>
-    <a class="nb-cta" href="/offline">Get the full scoop on getting Field Ready
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
-    </a>
-  </div>
-</section>
 
 <!-- MID CTA -->
 <section class="r2-cta" data-aos="fade-up">

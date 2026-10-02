@@ -197,6 +197,28 @@
   /* Both rails scroll in the app. A hard cut mid-letter reads as broken; a fade reads as
      "there's more". */
   [data-fp="sounds"] .hdchips,[data-fp="sounds"] .deckrow{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  /* ── FIELD READY — the offline prep sheet from components/OfflinePrepSheet.tsx. ── */
+  [data-fp="fieldready"] .phone.fr{height:592px;background:#141414;display:flex;align-items:flex-end;overflow:hidden}
+  [data-fp="fieldready"] .frsheet{width:100%;background:#F3F1EA;border-radius:22px 22px 0 0;padding:10px 20px 20px;max-height:100%;overflow:hidden}
+  [data-fp="fieldready"] .frgrab{width:40px;height:4px;border-radius:2px;background:rgba(0,0,0,.15);margin:0 auto 14px}
+  [data-fp="fieldready"] .frttl{font-weight:800;font-size:21px;letter-spacing:-.3px;color:#1A1A1A;margin:0}
+  [data-fp="fieldready"] .frsub{font-size:13px;line-height:1.42;color:rgba(31,31,31,.62);margin:5px 0 15px}
+  [data-fp="fieldready"] .frnote{display:flex;gap:9px;background:rgba(46,204,113,.09);border-radius:12px;padding:12px;margin-bottom:14px}
+  [data-fp="fieldready"] .frtick{flex:none;width:16px;height:16px;border-radius:50%;background:#2ECC71;color:#fff;font-size:10px;line-height:16px;text-align:center}
+  [data-fp="fieldready"] .frnl{font-weight:700;font-size:12.5px;color:#1F1F1F;margin:0 0 2px}
+  [data-fp="fieldready"] .frnt{font-size:12.5px;line-height:1.4;color:rgba(31,31,31,.72);margin:0}
+  [data-fp="fieldready"] .frrow{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:12px 13px;margin-bottom:8px}
+  [data-fp="fieldready"] .frrow.on{border-color:#B8CC00;background:rgba(184,204,0,.06)}
+  [data-fp="fieldready"] .frck{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid rgba(0,0,0,.2);background:#fff}
+  [data-fp="fieldready"] .frck.on{background:#B8CC00;border-color:#B8CC00;color:#1F1F1F;font-size:12px;line-height:19px;text-align:center}
+  [data-fp="fieldready"] .frem{font-size:17px;flex:none}
+  [data-fp="fieldready"] .frrt{font-weight:700;font-size:14px;color:#1F1F1F;margin:0}
+  [data-fp="fieldready"] .frrs{font-size:11.5px;line-height:1.35;color:rgba(31,31,31,.55);margin:1px 0 0}
+  [data-fp="fieldready"] .frhead{display:flex;align-items:center;justify-content:space-between;margin:12px 0 2px}
+  [data-fp="fieldready"] .frhead span:first-child{font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:#1F1F1F}
+  [data-fp="fieldready"] .frall{font-weight:700;font-size:12.5px;color:#8f9e00}
+  [data-fp="fieldready"] .frcap{font-size:11.5px;color:rgba(31,31,31,.5);margin:0 0 10px}
+  [data-fp="fieldready"] .frcta{background:#B8CC00;border-radius:12px;padding:14px;text-align:center;font-weight:800;font-size:15px;color:#1F1F1F;margin-top:12px}
   /* ── HAND-OFF — two beats in one frame: the text the coach sends, then the screen the
          helper lands on. Both verbatim from app source. ── */
   [data-fp="share"] .phone.sh{height:592px;background:#141414;position:relative;overflow:hidden}
@@ -467,6 +489,27 @@
     </div>
   </div>
 
+  <!-- fieldready -->
+  <div class="fp" data-fp="fieldready">
+    <div class="phone fr">
+      <div class="frsheet">
+        <div class="frgrab"></div>
+        <p class="frttl">Field Ready</p>
+        <p class="frsub">Get your game onto this phone so every cue plays at the field &mdash; even with no signal. Look it over, then tap Prep for offline.</p>
+        <div class="frnote">
+          <span class="frtick">&#10003;</span>
+          <div><p class="frnl">Already covered</p><p class="frnt">Original songs, Roll Call, and announcer voices are saved when you make them.</p></div>
+        </div>
+        <div class="frrow on"><span class="frck on">&#10003;</span><div><p class="frrt">Your lineup&rsquo;s songs</p><p class="frrs">Every player&rsquo;s walk-up song, your Hype Deck songs, and the Now Batting playlist.</p></div></div>
+        <div class="frhead"><span>Add a playlist for the field</span><span class="frall">Select all</span></div>
+        <p class="frcap">Optional &mdash; pull in any of these Music Hub playlists so they play at the field too, zero bars needed.</p>
+        <div class="frrow on"><span class="frck on">&#10003;</span><span class="frem">&#9889;</span><div><p class="frrt">Pregame Hype</p><p class="frrs">Get the dugout loud</p></div></div>
+        <div class="frrow"><span class="frck"></span><span class="frem">&#129508;</span><div><p class="frrt">Taking the Field</p><p class="frrs">Run out to these</p></div></div>
+        <div class="frcta">Prep for offline</div>
+      </div>
+    </div>
+  </div>
+
   <!-- sounds -->
   <div class="fp" data-fp="sounds">
     <div class="phone">
@@ -532,7 +575,7 @@
 
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var which=(location.hash||'#announcer').slice(1);
-  var valid={announcer:1,songeditor:1,rollcall:1,original:1,teamsong:1,sounds:1,lineup:1,share:1};
+  var valid={announcer:1,songeditor:1,rollcall:1,original:1,teamsong:1,sounds:1,lineup:1,share:1,fieldready:1};
   if(!valid[which]) which='announcer';
   var active=document.querySelector('.fp[data-fp="'+which+'"]');
   if(active) active.classList.add('active');
