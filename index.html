@@ -2650,15 +2650,23 @@
   /* expandable app-UX preview per feature */
   .r3-fitem{border-bottom:1px solid rgba(246,244,239,.12)}
   /* Six voice chips demand ~400px, and .r3-fmain{min-width:0} lets the text shrink to
-     nothing rather than push back — measured at 122px wide on a 700px viewport, one word
-     per line. The site stacks rows only below 620px, so 620-900 had no handling at all.
-     Scoped to this row: it is the only one with a chip rail, and every other row sits at
-     360-520px across the same band. */
-  @media(max-width:900px){
-    #fi-announcer .r3-frow{flex-direction:column;align-items:flex-start;gap:14px}
-    #fi-announcer .r3-fright,#fi-announcer .r3-voices{align-self:flex-start}
-    #fi-announcer .r3-voices{max-width:100%;justify-content:flex-start}
-  }
+     nothing rather than push back. This was first fixed only under 900px, which was wrong:
+     .r3-fright is flex:none, so the chips never give ground at ANY width and the text column
+     absorbs the whole squeeze. Measured at 1440px the text sat at 262px while every sibling
+     row had 503-674 — which is why this row's header broke to leave "name." alone on line 2.
+     ⚠️ Flooring .r3-fmain instead LOOKS fine and is not: the chip rail then overflows the row
+     by ~170px while document.scrollWidth still reports no overflow, so an overflow check does
+     NOT catch it. Compare the chip rail's right edge against the row's.
+     Stacking at every width is the fix — the text gets the same measure as its siblings. */
+  #fi-announcer .r3-frow{flex-direction:column;align-items:flex-start;gap:14px}
+  #fi-announcer .r3-fright,#fi-announcer .r3-voices{align-self:flex-start}
+  #fi-announcer .r3-voices{max-width:100%;justify-content:flex-start}
+
+  /* Widows. A heading that drops its last word onto a line of its own reads as a mistake,
+     and several did. Verified at 1440/1024/390 that `balance` changes NO heading that was
+     already breaking well — it only fixes the bad ones. */
+  h1,h2,h3,.r3-eyebrow{text-wrap:balance}
+  .sub,.r3-fmain p{text-wrap:pretty}
 
   /* The same header + row on the cream ground of the "without the headache" half. Neon
      measures ~1:1 against cream, so the accent here is gold — the marketing accent. */
