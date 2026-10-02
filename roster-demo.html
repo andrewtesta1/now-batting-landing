@@ -408,7 +408,29 @@
 })();
 </script>
 <script>
-(function(){function h(){try{parent.postMessage({nbDemoHeight:document.body.scrollHeight},'*');}catch(e){}}window.addEventListener('load',h);window.addEventListener('resize',h);setInterval(h,800);})();
+(function(){
+  /* ⚠️ `document.body.scrollHeight` UNDER-REPORTS this page. Its chapter cards animate in,
+     and transformed/absolutely-positioned content does not extend the body box — so the
+     embedding iframe was sized to 1341px while the last chapter ("Whole lineup, announced &
+     ready") sat below that line and was cut in half on a phone.
+     Measure the furthest actual bottom instead. It is a handful of elements polled every
+     800ms, which costs nothing and cannot under-report the way the body box can. */
+  function contentBottom(){
+    var max = document.body.scrollHeight;
+    var els = document.body.getElementsByTagName('*');
+    for (var i = 0; i < els.length; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.height === 0 && r.width === 0) continue;   // ignore hidden/collapsed nodes
+      var b = r.bottom + window.scrollY;
+      if (b > max) max = b;
+    }
+    return Math.ceil(max + 24);                        // breathing room under the last card
+  }
+  function h(){ try { parent.postMessage({ nbDemoHeight: contentBottom() }, '*'); } catch(e) {} }
+  window.addEventListener('load', h);
+  window.addEventListener('resize', h);
+  setInterval(h, 800);
+})();
 </script>
 </body>
 </html>

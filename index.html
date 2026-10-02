@@ -2758,10 +2758,32 @@
     }
     function start(){ stop(); if(scrollable()) timer=setInterval(step, 4500); if(hint) hint.style.display=scrollable()?'':'none'; }
     function stop(){ if(timer){ clearInterval(timer); timer=null; } }
-    ['pointerenter','touchstart','focusin'].forEach(function(ev){ el.addEventListener(ev, function(){ paused=true; }, {passive:true}); });
-    ['pointerleave','touchend','focusout'].forEach(function(ev){ el.addEventListener(ev, function(){ paused=false; }, {passive:true}); });
+    /* ⚠️ A touch must not pause this forever. `pointerenter` fires on a phone tap but
+       `pointerleave` often never does, so the row stopped advancing the first time anyone
+       touched it and never resumed — which is how it reached a phone looking frozen.
+       Every pause now carries its own release. */
+    var resume=null;
+    function pause(){ paused=true; clearTimeout(resume); resume=setTimeout(function(){ paused=false; }, 6000); }
+    function unpause(){ clearTimeout(resume); paused=false; }
+    ['pointerdown','touchstart','focusin'].forEach(function(ev){ el.addEventListener(ev, pause, {passive:true}); });
+    ['pointerup','pointercancel','touchend','touchcancel','focusout','mouseleave'].forEach(function(ev){ el.addEventListener(ev, unpause, {passive:true}); });
+    /* ⛔ This was `paused=true` with NO release — the same defect as the pointerenter one
+       above, one line below the comment warning about it. iOS Safari fires `mouseenter` on a
+       TAP and only fires `mouseleave` when you tap somewhere else, so the first touch froze
+       the row for good. Verified on the live page: the interval was running the whole time
+       and every tick returned early on a flag nothing could ever clear.
+       A hovering reader on a desktop moves the cursor, which re-arms the hold; a phantom
+       touch-generated mouseenter never does, so it expires. */
+    el.addEventListener('mouseenter', pause, {passive:true});
+    el.addEventListener('mousemove', pause, {passive:true});
+    /* ⚠️ `scrollable()` was measured ONCE at parse time and only re-measured on `resize`,
+       which never fires on a phone. If the cards had not laid out yet the timer was never
+       created at all. Re-arm as the layout settles and whenever the row changes size. */
     start();
     window.addEventListener('resize', start);
+    window.addEventListener('load', start);
+    [300, 1200, 3000].forEach(function(ms){ setTimeout(start, ms); });
+    if (window.ResizeObserver) new ResizeObserver(start).observe(el);
   })();
 </script>
 
@@ -3314,15 +3336,7 @@
 <div class="hr"></div>
 
 <!-- WE'RE LISTENING -->
-<section class="listening-section">
-  <div class="wrap" data-aos="fade-up">
-    <p class="eyebrow r" style="text-align:center;">Never finished.</p>
-    <h2 class="h2 r d1" style="text-align:center; margin-bottom:18px;">You ask. We build.</h2>
-    <div class="listening-body r d2">
-      <p>We read every email, watch every comment, and build what real Chief Hype Officers ask for. Got an idea? <a href="mailto:cho@nowbattingapp.com" style="color:var(--daylight);">Yell at us.</a></p>
-    </div>
-  </div>
-</section>
+
 
 <!-- SPREAD THE WORD -->
 <style>
