@@ -2649,6 +2649,17 @@
   .r3-offline b{color:rgba(246,244,239,.85);font-weight:600}
   /* expandable app-UX preview per feature */
   .r3-fitem{border-bottom:1px solid rgba(246,244,239,.12)}
+  /* Six voice chips demand ~400px, and .r3-fmain{min-width:0} lets the text shrink to
+     nothing rather than push back — measured at 122px wide on a 700px viewport, one word
+     per line. The site stacks rows only below 620px, so 620-900 had no handling at all.
+     Scoped to this row: it is the only one with a chip rail, and every other row sits at
+     360-520px across the same band. */
+  @media(max-width:900px){
+    #fi-announcer .r3-frow{flex-direction:column;align-items:flex-start;gap:14px}
+    #fi-announcer .r3-fright,#fi-announcer .r3-voices{align-self:flex-start}
+    #fi-announcer .r3-voices{max-width:100%;justify-content:flex-start}
+  }
+
   /* The same header + row on the cream ground of the "without the headache" half. Neon
      measures ~1:1 against cream, so the accent here is gold — the marketing accent. */
   .r2-busy .r3-feathead h2,.r2-busy .r3-fmain h3{color:#18180F}
@@ -2895,7 +2906,8 @@
     </div>
     <div class="r3-listwrap" data-aos="fade-up">
       <div class="r3-flist">
-      <div class="r3-fitem" id="fi-intake">
+      <!-- Open on load: the clearest "setup is easy" proof should not be behind a tap. -->
+      <div class="r3-fitem open" id="fi-intake">
         <div class="r3-frow" onclick="ftoggle('intake')">
           <div class="r3-fmain"><h3>Text one link. Watch the roster build itself.</h3><p>Drop a link in the group chat, and your whole lineup &mdash; songs, numbers, and all &mdash; walks in on its own. You just review and hit go.</p></div>
           <div class="r3-fright">
@@ -2903,7 +2915,7 @@
             <span class="r3-fchev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </div>
         </div>
-        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-intake" data-src="/roster-demo#panel" title="Text one link and the roster fills itself in" scrolling="no" loading="lazy"></iframe></div>
+        <div class="r3-fpanel"><iframe class="r3-fifr" id="fifr-intake" src="/roster-demo#panel" title="Text one link and the roster fills itself in" scrolling="no" loading="lazy"></iframe></div>
       </div>
       <div class="r3-fitem" id="fi-lineup">
         <div class="r3-frow" onclick="ftoggle('lineup')">
@@ -3079,10 +3091,10 @@
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Roll Call</b></span></li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Name Lock</b></span></li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Bullpen</b></span></li>
-        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Hype Deck &amp; score calls</b></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Hype Deck &mdash; 50 curated songs &amp; sounds for every game situation</b></span></li>
 
         <li class="ft-group">The toolkit</li>
-        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Music Hub</b></span></li>
+        <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>The Music Hub &mdash; 13 curated playlists</b></span></li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Lineup, bench &amp; subs</b></span></li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Multiple teams</b></span></li>
         <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8CC00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span class="ft"><b>Roster sharing</b></span></li>
