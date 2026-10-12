@@ -1,0 +1,4 @@
+{
+  "_readme": "Optional 'Best 15 seconds' notes for The Now Batting 20. Keyed by the song's chart key (see data/nb20/README.md). A note renders ONLY when start (m:ss), why, and verified:true are all present. Never fill these in from memory or a guess — someone listened to the track and picked the moment.",
+  "songs": {}
+}
