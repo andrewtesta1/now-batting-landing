@@ -1,0 +1,79 @@
+# The Now Batting 20 — publishes the weekly chart every Monday morning.
+#
+# Needs one repository secret:
+#   POSTHOG_API_KEY   a PostHog PERSONAL API key with query (read) access — the same kind
+#                     nb-hq uses. Settings → Secrets and variables → Actions → New secret.
+# Optional:
+#   VERCEL_DEPLOY_HOOK  a Vercel deploy-hook URL for this project. Only needed if pushes to
+#                       main don't already trigger a production deploy.
+#
+# A failed run publishes nothing: the site keeps last week's chart, which shows its own dates,
+# and after ten days the page itself says the chart is running late.
+
+name: The Now Batting 20 (weekly)
+
+on:
+  schedule:
+    # 11:20 UTC Monday = 7:20 AM EDT / 6:20 AM EST. Off the top of the hour on purpose.
+    - cron: '20 11 * * 1'
+  workflow_dispatch:
+    inputs:
+      backfill_weeks:
+        description: 'Also (re)build this many past Mondays, oldest first (0 = just this week)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nb20-weekly
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test the chart rules
+        run: node .scripts/nb20/test.mjs
+
+      - name: Build this week's snapshot
+        env:
+          POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+          BACKFILL: ${{ github.event.inputs.backfill_weeks || '0' }}
+        run: |
+          if [ "${BACKFILL}" != "0" ]; then
+            node .scripts/nb20/generate.mjs --backfill "$((BACKFILL + 1))"
+          else
+            node .scripts/nb20/generate.mjs
+          fi
+
+      - name: Render the pages
+        run: node .scripts/nb20/render.mjs
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name "Now Batting Chart"
+          git config user.email "drewtesta@gmail.com"
+          git add -A data/nb20 nb20 top-walk-up-songs
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"; echo "Nothing new to publish."
+          else
+            git commit -m "The Now Batting 20: chart for the week of $(TZ=America/New_York date +%Y-%m-%d)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy (only if a deploy hook is configured)
+        if: steps.commit.outputs.changed == 'true' && env.HOOK != ''
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: curl -fsS -X POST "$HOOK" > /dev/null && echo "Deploy triggered."
