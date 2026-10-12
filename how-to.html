@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to Run the Walk-Up Music | Now Batting How-Tos</title>
-  <meta name="description" content="Short walkthroughs for running walk-up music at a youth baseball or softball game: build the roster, set the lineup from a photo, get field ready with no signal, and hand the music to another parent." />
+  <meta name="description" content="Five quick how-tos for running walk-up music at a youth baseball or softball game: get everyone’s song without chasing anyone, write a custom announcement, put the lineup in batting order from a photo, run it with no signal, and hand it to another parent." />
   <link rel="canonical" href="https://www.nowbattingapp.com/how-to" />
   <meta property="og:title" content="How to Run the Walk-Up Music" />
   <meta property="og:description" content="Five short walkthroughs from the field — roster, announcer, lineup, field ready, and handing the game to another parent." />
@@ -27,8 +27,8 @@
       "position": 1,
       "item": {
         "@type": "VideoObject",
-        "name": "Get the roster in",
-        "description": "Build a walk-up music roster for a youth baseball or softball team — names, numbers and a song each — or send one link and let the parents fill it in.",
+        "name": "Get everyone's walk-up song without chasing everyone",
+        "description": "Build a walk-up music roster for a youth baseball or softball team — type in names, numbers and a song each, or send one link and let the parents fill it in.",
         "thumbnailUrl": [
           "https://www.nowbattingapp.com/howto-7678144309148929310.jpg"
         ],
@@ -51,7 +51,7 @@
       "item": {
         "@type": "VideoObject",
         "name": "Make the announcer say exactly what you want",
-        "description": "Write a custom walk-up announcement — a nickname, a birthday shoutout, an inside joke — and have the announcer read it for that player.",
+        "description": "Write a custom walk-up announcement — a nickname, a birthday shoutout, a dugout inside joke — and have the announcer read it for that player.",
         "thumbnailUrl": [
           "https://www.nowbattingapp.com/howto-7680010237868330270.jpg"
         ],
@@ -73,8 +73,8 @@
       "position": 3,
       "item": {
         "@type": "VideoObject",
-        "name": "Set the lineup from a photo",
-        "description": "Set the batting order from a photo of the scorebook or lineup card. Magic Lineup matches the names to your roster and reorders them.",
+        "name": "Put the walk-up songs in batting order from a photo",
+        "description": "Snap a photo or upload a screenshot of the lineup and Magic Lineup puts your existing roster into batting order in seconds.",
         "thumbnailUrl": [
           "https://www.nowbattingapp.com/howto-7694484755445812511.jpg"
         ],
@@ -96,8 +96,8 @@
       "position": 4,
       "item": {
         "@type": "VideoObject",
-        "name": "Run it with no signal at the field",
-        "description": "Get a walk-up music roster field ready before you lose service, so announcements and songs still play at a field with no cell signal.",
+        "name": "Run the walk-up music with no signal",
+        "description": "Get Field Ready before you leave home and run walk-up songs and announcements offline, at a field with one bar of service.",
         "thumbnailUrl": [
           "https://www.nowbattingapp.com/howto-7685352754734271775.jpg"
         ],
@@ -119,8 +119,8 @@
       "position": 5,
       "item": {
         "@type": "VideoObject",
-        "name": "Hand the music to another parent",
-        "description": "Hand the walk-up music to another parent for a game you cannot make. One link gives them your roster and your songs.",
+        "name": "Hand the walk-up music to another parent",
+        "description": "Send one link and another parent can take over the roster you already set up, for a game you cannot make.",
         "thumbnailUrl": [
           "https://www.nowbattingapp.com/howto-7688527573986413854.jpg"
         ],
@@ -228,6 +228,10 @@
     .eyebrow { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.12em; color: var(--daylight); margin-bottom: 12px; text-transform: uppercase; }
     h1 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 16px; color: var(--txt); }
     .subtitle { font-size: 17px; color: var(--txt2); line-height: 1.65; margin-bottom: 52px; }
+    /* ⚠️ MUST come after `.subtitle`. Same specificity, so source order decides — placed
+       before it, the inherited 52px bottom margin won and the two lede paragraphs read
+       as two separate sections rather than one thought. */
+    .subtitle--tight { margin-bottom: 14px; }
 
     /* CONTACT CARD */
     .contact-card {
@@ -262,6 +266,7 @@
        the landing page. Designed cards rather than video stills, so adding a
        tutorial doesn't mean sourcing a screenshot every time. */
     .howto-blurb { font-size: 13.5px; color: var(--txt2); line-height: 1.6; margin-top: 6px; }
+    .howto-kicker { font-size: 13.5px; font-weight: 600; color: var(--txt); line-height: 1.5; margin-top: 8px; }
     .howto-title { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: var(--txt); line-height: 1.3; margin-top: 14px; }
     .howto-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em; color: var(--txt3); margin-top: 5px; text-transform: uppercase; }
     .howto-sub { font-size: 15px; color: var(--txt2); line-height: 1.7; margin: 6px 0 20px; }
@@ -390,21 +395,23 @@
 <main>
   <p class="eyebrow">How-tos</p>
   <h1>How to run the walk-up music.</h1>
-  <p class="subtitle">Five short ones, in the order you'll actually hit them — the kitchen table the night before, through to handing the whole thing to whoever is covering for you. Nobody hands you a manual for this job. Here's one.</p>
+  <p class="subtitle subtitle--tight">Nobody hands you a manual when you become the parent with the speaker. So here it is.</p>
+  <p class="subtitle">Five quick how-tos, from getting the roster together to handing the whole operation to another parent when you can&rsquo;t make the game.</p>
 
   <div class="howto-grid">
     <div class="howto-card">
       <button class="tok" type="button" data-video-id="7678144309148929310"
-              aria-label="Play: Get the roster in" onclick="loadTok(this)">
+              aria-label="Play: Get everyones walk-up song without chasing everyone" onclick="loadTok(this)">
         <picture>
           <source srcset="/howto-7678144309148929310.avif" type="image/avif">
           <img src="/howto-7678144309148929310.jpg" alt="Andrew setting up a walk-up music roster in his car before a game" width="536" height="953" loading="lazy" decoding="async">
         </picture>
         <span class="tok-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></span>
       </button>
-      <h2 class="howto-title">Get the roster in</h2>
+      <h2 class="howto-title">Get everyone&rsquo;s walk-up song without chasing everyone</h2>
       <p class="howto-meta">@nowbattingapp · TikTok</p>
-      <p class="howto-blurb">Names, numbers, a song each. Or send one link and let the parents do the typing while you find the other batting glove.</p>
+      <p class="howto-blurb">Names. Numbers. Walk-up songs. You can type them all in yourself &mdash; or send one link and let the parents do it for you.</p>
+      <p class="howto-kicker">You have enough jobs already.</p>
     </div>
     <div class="howto-card">
       <button class="tok" type="button" data-video-id="7680010237868330270"
@@ -417,51 +424,55 @@
       </button>
       <h2 class="howto-title">Make the announcer say exactly what you want</h2>
       <p class="howto-meta">@nowbattingapp · TikTok</p>
-      <p class="howto-blurb">A nickname. A birthday. The inside joke the dugout has been running since April. Write the line, your announcer reads it straight.</p>
+      <p class="howto-blurb">Nickname? Birthday? Dugout inside joke that absolutely nobody outside this team would understand?<br>Write the line. Pick your announcer. Let them say it.</p>
+      <p class="howto-kicker">This job escalates quickly.</p>
     </div>
     <div class="howto-card">
       <button class="tok" type="button" data-video-id="7694484755445812511"
-              aria-label="Play: Set the lineup from a photo" onclick="loadTok(this)">
+              aria-label="Play: Put the walk-up songs in batting order from a photo" onclick="loadTok(this)">
         <picture>
           <source srcset="/howto-7694484755445812511.avif" type="image/avif">
           <img src="/howto-7694484755445812511.jpg" alt="A handwritten baseball scorebook clipped to a dugout fence at sunset" width="536" height="953" loading="lazy" decoding="async">
         </picture>
         <span class="tok-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></span>
       </button>
-      <h2 class="howto-title">Set the lineup from a photo</h2>
+      <h2 class="howto-title">Put the walk-up songs in batting order from a photo</h2>
       <p class="howto-meta">@nowbattingapp · TikTok</p>
-      <p class="howto-blurb">Snap the scorebook hanging on the fence and the order sets itself. It only ever reorders — nobody gets added, renamed or cut.</p>
+      <p class="howto-blurb">The lineup finally showed up. Naturally, first pitch is in five minutes.<br>Snap a photo or upload a screenshot and Magic Lineup puts your existing roster in batting order in seconds.</p>
+      <p class="howto-kicker">Less dragging names around. More being ready when the first player walks up.</p>
     </div>
     <div class="howto-card">
       <button class="tok" type="button" data-video-id="7685352754734271775"
-              aria-label="Play: Run it with no signal at the field" onclick="loadTok(this)">
+              aria-label="Play: Run the walk-up music with no signal" onclick="loadTok(this)">
         <picture>
           <source srcset="/howto-7685352754734271775.avif" type="image/avif">
           <img src="/howto-7685352754734271775.jpg" alt="Getting a walk-up music roster ready to play offline before a game" width="536" height="953" loading="lazy" decoding="async">
         </picture>
         <span class="tok-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></span>
       </button>
-      <h2 class="howto-title">Run it with no signal at the field</h2>
+      <h2 class="howto-title">Run the walk-up music with no signal</h2>
       <p class="howto-meta">@nowbattingapp · TikTok</p>
-      <p class="howto-blurb">One tap on the wifi at home and the whole show runs in airplane mode. Because Field 2 never has great signal anyway. <a href="/offline">The long version</a>.</p>
+      <p class="howto-blurb">Because apparently the one place you really need your phone to work is also the place with one bar of service.<br>Get <a href="/offline">Field Ready</a> before you leave home and run the show offline at the field.</p>
+      <p class="howto-kicker">Field 2 can do its worst.</p>
     </div>
     <div class="howto-card">
       <button class="tok" type="button" data-video-id="7688527573986413854"
-              aria-label="Play: Hand the music to another parent" onclick="loadTok(this)">
+              aria-label="Play: Hand the walk-up music to another parent" onclick="loadTok(this)">
         <picture>
           <source srcset="/howto-7688527573986413854.avif" type="image/avif">
           <img src="/howto-7688527573986413854.jpg" alt="Andrew at the field explaining how to hand off the walk-up music" width="536" height="953" loading="lazy" decoding="async">
         </picture>
         <span class="tok-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#1F1F1F"/></svg></span>
       </button>
-      <h2 class="howto-title">Hand the music to another parent</h2>
+      <h2 class="howto-title">Hand the walk-up music to another parent</h2>
       <p class="howto-meta">@nowbattingapp · TikTok</p>
-      <p class="howto-blurb">Work trip. Dentist. The other field at the same time. One link and whoever is holding the phone has your roster and your songs.</p>
+      <p class="howto-blurb">Work trip. Dentist appointment. Two kids playing on two different fields at the exact same time.<br>Send one link and another parent can take over the roster you already set up.</p>
+      <p class="howto-kicker">Your streak of never missing a walk-up survives.</p>
     </div>
   </div>
 
   <h2 class="faq-head">Still stuck?</h2>
-  <p class="howto-sub">The <a href="/support">support page</a> has the full FAQ, or email <a href="mailto:cho@nowbattingapp.com">cho@nowbattingapp.com</a>. Yell at us. We're listening.</p>
+  <p class="howto-sub">Something not working? Question we somehow didn&rsquo;t answer?<br>Hit the <a href="/support">support page</a> or email <a href="mailto:cho@nowbattingapp.com">cho@nowbattingapp.com</a>.<br>Yell at us. We&rsquo;re Speaker Parents too.</p>
 </main>
 
 <footer>
