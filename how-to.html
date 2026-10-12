@@ -138,6 +138,14 @@
     .howto-blurb { font-size: 13.5px; color: var(--txt2); line-height: 1.6; margin-top: 10px; }
     .howto-sub { font-size: 15px; color: var(--txt2); line-height: 1.7; margin: 6px 0 20px; }
     .howto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 268px)); gap: 28px; margin-bottom: 44px; align-items: start; }
+    /* ⚠️ `main` is a 720px READING column, inherited from the support page where the content
+       is FAQ prose. A grid of video cards is scanned, not read, so it is the one block that
+       breaks out of the measure — otherwise five cards sit 2-across and the last one is
+       stranded alone. Breaks out symmetrically (624 → 860 usable = exactly three columns),
+       and only once the viewport is wide enough that it cannot overflow. */
+    @media (min-width: 1024px) {
+      .howto-grid { margin-left: -118px; margin-right: -118px; }
+    }
     .tok {
       position: relative; display: block; width: 100%; aspect-ratio: 9 / 16;
       border: 0; padding: 0; cursor: pointer; overflow: hidden;
