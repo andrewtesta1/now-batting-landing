@@ -199,6 +199,48 @@ function assertPricesAgree(html, plans) {
   log(`prices agree — visible: ${[...found].map((p) => '$' + p).join(', ') || 'none'}`);
 }
 
+
+/**
+ * /how-to carries its own hand-written VideoObject block, because this script only generates
+ * for index.html. Hand-written means it can drift from the page — a video swapped in the markup
+ * and not in the schema publishes structured data describing something that is not there, which
+ * is exactly the class of rot the price assertion above exists to stop. So assert instead:
+ * every id in the schema must appear as a data-video-id on the page, and vice versa, and every
+ * thumbnail the schema cites must exist on disk.
+ */
+async function assertHowToSchema() {
+  const file = join(ROOT, 'how-to.html');
+  let html;
+  try { html = await readFile(file, 'utf8'); } catch { log('note: how-to.html not present, skipping'); return; }
+
+  const m = html.match(/HOWTO-SCHEMA:START -->\s*<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  if (!m) fail('how-to.html is missing its HOWTO-SCHEMA block.');
+
+  let data;
+  try { data = JSON.parse(m[1]); } catch (e) { fail(`how-to.html schema is not valid JSON: ${e.message}`); }
+
+  const inSchema = (data.itemListElement || []).map((li) => {
+    const url = li.item?.contentUrl || '';
+    return url.slice(url.lastIndexOf('/') + 1);
+  });
+  const onPage = [...html.matchAll(/data-video-id="(\d+)"/g)].map((x) => x[1]);
+
+  const missing = inSchema.filter((id) => !onPage.includes(id));
+  const extra = onPage.filter((id) => !inSchema.includes(id));
+  if (missing.length) fail(`how-to.html schema lists video(s) not on the page: ${missing.join(', ')}`);
+  if (extra.length) fail(`how-to.html has video(s) on the page but not in the schema: ${extra.join(', ')}`);
+
+  for (const li of data.itemListElement || []) {
+    for (const t of li.item?.thumbnailUrl || []) {
+      const rel = t.replace('https://www.nowbattingapp.com/', '');
+      try { await readFile(join(ROOT, rel)); }
+      catch { fail(`how-to.html schema cites a thumbnail that does not exist: ${rel}`); }
+    }
+    if (!li.item?.uploadDate) fail(`how-to.html VideoObject "${li.item?.name}" has no uploadDate (Google requires it).`);
+  }
+  log(`how-to.html: ${inSchema.length} VideoObject(s) agree with the page, thumbnails present`);
+}
+
 const main = async () => {
   console.log('\nbuild-seo: generating structured data from a single source\n');
 
@@ -380,6 +422,8 @@ const main = async () => {
     await rm(join(ROOT, '.scripts'), { recursive: true, force: true });
     log('removed .scripts/ from the deployed output');
   }
+
+  await assertHowToSchema();
 
   console.log('\nbuild-seo: done\n');
 };

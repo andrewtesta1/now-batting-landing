@@ -334,22 +334,6 @@
 <script>
   // Swap the designed card for the real TikTok embed on tap, and load embed.js
   // once for the whole page. Nothing from TikTok is requested until a click.
-  function loadTok(btn){
-    var wrap = btn.parentNode;
-    if (wrap.dataset.loaded) return;
-    wrap.dataset.loaded = '1';
-    var id = btn.dataset.videoId;
-    wrap.innerHTML = '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nowbattingapp/video/' + id +
-      '" data-video-id="' + id + '" style="max-width:268px;min-width:240px;margin:0;"><section></section></blockquote>';
-    if (!window.__tokScript) {
-      window.__tokScript = true;
-      var sc = document.createElement('script');
-      sc.async = true; sc.src = 'https://www.tiktok.com/embed.js';
-      document.body.appendChild(sc);
-    } else if (window.tiktokEmbed && window.tiktokEmbed.lib) {
-      window.tiktokEmbed.lib.render(wrap.querySelectorAll('.tiktok-embed'));
-    }
-  }
 </script>
 </body>
 </html>
