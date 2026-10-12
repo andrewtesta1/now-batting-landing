@@ -209,15 +209,15 @@ function assertPricesAgree(html, plans) {
  * thumbnail the schema cites must exist on disk.
  */
 async function assertHowToSchema() {
-  const file = join(ROOT, 'how-to-run-walk-up-music.html');
+  const file = join(ROOT, 'how-to-run-walk-up-songs.html');
   let html;
-  try { html = await readFile(file, 'utf8'); } catch { log('note: how-to-run-walk-up-music.html not present, skipping'); return; }
+  try { html = await readFile(file, 'utf8'); } catch { log('note: how-to-run-walk-up-songs.html not present, skipping'); return; }
 
   const m = html.match(/HOWTO-SCHEMA:START -->\s*<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
-  if (!m) fail('how-to-run-walk-up-music.html is missing its HOWTO-SCHEMA block.');
+  if (!m) fail('how-to-run-walk-up-songs.html is missing its HOWTO-SCHEMA block.');
 
   let data;
-  try { data = JSON.parse(m[1]); } catch (e) { fail(`how-to-run-walk-up-music.html schema is not valid JSON: ${e.message}`); }
+  try { data = JSON.parse(m[1]); } catch (e) { fail(`how-to-run-walk-up-songs.html schema is not valid JSON: ${e.message}`); }
 
   const inSchema = (data.itemListElement || []).map((li) => {
     const url = li.item?.contentUrl || '';
@@ -227,18 +227,18 @@ async function assertHowToSchema() {
 
   const missing = inSchema.filter((id) => !onPage.includes(id));
   const extra = onPage.filter((id) => !inSchema.includes(id));
-  if (missing.length) fail(`how-to-run-walk-up-music.html schema lists video(s) not on the page: ${missing.join(', ')}`);
-  if (extra.length) fail(`how-to-run-walk-up-music.html has video(s) on the page but not in the schema: ${extra.join(', ')}`);
+  if (missing.length) fail(`how-to-run-walk-up-songs.html schema lists video(s) not on the page: ${missing.join(', ')}`);
+  if (extra.length) fail(`how-to-run-walk-up-songs.html has video(s) on the page but not in the schema: ${extra.join(', ')}`);
 
   for (const li of data.itemListElement || []) {
     for (const t of li.item?.thumbnailUrl || []) {
       const rel = t.replace('https://www.nowbattingapp.com/', '');
       try { await readFile(join(ROOT, rel)); }
-      catch { fail(`how-to-run-walk-up-music.html schema cites a thumbnail that does not exist: ${rel}`); }
+      catch { fail(`how-to-run-walk-up-songs.html schema cites a thumbnail that does not exist: ${rel}`); }
     }
-    if (!li.item?.uploadDate) fail(`how-to-run-walk-up-music.html VideoObject "${li.item?.name}" has no uploadDate (Google requires it).`);
+    if (!li.item?.uploadDate) fail(`how-to-run-walk-up-songs.html VideoObject "${li.item?.name}" has no uploadDate (Google requires it).`);
   }
-  log(`how-to-run-walk-up-music.html: ${inSchema.length} VideoObject(s) agree with the page, thumbnails present`);
+  log(`how-to-run-walk-up-songs.html: ${inSchema.length} VideoObject(s) agree with the page, thumbnails present`);
 }
 
 const main = async () => {
