@@ -163,15 +163,17 @@ const HOW = `
       <h2 id="how-h">How the chart works</h2>
       <dl>
         <dt>What counts</dt>
-        <dd>A pick: a CHO searches Apple Music in the Now Batting song editor and chooses a song for a player. Songs added through the parent link, a roster import or a shared roster aren’t counted.</dd>
+        <dd>A pick: someone searches Apple Music in the Now Batting song editor and chooses a song for a player. Songs added through the parent link, a roster import or a shared roster aren’t counted.</dd>
         <dt>The window</dt>
-        <dd>Each Monday’s chart covers the ${WINDOW_DAYS} days ending Sunday at midnight, Eastern time. One week of picks is too thin to rank honestly, so every week looks back four.</dd>
+        <dd>Each weekly chart reflects four weeks of song selections, ending Sunday at midnight Eastern time.</dd>
         <dt>How it ranks</dt>
-        <dd>By how many different CHOs picked a song. Picking it for five players still counts once, so one very busy team can’t carry a song. Ties go to total picks, then to the most recent week. A song needs at least ${MIN_CHOS} CHOs to chart.</dd>
+        <dd>By how many different Now Batting users picked a song. Picking it for five players still counts once, so one very busy team can’t carry a song. Ties go to total picks, then to the most recent week. A song needs at least ${MIN_CHOS} users to chart.</dd>
         <dt>Versions</dt>
-        <dd>A single, an album cut and a clean edit of the same song count together, and the row links to the version CHOs picked most. Explicit versions aren’t counted or shown.</dd>
+        <dd>A single, an album cut and a clean edit of the same song count together, and the row links to the version picked most. Explicit versions aren’t counted or shown.</dd>
         <dt>When it updates</dt>
-        <dd>Every Monday morning. “Last week” and weeks on the chart compare against the previous Monday’s chart; a song’s first appearance is marked NEW, a return is RE-ENTRY.</dd>
+        <dd>Every Monday morning. “Last week” compares against the previous Monday’s chart; a song’s first appearance is marked NEW, a return is RE-ENTRY.</dd>
+        <dt>Weeks on the chart</dt>
+        <dd>Counts every weekly chart a song has made. A plus, like “5+ weeks”, means the song was already on our earliest chart, so it may have been charting longer than our records go back.</dd>
         <dt>Privacy</dt>
         <dd>We publish rankings only. No counts, no player or team names, nothing about who picked what.</dd>
       </dl>
@@ -205,8 +207,8 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
   const title = isCurrent || !chart ? 'Top 20 Walk-Up Songs This Week | Now Batting'
     : `Top 20 Walk-Up Songs, Week of ${fmtDay(chart.chartDate)} | Now Batting`;
   const desc = chart
-    ? `The Now Batting 20: the walk-up songs picked by the most Now Batting CHOs over the ${WINDOW_DAYS} days to ${fmtDay(chart.window.end)}. ${chart.entries[0] ? `No. 1: ${chart.entries[0].title} by ${chart.entries[0].artist}. ` : ''}New chart every Monday.`
-    : 'The Now Batting 20: the walk-up songs picked by the most Now Batting CHOs, ranked every Monday with Apple Music links.';
+    ? `The Now Batting 20: the walk-up songs picked by the most Now Batting users over the ${WINDOW_DAYS} days to ${fmtDay(chart.window.end)}. ${chart.entries[0] ? `No. 1: ${chart.entries[0].title} by ${chart.entries[0].artist}. ` : ''}New chart every Monday.`
+    : 'The Now Batting 20: the walk-up songs picked by the most Now Batting users, ranked every Monday with Apple Music links.';
 
   const hasPrev = Boolean(chart?.hasPrev);
   const showWeeks = (chart?.historyWeeks || 0) >= 2;
@@ -215,7 +217,7 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
   <script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org', '@type': 'ItemList',
     name: `The Now Batting 20 — week of ${fmtDay(chart.chartDate)}`,
-    description: `Walk-up songs ranked by how many Now Batting CHOs picked them, ${fmtRange(chart.window.start, chart.window.end)}.`,
+    description: `Walk-up songs ranked by how many Now Batting users picked them, ${fmtRange(chart.window.start, chart.window.end)}.`,
     url: canonical, numberOfItems: n,
     itemListElement: chart.entries.map((e) => ({
       '@type': 'ListItem', position: e.rank,
@@ -243,14 +245,14 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
     : !n ? `
     <section class="empty">
       <p class="empty-big">Quiet week at the ballpark.</p>
-      <p>No song was picked by ${MIN_CHOS} or more CHOs in this window, so there’s no chart to post. We’d rather show nothing than make one up.</p>
+      <p>No song was picked by ${MIN_CHOS} or more Now Batting users in this window, so there’s no chart to post. We’d rather show nothing than make one up.</p>
     </section>`
     : `
     ${chart.highlights?.length ? `<div class="hls" aria-label="This week’s highlights">${chart.highlights.map(highlight).join('')}
     </div>` : ''}
     <ol class="chart" aria-label="The Now Batting 20, week of ${fmtDay(chart.chartDate)}">${chart.entries.map((e) => row(e, { hasPrev, showWeeks, editorial })).join('')}
     </ol>
-    ${n < 20 ? `<p class="short">Only ${n} songs cleared the bar this week (at least ${MIN_CHOS} CHOs). Short chart, honest chart.</p>` : ''}
+    ${n < 20 ? `<p class="short">Only ${n} songs cleared the bar this week (at least ${MIN_CHOS} users). Short chart, honest chart.</p>` : ''}
     ${chart.onDeck?.length ? `
     <section class="deck" aria-labelledby="deck-h">
       <h2 id="deck-h">On deck</h2>
@@ -304,7 +306,7 @@ ${NAV}
   <header class="hero">
     <img class="lockup" src="/nb20/nb20-horizontal-dark.svg" alt="The Now Batting 20" width="403" height="62">
     <h1>${esc(h1)}</h1>
-    <p class="measures">Ranked by how many CHOs picked each song in Now Batting over the last four weeks.</p>${period}
+    <p class="measures">Updated weekly. Ranked by how many Now Batting users picked each song over the past four weeks.</p>${period}
     ${chart && n ? `<button class="share" type="button" data-url="${canonical}" data-title="${esc(isCurrent ? 'The Now Batting 20' : `The Now Batting 20 — week of ${fmtDay(chart.chartDate)}`)}">Share the chart</button><span class="share-msg" role="status" aria-live="polite"></span>` : ''}
   </header>
   ${archiveBanner}${stale}
