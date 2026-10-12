@@ -63,7 +63,7 @@ jobs:
         run: |
           git config user.name "Now Batting Chart"
           git config user.email "drewtesta@gmail.com"
-          git add -A data/nb20 nb20 top-walk-up-songs
+          git add -A data/nb20 nb20 top-walk-up-songs index.html
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"; echo "Nothing new to publish."
           else

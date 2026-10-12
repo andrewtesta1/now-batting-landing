@@ -45,7 +45,7 @@
     .nav-right { display: flex; align-items: center; gap: 16px; }
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-link { font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
-    .nav-link:hover { color: var(--txt); }
+    .nav-link:hover, .nav-link.active { color: var(--txt); }
     .nav-btn { background: var(--daylight); color: #1F1F1F; font-weight: 700; font-size: 14px; letter-spacing: 0.01em; padding: 10px 20px; border-radius: var(--radius-sm); text-decoration: none; transition: background 0.15s; white-space: nowrap; }
     .nav-btn:hover { background: var(--daylight-dim); }
 
@@ -185,6 +185,7 @@
   <div class="nav-links">
     <a href="/our-story" class="nav-link">Our Story</a>
     <a href="/how-to-run-walk-up-songs" class="nav-link">Field Guide</a>
+    <a href="/top-walk-up-songs" class="nav-link active" aria-current="page">Top 20</a>
     <a href="/support" class="nav-link">Support</a>
   </div>
   <div class="nav-right">
