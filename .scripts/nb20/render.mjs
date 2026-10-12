@@ -511,16 +511,18 @@ async function writeHomeTeaser(latest) {
   if (a < 0 || b < a) { console.warn('  nb20: index.html has no NB20:TEASER markers, homepage strip skipped'); return; }
   const top = latest?.entries?.slice(0, 3) || [];
   const list = top.length
-    ? `<ol class="nb20t-list" aria-label="Top three this week">${top.map((e) => `<li><span>${e.rank}</span><p>${esc(e.title)}<em>${esc(e.artist)}</em></p></li>`).join('')}</ol>`
-    : '<p class="nb20t-list">The first chart drops Monday.</p>';
+    ? `<ol class="nb20t-list" aria-label="Top three this week">${top.map((e) => `<li><span class="nb20t-rank">${e.rank}</span>${e.artwork ? `<img src="${esc(e.artwork)}" alt="" width="56" height="56" loading="lazy" decoding="async">` : '<i></i>'}<p>${esc(e.title)}<em>${esc(e.artist)}</em></p></li>`).join('')}</ol>`
+    : '<p class="nb20t-empty">The first chart drops Monday.</p>';
   const block = `${START}
 <section class="nb20-teaser" aria-labelledby="nb20t-h">
   <a class="nb20t-card" href="/${SLUG}">
-    <div>
-      <img class="nb20t-lockup" src="/nb20/nb20-horizontal-dark.svg" alt="The Now Batting 20" width="403" height="62" loading="lazy" decoding="async">
-      <p class="nb20t-h" id="nb20t-h">This week’s top walk-up songs${latest ? `<span class="nb20t-week">Week of ${fmtDay(latest.chartDate)}</span>` : ''}</p>
+    <div class="nb20t-intro">
+      <div class="nb20t-glow"><img class="nb20t-lockup" src="/nb20/nb20-horizontal-dark.svg" alt="The Now Batting 20" width="403" height="62" loading="lazy" decoding="async"></div>
+      <h2 class="nb20t-title" id="nb20t-h">The walk-up song chart.<span>Updated every Monday.</span></h2>
+      <p class="nb20t-tag">Real song picks. From real lineups.</p>
     </div>
-    <div>
+    <div class="nb20t-top">
+      <p class="nb20t-week">${latest ? `This week · ${fmtDay(latest.chartDate)}` : 'Coming Monday'}</p>
       ${list}
       <span class="nb20t-cta">See the full 20 →</span>
     </div>
