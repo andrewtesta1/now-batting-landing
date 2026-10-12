@@ -90,7 +90,9 @@
     .meta { font: 500 11px/1.6 var(--font-mono); color: var(--txt3); margin-top: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 0; }
     /* Separators belong to the item AFTER them, so a wrapped line never ends on a dangling dot. */
     .meta .mi + .mi::before { content: '·'; margin: 0 6px; color: var(--txt3); }
-    .meta .tag { color: var(--txt2); }
+    /* The tag is boxed, so it needs no separator — and a wrapped line never starts with a stray dot. */
+    .meta .mi.tag { color: var(--txt2); border: 1px solid var(--bord); border-radius: 4px; padding: 0 5px; margin-left: 8px; }
+    .meta .mi.tag::before { content: none; }
     .links { font: 700 11px/1.6 var(--font-mono); margin-top: 2px; }
     .listen { color: var(--txt); font-weight: 700; text-decoration: none; white-space: nowrap; }
     .listen:hover { text-decoration: underline; text-underline-offset: 2px; }
