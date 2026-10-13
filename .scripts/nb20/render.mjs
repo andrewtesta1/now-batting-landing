@@ -218,8 +218,8 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
   const title = isCurrent || !chart ? 'Top 20 Walk-Up Songs for Youth Baseball & Softball | Now Batting'
     : `Top 20 Walk-Up Songs for Youth Baseball & Softball, Week of ${fmtDay(chart.chartDate)} | Now Batting`;
   const desc = chart
-    ? `The Now Batting 20: the walk-up songs youth baseball and softball coaches picked most over the ${WINDOW_DAYS} days to ${fmtDay(chart.window.end)}. ${chart.entries[0] ? `No. 1: ${chart.entries[0].title} by ${chart.entries[0].artist}. ` : ''}New chart every Monday.`
-    : 'The Now Batting 20: the walk-up songs youth baseball and softball coaches pick most, ranked every Monday with Apple Music links.';
+    ? `The Now Batting 20: the youth baseball and softball walk-up songs picked most in Now Batting over the ${WINDOW_DAYS} days to ${fmtDay(chart.window.end)}. ${chart.entries[0] ? `No. 1: ${chart.entries[0].title} by ${chart.entries[0].artist}. ` : ''}New chart every Monday.`
+    : 'The Now Batting 20: the youth baseball and softball walk-up songs picked most in Now Batting, ranked every Monday with Apple Music links.';
 
   const hasPrev = Boolean(chart?.hasPrev);
   const showWeeks = (chart?.historyWeeks || 0) >= 2;
@@ -228,7 +228,7 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
   <script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org', '@type': 'ItemList',
     name: `The Now Batting 20 — top youth baseball and softball walk-up songs, week of ${fmtDay(chart.chartDate)}`,
-    description: `Walk-up songs ranked by how many youth baseball and softball coaches picked them in Now Batting, ${fmtRange(chart.window.start, chart.window.end)}.`,
+    description: `Youth baseball and softball walk-up songs, ranked by how many Chief Hype Officers picked each one in Now Batting, ${fmtRange(chart.window.start, chart.window.end)}.`,
     url: canonical, numberOfItems: n,
     itemListElement: chart.entries.map((e) => ({
       '@type': 'ListItem', position: e.rank,
@@ -317,7 +317,7 @@ ${NAV}
   <header class="hero">
     <img class="lockup" src="/nb20/nb20-horizontal-dark.svg" alt="The Now Batting 20" width="403" height="62">
     <h1>${esc(h1)}</h1>
-    <p class="measures">Updated weekly. Ranked by how many youth baseball and softball coaches picked each song in Now Batting over the past four weeks.</p>${period}
+    <p class="measures">Updated weekly. Ranked by how many Chief Hype Officers picked each song for their youth baseball and softball players over the past four weeks.</p>${period}
     ${chart && n ? `<button class="share" type="button" data-url="${canonical}" data-title="${esc(isCurrent ? 'The Now Batting 20' : `The Now Batting 20 — week of ${fmtDay(chart.chartDate)}`)}">Share the chart</button><span class="share-msg" role="status" aria-live="polite"></span>` : ''}
   </header>
   ${archiveBanner}${stale}
