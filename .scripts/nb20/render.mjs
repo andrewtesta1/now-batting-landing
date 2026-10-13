@@ -202,14 +202,24 @@ const CTA = `
 function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
   const canonical = isCurrent ? `${SITE}/${SLUG}` : `${SITE}/${SLUG}/${chart?.chartDate}`;
   const n = chart?.entries.length || 0;
-  const h1 = !chart ? 'This Week’s Top 20 Walk-Up Songs'
-    : isCurrent ? `This Week’s Top ${n < 20 ? n : 20} Walk-Up Songs`
-    : `Top ${n < 20 ? n : 20} Walk-Up Songs · Week of ${fmtDay(chart.chartDate)}`;
-  const title = isCurrent || !chart ? 'Top 20 Walk-Up Songs This Week | Now Batting'
-    : `Top 20 Walk-Up Songs, Week of ${fmtDay(chart.chartDate)} | Now Batting`;
+  /**
+   * ⚠️ THE SPORT HAS TO BE IN THE TITLE, THE H1 AND THE DESCRIPTION.
+   *
+   * "Top 20 Walk-Up Songs" competes against MLB.com, Bleacher Report and a decade of blog
+   * listicles, and loses. Every non-branded query in Search Console that brought anyone here
+   * carries the sport — "best walk up song app FOR BASEBALL", "BASEBALL announcer app",
+   * "app for BASEBALL walk up songs" — and the page built to catch song queries was the one
+   * page on the site that never said it. Youth baseball and softball is a far less contested
+   * phrase and is exactly who this chart is for.
+   */
+  const h1 = !chart ? 'This Week’s Top 20 Youth Baseball & Softball Walk-Up Songs'
+    : isCurrent ? `This Week’s Top ${n < 20 ? n : 20} Youth Baseball & Softball Walk-Up Songs`
+    : `Top ${n < 20 ? n : 20} Youth Baseball & Softball Walk-Up Songs · Week of ${fmtDay(chart.chartDate)}`;
+  const title = isCurrent || !chart ? 'Top 20 Walk-Up Songs for Youth Baseball & Softball | Now Batting'
+    : `Top 20 Walk-Up Songs for Youth Baseball & Softball, Week of ${fmtDay(chart.chartDate)} | Now Batting`;
   const desc = chart
-    ? `The Now Batting 20: the walk-up songs picked by the most Now Batting users over the ${WINDOW_DAYS} days to ${fmtDay(chart.window.end)}. ${chart.entries[0] ? `No. 1: ${chart.entries[0].title} by ${chart.entries[0].artist}. ` : ''}New chart every Monday.`
-    : 'The Now Batting 20: the walk-up songs picked by the most Now Batting users, ranked every Monday with Apple Music links.';
+    ? `The Now Batting 20: the walk-up songs youth baseball and softball coaches picked most over the ${WINDOW_DAYS} days to ${fmtDay(chart.window.end)}. ${chart.entries[0] ? `No. 1: ${chart.entries[0].title} by ${chart.entries[0].artist}. ` : ''}New chart every Monday.`
+    : 'The Now Batting 20: the walk-up songs youth baseball and softball coaches pick most, ranked every Monday with Apple Music links.';
 
   const hasPrev = Boolean(chart?.hasPrev);
   const showWeeks = (chart?.historyWeeks || 0) >= 2;
@@ -217,8 +227,8 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
   const jsonld = chart && n ? `
   <script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org', '@type': 'ItemList',
-    name: `The Now Batting 20 — week of ${fmtDay(chart.chartDate)}`,
-    description: `Walk-up songs ranked by how many Now Batting users picked them, ${fmtRange(chart.window.start, chart.window.end)}.`,
+    name: `The Now Batting 20 — top youth baseball and softball walk-up songs, week of ${fmtDay(chart.chartDate)}`,
+    description: `Walk-up songs ranked by how many youth baseball and softball coaches picked them in Now Batting, ${fmtRange(chart.window.start, chart.window.end)}.`,
     url: canonical, numberOfItems: n,
     itemListElement: chart.entries.map((e) => ({
       '@type': 'ListItem', position: e.rank,
@@ -286,12 +296,12 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
   <meta property="og:site_name" content="Now Batting" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonical}" />
-  <meta property="og:title" content="${esc(isCurrent || !chart ? 'The Now Batting 20 — This Week’s Top 20 Walk-Up Songs' : `The Now Batting 20 — Week of ${fmtDay(chart.chartDate)}`)}" />
+  <meta property="og:title" content="${esc(isCurrent || !chart ? 'The Now Batting 20 — Top Walk-Up Songs for Youth Baseball & Softball' : `The Now Batting 20 — Week of ${fmtDay(chart.chartDate)}`)}" />
   <meta property="og:description" content="${esc(desc)}" />
   <meta property="og:image" content="${SITE}/nb20/nb20-og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="The Now Batting 20 — This Week’s Top 20 Walk-Up Songs" />
+  <meta property="og:image:alt" content="The Now Batting 20 — Top Walk-Up Songs for Youth Baseball and Softball" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/nb20/nb20-og.png" />
   <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -307,7 +317,7 @@ ${NAV}
   <header class="hero">
     <img class="lockup" src="/nb20/nb20-horizontal-dark.svg" alt="The Now Batting 20" width="403" height="62">
     <h1>${esc(h1)}</h1>
-    <p class="measures">Updated weekly. Ranked by how many Now Batting users picked each song over the past four weeks.</p>${period}
+    <p class="measures">Updated weekly. Ranked by how many youth baseball and softball coaches picked each song in Now Batting over the past four weeks.</p>${period}
     ${chart && n ? `<button class="share" type="button" data-url="${canonical}" data-title="${esc(isCurrent ? 'The Now Batting 20' : `The Now Batting 20 — week of ${fmtDay(chart.chartDate)}`)}">Share the chart</button><span class="share-msg" role="status" aria-live="polite"></span>` : ''}
   </header>
   ${archiveBanner}${stale}
