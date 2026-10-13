@@ -532,6 +532,28 @@ ${END}`;
   await writeFile(file, html.slice(0, a) + block + html.slice(b + END.length));
 }
 
+// The app's Music Hub reads this to show the chart and play it. It is a public contract with
+// every installed build, so only ever ADD fields; renaming or removing one breaks the card for
+// people who will not update for months. Same no-counts rule as the snapshots.
+async function writeChartJson(dir, latest) {
+  const body = latest ? {
+    version: 1,
+    chartDate: latest.chartDate,
+    window: { start: latest.window.start, end: latest.window.end },
+    url: `${SITE}/${SLUG}`,
+    entries: latest.entries.map((e) => ({
+      rank: e.rank,
+      trackId: e.trackId,
+      title: e.title,
+      artist: e.artist,
+      artwork: e.artwork ? `${SITE}${e.artwork}` : null,
+      movement: latest.hasPrev && e.movement ? e.movement : null,
+      lastWeek: latest.hasPrev ? (e.lastWeek ?? null) : null,
+    })),
+  } : { version: 1, chartDate: null, window: null, url: `${SITE}/${SLUG}`, entries: [] };
+  await writeFile(join(dir, 'chart.json'), JSON.stringify(body, null, 2) + '\n');
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -555,6 +577,7 @@ async function main() {
     await writeFile(join(weekDir, `${d}.html`), page({ chart: withHistory(snapshots, d), isCurrent: false, allDates: dates, editorial, nextMonday }));
   }
   await writeHomeTeaser(latest);
+  await writeChartJson(weekDir, latest);
   console.log(`  nb20: rendered /${SLUG} (${latest ? `week of ${latest.chartDate}, ${latest.entries.length} songs` : 'no chart yet'}) + ${dates.length} week page(s)`);
 }
 
