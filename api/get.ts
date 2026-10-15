@@ -21,6 +21,31 @@
 // everywhere — there is no env var for it in this repo). App Store ID: 6760744461.
 const APP_STORE_URL = 'https://apps.apple.com/app/now-batting/id6760744461';
 
+// Apple campaign attribution. A link carrying `pt` (our provider token) and `ct`
+// (a campaign name) makes App Store Connect → App Analytics → Acquisition →
+// Campaigns count the downloads that came from it. Without `pt`, Apple ignores
+// `ct`, so until the token is filled in iOS visitors go to the plain listing and
+// only PostHog sees where they came from. Not a secret — it is in every
+// campaign link Apple generates. Find it in ASC: Analytics → Acquisition →
+// Campaigns → Generate Campaign Link.
+const APPLE_PROVIDER_TOKEN = '';
+
+// `ct` is capped at 40 characters by Apple. Built from the UTMs so one link
+// format serves both PostHog and Apple: ?utm_source=tiktok&utm_campaign=bio → tiktok-bio.
+function appleCampaign(params: URLSearchParams): string | null {
+  const parts = [params.get('utm_source'), params.get('utm_campaign')]
+    .map((v) => (v || '').toLowerCase().replace(/[^a-z0-9_-]+/g, ''))
+    .filter(Boolean);
+  return parts.length ? parts.join('-').slice(0, 40) : null;
+}
+
+function appStoreUrl(params: URLSearchParams): string {
+  const ct = appleCampaign(params);
+  if (!APPLE_PROVIDER_TOKEN || !ct) return APP_STORE_URL;
+  const q = new URLSearchParams({ pt: APPLE_PROVIDER_TOKEN, ct, mt: '8' });
+  return `${APP_STORE_URL}?${q}`;
+}
+
 // PostHog capture. The token comes from the environment ONLY — no hardcoded
 // fallback. It is a public, write-only ingestion key and cannot read data, but
 // THIS REPO IS PUBLIC, and a key sitting in public source is trivially scraped
@@ -37,7 +62,10 @@ declare const process: { env: Record<string, string | undefined> };
 const POSTHOG_HOST = process.env.POSTHOG_HOST || 'https://us.i.posthog.com';
 const POSTHOG_TOKEN = process.env.POSTHOG_PROJECT_TOKEN;
 
-async function captureScan(props: Record<string, unknown>): Promise<void> {
+// A printed QR and a social bio link both land here. They are different acts,
+// so they are different events: `qr_scan` stays exactly what it always counted,
+// and a bio tap (utm_medium=social) is `social_link_tap`.
+async function captureScan(event: string, props: Record<string, unknown>): Promise<void> {
   if (!POSTHOG_TOKEN) return;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 1500);
@@ -48,7 +76,7 @@ async function captureScan(props: Record<string, unknown>): Promise<void> {
       signal: controller.signal,
       body: JSON.stringify({
         api_key: POSTHOG_TOKEN,
-        event: 'qr_scan',
+        event,
         // Anonymous per-scan id — we care about scan volume, not identity.
         distinct_id: `qr_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`,
         properties: { ...props, $lib: 'now-batting-get-redirect' },
@@ -78,14 +106,15 @@ export default async function handler(req: any, res: any) {
   const params = new URLSearchParams(queryString);
 
   let destination: string;
-  if (device === 'ios') destination = APP_STORE_URL;            // params dropped from Apple URL (captured below)
+  if (device === 'ios') destination = appStoreUrl(params);      // UTMs become Apple's ct (captured below too)
   else if (device === 'android') destination = `/get/android${suffix}`;
   else destination = `/${suffix}`;
 
   // Durable scan attribution → PostHog. Awaited (with a 1.5s cap) so the event
   // is delivered before the serverless function is frozen post-response; the
   // hard timeout guarantees a slow PostHog never delays the scan noticeably.
-  await captureScan({
+  const isSocial = params.get('utm_medium') === 'social';
+  await captureScan(isSocial ? 'social_link_tap' : 'qr_scan', {
     device,
     destination_type: device === 'ios' ? 'app_store' : device === 'android' ? 'android_waitlist' : 'homepage',
     utm_source: params.get('utm_source') || null,
