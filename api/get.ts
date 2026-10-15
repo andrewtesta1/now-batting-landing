@@ -23,12 +23,11 @@ const APP_STORE_URL = 'https://apps.apple.com/app/now-batting/id6760744461';
 
 // Apple campaign attribution. A link carrying `pt` (our provider token) and `ct`
 // (a campaign name) makes App Store Connect → App Analytics → Acquisition →
-// Campaigns count the downloads that came from it. Without `pt`, Apple ignores
-// `ct`, so until the token is filled in iOS visitors go to the plain listing and
-// only PostHog sees where they came from. Not a secret — it is in every
-// campaign link Apple generates. Find it in ASC: Analytics → Acquisition →
-// Campaigns → Generate Campaign Link.
-const APPLE_PROVIDER_TOKEN = '';
+// Campaigns count the downloads that came from it. Apple ignores `ct` without
+// `pt`. A link with no UTMs (the printed QR) goes to the plain listing. Not a
+// secret — it is in every campaign link Apple generates; it is the providerId
+// in ASC's /olympus/v1/session.
+const APPLE_PROVIDER_TOKEN = '128645121';
 
 // `ct` is capped at 40 characters by Apple. Built from the UTMs so one link
 // format serves both PostHog and Apple: ?utm_source=tiktok&utm_campaign=bio → tiktok-bio.
