@@ -34,6 +34,12 @@ This makes `nowbattingapp.com/join/XXXXXXXX` work as share links. The actual web
 
 ---
 
+## /get — smart redirect + attribution (`api/get.ts`)
+`/get` is permanent: the printed QR and every social bio link point at it. iPhone → App Store, Android → `/get/android` waitlist, desktop → homepage (UTMs kept).
+- Bio links: `/get?utm_source=<tiktok|instagram|youtube|facebook>&utm_medium=social&utm_campaign=bio`. iPhone visitors get Apple campaign tokens `pt=128645121&ct=<source>-<campaign>&mt=8`, so App Store Connect → Campaigns counts downloads per link.
+- PostHog: `social_link_tap` when `utm_medium=social`, else `qr_scan`. Token from `POSTHOG_PROJECT_TOKEN` (Production only).
+- Measurement canon: `walkup-hero/docs/30-growth/social/measurement.md`.
+
 ## Deploy
 ```bash
 cd /Users/andrewtesta/now-batting-landing
