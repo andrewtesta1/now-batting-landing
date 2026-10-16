@@ -1,3 +1,7 @@
 .claude
 .DS_Store
 mockup-fixes.html
+CLAUDE.md
+.claudeignore
+.vercelignore
+.github
