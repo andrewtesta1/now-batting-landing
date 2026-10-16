@@ -41,6 +41,8 @@ This makes `nowbattingapp.com/join/XXXXXXXX` work as share links. The actual web
 - Measurement canon: `walkup-hero/docs/30-growth/social/measurement.md`.
 
 ## Deploy
+⚠️ Vercel serves every file in this folder, dot-files included. Anything repo-only (this file, `.claudeignore`, `.github/`) must be listed in `.vercelignore` — they were all public until 2026-10-16. Check a new repo-only file with `curl -I https://www.nowbattingapp.com/<file>` after deploying.
+
 ```bash
 cd /Users/andrewtesta/now-batting-landing
 PATH="/usr/local/bin:$PATH" vercel --prod
