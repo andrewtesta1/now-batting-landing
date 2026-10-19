@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "chartDate": "2026-10-12",
+  "chartDate": "2026-10-19",
   "window": {
-    "start": "2026-09-14",
-    "end": "2026-10-11"
+    "start": "2026-09-21",
+    "end": "2026-10-18"
   },
   "url": "https://www.nowbattingapp.com/top-walk-up-songs",
   "entries": [
@@ -31,97 +31,97 @@
     },
     {
       "rank": 3,
-      "trackId": "1631464175",
-      "title": "Pretty Girls Walk",
-      "artist": "Big Boss Vette",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1631464175.jpg",
-      "movement": {
-        "type": "same"
-      },
-      "lastWeek": 3
-    },
-    {
-      "rank": 4,
       "trackId": "1765520596",
       "title": "Big Dawgs",
       "artist": "Hanumankind & Kalmi",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1765520596.jpg",
       "movement": {
         "type": "up",
-        "by": 7
+        "by": 1
       },
-      "lastWeek": 11
+      "lastWeek": 4
+    },
+    {
+      "rank": 4,
+      "trackId": "1631464175",
+      "title": "Pretty Girls Walk",
+      "artist": "Big Boss Vette",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1631464175.jpg",
+      "movement": {
+        "type": "down",
+        "by": 1
+      },
+      "lastWeek": 3
     },
     {
       "rank": 5,
-      "trackId": "1411629089",
-      "title": "Thunder",
-      "artist": "Imagine Dragons",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1411629089.jpg",
-      "movement": {
-        "type": "up",
-        "by": 5
-      },
-      "lastWeek": 10
-    },
-    {
-      "rank": 6,
       "trackId": "723351644",
       "title": "Who Let the Dogs Out",
       "artist": "Baha Men",
       "artwork": "https://www.nowbattingapp.com/nb20/art/723351644.jpg",
+      "movement": {
+        "type": "up",
+        "by": 1
+      },
+      "lastWeek": 6
+    },
+    {
+      "rank": 6,
+      "trackId": "269573341",
+      "title": "Beat It",
+      "artist": "Michael Jackson",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/269573341.jpg",
+      "movement": {
+        "type": "up",
+        "by": 11
+      },
+      "lastWeek": 17
+    },
+    {
+      "rank": 7,
+      "trackId": "1870680329",
+      "title": "LET 'EM KNOW",
+      "artist": "T.I.",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1870680329.jpg",
+      "movement": {
+        "type": "up",
+        "by": 9
+      },
+      "lastWeek": 16
+    },
+    {
+      "rank": 8,
+      "trackId": "1577142083",
+      "title": "Row My Boat",
+      "artist": "Cj Beatty",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1577142083.jpg",
+      "movement": {
+        "type": "up",
+        "by": 6
+      },
+      "lastWeek": 14
+    },
+    {
+      "rank": 9,
+      "trackId": "269573303",
+      "title": "Thriller",
+      "artist": "Michael Jackson",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/269573303.jpg",
       "movement": {
         "type": "new"
       },
       "lastWeek": null
     },
     {
-      "rank": 7,
-      "trackId": "353859978",
-      "title": "All I Do Is Win (feat. T-Pain, Ludacris, Snoop Dogg & Rick Ross)",
-      "artist": "DJ Khaled",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/353859978.jpg",
-      "movement": {
-        "type": "down",
-        "by": 3
-      },
-      "lastWeek": 4
-    },
-    {
-      "rank": 8,
-      "trackId": "1800089163",
-      "title": "HEAVEN ON THIS EARTH",
-      "artist": "Forrest Frank & Torey D'Shaun",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1800089163.jpg",
-      "movement": {
-        "type": "down",
-        "by": 3
-      },
-      "lastWeek": 5
-    },
-    {
-      "rank": 9,
-      "trackId": "6771852797",
-      "title": "JESUS IS ALIVE",
-      "artist": "Forrest Frank",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/6771852797.jpg",
-      "movement": {
-        "type": "up",
-        "by": 4
-      },
-      "lastWeek": 13
-    },
-    {
       "rank": 10,
-      "trackId": "423045744",
-      "title": "Blind",
-      "artist": "Korn",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/423045744.jpg",
+      "trackId": "1055074639",
+      "title": "Unstoppable",
+      "artist": "Sia",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1055074639.jpg",
       "movement": {
-        "type": "up",
-        "by": 2
+        "type": "reentry"
       },
-      "lastWeek": 12
+      "lastWeek": null
     },
     {
       "rank": 11,
@@ -130,24 +130,93 @@
       "artist": "Ella Langley",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1844932150.jpg",
       "movement": {
-        "type": "up",
-        "by": 3
+        "type": "same"
       },
-      "lastWeek": 14
+      "lastWeek": 11
     },
     {
       "rank": 12,
-      "trackId": "6781080737",
-      "title": "We Will Rock You",
-      "artist": "Queen",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/6781080737.jpg",
+      "trackId": "6771852797",
+      "title": "JESUS IS ALIVE",
+      "artist": "Forrest Frank",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/6771852797.jpg",
+      "movement": {
+        "type": "down",
+        "by": 3
+      },
+      "lastWeek": 9
+    },
+    {
+      "rank": 13,
+      "trackId": "1800089163",
+      "title": "HEAVEN ON THIS EARTH",
+      "artist": "Forrest Frank & Torey D'Shaun",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1800089163.jpg",
+      "movement": {
+        "type": "down",
+        "by": 5
+      },
+      "lastWeek": 8
+    },
+    {
+      "rank": 14,
+      "trackId": "282883590",
+      "title": "9 to 5",
+      "artist": "Dolly Parton",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/282883590.jpg",
       "movement": {
         "type": "new"
       },
       "lastWeek": null
     },
     {
-      "rank": 13,
+      "rank": 15,
+      "trackId": "1443919434",
+      "title": "Fireman",
+      "artist": "Lil Wayne",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1443919434.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 16,
+      "trackId": "1411629089",
+      "title": "Thunder",
+      "artist": "Imagine Dragons",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1411629089.jpg",
+      "movement": {
+        "type": "down",
+        "by": 11
+      },
+      "lastWeek": 5
+    },
+    {
+      "rank": 17,
+      "trackId": "353859978",
+      "title": "All I Do Is Win (feat. T-Pain, Ludacris, Snoop Dogg & Rick Ross)",
+      "artist": "DJ Khaled",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/353859978.jpg",
+      "movement": {
+        "type": "down",
+        "by": 10
+      },
+      "lastWeek": 7
+    },
+    {
+      "rank": 18,
+      "trackId": "296016901",
+      "title": "Diva",
+      "artist": "Beyoncé",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/296016901.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 19,
       "trackId": "1572051818",
       "title": "Enter Sandman",
       "artist": "Metallica",
@@ -156,85 +225,14 @@
         "type": "down",
         "by": 6
       },
-      "lastWeek": 7
-    },
-    {
-      "rank": 14,
-      "trackId": "1577142083",
-      "title": "Row My Boat",
-      "artist": "Cj Beatty",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1577142083.jpg",
-      "movement": {
-        "type": "down",
-        "by": 8
-      },
-      "lastWeek": 6
-    },
-    {
-      "rank": 15,
-      "trackId": "1443190324",
-      "title": "Crank That (Soulja Boy)",
-      "artist": "Soulja Boy Tell 'Em",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1443190324.jpg",
-      "movement": {
-        "type": "up",
-        "by": 1
-      },
-      "lastWeek": 16
-    },
-    {
-      "rank": 16,
-      "trackId": "1870680329",
-      "title": "LET 'EM KNOW",
-      "artist": "T.I.",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1870680329.jpg",
-      "movement": {
-        "type": "up",
-        "by": 3
-      },
-      "lastWeek": 19
-    },
-    {
-      "rank": 17,
-      "trackId": "269573341",
-      "title": "Beat It",
-      "artist": "Michael Jackson",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/269573341.jpg",
-      "movement": {
-        "type": "down",
-        "by": 9
-      },
-      "lastWeek": 8
-    },
-    {
-      "rank": 18,
-      "trackId": "911604128",
-      "title": "Crazy Train",
-      "artist": "Ozzy Osbourne",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/911604128.jpg",
-      "movement": {
-        "type": "down",
-        "by": 9
-      },
-      "lastWeek": 9
-    },
-    {
-      "rank": 19,
-      "trackId": "933984097",
-      "title": "Fireball (feat. John Ryan)",
-      "artist": "Pitbull",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/933984097.jpg",
-      "movement": {
-        "type": "reentry"
-      },
-      "lastWeek": null
+      "lastWeek": 13
     },
     {
       "rank": 20,
-      "trackId": "1567699132",
-      "title": "AOK",
-      "artist": "Tai Verdes",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1567699132.jpg",
+      "trackId": "1774570252",
+      "title": "YOUR WAY'S BETTER",
+      "artist": "Forrest Frank",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1774570252.jpg",
       "movement": {
         "type": "new"
       },
