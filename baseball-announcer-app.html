@@ -253,27 +253,25 @@
     .ann-hero p.lede { font-size: 19px; line-height: 1.58; color: #C8C6C0; margin: 0 0 28px; max-width: 62ch; }
     .ann-hear { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;
       letter-spacing: .16em; text-transform: uppercase; color: #8E8B84; margin: 0 0 12px; }
-.r3-voices{display:flex;gap:8px;flex-wrap:wrap;flex:0 1 auto;max-width:400px;justify-content:flex-end}
-.r3-voices{justify-content:flex-start;max-width:100%}
-.r3-voices{align-self:flex-start}
-.r3-voices{max-width:100%;justify-content:flex-start}
-.r3-fplay{flex:none;display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(246,244,239,.12);border-radius:999px;padding:9px 16px 9px 14px;color:#F6F4EF;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
-.r3-fplay:hover{border-color:rgba(223,255,0,.5);color:#DFFF00}
-.r3-fplay .ic{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
-.r3-fplay.playing{border-color:#DFFF00;color:#DFFF00;background:rgba(223,255,0,.08)}
-.r3-fplay .eq{display:none;align-items:flex-end;gap:2px;height:12px}
-.r3-fplay .eq i{width:2.5px;background:#DFFF00;border-radius:1px;animation:r3eq .85s ease-in-out infinite}
-.r3-fplay .eq i:nth-child(2){animation-delay:.15s}
-.r3-fplay .eq i:nth-child(3){animation-delay:.3s}
-.r3-fplay .eq i:nth-child(4){animation-delay:.45s}
-.r3-fplay.playing .ic{display:none}
-.r3-fplay.playing .eq{display:inline-flex}
-.r3-fplay,.r3-fnoaudio,.r3-voices,.r3-fright{align-self:flex-start}
-.r3-fplay{transition:none}
-.r3-fplay .eq i{animation:none;height:8px}
-.r3-fplay.playing').forEach(function(b){b.classList.remove('playing');}
-@keyframes r3eq{0%,100%{height:3px}50%{height:12px}
-@keyframes r3eq{0%,100%{height:3px}50%{height:12px}}
+    /* Voice buttons — same treatment as the homepage feature row.
+       ⚠️ Written out, not scraped. A regex lifted from index.html pulled in a line of
+       JavaScript and a truncated @keyframes, leaving one unterminated rule that silently
+       swallowed every style below it: the whole article body rendered with browser
+       defaults and nothing errored. */
+    .r3-voices{display:flex;gap:8px;flex-wrap:wrap;max-width:100%;justify-content:flex-start}
+    .r3-fplay{flex:none;display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(246,244,239,.12);border-radius:999px;padding:9px 16px 9px 14px;color:#F6F4EF;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+    .r3-fplay:hover{border-color:rgba(223,255,0,.5);color:#DFFF00}
+    .r3-fplay .ic{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+    .r3-fplay.playing{border-color:#DFFF00;color:#DFFF00;background:rgba(223,255,0,.08)}
+    .r3-fplay .eq{display:none;align-items:flex-end;gap:2px;height:12px}
+    .r3-fplay .eq i{width:2.5px;background:#DFFF00;border-radius:1px;animation:r3eq .85s ease-in-out infinite}
+    .r3-fplay .eq i:nth-child(2){animation-delay:.15s}
+    .r3-fplay .eq i:nth-child(3){animation-delay:.3s}
+    .r3-fplay .eq i:nth-child(4){animation-delay:.45s}
+    .r3-fplay.playing .ic{display:none}
+    .r3-fplay.playing .eq{display:inline-flex}
+    @keyframes r3eq{0%,100%{height:3px}50%{height:12px}}
+    @media (prefers-reduced-motion: reduce){ .r3-fplay .eq i{animation:none;height:8px} }
     .ann-body { max-width: 720px; margin: 0 auto; padding: 56px 22px 84px; }
     .ann-body h2 { font-size: clamp(22px, 3.4vw, 28px); font-weight: 800; letter-spacing: -.02em;
       line-height: 1.2; margin: 44px 0 14px; text-wrap: balance; }
