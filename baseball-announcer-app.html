@@ -282,6 +282,22 @@
     .ann-body li { font-size: 17.5px; line-height: 1.66; color: #2A2D30; margin-bottom: 9px; }
     .ann-note { border-left: 3px solid #B8CC00; padding: 2px 0 2px 16px; margin: 0 0 18px; }
     @media (max-width: 560px) { .ann-hero { padding: 44px 18px 42px; } .ann-body { padding: 40px 18px 64px; } }
+
+    /* Voice grid — section 3. Scannable: name, personality, when to use it, hear it. */
+    .vgrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin: 0 0 8px; }
+    .vcard { border: 1px solid rgba(31,31,31,.14); border-radius: 12px; padding: 16px 16px 14px; background: #fff; }
+    .vcard h3 { margin: 0 0 4px; font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+    .vcard .vp { margin: 0 0 10px; font-size: 14.5px; line-height: 1.5; color: #5A5E62; }
+    .vcard .vuse { display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px;
+      letter-spacing: .12em; text-transform: uppercase; color: #6E7A00; margin: 0 0 12px; }
+    /* Dark-on-light variant of the player button: the hero's cream-on-charcoal would vanish here. */
+    .vcard .r3-fplay { color: #1F1F1F; border-color: rgba(31,31,31,.22); }
+    .vcard .r3-fplay:hover { border-color: #B8CC00; color: #4A5400; }
+    .vcard .r3-fplay.playing { border-color: #B8CC00; color: #4A5400; background: rgba(184,204,0,.12); }
+    .vcard .r3-fplay .eq i { background: #B8CC00; }
+    .ann-close { margin-top: 40px; padding: 22px 22px; background: #1F1F1F; border-radius: 14px; }
+    .ann-close p { margin: 0; color: #F6F4EF; font-size: 18.5px; line-height: 1.5; font-weight: 600; }
+    @media (max-width: 560px) { .vgrid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -319,48 +335,68 @@
   <section class="ann-hero">
     <div class="in">
       <p class="eyebrow">Baseball &amp; Softball Announcer App</p>
-      <h1>Every player called by name. Said the way it&rsquo;s actually said.</h1>
-      <p class="lede">Now Batting announces each batter as they walk up &mdash; your lineup, your voice, their name. Six announcer voices, and a way to fix any name the first time instead of hearing it mangled all season.</p>
-      <p class="ann-hear">Hear them &mdash; tap any voice</p>
-      <div class="r3-voices">
-          <button class="r3-fplay" data-audio="/voice-classic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Classic</button>
-          <button class="r3-fplay" data-audio="/voice-energetic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Energetic</button>
-          <button class="r3-fplay" data-audio="/voice-vintage.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Vintage Radio</button>
-          <button class="r3-fplay" data-audio="/voice-hype.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hype</button>
-          <button class="r3-fplay" data-audio="/voice-latino.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Latino</button>
-          <button class="r3-fplay" data-audio="/voice-softball.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Softball Energy</button>
-          </div>
+      <h1>Stop Paying for Every Player Announcement</h1>
+      <p class="lede">Make an intro for every player on your roster, in any of six voices, and change them as often as you like. It&rsquo;s all part of one subscription.</p>
     </div>
   </section>
 
   <div class="ann-body">
-    <h2>&ldquo;Will it say my kid&rsquo;s name right?&rdquo;</h2>
-    <p>This is the first thing every parent asks, and it&rsquo;s the right question. Plenty of names don&rsquo;t sound the way they look &mdash; Ragonese, Alves, Nguyen, Siobhan &mdash; and a name said wrong in front of a crowd is worse than no announcement at all.</p>
-    <p><strong>Name Lock</strong> is the answer. You hear the name before anyone else does. If it&rsquo;s wrong, you fix it once &mdash; type how it sounds, or pick from suggestions &mdash; and it&rsquo;s locked. From then on that exact pronunciation plays in the walk-up, in the lineup announcement, and from the bullpen. Same name, same way, every time.</p>
-    <div class="ann-note"><p>You lock it once. Not once per game, not once per song.</p></div>
+    <h2>The nickel-and-diming gets old</h2>
+    <p>You&rsquo;re running the music for a whole team, not one player. A roster turns over, numbers change, a kid wants a different intro in July than they did in April, and you want to hear the same name in a different voice before you commit.</p>
+    <p>None of that should cost you anything extra. With Now Batting, it doesn&rsquo;t.</p>
 
-    <h2>Six voices</h2>
-    <p>Classic, Energetic, Vintage Radio, Hype, Latino and Softball Energy. Tap any of them above to hear the same line in each.</p>
-    <p>Change the voice whenever you want and the whole roster re-records itself in the background &mdash; you don&rsquo;t redo anything player by player. Your own uploaded recordings are never overwritten.</p>
+    <h2>It should sound real</h2>
+    <p>Now Batting uses current, high-quality voice models, so an announcement sounds like somebody saying your player&rsquo;s name &mdash; not a flat, clipped, old-school robot reading it out.</p>
+    <p>And a name that doesn&rsquo;t sound the way it looks is the whole game. <strong>Name Lock</strong> lets you hear a name before anyone else does and fix it once &mdash; type how it sounds, or pick from suggestions. From then on that exact pronunciation plays in the walk-up, in the lineup introduction and from the bullpen. You lock it once, not once per game.</p>
 
-    <h2>The whole lineup, before first pitch</h2>
-    <p>Roll Call reads your batting order out loud as an introduction &mdash; every player, in order, with the matchup and the time if you want them. Build it once; rebuild it in a tap when the lineup changes.</p>
+    <h2>Six voices, six different vibes</h2>
+    <p>Tap any of them to hear the same line. Switch the whole roster to a different voice whenever you want &mdash; it re-records in the background, and your own uploaded recordings are never overwritten.</p>
+    <div class="vgrid">
+      <div class="vcard">
+        <h3>Classic</h3>
+        <p class="vp">The straight-down-the-middle ballpark announcer. Measured, warm, never over the top.</p>
+        <span class="vuse">The default · works for any team</span>
+        <button class="r3-fplay" data-audio="/voice-classic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear Classic</button>
+      </div>
+      <div class="vcard">
+        <h3>Energetic</h3>
+        <p class="vp">Lifts the whole at-bat. More air in it, more push behind the name.</p>
+        <span class="vuse">Big innings · playoff games</span>
+        <button class="r3-fplay" data-audio="/voice-energetic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear Energetic</button>
+      </div>
+      <div class="vcard">
+        <h3>Vintage Radio</h3>
+        <p class="vp">Old broadcast texture, like the game is coming through a kitchen radio.</p>
+        <span class="vuse">Throwback nights · older crowds</span>
+        <button class="r3-fplay" data-audio="/voice-vintage.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear Vintage Radio</button>
+      </div>
+      <div class="vcard">
+        <h3>Hype</h3>
+        <p class="vp">The loudest one. Built for a team that wants the dugout on its feet.</p>
+        <span class="vuse">Rivalry games · 12U and up</span>
+        <button class="r3-fplay" data-audio="/voice-hype.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear Hype</button>
+      </div>
+      <div class="vcard">
+        <h3>Latino</h3>
+        <p class="vp">Spanish-language delivery with real ballpark energy.</p>
+        <span class="vuse">Bilingual teams and families</span>
+        <button class="r3-fplay" data-audio="/voice-latino.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear Latino</button>
+      </div>
+      <div class="vcard">
+        <h3>Softball Energy</h3>
+        <p class="vp">Made for softball — pace and tone matched to the game, not borrowed from baseball.</p>
+        <span class="vuse">Softball, any age</span>
+        <button class="r3-fplay" data-audio="/voice-softball.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear Softball Energy</button>
+      </div>
+    </div>
 
-    <h2>It works with no bars</h2>
-    <p>Announcements live on your phone the moment they&rsquo;re made, so a field with no signal doesn&rsquo;t silence them. Field Ready gets the rest of your game-day audio onto the device before you leave the house.</p>
+    <h2>It&rsquo;s all included</h2>
+    <p>Walk-up songs from Apple Music, player introductions, the six announcer voices, the lineup Roll Call and everything else in Now Batting come in one subscription: <strong>$9.99 a year</strong>. Free 7-day trial for new subscribers. iPhone only.</p>
+    <p>There&rsquo;s a $24.99 plan too, and the only thing it adds is more original songs the app writes for your players. The announcements are the same on both.</p>
 
-    <h2>What it costs</h2>
-    <p>$9.99 a year, or $24.99 a year for more original songs. Free 7-day trial for new subscribers. iPhone only.</p>
-
-    <h2>Common questions</h2>
-    <h3>Does it use a real person&rsquo;s voice?</h3>
-    <p>No. The voices are synthesized, which is what lets them say any name on your roster, including the ones no stock recording would have.</p>
-    <h3>Can I record my own instead?</h3>
-    <p>Yes. You can upload your own announcement for any player, and a voice change will never overwrite it.</p>
-    <h3>Does it work for softball?</h3>
-    <p>Yes &mdash; softball matters here as much as baseball, and Softball Energy is one of the six voices.</p>
-    <h3>What if a name is still wrong after I lock it?</h3>
-    <p>Re-open the player and lock it again. You hear it before you keep it, so you never find out at the plate.</p>
+    <div class="ann-close">
+      <p>No paying per announcement. No counting credits. Just pick the voice, make the intro and run the show.</p>
+    </div>
 
     <p style="margin-top:38px"><a href="/how-to-run-walk-up-songs">The Chief Hype Officer Field Guide</a> walks through setting this up, step by step.</p>
   </div>
