@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baseball Announcer App for Youth Baseball &amp; Softball | Now Batting</title>
+  <meta name="description" content="An announcer app for youth baseball and softball that calls every player by name — six announcer voices, a lineup introduction, and Name Lock so a tricky name is said right every time. iPhone, $9.99/year." />
+  <link rel="canonical" href="https://www.nowbattingapp.com/baseball-announcer-app" />
+  <meta property="og:site_name" content="Now Batting" />
+  <meta property="og:image" content="https://nowbattingapp.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://nowbattingapp.com/og.png" />
+  <meta property="og:title" content="Baseball Announcer App — Every Player Called by Name" />
+  <meta property="og:description" content="Six announcer voices, a full lineup introduction, and a way to fix a tricky name once instead of hearing it mangled all season." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nowbattingapp.com/baseball-announcer-app" />
+  <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/jetbrains-mono-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    /* Self-hosted variable fonts. Previously three third-party round trips
+       (2 preconnects + a render-blocking stylesheet from fonts.googleapis.com,
+       measured at 820 ms of blocking on 4G). Declaring @font-face inline costs
+       zero requests, and the woff2 files come from our own origin on the already
+       open connection. font-display:swap so text paints immediately in the
+       fallback rather than waiting on the font. */
+    @font-face {
+      font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap;
+      src: url('/fonts/inter-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap;
+      src: url('/fonts/inter-var-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 700; font-display: swap;
+      src: url('/fonts/jetbrains-mono-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:           #F6F4EF;
+      --mid:          #FFFFFF;
+      --surf:         #EDEAD9;
+      --bord:         rgba(0,0,0,0.09);
+      --neon:         #DFFF00;
+      --daylight:     #B8CC00;
+      --daylight-dim: #8A9900;
+      --txt:          #1F1F1F;
+      --txt2:         #4A4A4A;
+      --txt3:         #666666;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm:    8px;
+      --radius-md:    12px;
+      --radius-lg:    16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--txt); font-family: var(--font-sans); font-size: 16px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 18px 48px;
+      background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bord);
+    }
+    .nav-sub { display: none; width: 100%; padding: 0 0 10px; gap: 24px; justify-content: center; }
+    .nav-sub a { font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-sub a:hover { color: var(--txt); }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-link { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--txt); }
+    .nav-link.active { color: var(--txt); }
+    .nav-btn {
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.01em; padding: 10px 20px; border-radius: var(--radius-sm);
+      border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover { background: var(--daylight-dim); }
+
+    /* PAGE */
+    main {
+      position: relative; z-index: 1;
+      max-width: 720px; margin: 0 auto;
+      padding: 120px 48px 80px;
+    }
+
+    .eyebrow { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.12em; color: var(--daylight); margin-bottom: 12px; text-transform: uppercase; }
+    h1 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 16px; color: var(--txt); }
+    .subtitle { font-size: 17px; color: var(--txt2); line-height: 1.65; margin-bottom: 52px; }
+    /* ⚠️ MUST come after `.subtitle`. Same specificity, so source order decides — placed
+       before it, the inherited 52px bottom margin won and the two lede paragraphs read
+       as two separate sections rather than one thought. */
+    .subtitle--tight { margin-bottom: 14px; }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: var(--mid);
+      border: 1px solid var(--bord);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 56px;
+    }
+    .contact-card h2 { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; color: var(--txt); }
+    .contact-card p { font-size: 15px; color: var(--txt2); line-height: 1.65; margin-bottom: 24px; }
+    .email-btn {
+      display: inline-block;
+      background: var(--daylight);
+      color: #1F1F1F;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 13px 24px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .email-btn:hover { background: var(--daylight-dim); text-decoration: none; }
+
+    /* FAQ */
+    /* ── How-to videos ───────────────────────────────────────────────────────
+       Click-to-play cards: the TikTok embed script only loads when someone
+       actually taps one, so the page stays fast and no third-party tracking
+       runs for people who never watch. Same pattern as the founder video on
+       the landing page. Designed cards rather than video stills, so adding a
+       tutorial doesn't mean sourcing a screenshot every time. */
+    .howto-blurb { font-size: 13.5px; color: var(--txt2); line-height: 1.6; margin-top: 6px; }
+    .howto-title { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: var(--txt); line-height: 1.3; margin-top: 14px; }
+    .howto-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em; color: var(--txt3); margin-top: 5px; text-transform: uppercase; }
+    .howto-sub { font-size: 15px; color: var(--txt2); line-height: 1.7; margin: 6px 0 20px; }
+    .howto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 268px)); gap: 28px 28px; margin-bottom: 44px; align-items: start; }
+    /* ⚠️ `main` is a 720px READING column, inherited from the support page where the content
+       is FAQ prose. A grid of cards is scanned, not read, so it is the one block that breaks
+       out of the measure — otherwise five cards sit 2-across and the last is stranded alone.
+       Symmetric (624 → 860 usable = exactly three columns), and only once the viewport is wide
+       enough that it cannot overflow. */
+    @media (min-width: 1024px) {
+      .howto-grid { margin-left: -118px; margin-right: -118px; }
+    }
+    .tok {
+      position: relative; display: block; width: 100%; aspect-ratio: 9 / 16;
+      border: 0; padding: 0; cursor: pointer; overflow: hidden;
+      border-radius: 16px; background: #1F1F1F; text-align: left;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.16);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .tok:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    /* ⚠️ `height: auto` is REQUIRED. The img carries width/height attributes, which are
+       presentational hints that FIX the used height and silently beat `aspect-ratio` — the
+       same trap that rendered a 16/9 box at 742×900 on the Hall of Fame page. */
+    .tok picture, .tok img { position: absolute; inset: 0; display: block; }
+    .tok img { width: 100%; height: 100%; object-fit: cover; }
+    /* A dim pass so the play button reads over a bright frame; lifts on hover. */
+    .tok::after {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(180deg, rgba(31,31,31,0.30) 0%, rgba(31,31,31,0.12) 45%, rgba(31,31,31,0.38) 100%);
+      transition: opacity .18s ease;
+    }
+    .tok:hover::after { opacity: 0.55; }
+    /* ⚠️ TOP-LEFT, not centred. These thumbnails carry the caption burned into the video, and
+       on a vertical clip that caption sits mid-to-low frame — a centred button landed squarely
+       on "LINEUP ANXIETY SOLVED" and on "Fully Custom Walkup Announcer Intros". The top strip
+       is the one region a TikTok caption is never in. */
+    .tok-play {
+      position: absolute; top: 14px; left: 14px;
+      width: 48px; height: 48px; border-radius: 50%; background: var(--daylight);
+      display: flex; align-items: center; justify-content: center; z-index: 2;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4); transition: transform .18s ease;
+    }
+    .tok:hover .tok-play { transform: scale(1.08); }
+    .tok-play svg { margin-left: 2px; }
+    .howto-grid .tiktok-embed { margin: 0 !important; }
+    @media (max-width: 560px) { .howto-grid { grid-template-columns: 1fr; } }
+    .faq-head { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: var(--txt); margin-bottom: 4px; }
+    .faq-list { margin-top: 16px; }
+    .faq-item { border-top: 1px solid var(--bord); padding: 22px 0; }
+    .faq-item:last-child { border-bottom: 1px solid var(--bord); }
+    .faq-q { font-size: 15px; font-weight: 700; color: var(--txt); margin-bottom: 8px; }
+    .faq-a { font-size: 15px; color: var(--txt2); line-height: 1.75; }
+    .faq-a strong { color: var(--txt); font-weight: 600; }
+    .faq-a a { color: var(--txt); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+    .divider { height: 1px; background: var(--bord); margin: 52px 0 24px; }
+    .foot-note { font-size: 13px; color: var(--txt3); }
+    .foot-note a { color: var(--txt3); }
+    .foot-note a:hover { color: var(--daylight); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--bord); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .f-logo { display: flex; align-items: center; line-height: 1; }
+    .f-copy { font-size: 12px; color: var(--txt3); }
+    .f-copy a { color: var(--txt3); text-decoration: none; }
+    .f-copy a:hover { color: var(--daylight); }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 14px 18px; }
+      .nav-sub { display: flex; }
+      .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid var(--bord); padding-top: 10px; gap: 20px; }
+      .nav-social { display: none; }
+      main { padding: 100px 24px 60px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
+    }
+
+    /* WAVEFORM */
+    @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
+    @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
+    @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
+    @keyframes idle-4 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.68);} }
+    @keyframes idle-5 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.70);} }
+    @keyframes idle-6 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.60);} }
+    @keyframes idle-7 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.52);} }
+    .idle-wave .bar { transform-origin: center bottom; }
+    .idle-wave .b1 { animation: idle-1 2.1s ease-in-out 0.0s infinite; }
+    .idle-wave .b2 { animation: idle-2 1.9s ease-in-out 0.12s infinite; }
+    .idle-wave .b3 { animation: idle-3 1.8s ease-in-out 0.06s infinite; }
+    .idle-wave .b4 { animation: idle-4 1.6s ease-in-out 0.0s infinite; }
+    .idle-wave .b5 { animation: idle-5 1.7s ease-in-out 0.08s infinite; }
+    .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
+    .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
+
+    /* ── Announcer page ──────────────────────────────────────────────────────
+       The voice buttons are lifted verbatim from the homepage feature row, so they
+       carry its neon-on-dark treatment and need a dark ground to read against. That
+       is the only reason this page opens dark. */
+    .ann-hero { background: #1F1F1F; color: #F6F4EF; padding: 64px 22px 58px; }
+    .ann-hero .in { max-width: 780px; margin: 0 auto; }
+    .ann-hero .eyebrow { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700;
+      font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #DFFF00; margin: 0 0 16px; }
+    .ann-hero h1 { font-size: clamp(30px, 5.4vw, 48px); font-weight: 800; letter-spacing: -.03em;
+      line-height: 1.05; margin: 0 0 16px; text-wrap: balance; color: #F6F4EF; }
+    .ann-hero p.lede { font-size: 19px; line-height: 1.58; color: #C8C6C0; margin: 0 0 28px; max-width: 62ch; }
+    .ann-hear { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;
+      letter-spacing: .16em; text-transform: uppercase; color: #8E8B84; margin: 0 0 12px; }
+.r3-voices{display:flex;gap:8px;flex-wrap:wrap;flex:0 1 auto;max-width:400px;justify-content:flex-end}
+.r3-voices{justify-content:flex-start;max-width:100%}
+.r3-voices{align-self:flex-start}
+.r3-voices{max-width:100%;justify-content:flex-start}
+.r3-fplay{flex:none;display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(246,244,239,.12);border-radius:999px;padding:9px 16px 9px 14px;color:#F6F4EF;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.r3-fplay:hover{border-color:rgba(223,255,0,.5);color:#DFFF00}
+.r3-fplay .ic{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.r3-fplay.playing{border-color:#DFFF00;color:#DFFF00;background:rgba(223,255,0,.08)}
+.r3-fplay .eq{display:none;align-items:flex-end;gap:2px;height:12px}
+.r3-fplay .eq i{width:2.5px;background:#DFFF00;border-radius:1px;animation:r3eq .85s ease-in-out infinite}
+.r3-fplay .eq i:nth-child(2){animation-delay:.15s}
+.r3-fplay .eq i:nth-child(3){animation-delay:.3s}
+.r3-fplay .eq i:nth-child(4){animation-delay:.45s}
+.r3-fplay.playing .ic{display:none}
+.r3-fplay.playing .eq{display:inline-flex}
+.r3-fplay,.r3-fnoaudio,.r3-voices,.r3-fright{align-self:flex-start}
+.r3-fplay{transition:none}
+.r3-fplay .eq i{animation:none;height:8px}
+.r3-fplay.playing').forEach(function(b){b.classList.remove('playing');}
+@keyframes r3eq{0%,100%{height:3px}50%{height:12px}
+@keyframes r3eq{0%,100%{height:3px}50%{height:12px}}
+    .ann-body { max-width: 720px; margin: 0 auto; padding: 56px 22px 84px; }
+    .ann-body h2 { font-size: clamp(22px, 3.4vw, 28px); font-weight: 800; letter-spacing: -.02em;
+      line-height: 1.2; margin: 44px 0 14px; text-wrap: balance; }
+    .ann-body h2:first-child { margin-top: 0; }
+    .ann-body h3 { font-size: 17px; font-weight: 700; margin: 26px 0 6px; }
+    .ann-body p { font-size: 17.5px; line-height: 1.68; color: #2A2D30; margin: 0 0 18px; }
+    .ann-body ul { margin: 0 0 18px; padding-left: 20px; }
+    .ann-body li { font-size: 17.5px; line-height: 1.66; color: #2A2D30; margin-bottom: 9px; }
+    .ann-note { border-left: 3px solid #B8CC00; padding: 2px 0 2px 16px; margin: 0 0 18px; }
+    @media (max-width: 560px) { .ann-hero { padding: 44px 18px 42px; } .ann-body { padding: 40px 18px 64px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" style="display:flex;align-items:center;line-height:1;text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg>
+  </a>
+  <div class="nav-links">
+    <a href="/our-story" class="nav-link">Our Story</a>
+    <a href="/how-to-run-walk-up-songs" class="nav-link">Field Guide</a>
+    <a href="/top-walk-up-songs" class="nav-link">Top 20</a>
+    <a href="/support" class="nav-link">Support</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@nowbattingapp" target="_blank" rel="noopener" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@NowBattingApp" target="_blank" rel="noopener" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download</a>
+  </div>
+</nav>
+
+<main>
+  <section class="ann-hero">
+    <div class="in">
+      <p class="eyebrow">Baseball &amp; Softball Announcer App</p>
+      <h1>Every player called by name. Said the way it&rsquo;s actually said.</h1>
+      <p class="lede">Now Batting announces each batter as they walk up &mdash; your lineup, your voice, their name. Six announcer voices, and a way to fix any name the first time instead of hearing it mangled all season.</p>
+      <p class="ann-hear">Hear them &mdash; tap any voice</p>
+      <div class="r3-voices">
+          <button class="r3-fplay" data-audio="/voice-classic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Classic</button>
+          <button class="r3-fplay" data-audio="/voice-energetic.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Energetic</button>
+          <button class="r3-fplay" data-audio="/voice-vintage.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Vintage Radio</button>
+          <button class="r3-fplay" data-audio="/voice-hype.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hype</button>
+          <button class="r3-fplay" data-audio="/voice-latino.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Latino</button>
+          <button class="r3-fplay" data-audio="/voice-softball.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Softball Energy</button>
+          </div>
+    </div>
+  </section>
+
+  <div class="ann-body">
+    <h2>&ldquo;Will it say my kid&rsquo;s name right?&rdquo;</h2>
+    <p>This is the first thing every parent asks, and it&rsquo;s the right question. Plenty of names don&rsquo;t sound the way they look &mdash; Ragonese, Alves, Nguyen, Siobhan &mdash; and a name said wrong in front of a crowd is worse than no announcement at all.</p>
+    <p><strong>Name Lock</strong> is the answer. You hear the name before anyone else does. If it&rsquo;s wrong, you fix it once &mdash; type how it sounds, or pick from suggestions &mdash; and it&rsquo;s locked. From then on that exact pronunciation plays in the walk-up, in the lineup announcement, and from the bullpen. Same name, same way, every time.</p>
+    <div class="ann-note"><p>You lock it once. Not once per game, not once per song.</p></div>
+
+    <h2>Six voices</h2>
+    <p>Classic, Energetic, Vintage Radio, Hype, Latino and Softball Energy. Tap any of them above to hear the same line in each.</p>
+    <p>Change the voice whenever you want and the whole roster re-records itself in the background &mdash; you don&rsquo;t redo anything player by player. Your own uploaded recordings are never overwritten.</p>
+
+    <h2>The whole lineup, before first pitch</h2>
+    <p>Roll Call reads your batting order out loud as an introduction &mdash; every player, in order, with the matchup and the time if you want them. Build it once; rebuild it in a tap when the lineup changes.</p>
+
+    <h2>It works with no bars</h2>
+    <p>Announcements live on your phone the moment they&rsquo;re made, so a field with no signal doesn&rsquo;t silence them. Field Ready gets the rest of your game-day audio onto the device before you leave the house.</p>
+
+    <h2>What it costs</h2>
+    <p>$9.99 a year, or $24.99 a year for more original songs. Free 7-day trial for new subscribers. iPhone only.</p>
+
+    <h2>Common questions</h2>
+    <h3>Does it use a real person&rsquo;s voice?</h3>
+    <p>No. The voices are synthesized, which is what lets them say any name on your roster, including the ones no stock recording would have.</p>
+    <h3>Can I record my own instead?</h3>
+    <p>Yes. You can upload your own announcement for any player, and a voice change will never overwrite it.</p>
+    <h3>Does it work for softball?</h3>
+    <p>Yes &mdash; softball matters here as much as baseball, and Softball Energy is one of the six voices.</p>
+    <h3>What if a name is still wrong after I lock it?</h3>
+    <p>Re-open the player and lock it again. You hear it before you keep it, so you never find out at the plate.</p>
+
+    <p style="margin-top:38px"><a href="/how-to-run-walk-up-songs">The Chief Hype Officer Field Guide</a> walks through setting this up, step by step.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <p class="f-copy">© 2026 Chief Hype Officer LLC · <a href="/our-story">Our Story</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+</footer>
+
+<script>
+  /* Lifted from index.html so the buttons behave identically: one clip at a time,
+     tapping the playing one stops it. */
+  function fplay(btn){
+    var src=btn.getAttribute('data-audio');
+    var was=btn.classList.contains('playing');
+    document.querySelectorAll('.r3-fplay.playing').forEach(function(b){b.classList.remove('playing');});
+    if(window.__nbaudio){ try{window.__nbaudio.pause();}catch(e){} window.__nbaudio=null; }
+    if(!was){
+      btn.classList.add('playing');
+      var a=new Audio(src); window.__nbaudio=a; a.play().catch(function(){});
+      a.addEventListener('ended',function(){ btn.classList.remove('playing'); if(window.__nbaudio===a) window.__nbaudio=null; });
+    }
+  }
+</script>
+</body>
+</html>
