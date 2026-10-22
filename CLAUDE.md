@@ -43,10 +43,15 @@ This makes `nowbattingapp.com/join/XXXXXXXX` work as share links. The actual web
 ## Deploy
 ⚠️ Vercel serves every file in this folder, dot-files included. Anything repo-only (this file, `.claudeignore`, `.github/`) must be listed in `.vercelignore` — they were all public until 2026-10-16. Check a new repo-only file with `curl -I https://www.nowbattingapp.com/<file>` after deploying.
 
+🔴 **`git pull --rebase` FIRST, every time.** The NB20 chart workflow in `.github/` **commits to this repo every Monday (11:20 UTC)**, and `vercel --prod` ships the working tree, not the remote — so deploying from a stale checkout silently un-publishes whatever the Action wrote. That happened on 2026-10-22: `top-walk-up-songs/chart.json` served the 10-12 chart for four minutes while 10-19 was live, **and the iOS app reads that file**, so every Music Hub NB20 card showed the wrong week. It surfaced only because the later `git push` was rejected.
+
 ```bash
 cd /Users/andrewtesta/now-batting-landing
+git pull --rebase
 PATH="/usr/local/bin:$PATH" vercel --prod
 ```
+
+After deploying, confirm the chart did not move: `curl -s https://www.nowbattingapp.com/top-walk-up-songs/chart.json | python3 -c "import sys,json;print(json.load(sys.stdin)['chartDate'])"`
 
 ---
 
