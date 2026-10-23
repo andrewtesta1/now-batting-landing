@@ -7,9 +7,14 @@
  * snapshots. If a ranking question ever comes up, this file is the answer.
  *
  * THE METHOD, in one place:
- *   - A "pick" is a `song_selected` event: a CHO searched Apple Music in the song editor
- *     and chose a song for a player. Songs that arrive by the parent link, CSV/photo import
- *     or a shared roster do not fire it, so they are not counted.
+ *   - A "pick" is a `song_selected` event: someone chose a song for a player. It fires from
+ *     the song editor (`source: 'editor'`), the parent intake link (`'intake'`) and a
+ *     CSV/photo/paste import (`'csv'`/`'photo'`/`'paste'`) — and generate.mjs does NOT
+ *     filter on source, so all of them chart.
+ *     ⚠️ Importing a SHARED ROSTER is the one path that does not fire it: `applyCloudRoster`
+ *     has no capture, deliberately. A shared roster copies one person's picks onto everyone
+ *     they share with, so counting it would multiply one coach's taste across their whole
+ *     team. If that ever changes, this chart's unit (distinct CHOs) stops meaning what it says.
  *   - Window: the 28 days ending Sunday 23:59:59 America/New_York. One week of picks is too
  *     thin (the week of Oct 5 2026 had no song picked by more than 2 CHOs).
  *   - Unit: DISTINCT CHOs (PostHog person ids). Picking the same song for five players is
