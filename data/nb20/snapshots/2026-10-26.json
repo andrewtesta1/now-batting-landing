@@ -1,0 +1,338 @@
+{
+  "version": 1,
+  "chartDate": "2026-10-26",
+  "window": {
+    "start": "2026-09-28",
+    "end": "2026-10-25",
+    "days": 28,
+    "timezone": "America/New_York"
+  },
+  "generatedAt": "2026-10-26T17:25:21.364Z",
+  "backfilled": false,
+  "method": {
+    "activity": "song_selected",
+    "rankBy": "distinct CHOs",
+    "minChos": 3,
+    "size": 20
+  },
+  "entryCount": 20,
+  "entries": [
+    {
+      "rank": 1,
+      "key": "thriller|michael jackson",
+      "trackId": "269573303",
+      "title": "Thriller",
+      "artist": "Michael Jackson",
+      "album": "Thriller",
+      "artwork": "/nb20/art/269573303.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/thriller/269572838?i=269573303",
+      "cleanEdit": false,
+      "otherVersionIds": [
+        "159294311"
+      ]
+    },
+    {
+      "rank": 2,
+      "key": "monster mash|bobby boris pickett",
+      "trackId": "1440723145",
+      "title": "Monster Mash",
+      "artist": "Bobby \"Boris\" Pickett & The Crypt-Kickers",
+      "album": "The Original Monster Mash",
+      "artwork": "/nb20/art/1440723145.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/monster-mash/1440723138?i=1440723145",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 3,
+      "key": "ghostbusters|ray parker jr",
+      "trackId": "1127014316",
+      "title": "Ghostbusters",
+      "artist": "Ray Parker Jr.",
+      "album": "Ghostbusters (Original Motion Picture Soundtrack)",
+      "artwork": "/nb20/art/1127014316.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/ghostbusters/1127013560?i=1127014316",
+      "cleanEdit": false,
+      "otherVersionIds": [
+        "1484413134"
+      ]
+    },
+    {
+      "rank": 4,
+      "key": "somebody s watching me|rockwell",
+      "trackId": "1589119250",
+      "title": "Somebody's Watching Me",
+      "artist": "Rockwell",
+      "album": "Somebody’s Watching Me (Deluxe Edition)",
+      "artwork": "/nb20/art/1589119250.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/somebodys-watching-me/1589119076?i=1589119250",
+      "cleanEdit": false,
+      "otherVersionIds": [
+        "1278579752",
+        "1584390038"
+      ]
+    },
+    {
+      "rank": 5,
+      "key": "halloween theme|john carpenter",
+      "trackId": "1426559304",
+      "title": "Halloween Theme",
+      "artist": "John Carpenter, Cody Carpenter & Daniel Davies",
+      "album": "Halloween (2018 Motion Picture Soundtrack)",
+      "artwork": "/nb20/art/1426559304.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/halloween-theme/1426558682?i=1426559304",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 6,
+      "key": "this is halloween|citizens of halloween",
+      "trackId": "1440662595",
+      "title": "This Is Halloween",
+      "artist": "The Citizens of Halloween",
+      "album": "The Nightmare Before Christmas (Special Edition) [Original Motion Picture Soundtrack]",
+      "artwork": "/nb20/art/1440662595.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/this-is-halloween/1440662430?i=1440662595",
+      "cleanEdit": false,
+      "otherVersionIds": [
+        "1440617577"
+      ]
+    },
+    {
+      "rank": 7,
+      "key": "spooky scary skeletons undead tombstone remix|andrew gold",
+      "trackId": "1482699500",
+      "title": "Spooky, Scary Skeletons (Undead Tombstone Remix)",
+      "artist": "Andrew Gold",
+      "album": "Halloween Howls: Fun & Scary Music (Deluxe Edition)",
+      "artwork": "/nb20/art/1482699500.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/spooky-scary-skeletons-undead-tombstone-remix/1482699018?i=1482699500",
+      "cleanEdit": false,
+      "otherVersionIds": [
+        "1713997434"
+      ]
+    },
+    {
+      "rank": 8,
+      "key": "who let the dogs out|baha men",
+      "trackId": "723351644",
+      "title": "Who Let the Dogs Out",
+      "artist": "Baha Men",
+      "album": "Who Let the Dogs Out",
+      "artwork": "/nb20/art/723351644.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/who-let-the-dogs-out/723351610?i=723351644",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 9,
+      "key": "thunderstruck|ac dc",
+      "trackId": "575998661",
+      "title": "Thunderstruck",
+      "artist": "AC/DC",
+      "album": "Iron Man 2",
+      "artwork": "/nb20/art/575998661.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/thunderstruck/575998519?i=575998661",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 10,
+      "key": "spooky scary skeletons|andrew gold",
+      "trackId": "1443821690",
+      "title": "Spooky, Scary Skeletons",
+      "artist": "Andrew Gold",
+      "album": "Halloween Howls: Fun & Scary Music",
+      "artwork": "/nb20/art/1443821690.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/spooky-scary-skeletons/1443821182?i=1443821690",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 11,
+      "key": "lose yourself|eminem",
+      "trackId": "1440903439",
+      "title": "Lose Yourself",
+      "artist": "Eminem",
+      "album": "8 Mile (Music from and Inspired By the Motion Picture)",
+      "artwork": "/nb20/art/1440903439.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/lose-yourself/1440903339?i=1440903439",
+      "cleanEdit": true,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 12,
+      "key": "choosin texas|ella langley",
+      "trackId": "1844932150",
+      "title": "Choosin' Texas",
+      "artist": "Ella Langley",
+      "album": "Choosin' Texas - Single",
+      "artwork": "/nb20/art/1844932150.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/choosin-texas/1844932149?i=1844932150",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 13,
+      "key": "crank that soulja boy|soulja boy tell em",
+      "trackId": "1443190324",
+      "title": "Crank That (Soulja Boy)",
+      "artist": "Soulja Boy Tell 'Em",
+      "album": "Souljaboytellem.com",
+      "artwork": "/nb20/art/1443190324.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/crank-that-soulja-boy/1443190317?i=1443190324",
+      "cleanEdit": true,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 14,
+      "key": "big dawgs|hanumankind",
+      "trackId": "1765520596",
+      "title": "Big Dawgs",
+      "artist": "Hanumankind & Kalmi",
+      "album": "Big Dawgs - Single",
+      "artwork": "/nb20/art/1765520596.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/big-dawgs/1765520585?i=1765520596",
+      "cleanEdit": true,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 15,
+      "key": "fireman|lil wayne",
+      "trackId": "1443919434",
+      "title": "Fireman",
+      "artist": "Lil Wayne",
+      "album": "Tha Carter II",
+      "artwork": "/nb20/art/1443919434.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/fireman/1443918957?i=1443919434",
+      "cleanEdit": true,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 16,
+      "key": "enter sandman|metallica",
+      "trackId": "1572051818",
+      "title": "Enter Sandman",
+      "artist": "Metallica",
+      "album": "Metallica (Deluxe Box Set)",
+      "artwork": "/nb20/art/1572051818.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/enter-sandman/1572051816?i=1572051818",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 17,
+      "key": "pretty girls walk|big boss vette",
+      "trackId": "1631464175",
+      "title": "Pretty Girls Walk",
+      "artist": "Big Boss Vette",
+      "album": "Pretty Girls Walk - Single",
+      "artwork": "/nb20/art/1631464175.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/pretty-girls-walk/1631464174?i=1631464175",
+      "cleanEdit": true,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 18,
+      "key": "beat it|michael jackson",
+      "trackId": "269573341",
+      "title": "Beat It",
+      "artist": "Michael Jackson",
+      "album": "Thriller",
+      "artwork": "/nb20/art/269573341.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/beat-it/269572838?i=269573341",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 19,
+      "key": "unstoppable|sia",
+      "trackId": "1055074639",
+      "title": "Unstoppable",
+      "artist": "Sia",
+      "album": "This Is Acting",
+      "artwork": "/nb20/art/1055074639.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/unstoppable/1055074478?i=1055074639",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 20,
+      "key": "seven nation army|white stripes",
+      "trackId": "1533513537",
+      "title": "Seven Nation Army",
+      "artist": "The White Stripes",
+      "album": "Elephant",
+      "artwork": "/nb20/art/1533513537.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/seven-nation-army/1533513536?i=1533513537",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    }
+  ],
+  "onDeck": [
+    {
+      "rank": 21,
+      "key": "bad|michael jackson",
+      "trackId": "159294345",
+      "title": "Bad",
+      "artist": "Michael Jackson",
+      "album": "The Essential Michael Jackson",
+      "artwork": "/nb20/art/159294345.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/bad/159292399?i=159294345",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 22,
+      "key": "i put a spell on you in the style of hocus pocus|pattycake",
+      "trackId": "1480503102",
+      "title": "I Put a Spell on You (In the Style of Hocus Pocus)",
+      "artist": "PattyCake",
+      "album": "Into the Night (A Hocus Pocus Collection) - EP",
+      "artwork": "/nb20/art/1480503102.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/i-put-a-spell-on-you-in-the-style-of-hocus-pocus/1480503099?i=1480503102",
+      "cleanEdit": false,
+      "otherVersionIds": [
+        "6819402212"
+      ]
+    },
+    {
+      "rank": 23,
+      "key": "blind|korn",
+      "trackId": "423045744",
+      "title": "Blind",
+      "artist": "Korn",
+      "album": "Korn",
+      "artwork": "/nb20/art/423045744.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/blind/423045626?i=423045744",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 24,
+      "key": "fireball|pitbull",
+      "trackId": "933984097",
+      "title": "Fireball (feat. John Ryan)",
+      "artist": "Pitbull",
+      "album": "Globalization",
+      "artwork": "/nb20/art/933984097.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/fireball-feat-john-ryan/933984003?i=933984097",
+      "cleanEdit": false,
+      "otherVersionIds": []
+    },
+    {
+      "rank": 25,
+      "key": "centuries|fall out boy",
+      "trackId": "1440826614",
+      "title": "Centuries",
+      "artist": "Fall Out Boy",
+      "album": "American Beauty / American Psycho",
+      "artwork": "/nb20/art/1440826614.jpg",
+      "appleMusicUrl": "https://music.apple.com/us/album/centuries/1440826504?i=1440826614",
+      "cleanEdit": false,
+      "otherVersionIds": [
+        "1487691947"
+      ]
+    }
+  ]
+}

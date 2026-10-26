@@ -1,173 +1,170 @@
 {
   "version": 1,
-  "chartDate": "2026-10-19",
+  "chartDate": "2026-10-26",
   "window": {
-    "start": "2026-09-21",
-    "end": "2026-10-18"
+    "start": "2026-09-28",
+    "end": "2026-10-25"
   },
   "url": "https://www.nowbattingapp.com/top-walk-up-songs",
   "entries": [
     {
       "rank": 1,
-      "trackId": "575998661",
-      "title": "Thunderstruck",
-      "artist": "AC/DC",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/575998661.jpg",
-      "movement": {
-        "type": "same"
-      },
-      "lastWeek": 1
-    },
-    {
-      "rank": 2,
-      "trackId": "1732581784",
-      "title": "Up!",
-      "artist": "Forrest Frank & Connor Price",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1732581784.jpg",
-      "movement": {
-        "type": "same"
-      },
-      "lastWeek": 2
-    },
-    {
-      "rank": 3,
-      "trackId": "1765520596",
-      "title": "Big Dawgs",
-      "artist": "Hanumankind & Kalmi",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1765520596.jpg",
-      "movement": {
-        "type": "up",
-        "by": 1
-      },
-      "lastWeek": 4
-    },
-    {
-      "rank": 4,
-      "trackId": "1631464175",
-      "title": "Pretty Girls Walk",
-      "artist": "Big Boss Vette",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1631464175.jpg",
-      "movement": {
-        "type": "down",
-        "by": 1
-      },
-      "lastWeek": 3
-    },
-    {
-      "rank": 5,
-      "trackId": "723351644",
-      "title": "Who Let the Dogs Out",
-      "artist": "Baha Men",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/723351644.jpg",
-      "movement": {
-        "type": "up",
-        "by": 1
-      },
-      "lastWeek": 6
-    },
-    {
-      "rank": 6,
-      "trackId": "269573341",
-      "title": "Beat It",
-      "artist": "Michael Jackson",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/269573341.jpg",
-      "movement": {
-        "type": "up",
-        "by": 11
-      },
-      "lastWeek": 17
-    },
-    {
-      "rank": 7,
-      "trackId": "1870680329",
-      "title": "LET 'EM KNOW",
-      "artist": "T.I.",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1870680329.jpg",
-      "movement": {
-        "type": "up",
-        "by": 9
-      },
-      "lastWeek": 16
-    },
-    {
-      "rank": 8,
-      "trackId": "1577142083",
-      "title": "Row My Boat",
-      "artist": "Cj Beatty",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1577142083.jpg",
-      "movement": {
-        "type": "up",
-        "by": 6
-      },
-      "lastWeek": 14
-    },
-    {
-      "rank": 9,
       "trackId": "269573303",
       "title": "Thriller",
       "artist": "Michael Jackson",
       "artwork": "https://www.nowbattingapp.com/nb20/art/269573303.jpg",
+      "movement": {
+        "type": "up",
+        "by": 8
+      },
+      "lastWeek": 9
+    },
+    {
+      "rank": 2,
+      "trackId": "1440723145",
+      "title": "Monster Mash",
+      "artist": "Bobby \"Boris\" Pickett & The Crypt-Kickers",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1440723145.jpg",
       "movement": {
         "type": "new"
       },
       "lastWeek": null
     },
     {
+      "rank": 3,
+      "trackId": "1127014316",
+      "title": "Ghostbusters",
+      "artist": "Ray Parker Jr.",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1127014316.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 4,
+      "trackId": "1589119250",
+      "title": "Somebody's Watching Me",
+      "artist": "Rockwell",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1589119250.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 5,
+      "trackId": "1426559304",
+      "title": "Halloween Theme",
+      "artist": "John Carpenter, Cody Carpenter & Daniel Davies",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1426559304.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 6,
+      "trackId": "1440662595",
+      "title": "This Is Halloween",
+      "artist": "The Citizens of Halloween",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1440662595.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 7,
+      "trackId": "1482699500",
+      "title": "Spooky, Scary Skeletons (Undead Tombstone Remix)",
+      "artist": "Andrew Gold",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1482699500.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 8,
+      "trackId": "723351644",
+      "title": "Who Let the Dogs Out",
+      "artist": "Baha Men",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/723351644.jpg",
+      "movement": {
+        "type": "down",
+        "by": 3
+      },
+      "lastWeek": 5
+    },
+    {
+      "rank": 9,
+      "trackId": "575998661",
+      "title": "Thunderstruck",
+      "artist": "AC/DC",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/575998661.jpg",
+      "movement": {
+        "type": "down",
+        "by": 8
+      },
+      "lastWeek": 1
+    },
+    {
       "rank": 10,
-      "trackId": "1055074639",
-      "title": "Unstoppable",
-      "artist": "Sia",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1055074639.jpg",
+      "trackId": "1443821690",
+      "title": "Spooky, Scary Skeletons",
+      "artist": "Andrew Gold",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1443821690.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 11,
+      "trackId": "1440903439",
+      "title": "Lose Yourself",
+      "artist": "Eminem",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1440903439.jpg",
       "movement": {
         "type": "reentry"
       },
       "lastWeek": null
     },
     {
-      "rank": 11,
+      "rank": 12,
       "trackId": "1844932150",
       "title": "Choosin' Texas",
       "artist": "Ella Langley",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1844932150.jpg",
       "movement": {
-        "type": "same"
+        "type": "down",
+        "by": 1
       },
       "lastWeek": 11
     },
     {
-      "rank": 12,
-      "trackId": "6771852797",
-      "title": "JESUS IS ALIVE",
-      "artist": "Forrest Frank",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/6771852797.jpg",
-      "movement": {
-        "type": "down",
-        "by": 3
-      },
-      "lastWeek": 9
-    },
-    {
       "rank": 13,
-      "trackId": "1800089163",
-      "title": "HEAVEN ON THIS EARTH",
-      "artist": "Forrest Frank & Torey D'Shaun",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1800089163.jpg",
+      "trackId": "1443190324",
+      "title": "Crank That (Soulja Boy)",
+      "artist": "Soulja Boy Tell 'Em",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1443190324.jpg",
       "movement": {
-        "type": "down",
-        "by": 5
+        "type": "reentry"
       },
-      "lastWeek": 8
+      "lastWeek": null
     },
     {
       "rank": 14,
-      "trackId": "282883590",
-      "title": "9 to 5",
-      "artist": "Dolly Parton",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/282883590.jpg",
+      "trackId": "1765520596",
+      "title": "Big Dawgs",
+      "artist": "Hanumankind & Kalmi",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1765520596.jpg",
       "movement": {
-        "type": "new"
+        "type": "down",
+        "by": 11
       },
-      "lastWeek": null
+      "lastWeek": 3
     },
     {
       "rank": 15,
@@ -176,63 +173,64 @@
       "artist": "Lil Wayne",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1443919434.jpg",
       "movement": {
-        "type": "new"
+        "type": "same"
       },
-      "lastWeek": null
+      "lastWeek": 15
     },
     {
       "rank": 16,
-      "trackId": "1411629089",
-      "title": "Thunder",
-      "artist": "Imagine Dragons",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1411629089.jpg",
-      "movement": {
-        "type": "down",
-        "by": 11
-      },
-      "lastWeek": 5
-    },
-    {
-      "rank": 17,
-      "trackId": "353859978",
-      "title": "All I Do Is Win (feat. T-Pain, Ludacris, Snoop Dogg & Rick Ross)",
-      "artist": "DJ Khaled",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/353859978.jpg",
-      "movement": {
-        "type": "down",
-        "by": 10
-      },
-      "lastWeek": 7
-    },
-    {
-      "rank": 18,
-      "trackId": "296016901",
-      "title": "Diva",
-      "artist": "Beyoncé",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/296016901.jpg",
-      "movement": {
-        "type": "new"
-      },
-      "lastWeek": null
-    },
-    {
-      "rank": 19,
       "trackId": "1572051818",
       "title": "Enter Sandman",
       "artist": "Metallica",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1572051818.jpg",
       "movement": {
-        "type": "down",
-        "by": 6
+        "type": "up",
+        "by": 3
       },
-      "lastWeek": 13
+      "lastWeek": 19
+    },
+    {
+      "rank": 17,
+      "trackId": "1631464175",
+      "title": "Pretty Girls Walk",
+      "artist": "Big Boss Vette",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1631464175.jpg",
+      "movement": {
+        "type": "down",
+        "by": 13
+      },
+      "lastWeek": 4
+    },
+    {
+      "rank": 18,
+      "trackId": "269573341",
+      "title": "Beat It",
+      "artist": "Michael Jackson",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/269573341.jpg",
+      "movement": {
+        "type": "down",
+        "by": 12
+      },
+      "lastWeek": 6
+    },
+    {
+      "rank": 19,
+      "trackId": "1055074639",
+      "title": "Unstoppable",
+      "artist": "Sia",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1055074639.jpg",
+      "movement": {
+        "type": "down",
+        "by": 9
+      },
+      "lastWeek": 10
     },
     {
       "rank": 20,
-      "trackId": "1774570252",
-      "title": "YOUR WAY'S BETTER",
-      "artist": "Forrest Frank",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1774570252.jpg",
+      "trackId": "1533513537",
+      "title": "Seven Nation Army",
+      "artist": "The White Stripes",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1533513537.jpg",
       "movement": {
         "type": "new"
       },
