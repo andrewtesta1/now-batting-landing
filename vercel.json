@@ -12,6 +12,10 @@
       "destination": "https://walkup-hero.vercel.app/join/:id"
     },
     {
+      "source": "/.well-known/apple-app-site-association",
+      "destination": "https://walkup-hero.vercel.app/.well-known/apple-app-site-association"
+    },
+    {
       "source": "/hype/og-home",
       "destination": "https://walkup-hero.vercel.app/hype/og-home"
     },
