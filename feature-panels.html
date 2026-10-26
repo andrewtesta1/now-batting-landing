@@ -198,6 +198,13 @@
   [data-fp="sounds"] .gdview{height:240px}
   /* Both rails scroll in the app. A hard cut mid-letter reads as broken; a fade reads as
      "there's more". */
+    /* Press-hold-slide reorder (shipped 1.2.7, on both rails). The pill LIFTS first because
+     in the app the hold fires the sound and then begins the drag — a pill that just slides
+     would read as the row scrolling. */
+  [data-fp="sounds"] .dpill{transition:transform .42s cubic-bezier(.22,.61,.36,1),box-shadow .18s ease,border-color .18s ease}
+  [data-fp="sounds"] .dpill.lift{box-shadow:0 10px 22px rgba(0,0,0,.6);border-color:rgba(255,255,255,.45);z-index:3;position:relative}
+  [data-fp="sounds"] .deckrow{position:relative}
+  [data-fp="sounds"] .dragdot{position:absolute;top:50%;left:0;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.45);opacity:0;pointer-events:none;z-index:4;transition:transform .42s cubic-bezier(.22,.61,.36,1),opacity .18s ease}
   [data-fp="sounds"] .hdchips,[data-fp="sounds"] .deckrow{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
   /* ── FIELD READY — the offline prep sheet from components/OfflinePrepSheet.tsx. ── */
   [data-fp="fieldready"] .phone.fr{height:592px;background:#141414;display:flex;align-items:flex-end;overflow:hidden}
@@ -737,7 +744,52 @@
       setTimeout(loop,10600);
     })();
   }
-  var runners={songeditor:run_songeditor,announcer:run_announcer,original:run_original,teamsong:run_teamsong};
+  /**
+   * The Hype Deck's deck row, reordering itself. Shows what the app does on a press-hold-
+   * slide: the pill lifts, travels, and the row closes behind it — then the DOM is actually
+   * reordered so the new order persists through the loop, the way a coach's deck does.
+   */
+  function run_sounds(root){
+    var row=root.querySelector('.deckrow'); if(!row) return;
+    var original=row.innerHTML;                      // reset each cycle so the same pill always moves
+    var dot=document.createElement('span'); dot.className='dragdot'; row.appendChild(dot);
+    var timers=[]; function T(fn,ms){timers.push(setTimeout(fn,ms));}
+    function go(){
+      row.innerHTML=original; row.appendChild(dot);
+      var pills=[].slice.call(row.querySelectorAll('.dpill'));
+      if(pills.length<4) return;
+      var moving=pills[3], target=pills[1];          // "Home run" moves ahead of "Walk"
+      var dx=target.offsetLeft-moving.offsetLeft;    // negative: travels left
+      var shift=moving.offsetWidth+9;                // its width + the row gap
+      // The dot rides on transform, not left, so it travels with the same easing as the pill.
+      dot.style.transition='none';
+      dot.style.left=(moving.offsetLeft+moving.offsetWidth/2)+'px';
+      dot.style.opacity='0'; dot.style.transform='scale(.4)';
+      void dot.offsetWidth; dot.style.transition='';
+      // press and hold
+      T(function(){ dot.style.opacity='1'; dot.style.transform='scale(1)'; moving.classList.add('lift'); moving.style.transform='scale(1.08)'; },700);
+      // slide it into place, the two pills between it and the slot stepping aside
+      T(function(){
+        moving.style.transform='translateX('+dx+'px) scale(1.08)';
+        dot.style.transform='translateX('+dx+'px) scale(1)';
+        pills[1].style.transform='translateX('+shift+'px)';
+        pills[2].style.transform='translateX('+shift+'px)';
+      },1300);
+      // let go
+      T(function(){
+        pills.forEach(function(p){p.style.transition='none';p.style.transform='';});
+        row.insertBefore(moving,target);
+        moving.classList.remove('lift');
+        dot.style.opacity='0';
+        void row.offsetWidth;                        // reflow before transitions return
+        pills.forEach(function(p){p.style.transition='';});
+      },1900);
+      T(go,4400);
+    }
+    go();
+  }
+
+  var runners={songeditor:run_songeditor,announcer:run_announcer,original:run_original,teamsong:run_teamsong,sounds:run_sounds};
   if(active&&runners[which]) runners[which](active);
 </script>
 </body>
