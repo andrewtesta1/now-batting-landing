@@ -63,6 +63,19 @@
     .submit{width:100%;background:var(--lime);border:none;color:#141414;font-size:15px;font-weight:600;font-family:inherit;border-radius:14px;padding:15px;margin-top:24px;cursor:pointer}
     .submit:disabled{opacity:.5}
     .link{color:var(--lime);font-size:12px;font-weight:500;cursor:pointer}
+    .hint{font-size:12px;color:var(--mut);margin:-2px 0 9px;line-height:1.45}
+    /* The field and its audition sit on one row: hearing the name is part of typing
+       it, not a separate step further down the form. */
+    .hearrow{display:flex;gap:8px;align-items:stretch}
+    .hearrow input{flex:1;min-width:0}
+    .hear{flex-shrink:0;min-width:114px;justify-content:center;display:inline-flex;align-items:center;gap:7px;background:rgba(223,255,0,.12);border:1px solid var(--lime);color:var(--lime);font-size:13px;font-weight:600;font-family:inherit;border-radius:11px;padding:0 15px;cursor:pointer}
+    .hear:disabled{opacity:.45;cursor:default}
+    .hear .hic{font-size:9px;line-height:1}
+    /* A fetch with no visible state reads as a dead button — the same trap the song
+       editor's AI play button fell into, where the fix traded one lie for another
+       until the spinner landed. */
+    .hear.busy .hic{display:inline-block;width:9px;height:9px;border:1.5px solid currentColor;border-right-color:transparent;border-radius:50%;animation:hspin .6s linear infinite}
+    @keyframes hspin{to{transform:rotate(360deg)}}
     .hide{display:none}
     .center{text-align:center;padding:60px 24px}
   </style>
@@ -89,7 +102,15 @@
         <div style="flex:1"><label>First name</label><input type="text" id="first" placeholder="Jaden" /></div>
         <div style="flex:1"><label>Last name</label><input type="text" id="last" placeholder="Washington" /></div>
       </div>
-      <div style="margin-bottom:13px"><label>How do you say it? (optional)</label><input type="text" id="phon" placeholder="e.g. JAY-den" /></div>
+      <div style="margin-bottom:13px">
+        <label>How do you say it? (optional)</label>
+        <p class="hint">Nobody says their name like you do. Type it how it sounds, then hear it back.<span id="voiceLine"></span></p>
+        <div class="hearrow">
+          <input type="text" id="phon" placeholder="e.g. JAY-den" />
+          <button type="button" class="hear" id="hearBtn"><span class="hic">&#9654;</span><span id="hearLbl">Hear it</span></button>
+        </div>
+        <p class="hint hide" id="hearMsg"></p>
+      </div>
       <div style="margin-bottom:22px;width:130px"><label>Number</label><input type="number" id="num" inputmode="numeric" placeholder="23" /></div>
 
       <label>Walk-up song</label>
@@ -172,6 +193,11 @@
           $('#loading').classList.add('hide');$('#form').classList.remove('hide');
           $('#teamName').textContent=m.team||'Your team';
           if(m.coach){$('#coachLabel').textContent=m.coach;$('#intro').textContent=m.coach+', your Chief Hype Officer, set this up. Takes 30 seconds — they’ll get it game-ready.';}
+          // The voice LABEL, never the raw id. A link minted before the voice was
+          // stamped returns Classic, which is what the app falls back to anyway.
+          // Appended as its own sentence rather than slotted mid-clause, so the line
+          // still reads if an older API build returns no voice at all.
+          if(m.voice){$('#voiceLine').textContent=' You’ll hear '+m.voice+', the voice that calls their name at the game.';}
         }).catch(fail);
     }
 
@@ -221,6 +247,61 @@
       },350);
     });
     $('#changeSong').addEventListener('click',function(){$('#songSelected').classList.add('hide');$('#songSearch').classList.remove('hide')});
+
+    /* ── Hear it ────────────────────────────────────────────────────────────────
+       Audition the name in the coach's roster voice. What gets SUBMITTED is the
+       respelling, not audio: the parent tunes it by ear and the coach's app renders
+       the real clip later. So this spends a little TTS to make a text field
+       honest, which is the whole trade.
+
+       One audio element, reused, so a parent tapping twice never gets two takes
+       overlapping. Cached by the exact text, so re-tapping replays the same bytes
+       rather than paying for a fresh take that may sound different — the same rule
+       the in-app Name Lock audition follows. */
+    var hearAudio=null, hearCache={}, hearing=false;
+    function hearMsg(t){var el=$('#hearMsg');if(!t){el.classList.add('hide');el.textContent='';return}el.textContent=t;el.classList.remove('hide')}
+    function hearBusy(on){
+      hearing=on;
+      $('#hearBtn').disabled=on;
+      $('#hearBtn').classList.toggle('busy',on);
+      $('#hearLbl').textContent=on?'One sec…':'Hear it';
+    }
+    function playHeard(url){
+      if(!hearAudio){hearAudio=new Audio()}
+      hearAudio.pause();
+      hearAudio.src=url;
+      // A browser can refuse playback; say so rather than leaving a silent button.
+      var p=hearAudio.play();
+      if(p&&p.catch){p.catch(function(){hearMsg('Tap again to play it.')})}
+    }
+    $('#hearBtn').addEventListener('click',function(){
+      if(hearing)return;
+      var first=$('#first').value.trim();
+      var last=$('#last').value.trim();
+      var respell=$('#phon').value.trim();
+      if(!first&&!respell){hearMsg('Add a first name first.');return}
+      hearMsg('');
+      var cacheKey=respell+'|'+first+'|'+last;
+      if(hearCache[cacheKey]){playHeard(hearCache[cacheKey]);return}
+      hearBusy(true);
+      fetch(API+'/api/intake-listen',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        intakeId:id,firstName:first,lastName:last,respell:respell
+      })}).then(function(r){
+        if(r.status===429)throw new Error('busy');
+        if(!r.ok)throw new Error('failed');
+        return r.blob();
+      }).then(function(b){
+        var url=URL.createObjectURL(b);
+        hearCache[cacheKey]=url;
+        playHeard(url);
+        // Not instructions — a nudge that the field is the thing to change.
+        hearMsg(respell?'Not right yet? Change the spelling above and hear it again.':'Sounds off? Type how it sounds above and hear it again.');
+      }).catch(function(e){
+        hearMsg(e&&e.message==='busy'
+          ? 'That’s a lot of listening for one day — your spelling still gets saved.'
+          : 'Couldn’t play that just now. Your spelling still gets saved.');
+      }).finally(function(){hearBusy(false)});
+    });
 
     // submit
     $('#submit').addEventListener('click',function(){
