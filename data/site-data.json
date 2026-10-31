@@ -4,6 +4,8 @@
   "appStoreUrl": "https://apps.apple.com/app/now-batting/id6760744461",
   "siteUrl": "https://www.nowbattingapp.com",
   "siteName": "Now Batting",
+  "legalName": "Chief Hype Officer LLC",
+  "_legalNameNote": "Published as the Organization that publishes the app and the site. This is the disambiguator: a same-named app on the App Store is published by a different party, so naming the legal entity is what tells a search or answer engine which \"Now Batting\" this is. Keep it identical to the footer copyright line.",
   "plans": [
     {
       "id": "dedicated",

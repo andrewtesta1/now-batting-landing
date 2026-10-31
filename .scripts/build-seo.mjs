@@ -374,7 +374,35 @@ const main = async () => {
     });
   }
 
+  // ── Entity cluster ─────────────────────────────────────────────────────────
+  // A same-named app by a different developer sits on the App Store, and answer
+  // engines have been observed merging the two. Three things separate them, and all
+  // three are facts rather than copy: the App Store ID (globally unique), the legal
+  // entity that publishes this one, and a sameAs cluster linking every surface that
+  // spells the same handle. The social URLs are PARSED FROM THE FOOTER rather than
+  // listed here — a second copy is a second thing to drift.
+  const socials = [...new Set(
+    [...html.matchAll(/href="(https:\/\/(?:www\.)?(?:tiktok|youtube|instagram|facebook)\.com\/[^"]+)"/g)]
+      .map((m) => m[1])
+  )];
+  if (socials.length < 3) {
+    fail(`only ${socials.length} social profile links found in index.html — the sameAs cluster is how this app is ` +
+         `told apart from the same-named one on the App Store. Refusing to publish a weakened entity graph.`);
+  }
+  const publisher = {
+    '@type': 'Organization',
+    '@id': data.siteUrl + '/#org',
+    name: data.legalName,
+    url: data.siteUrl + '/',
+    sameAs: socials,
+  };
+
+  app.identifier = data.appStoreId;
+  app.sameAs = [data.appStoreUrl, ...socials];
+  app.publisher = { '@id': publisher['@id'] };
+
   const graph = [
+    publisher,
     app,
     // WebSite exists for entity disambiguation: a same-named app sits on the App Store,
     // and this node is how Google is told which entity owns this domain.
@@ -383,7 +411,7 @@ const main = async () => {
       name: data.siteName,
       alternateName: `${data.siteName} — walk-up songs & announcer app`,
       url: data.siteUrl + '/',
-      publisher: { '@type': 'Organization', name: data.siteName, url: data.siteUrl + '/' },
+      publisher: { '@id': publisher['@id'] },
     },
     ...videoNodes,
     {

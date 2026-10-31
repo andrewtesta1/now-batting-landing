@@ -230,6 +230,15 @@ function page({ chart, isCurrent, allDates, editorial, nextMonday }) {
     name: `The Now Batting 20 — top youth baseball and softball walk-up songs, week of ${fmtDay(chart.chartDate)}`,
     description: `Youth baseball and softball walk-up songs, ranked by how many Chief Hype Officers picked each one in Now Batting, ${fmtRange(chart.window.start, chart.window.end)}.`,
     url: canonical, numberOfItems: n,
+    // ⚠️ Freshness is this chart's whole advantage over the vendor listicles that rank
+    // alongside it, and without a date it is invisible to anything reading the markup.
+    // Taken from chart.json so it cannot drift from the week actually rendered.
+    datePublished: chart.chartDate,
+    ...(chart.generatedAt ? { dateModified: chart.generatedAt } : {}),
+    // The method is the part competitors cannot copy, because theirs is asserted and
+    // ours is measured. ⛔ Deliberately NO counts — the page promises rankings only.
+    measurementTechnique: 'Ranked by the number of distinct Now Batting users who chose each song for a player in the four weeks ending Sunday. Multiple players on one team count once. A song needs at least 3 users to chart. Explicit versions are excluded.',
+    isAccessibleForFree: true,
     itemListElement: chart.entries.map((e) => ({
       '@type': 'ListItem', position: e.rank,
       item: { '@type': 'MusicRecording', name: e.title, byArtist: { '@type': 'MusicGroup', name: e.artist }, ...(e.appleMusicUrl ? { url: e.appleMusicUrl } : {}) },
@@ -566,6 +575,30 @@ async function writeChartJson(dir, latest) {
 
 // ── main ─────────────────────────────────────────────────────────────────────
 
+// Each past week is a dated, independently-canonical page of real pick data — the kind of
+// thing that accumulates citations. ⚠️ Eight of them existed and NONE was in the sitemap,
+// so this is generated rather than hand-maintained: a week that renders lists itself.
+async function writeSitemapArchive(dates, snapshots) {
+  const file = join(ROOT, 'sitemap.xml');
+  const S = '  <!-- NB20-ARCHIVE:START';
+  const E = '  <!-- NB20-ARCHIVE:END -->';
+  let xml;
+  try { xml = await readFile(file, 'utf8'); }
+  catch { console.log('  nb20: no sitemap.xml, skipping archive block'); return; }
+  if (!xml.includes(S) || !xml.includes(E)) {
+    throw new Error('sitemap.xml is missing its NB20-ARCHIVE markers — refusing to guess where the weeks go.');
+  }
+  const rows = dates.map((d) => {
+    const g = snapshots[d] && snapshots[d].generatedAt;
+    const lastmod = g ? String(g).slice(0, 10) : d;
+    return `  <url><loc>https://www.nowbattingapp.com/${SLUG}/${d}</loc><lastmod>${lastmod}</lastmod><priority>0.5</priority></url>`;
+  }).join('\n');
+  const head = xml.slice(xml.indexOf(S), xml.indexOf('-->', xml.indexOf(S)) + 3);
+  const next = xml.slice(0, xml.indexOf(S)) + head + (rows ? '\n' + rows : '') + '\n' + E + xml.slice(xml.indexOf(E) + E.length);
+  if (next !== xml) await writeFile(file, next);
+  console.log(`  nb20: sitemap lists ${dates.length} archived week(s)`);
+}
+
 async function main() {
   const snapshots = await loadSnapshots();
   const editorial = await loadEditorial();
@@ -588,6 +621,7 @@ async function main() {
   }
   await writeHomeTeaser(latest);
   await writeChartJson(weekDir, latest);
+  await writeSitemapArchive(dates, snapshots);
   console.log(`  nb20: rendered /${SLUG} (${latest ? `week of ${latest.chartDate}, ${latest.entries.length} songs` : 'no chart yet'}) + ${dates.length} week page(s)`);
 }
 
