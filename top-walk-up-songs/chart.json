@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "chartDate": "2026-10-26",
+  "chartDate": "2026-11-02",
   "window": {
-    "start": "2026-09-28",
-    "end": "2026-10-25"
+    "start": "2026-10-05",
+    "end": "2026-11-01"
   },
   "url": "https://www.nowbattingapp.com/top-walk-up-songs",
   "entries": [
@@ -14,10 +14,9 @@
       "artist": "Michael Jackson",
       "artwork": "https://www.nowbattingapp.com/nb20/art/269573303.jpg",
       "movement": {
-        "type": "up",
-        "by": 8
+        "type": "same"
       },
-      "lastWeek": 9
+      "lastWeek": 1
     },
     {
       "rank": 2,
@@ -26,9 +25,9 @@
       "artist": "Bobby \"Boris\" Pickett & The Crypt-Kickers",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1440723145.jpg",
       "movement": {
-        "type": "new"
+        "type": "same"
       },
-      "lastWeek": null
+      "lastWeek": 2
     },
     {
       "rank": 3,
@@ -37,193 +36,198 @@
       "artist": "Ray Parker Jr.",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1127014316.jpg",
       "movement": {
-        "type": "new"
+        "type": "same"
       },
-      "lastWeek": null
+      "lastWeek": 3
     },
     {
       "rank": 4,
-      "trackId": "1589119250",
-      "title": "Somebody's Watching Me",
-      "artist": "Rockwell",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1589119250.jpg",
-      "movement": {
-        "type": "new"
-      },
-      "lastWeek": null
-    },
-    {
-      "rank": 5,
-      "trackId": "1426559304",
-      "title": "Halloween Theme",
-      "artist": "John Carpenter, Cody Carpenter & Daniel Davies",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1426559304.jpg",
-      "movement": {
-        "type": "new"
-      },
-      "lastWeek": null
-    },
-    {
-      "rank": 6,
       "trackId": "1440662595",
       "title": "This Is Halloween",
       "artist": "The Citizens of Halloween",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1440662595.jpg",
       "movement": {
-        "type": "new"
+        "type": "up",
+        "by": 2
       },
-      "lastWeek": null
+      "lastWeek": 6
     },
     {
-      "rank": 7,
+      "rank": 5,
+      "trackId": "1589119250",
+      "title": "Somebody's Watching Me",
+      "artist": "Rockwell",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1589119250.jpg",
+      "movement": {
+        "type": "down",
+        "by": 1
+      },
+      "lastWeek": 4
+    },
+    {
+      "rank": 6,
       "trackId": "1482699500",
       "title": "Spooky, Scary Skeletons (Undead Tombstone Remix)",
       "artist": "Andrew Gold",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1482699500.jpg",
       "movement": {
-        "type": "new"
+        "type": "up",
+        "by": 1
       },
-      "lastWeek": null
+      "lastWeek": 7
     },
     {
-      "rank": 8,
-      "trackId": "723351644",
-      "title": "Who Let the Dogs Out",
-      "artist": "Baha Men",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/723351644.jpg",
+      "rank": 7,
+      "trackId": "1426559304",
+      "title": "Halloween Theme",
+      "artist": "John Carpenter, Cody Carpenter & Daniel Davies",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1426559304.jpg",
       "movement": {
         "type": "down",
-        "by": 3
+        "by": 2
       },
       "lastWeek": 5
     },
     {
+      "rank": 8,
+      "trackId": "1443821690",
+      "title": "Spooky, Scary Skeletons",
+      "artist": "Andrew Gold",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1443821690.jpg",
+      "movement": {
+        "type": "up",
+        "by": 2
+      },
+      "lastWeek": 10
+    },
+    {
       "rank": 9,
+      "trackId": "1443190324",
+      "title": "Crank That (Soulja Boy)",
+      "artist": "Soulja Boy Tell 'Em",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1443190324.jpg",
+      "movement": {
+        "type": "up",
+        "by": 4
+      },
+      "lastWeek": 13
+    },
+    {
+      "rank": 10,
       "trackId": "575998661",
       "title": "Thunderstruck",
       "artist": "AC/DC",
       "artwork": "https://www.nowbattingapp.com/nb20/art/575998661.jpg",
       "movement": {
         "type": "down",
-        "by": 8
+        "by": 1
       },
-      "lastWeek": 1
-    },
-    {
-      "rank": 10,
-      "trackId": "1443821690",
-      "title": "Spooky, Scary Skeletons",
-      "artist": "Andrew Gold",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1443821690.jpg",
-      "movement": {
-        "type": "new"
-      },
-      "lastWeek": null
+      "lastWeek": 9
     },
     {
       "rank": 11,
-      "trackId": "1440903439",
-      "title": "Lose Yourself",
-      "artist": "Eminem",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1440903439.jpg",
-      "movement": {
-        "type": "reentry"
-      },
-      "lastWeek": null
-    },
-    {
-      "rank": 12,
-      "trackId": "1844932150",
-      "title": "Choosin' Texas",
-      "artist": "Ella Langley",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1844932150.jpg",
-      "movement": {
-        "type": "down",
-        "by": 1
-      },
-      "lastWeek": 11
-    },
-    {
-      "rank": 13,
-      "trackId": "1443190324",
-      "title": "Crank That (Soulja Boy)",
-      "artist": "Soulja Boy Tell 'Em",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1443190324.jpg",
-      "movement": {
-        "type": "reentry"
-      },
-      "lastWeek": null
-    },
-    {
-      "rank": 14,
       "trackId": "1765520596",
       "title": "Big Dawgs",
       "artist": "Hanumankind & Kalmi",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1765520596.jpg",
       "movement": {
-        "type": "down",
-        "by": 11
+        "type": "up",
+        "by": 3
       },
-      "lastWeek": 3
+      "lastWeek": 14
     },
     {
-      "rank": 15,
-      "trackId": "1443919434",
-      "title": "Fireman",
-      "artist": "Lil Wayne",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1443919434.jpg",
-      "movement": {
-        "type": "same"
-      },
-      "lastWeek": 15
-    },
-    {
-      "rank": 16,
+      "rank": 12,
       "trackId": "1572051818",
       "title": "Enter Sandman",
       "artist": "Metallica",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1572051818.jpg",
       "movement": {
         "type": "up",
-        "by": 3
+        "by": 4
       },
-      "lastWeek": 19
+      "lastWeek": 16
+    },
+    {
+      "rank": 13,
+      "trackId": "723351644",
+      "title": "Who Let the Dogs Out",
+      "artist": "Baha Men",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/723351644.jpg",
+      "movement": {
+        "type": "down",
+        "by": 5
+      },
+      "lastWeek": 8
+    },
+    {
+      "rank": 14,
+      "trackId": "1612321591",
+      "title": "Bones",
+      "artist": "Imagine Dragons",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1612321591.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 15,
+      "trackId": "1480503102",
+      "title": "I Put a Spell on You (In the Style of Hocus Pocus)",
+      "artist": "PattyCake",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1480503102.jpg",
+      "movement": {
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 16,
+      "trackId": "1844932150",
+      "title": "Choosin' Texas",
+      "artist": "Ella Langley",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1844932150.jpg",
+      "movement": {
+        "type": "down",
+        "by": 4
+      },
+      "lastWeek": 12
     },
     {
       "rank": 17,
+      "trackId": "933984097",
+      "title": "Fireball (feat. John Ryan)",
+      "artist": "Pitbull",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/933984097.jpg",
+      "movement": {
+        "type": "reentry"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 18,
       "trackId": "1631464175",
       "title": "Pretty Girls Walk",
       "artist": "Big Boss Vette",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1631464175.jpg",
       "movement": {
         "type": "down",
-        "by": 13
+        "by": 1
       },
-      "lastWeek": 4
+      "lastWeek": 17
     },
     {
-      "rank": 18,
+      "rank": 19,
       "trackId": "269573341",
       "title": "Beat It",
       "artist": "Michael Jackson",
       "artwork": "https://www.nowbattingapp.com/nb20/art/269573341.jpg",
       "movement": {
         "type": "down",
-        "by": 12
+        "by": 1
       },
-      "lastWeek": 6
-    },
-    {
-      "rank": 19,
-      "trackId": "1055074639",
-      "title": "Unstoppable",
-      "artist": "Sia",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1055074639.jpg",
-      "movement": {
-        "type": "down",
-        "by": 9
-      },
-      "lastWeek": 10
+      "lastWeek": 18
     },
     {
       "rank": 20,
@@ -232,9 +236,9 @@
       "artist": "The White Stripes",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1533513537.jpg",
       "movement": {
-        "type": "new"
+        "type": "same"
       },
-      "lastWeek": null
+      "lastWeek": 20
     }
   ]
 }
