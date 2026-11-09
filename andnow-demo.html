@@ -159,10 +159,10 @@
 
 <script>
 const VOICES = [
-  { slug: 'legend', name: 'The Legend', sub: 'Male · booming main-event', bed: 'dynasty' },
+  { slug: 'mainevent', name: 'The Main Event', sub: 'Female · booming main-event', bed: 'dynasty' },
   { slug: 'hypeman', name: 'The Hype Man', sub: 'Male · raspy arena hype', bed: 'takeover' },
   { slug: 'powerhouse', name: 'The Powerhouse', sub: 'Female · booming arena power', bed: 'spotlight' },
-  { slug: 'mainevent', name: 'The Main Event', sub: 'Female · booming main-event', bed: 'dynasty' },
+  { slug: 'legend', name: 'The Legend', sub: 'Male · booming main-event', bed: 'dynasty' },
   { slug: 'smooth', name: 'The Smooth Operator', sub: 'Male · smooth, big-event', bed: 'tipoff' },
 ];
 const BEDS = [
@@ -182,7 +182,9 @@ const TOGGLES = [
   ['coaches', 'Coaches', 'Head and assistant coach, both teams.'],
   ['officials', 'Referees', 'Terry Whistle and Pat Stripes.'],
 ];
-const S = { voice: 'legend', bed: null, visitors: true, bench: false, coaches: true, officials: true, built: false };
+// Defaults keep the first listen tight: The Main Event (the read Andrew tuned the script on) and
+// the visitors only, about two minutes. Everything else is one tap away.
+const S = { voice: 'mainevent', bed: null, visitors: true, bench: false, coaches: false, officials: false, built: false };
 let COMBOS = null;
 fetch('/andnow-demo/combos.json').then(r => r.json()).then(j => { COMBOS = j; });
 
