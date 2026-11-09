@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Youth Basketball Starting Lineup Announcer App | And Now, by Now Batting</title>
+  <meta name="description" content="Announce your youth basketball starting five like a big game: an arena-style entrance with music, five announcer voices, PA calls for timeouts, quarters, halftime and the final, and it plays with no signal in the gym. iPhone." />
+  <link rel="canonical" href="https://www.nowbattingapp.com/and-now" />
+  <meta property="og:site_name" content="Now Batting" />
+  <meta property="og:image" content="https://nowbattingapp.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://nowbattingapp.com/og.png" />
+  <meta property="og:title" content="And Now, by Now Batting — Starting Lineup Intros for Youth Basketball" />
+  <meta property="og:description" content="An arena-style Starting 5 entrance, your own announcer and the PA calls, run from the bleachers. Basketball, inside the Now Batting app." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.nowbattingapp.com/and-now" />
+  <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/jetbrains-mono-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <style>
+    @font-face {
+      font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap;
+      src: url('/fonts/inter-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap;
+      src: url('/fonts/inter-var-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 700; font-display: swap;
+      src: url('/fonts/jetbrains-mono-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:           #F6F4EF;
+      --mid:          #FFFFFF;
+      --surf:         #EDEAD9;
+      --bord:         rgba(0,0,0,0.09);
+      --neon:         #DFFF00;
+      --daylight:     #B8CC00;
+      --daylight-dim: #8A9900;
+      --txt:          #1F1F1F;
+      --txt2:         #4A4A4A;
+      --txt3:         #666666;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+      --radius-sm:    8px;
+      --radius-md:    12px;
+      --radius-lg:    16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--txt); font-family: var(--font-sans); font-size: 16px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 18px 48px;
+      background: rgba(246,244,239,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bord);
+    }
+    .nav-sub { display: none; width: 100%; padding: 0 0 10px; gap: 24px; justify-content: center; }
+    .nav-sub a { font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-sub a:hover { color: var(--txt); }
+    .nav-social { display: flex; align-items: center; gap: 10px; }
+    .nav-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bord); background: rgba(0,0,0,0.04); color: var(--txt2); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .nav-social a:hover { border-color: var(--daylight); color: var(--daylight); background: rgba(184,204,0,0.08); }
+    .nav-social svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-link { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--txt2); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--txt); }
+    .nav-link.active { color: var(--txt); }
+    .nav-btn {
+      background: var(--daylight); color: #1F1F1F; font-family: var(--font-sans); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.01em; padding: 10px 20px; border-radius: var(--radius-sm);
+      border: none; cursor: pointer; text-decoration: none; transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover { background: var(--daylight-dim); }
+
+
+    /* WAVEFORM */
+    @keyframes idle-1 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.55);} }
+    @keyframes idle-2 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.62);} }
+    @keyframes idle-3 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.72);} }
+    @keyframes idle-4 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.68);} }
+    @keyframes idle-5 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.70);} }
+    @keyframes idle-6 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.60);} }
+    @keyframes idle-7 { 0%,100%{transform:scaleY(1);}50%{transform:scaleY(0.52);} }
+    .idle-wave .bar { transform-origin: center bottom; }
+    .idle-wave .b1 { animation: idle-1 2.1s ease-in-out 0.0s infinite; }
+    .idle-wave .b2 { animation: idle-2 1.9s ease-in-out 0.12s infinite; }
+    .idle-wave .b3 { animation: idle-3 1.8s ease-in-out 0.06s infinite; }
+    .idle-wave .b4 { animation: idle-4 1.6s ease-in-out 0.0s infinite; }
+    .idle-wave .b5 { animation: idle-5 1.7s ease-in-out 0.08s infinite; }
+    .idle-wave .b6 { animation: idle-6 1.9s ease-in-out 0.16s infinite; }
+    .idle-wave .b7 { animation: idle-7 2.0s ease-in-out 0.04s infinite; }
+
+    /* ── And Now page ────────────────────────────────────────────────────────
+       Same shell as /baseball-announcer-app (answer-first, one reading column),
+       re-accented for basketball: court orange #FF6A13 replaces neon, on the same
+       charcoal. Orange is a ground/border accent only — on cream it measures under
+       3:1, so orange TEXT on the light body uses the darker --court-ink. */
+    :root { --court: #FF6A13; --court-ink: #A8430A; --charcoal: #1F1F1F; }
+    main { position: relative; z-index: 1; padding-top: 69px; }
+    .an-hero { background: var(--charcoal); color: #F6F4EF; padding: 64px 22px 58px; position: relative; overflow: hidden; }
+    .an-hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--court); }
+    .an-hero .in { max-width: 780px; margin: 0 auto; }
+    .an-mark { display: block; height: 34px; width: auto; margin: 0 0 22px; }
+    .an-hero .eyebrow { font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--court); margin: 0 0 16px; }
+    .an-hero h1 { font-size: clamp(30px, 5.4vw, 48px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05;
+      margin: 0 0 16px; text-wrap: balance; color: #F6F4EF; }
+    .an-hero p.lede { font-size: 19px; line-height: 1.58; color: #C8C6C0; margin: 0 0 28px; max-width: 62ch; text-wrap: pretty; }
+    .an-cta { display: inline-block; background: var(--court); color: var(--charcoal); font-weight: 800; font-size: 15px;
+      padding: 13px 22px; border-radius: var(--radius-sm); text-decoration: none; transition: filter .15s; }
+    .an-cta:hover { filter: brightness(1.08); }
+    .an-cta-note { display: block; margin-top: 12px; font-size: 13px; color: #8E8B84; }
+
+    .an-body { max-width: 720px; margin: 0 auto; padding: 56px 22px 84px; }
+    .an-body h2 { font-size: clamp(22px, 3.4vw, 28px); font-weight: 800; letter-spacing: -.02em; line-height: 1.2;
+      margin: 48px 0 14px; text-wrap: balance; }
+    .an-body h2:first-child { margin-top: 0; }
+    .an-body p { font-size: 17.5px; line-height: 1.68; color: #2A2D30; margin: 0 0 18px; text-wrap: pretty; }
+    .an-body ul, .an-body ol { margin: 0 0 18px; padding-left: 22px; }
+    .an-body li { font-size: 17.5px; line-height: 1.62; color: #2A2D30; margin-bottom: 9px; }
+    .an-body li::marker { color: var(--court-ink); font-weight: 700; }
+    .an-body a { color: var(--txt); font-weight: 600; text-decoration: underline; text-decoration-color: var(--court); text-underline-offset: 3px; }
+    .an-answer { border-left: 3px solid var(--court); padding: 2px 0 2px 16px; }
+    .opt { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--court-ink); border: 1px solid rgba(168,67,10,.35); border-radius: 999px; padding: 2px 7px; margin-left: 6px; white-space: nowrap; vertical-align: 2px; }
+
+    /* Voice grid — the same card + player button as the baseball page, orange accent. */
+    .vgrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin: 0 0 8px; }
+    .vcard { border: 1px solid rgba(31,31,31,.14); border-radius: 12px; padding: 16px 16px 14px; background: #fff; }
+    .vcard h3 { margin: 0 0 4px; font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+    .vcard .vuse { display: block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--court-ink); margin: 0 0 12px; }
+    .r3-fplay{flex:none;display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(31,31,31,.22);border-radius:999px;padding:9px 16px 9px 14px;color:#1F1F1F;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+    .r3-fplay:hover{border-color:var(--court);color:var(--court-ink)}
+    .r3-fplay .ic{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+    .r3-fplay.playing{border-color:var(--court);color:var(--court-ink);background:rgba(255,106,19,.10)}
+    .r3-fplay .eq{display:none;align-items:flex-end;gap:2px;height:12px}
+    .r3-fplay .eq i{width:2.5px;background:var(--court);border-radius:1px;animation:r3eq .85s ease-in-out infinite}
+    .r3-fplay .eq i:nth-child(2){animation-delay:.15s}
+    .r3-fplay .eq i:nth-child(3){animation-delay:.3s}
+    .r3-fplay .eq i:nth-child(4){animation-delay:.45s}
+    .r3-fplay.playing .ic{display:none}
+    .r3-fplay.playing .eq{display:inline-flex}
+    @keyframes r3eq{0%,100%{height:3px}50%{height:12px}}
+    @media (prefers-reduced-motion: reduce){ .r3-fplay .eq i{animation:none;height:8px} }
+
+    .an-cross { margin: 44px 0 0; padding: 20px 22px; background: #fff; border: 1px solid rgba(31,31,31,.14);
+      border-left: 4px solid var(--daylight); border-radius: 12px; }
+    .an-cross p { margin: 0; font-size: 16.5px; }
+    .an-close { margin-top: 40px; padding: 22px 22px; background: var(--charcoal); border-radius: 14px; border-top: 4px solid var(--court); }
+    .an-close p { margin: 0 0 16px; color: #F6F4EF; font-size: 18.5px; line-height: 1.5; font-weight: 600; }
+
+    .faq-list { margin-top: 8px; }
+    .faq-item { border-top: 1px solid var(--bord); padding: 20px 0 4px; }
+    .faq-item:last-child { border-bottom: 1px solid var(--bord); padding-bottom: 8px; }
+    .an-body .faq-q { font-size: 16px; font-weight: 700; color: var(--txt); margin: 0 0 8px; }
+    .an-body .faq-a { font-size: 16px; color: var(--txt2); line-height: 1.7; }
+
+    footer { border-top: 1px solid var(--bord); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+    .f-logo { display: flex; align-items: center; line-height: 1; }
+    .f-copy { font-size: 12px; color: var(--txt3); }
+    .f-copy a { color: var(--txt3); text-decoration: none; }
+    .f-copy a:hover { color: var(--daylight); }
+
+    @media (max-width: 860px) {
+      nav { padding: 14px 18px; }
+      .nav-links { display: flex; order: 3; width: 100%; border-top: 1px solid var(--bord); padding-top: 10px; gap: 20px; overflow-x: auto; }
+      .nav-link { white-space: nowrap; }
+      .nav-social { display: none; }
+      main { padding-top: 104px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px 18px; }
+    }
+    @media (max-width: 560px) {
+      .an-hero { padding: 44px 18px 42px; } .an-body { padding: 40px 18px 64px; }
+      .vgrid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" style="display:flex;align-items:center;line-height:1;text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="28" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect class="bar b1" x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect class="bar b2" x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect class="bar b3" x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect class="bar b4" x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect class="bar b5" x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect class="bar b6" x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect class="bar b7" x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg>
+  </a>
+  <div class="nav-links">
+    <a href="/our-story" class="nav-link">Our Story</a>
+    <a href="/how-to-run-walk-up-songs" class="nav-link">Field Guide</a>
+    <a href="/top-walk-up-songs" class="nav-link">Top 20</a>
+    <a href="/and-now" class="nav-link active">And Now</a>
+    <a href="/support" class="nav-link">Support</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://www.instagram.com/nowbattingapp/" target="_blank" rel="noopener" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578086790401" target="_blank" rel="noopener" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@nowbattingapp" target="_blank" rel="noopener" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@NowBattingApp" target="_blank" rel="noopener" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+    <a href="https://apps.apple.com/app/now-batting/id6760744461" class="nav-btn">Download</a>
+  </div>
+</nav>
+
+<main>
+  <section class="an-hero">
+    <div class="in">
+      <svg class="an-mark idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254 60" role="img" aria-label="and now"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">and</text><circle cx="69.00" cy="30" r="3.5" fill="#F6F4EF"/><rect class="bar b1" x="81.50" y="24" width="6.3" height="12" rx="3.15" fill="#FF6A13"/><rect class="bar b2" x="91.30" y="18" width="6.3" height="24" rx="3.15" fill="#FF6A13"/><rect class="bar b3" x="101.10" y="10.5" width="7.0" height="39" rx="3.5" fill="#FF6A13"/><rect class="bar b4" x="111.60" y="0" width="8.75" height="60" rx="4.38" fill="#FF6A13"/><rect class="bar b5" x="123.85" y="9" width="7.7" height="42" rx="3.85" fill="#FF6A13"/><rect class="bar b6" x="135.05" y="16.5" width="6.65" height="27" rx="3.32" fill="#FF6A13"/><rect class="bar b7" x="145.20" y="22.5" width="6.65" height="15" rx="3.32" fill="#FF6A13"/><circle cx="164.35" cy="30" r="3.5" fill="#F6F4EF"/><text x="176.85" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">now</text></svg>
+      <p class="eyebrow">And Now, by Now Batting &middot; Basketball</p>
+      <h1>Announce Your Youth Basketball Starting Lineup From Your Phone</h1>
+      <p class="lede">An arena-style Starting 5 entrance, your own announcer and the PA calls, run from the bleachers by your team&rsquo;s Chief Hype Officer. Basketball is a mode inside the Now Batting app.</p>
+      <a class="an-cta" href="https://apps.apple.com/app/now-batting/id6760744461">Get Now Batting on the App Store</a>
+      <span class="an-cta-note">One app for basketball, baseball and softball. iPhone.</span>
+    </div>
+  </section>
+
+  <div class="an-body">
+    <!-- Answer-first: the searcher's question verbatim, then a short answer that concedes
+         what the app does NOT do (keep score). A model quoting this quotes the concession,
+         which is why it has to be true rather than a pitch. -->
+    <h2>Is there an app that announces a youth basketball starting lineup?</h2>
+    <div class="an-answer">
+      <p>Yes. And Now is the basketball side of the Now Batting app for iPhone. Add your roster, pick your starting five, and it builds an arena-style entrance over a music bed: a welcome, with your gym&rsquo;s name if you add it, the visitors and the officials if you want them, your bench and coaches if you want them, then your starters by number, name and position. It also makes the PA calls between whistles. It doesn&rsquo;t keep score. The scorer&rsquo;s table still does that.</p>
+    </div>
+
+    <h2>The Starting 5, start to finish</h2>
+    <p>One Play button runs the whole entrance, in the order a big game does it. Leave an optional part off and it drops out whole, so the script never trips over a missing piece.</p>
+    <ol>
+      <li><strong>The welcome.</strong> Add your gym&rsquo;s name if you want it said, and pick today, tonight, this afternoon or this morning.</li>
+      <li><strong>The visitors.</strong><span class="opt">Optional</span> Their starting five, plus their bench and coaches if you add them.</li>
+      <li><strong>The officials.</strong><span class="opt">Optional</span></li>
+      <li><strong>Your bench and coaches.</strong><span class="opt">Optional</span></li>
+      <li><strong>Your starting five.</strong> Number, name and position for each starter. Positions can be turned off.</li>
+      <li><strong>The close.</strong> The matchup, then <em>&ldquo;Let&rsquo;s play some basketball!&rdquo;</em> as the music swells.</li>
+    </ol>
+    <p>Pick an arena music bed to play underneath. The visitors can get the full treatment or a shorter, standard read. Your team always gets the full one.</p>
+
+    <h2>Your own announcer, five ways</h2>
+    <p>Five basketball voices. Tap one to hear it, pick one for the team, and switch whenever you want.</p>
+    <div class="vgrid">
+      <div class="vcard">
+        <h3>The Legend</h3>
+        <span class="vuse">Male voice &middot; booming main-event</span>
+        <button class="r3-fplay" data-audio="/andnow-voice-legend.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear The Legend</button>
+      </div>
+      <div class="vcard">
+        <h3>The Hype Man</h3>
+        <span class="vuse">Male voice &middot; raspy arena hype</span>
+        <button class="r3-fplay" data-audio="/andnow-voice-hypeman.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear The Hype Man</button>
+      </div>
+      <div class="vcard">
+        <h3>The Powerhouse</h3>
+        <span class="vuse">Female voice &middot; booming arena power</span>
+        <button class="r3-fplay" data-audio="/andnow-voice-powerhouse.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear The Powerhouse</button>
+      </div>
+      <div class="vcard">
+        <h3>The Main Event</h3>
+        <span class="vuse">Female voice &middot; booming main-event</span>
+        <button class="r3-fplay" data-audio="/andnow-voice-mainevent.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear The Main Event</button>
+      </div>
+      <div class="vcard">
+        <h3>The Smooth Operator</h3>
+        <span class="vuse">Male voice &middot; smooth, big-event</span>
+        <button class="r3-fplay" data-audio="/andnow-voice-smooth.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear The Smooth Operator</button>
+      </div>
+    </div>
+
+    <h2>The calls between whistles</h2>
+    <p>One tap each, read in your team&rsquo;s announcer voice:</p>
+    <ul>
+      <li>Timeout, for either team</li>
+      <li>End of the first, second and third quarter</li>
+      <li>Halftime</li>
+      <li>Final</li>
+    </ul>
+    <p>No play-by-play and no score. The app says what happened at the break, and the book stays with the scorer&rsquo;s table.</p>
+    <p><strong>Arena jams</strong> are curated crowd songs from Apple Music, ready for whenever the gym goes quiet.</p>
+
+    <h2>One bar of signal, by the vending machine. Plays anyway.</h2>
+    <p>Once you build the Starting 5 and the calls, they&rsquo;re recordings on your phone, and they play with no connection at all. Tap <strong>Court Ready</strong> while you&rsquo;re on wifi and it pulls the arena jams onto the phone too. Then the whole game runs in airplane mode.</p>
+
+    <h2>Hand it to the scorer&rsquo;s table</h2>
+    <p>Somebody else running the speaker tonight? Share the team. Their phone gets the recordings, and they can run the intros and the calls free for 30 days, no account needed. They&rsquo;ll need the latest version of Now Batting to open a basketball team.</p>
+
+    <h2>Same app, same plan</h2>
+    <p>And Now lives inside Now Batting, so it&rsquo;s one download and one subscription. Plans start at <strong>$9.99 a year</strong> and cover every team you run, basketball, baseball or softball. Free 7-day trial for new subscribers. iPhone only.</p>
+
+    <div class="an-cross">
+      <p><strong>Running baseball or softball too? Same app.</strong> Walk-up songs, player announcements and the lineup Roll Call are all in <a href="/">Now Batting</a>.</p>
+    </div>
+
+    <h2>Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3 class="faq-q">Is And Now a separate app?</h3>
+        <p class="faq-a">No. Download Now Batting from the App Store and start a basketball team inside it. Each team has its own sport, so picking your basketball team switches the app to basketball, and picking your baseball or softball team switches it back.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Does it keep score or track stats?</h3>
+        <p class="faq-a">No. It announces the lineup and makes the PA calls. The scorer&rsquo;s table keeps the book.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Do I need wifi in the gym?</h3>
+        <p class="faq-a">No. Build the Starting 5 and the calls ahead of time and they&rsquo;re on your phone. Tap Court Ready on wifi to bring the arena jams along too.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Can it introduce the other team and the officials?</h3>
+        <p class="faq-a">Yes, both are optional. The visitors can get the full introduction or a shorter, standard one.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Can whoever&rsquo;s at the scorer&rsquo;s table run it from their phone?</h3>
+        <p class="faq-a">Yes. Share the team and their phone gets the recordings. They can run it free for 30 days without an account, on the latest version of Now Batting.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Is basketball an extra charge?</h3>
+        <p class="faq-a">No. It&rsquo;s the same Now Batting subscription, and it covers every sport.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Does it work on Android?</h3>
+        <p class="faq-a">No. Now Batting is iPhone only.</p>
+      </div>
+    </div>
+
+    <div class="an-close">
+      <p>Every team needs a Chief Hype Officer. Basketball included.</p>
+      <a class="an-cta" href="https://apps.apple.com/app/now-batting/id6760744461">Get Now Batting on the App Store</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="f-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" height="20" aria-label="Now Batting"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">now</text><circle cx="80.53" cy="30" r="3.5" fill="#1F1F1F"/><rect x="93.03" y="24" width="6.3" height="12" rx="3.15" fill="#B8CC00"/><rect x="102.83" y="18" width="6.3" height="24" rx="3.15" fill="#B8CC00"/><rect x="112.63" y="10.5" width="7.0" height="39" rx="3.5" fill="#B8CC00"/><rect x="123.13" y="0" width="8.75" height="60" rx="4.38" fill="#B8CC00"/><rect x="135.38" y="9" width="7.7" height="42" rx="3.85" fill="#B8CC00"/><rect x="146.58" y="16.5" width="6.65" height="27" rx="3.32" fill="#B8CC00"/><rect x="156.73" y="22.5" width="6.65" height="15" rx="3.32" fill="#B8CC00"/><circle cx="175.88" cy="30" r="3.5" fill="#1F1F1F"/><text x="188.38" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#1F1F1F" letter-spacing="-1">batting</text></svg></div>
+  <p class="f-copy">© 2026 Chief Hype Officer LLC · <a href="/">Now Batting</a> · <a href="/and-now">And Now</a> · <a href="/our-story">Our Story</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
+</footer>
+
+<script>
+  /* Same player as the baseball page: one clip at a time, tap the playing one to stop. */
+  function fplay(btn){
+    var src=btn.getAttribute('data-audio');
+    var was=btn.classList.contains('playing');
+    document.querySelectorAll('.r3-fplay.playing').forEach(function(b){b.classList.remove('playing');});
+    if(window.__nbaudio){ try{window.__nbaudio.pause();}catch(e){} window.__nbaudio=null; }
+    if(!was){
+      btn.classList.add('playing');
+      var a=new Audio(src); window.__nbaudio=a; a.play().catch(function(){});
+      a.addEventListener('ended',function(){ btn.classList.remove('playing'); if(window.__nbaudio===a) window.__nbaudio=null; });
+    }
+  }
+</script>
+</body>
+</html>

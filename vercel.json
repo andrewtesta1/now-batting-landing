@@ -2,6 +2,13 @@
   "buildCommand": "node .scripts/nb20/render.mjs && node .scripts/build-seo.mjs",
   "outputDirectory": ".",
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/basketball",
+      "destination": "/and-now",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/og.png",
