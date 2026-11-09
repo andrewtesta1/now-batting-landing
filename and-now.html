@@ -263,6 +263,10 @@
     </ol>
     <p>One Play button runs the whole thing. Leave something out and the script adjusts: no weird gaps, no announcing a coach who didn&rsquo;t show up. You bring the roster. We&rsquo;ll bring the goosebumps.</p>
 
+    <h2>Try it: Now Batting Ballers vs. And-One Dunkers</h2>
+    <p>Pick an announcer and the music, choose who gets introduced, then hit Play. It&rsquo;s the real script and the real voices, exactly what the app records for your team. Sound on.</p>
+    <iframe id="an-demo" src="/andnow-demo" title="And Now demo: customize and play a Starting 5 intro" loading="lazy" style="display:block;width:100%;max-width:420px;height:900px;margin:8px auto 28px;border:0;background:transparent" allow="autoplay"></iframe>
+
     <h2>Five announcers. Zero microphone anxiety.</h2>
     <p>Some people have the voice for this. Most of us should probably stick to holding the speaker. Pick from five basketball announcers, hear each one first, and let them do the talking.</p>
     <div class="vgrid">
@@ -388,6 +392,10 @@
   <p class="f-copy">© 2026 Chief Hype Officer LLC · <a href="/">Now Batting</a> · <a href="/and-now">And Now</a> · <a href="/our-story">Our Story</a> · <a href="/support">Support</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
 </footer>
 
+<script>
+  /* The demo iframe reports its height. */
+  window.addEventListener('message', function(e){ var h=e.data&&e.data.nbAnDemoHeight; if(h){ var f=document.getElementById('an-demo'); if(f) f.style.height=(h+4)+'px'; } });
+</script>
 <script>
   /* Same player as the baseball page: one clip at a time, tap the playing one to stop. */
   function fplay(btn){
