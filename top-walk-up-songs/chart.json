@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "chartDate": "2026-11-02",
+  "chartDate": "2026-11-09",
   "window": {
-    "start": "2026-10-05",
-    "end": "2026-11-01"
+    "start": "2026-10-12",
+    "end": "2026-11-08"
   },
   "url": "https://www.nowbattingapp.com/top-walk-up-songs",
   "entries": [
@@ -20,25 +20,27 @@
     },
     {
       "rank": 2,
-      "trackId": "1440723145",
-      "title": "Monster Mash",
-      "artist": "Bobby \"Boris\" Pickett & The Crypt-Kickers",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1440723145.jpg",
-      "movement": {
-        "type": "same"
-      },
-      "lastWeek": 2
-    },
-    {
-      "rank": 3,
       "trackId": "1127014316",
       "title": "Ghostbusters",
       "artist": "Ray Parker Jr.",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1127014316.jpg",
       "movement": {
-        "type": "same"
+        "type": "up",
+        "by": 1
       },
       "lastWeek": 3
+    },
+    {
+      "rank": 3,
+      "trackId": "1440723145",
+      "title": "Monster Mash",
+      "artist": "Bobby \"Boris\" Pickett & The Crypt-Kickers",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1440723145.jpg",
+      "movement": {
+        "type": "down",
+        "by": 1
+      },
+      "lastWeek": 2
     },
     {
       "rank": 4,
@@ -47,10 +49,9 @@
       "artist": "The Citizens of Halloween",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1440662595.jpg",
       "movement": {
-        "type": "up",
-        "by": 2
+        "type": "same"
       },
-      "lastWeek": 6
+      "lastWeek": 4
     },
     {
       "rank": 5,
@@ -59,10 +60,9 @@
       "artist": "Rockwell",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1589119250.jpg",
       "movement": {
-        "type": "down",
-        "by": 1
+        "type": "same"
       },
-      "lastWeek": 4
+      "lastWeek": 5
     },
     {
       "rank": 6,
@@ -71,10 +71,9 @@
       "artist": "Andrew Gold",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1482699500.jpg",
       "movement": {
-        "type": "up",
-        "by": 1
+        "type": "same"
       },
-      "lastWeek": 7
+      "lastWeek": 6
     },
     {
       "rank": 7,
@@ -83,10 +82,9 @@
       "artist": "John Carpenter, Cody Carpenter & Daniel Davies",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1426559304.jpg",
       "movement": {
-        "type": "down",
-        "by": 2
+        "type": "same"
       },
-      "lastWeek": 5
+      "lastWeek": 7
     },
     {
       "rank": 8,
@@ -95,22 +93,21 @@
       "artist": "Andrew Gold",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1443821690.jpg",
       "movement": {
-        "type": "up",
-        "by": 2
+        "type": "same"
       },
-      "lastWeek": 10
+      "lastWeek": 8
     },
     {
       "rank": 9,
-      "trackId": "1443190324",
-      "title": "Crank That (Soulja Boy)",
-      "artist": "Soulja Boy Tell 'Em",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1443190324.jpg",
+      "trackId": "1572051818",
+      "title": "Enter Sandman",
+      "artist": "Metallica",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1572051818.jpg",
       "movement": {
         "type": "up",
-        "by": 4
+        "by": 3
       },
-      "lastWeek": 13
+      "lastWeek": 12
     },
     {
       "rank": 10,
@@ -119,10 +116,9 @@
       "artist": "AC/DC",
       "artwork": "https://www.nowbattingapp.com/nb20/art/575998661.jpg",
       "movement": {
-        "type": "down",
-        "by": 1
+        "type": "same"
       },
-      "lastWeek": 9
+      "lastWeek": 10
     },
     {
       "rank": 11,
@@ -131,114 +127,114 @@
       "artist": "Hanumankind & Kalmi",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1765520596.jpg",
       "movement": {
-        "type": "up",
-        "by": 3
+        "type": "same"
       },
-      "lastWeek": 14
+      "lastWeek": 11
     },
     {
       "rank": 12,
-      "trackId": "1572051818",
-      "title": "Enter Sandman",
-      "artist": "Metallica",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1572051818.jpg",
+      "trackId": "1443190324",
+      "title": "Crank That (Soulja Boy)",
+      "artist": "Soulja Boy Tell 'Em",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1443190324.jpg",
       "movement": {
-        "type": "up",
-        "by": 4
+        "type": "down",
+        "by": 3
       },
-      "lastWeek": 16
+      "lastWeek": 9
     },
     {
       "rank": 13,
-      "trackId": "723351644",
-      "title": "Who Let the Dogs Out",
-      "artist": "Baha Men",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/723351644.jpg",
-      "movement": {
-        "type": "down",
-        "by": 5
-      },
-      "lastWeek": 8
-    },
-    {
-      "rank": 14,
-      "trackId": "1612321591",
-      "title": "Bones",
-      "artist": "Imagine Dragons",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1612321591.jpg",
-      "movement": {
-        "type": "new"
-      },
-      "lastWeek": null
-    },
-    {
-      "rank": 15,
-      "trackId": "1480503102",
-      "title": "I Put a Spell on You (In the Style of Hocus Pocus)",
-      "artist": "PattyCake",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1480503102.jpg",
-      "movement": {
-        "type": "new"
-      },
-      "lastWeek": null
-    },
-    {
-      "rank": 16,
-      "trackId": "1844932150",
-      "title": "Choosin' Texas",
-      "artist": "Ella Langley",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1844932150.jpg",
-      "movement": {
-        "type": "down",
-        "by": 4
-      },
-      "lastWeek": 12
-    },
-    {
-      "rank": 17,
       "trackId": "933984097",
       "title": "Fireball (feat. John Ryan)",
       "artist": "Pitbull",
       "artwork": "https://www.nowbattingapp.com/nb20/art/933984097.jpg",
+      "movement": {
+        "type": "up",
+        "by": 4
+      },
+      "lastWeek": 17
+    },
+    {
+      "rank": 14,
+      "trackId": "1440903439",
+      "title": "Lose Yourself",
+      "artist": "Eminem",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1440903439.jpg",
       "movement": {
         "type": "reentry"
       },
       "lastWeek": null
     },
     {
+      "rank": 15,
+      "trackId": "1844932150",
+      "title": "Choosin' Texas",
+      "artist": "Ella Langley",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1844932150.jpg",
+      "movement": {
+        "type": "up",
+        "by": 1
+      },
+      "lastWeek": 16
+    },
+    {
+      "rank": 16,
+      "trackId": "1612321591",
+      "title": "Bones",
+      "artist": "Imagine Dragons",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1612321591.jpg",
+      "movement": {
+        "type": "down",
+        "by": 2
+      },
+      "lastWeek": 14
+    },
+    {
+      "rank": 17,
+      "trackId": "1480503102",
+      "title": "I Put a Spell on You (In the Style of Hocus Pocus)",
+      "artist": "PattyCake",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1480503102.jpg",
+      "movement": {
+        "type": "down",
+        "by": 2
+      },
+      "lastWeek": 15
+    },
+    {
       "rank": 18,
-      "trackId": "1631464175",
-      "title": "Pretty Girls Walk",
-      "artist": "Big Boss Vette",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1631464175.jpg",
-      "movement": {
-        "type": "down",
-        "by": 1
-      },
-      "lastWeek": 17
-    },
-    {
-      "rank": 19,
-      "trackId": "269573341",
-      "title": "Beat It",
-      "artist": "Michael Jackson",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/269573341.jpg",
-      "movement": {
-        "type": "down",
-        "by": 1
-      },
-      "lastWeek": 18
-    },
-    {
-      "rank": 20,
       "trackId": "1533513537",
       "title": "Seven Nation Army",
       "artist": "The White Stripes",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1533513537.jpg",
       "movement": {
-        "type": "same"
+        "type": "up",
+        "by": 2
       },
       "lastWeek": 20
+    },
+    {
+      "rank": 19,
+      "trackId": "353859978",
+      "title": "All I Do Is Win (feat. T-Pain, Ludacris, Snoop Dogg & Rick Ross)",
+      "artist": "DJ Khaled",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/353859978.jpg",
+      "movement": {
+        "type": "reentry"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 20,
+      "trackId": "911604128",
+      "title": "Crazy Train",
+      "artist": "Ozzy Osbourne",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/911604128.jpg",
+      "movement": {
+        "type": "reentry"
+      },
+      "lastWeek": null
     }
   ]
 }
