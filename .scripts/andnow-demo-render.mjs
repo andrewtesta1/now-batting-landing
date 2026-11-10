@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from 'fs';
 const [,, D, OUT] = process.argv;
 const unique = JSON.parse(readFileSync(D + '/unique.json', 'utf8'));
-const voices = { legend: 'HkNPNJx3jZgH8LNXPQbu', hypeman: 'TskxLHtUU7Z2k6D2tusL', powerhouse: 'KOgItLCSoz8gXSnTNfZL', mainevent: '4iR9hIjH3Ac1pfeljRZB', smooth: '2yxRHClfrohSkhkckjv6' };
+const voices = { legend: '2yxRHClfrohSkhkckjv6', hypeman: 'TskxLHtUU7Z2k6D2tusL', powerhouse: 'KOgItLCSoz8gXSnTNfZL', mainevent: '4iR9hIjH3Ac1pfeljRZB', smooth: '1u1Zp08ruc60TKxlmdwx' };
 const jobs = [];
 for (const [slug, id] of Object.entries(voices)) { mkdirSync(`${OUT}/${slug}`, { recursive: true }); for (const [h, u] of Object.entries(unique)) jobs.push({ slug, id, h, ...u }); }
 let ok = 0, fail = 0;
