@@ -44,6 +44,7 @@
   .sw { width: 44px; height: 26px; border-radius: 13px; background: rgba(31,31,31,.15); position: relative; transition: background .2s; flex: none; }
   .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 10px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); transition: transform .2s; }
   .sw.on { background: var(--court); }
+  .row.fixed { cursor: default; } .row.fixed .sw { opacity: .5; }
   .sw.on::after { transform: translateX(18px); }
   .scene { font-size: 13.5px; color: var(--char); }
   .scene b { font-weight: 800; }
@@ -123,7 +124,7 @@
       <div class="sh"><span class="n">4</span><span class="t">Who&rsquo;s introduced</span></div>
       <div class="group" id="toggles"></div>
 
-      <button class="build" id="build" onclick="build()">Build your Starting 5</button>
+      <button class="build" id="build" onclick="build()">Build Starting 5</button>
       <div id="buildprog" class="hidden"><div class="bar"><i id="buildbar"></i></div><div class="barlbl" id="buildlbl">Recording your Starting 5</div></div>
       <div class="note">In the app, Build records the whole intro once, about a minute with a signal. After that it plays with none.</div>
     </div>
@@ -159,28 +160,32 @@
 
 <script>
 const VOICES = [
-  { slug: 'mainevent', name: 'The Main Event', sub: 'Female · booming main-event', bed: 'dynasty' },
-  { slug: 'hypeman', name: 'The Hype Man', sub: 'Male · raspy arena hype', bed: 'takeover' },
-  { slug: 'powerhouse', name: 'The Powerhouse', sub: 'Female · booming arena power', bed: 'spotlight' },
-  { slug: 'legend', name: 'The Legend', sub: 'Male · smooth, big-event', bed: 'dynasty' },
-  { slug: 'smooth', name: 'The Smooth Operator', sub: 'Male · crisp, clear arena', bed: 'tipoff' },
+  // Same order and tile text as the app's Customize (config.ts VOICES; PickTile drops "The" and
+  // shows only the first part of the description).
+  { slug: 'legend', name: 'The Legend', sub: 'Male', bed: 'dynasty' },
+  { slug: 'hypeman', name: 'The Hype Man', sub: 'Male', bed: 'takeover' },
+  { slug: 'powerhouse', name: 'The Powerhouse', sub: 'Female', bed: 'spotlight' },
+  { slug: 'mainevent', name: 'The Main Event', sub: 'Female', bed: 'dynasty' },
+  { slug: 'smooth', name: 'The Smooth Operator', sub: 'Male', bed: 'tipoff' },
 ];
 const BEDS = [
-  { id: 'dynasty', name: 'The Dynasty', sub: "Big '90s championship synths." },
-  { id: 'takeover', name: 'The Takeover', sub: 'Hard-hitting modern hip-hop.' },
-  { id: 'spotlight', name: 'The Spotlight', sub: 'Cinematic and triumphant.' },
-  { id: 'knockout', name: 'The Knockout', sub: 'Stomps, claps and crunchy guitar.' },
-  { id: 'tipoff', name: 'The Tip-Off', sub: 'Funky college-gym groove.' },
-  { id: 'lineup', name: 'The Lineup', sub: 'Clean and upbeat.' },
-  { id: 'none', name: 'No music', sub: 'Just the announcer.' },
+  // config.ts COURT_BEDS: the tile shows the blurb's first sentence, no full stop.
+  { id: 'dynasty', name: 'The Dynasty', sub: "Big '90s championship synths" },
+  { id: 'takeover', name: 'The Takeover', sub: 'Hard-hitting modern hip-hop' },
+  { id: 'spotlight', name: 'The Spotlight', sub: 'Cinematic and triumphant' },
+  { id: 'knockout', name: 'The Knockout', sub: 'Stomps, claps and crunchy guitar' },
+  { id: 'tipoff', name: 'The Tip-Off', sub: 'Funky college-gym groove' },
+  { id: 'lineup', name: 'The Lineup', sub: 'Clean and upbeat, for a Standard intro' },
+  { id: 'none', name: 'No music', sub: 'Just the announcer' },
 ];
 const HOME = [['PG','2','Swish'],['SG','5','Buckets'],['SF','11','Glass'],['PF','23','Hoops'],['C','34','Dunkley']];
 const AWAY = [['PG','0','Alley'],['SG','4','Oop'],['SF','7','Rim'],['PF','12','Backboard'],['C','44','Paint']];
 const TOGGLES = [
+  // The app's ToggleRow subtitles (CourtStartingFive.tsx).
   ['visitors', 'The visitors', 'The And-One Dunkers go first.'],
-  ['bench', 'The bench', 'Both teams’ players after the first five.'],
-  ['coaches', 'Coaches', 'Head and assistant coach, both teams.'],
-  ['officials', 'Referees', 'Terry Whistle and Pat Stripes.'],
+  ['bench', 'The bench', 'Number and name, before each team’s five'],
+  ['coaches', 'Coaches', 'Right before each team’s five'],
+  ['officials', 'Referees', 'Between the two teams'],
 ];
 // Defaults keep the first listen tight: The Main Event (the read Andrew tuned the script on) and
 // the visitors only, about two minutes. Everything else is one tap away.
@@ -208,17 +213,19 @@ function preview(url, btn, secs) {
 function renderCustomize() {
   document.getElementById('voices').innerHTML = VOICES.map(v => `
     <div class="tile ${S.voice === v.slug ? 'on' : ''}" onclick="pickVoice('${v.slug}')" role="button">
-      <span class="ck">✓</span><div><div class="nm">${v.name}</div><div class="sb">${v.sub}</div></div>
+      <span class="ck">✓</span><div><div class="nm">${v.name.replace(/^The /, '')}</div><div class="sb">${v.sub}</div></div>
       <button class="pv" onclick="event.stopPropagation(); preview('/andnow-voice-${v.slug}.mp3', this)">▶ Hear</button>
     </div>`).join('');
   const b = bedOf();
   document.getElementById('beds').innerHTML = BEDS.map(x => `
     <div class="tile ${b === x.id ? 'on' : ''}" onclick="pickBed('${x.id}')" role="button">
-      <span class="ck">✓</span><div><div class="nm">${x.name}</div><div class="sb">${x.sub}</div></div>
+      <span class="ck">✓</span><div><div class="nm">${x.name.replace(/^The /, '')}</div><div class="sb">${x.sub}</div></div>
       ${x.id === 'none' ? '' : `<button class="pv" onclick="event.stopPropagation(); preview('/andnow-demo/beds/${x.id}.mp3', this, 10)">▶ Hear</button>`}
     </div>`).join('');
-  document.getElementById('toggles').innerHTML = TOGGLES.map(([k, t, st]) => `
+  document.getElementById('toggles').innerHTML = `
+    <div class="row fixed" aria-disabled="true" title="On in this demo"><div class="tx"><div class="tt">Positions</div><div class="st">“At point guard… number eleven…”</div></div><span class="sw on"></span></div>` + TOGGLES.map(([k, t, st]) => `
     <div class="row" onclick="flip('${k}')" role="switch" aria-checked="${S[k]}"><div class="tx"><div class="tt">${t}</div><div class="st">${st}</div></div><span class="sw ${S[k] ? 'on' : ''}"></span></div>`).join('');
+  const sel = document.querySelector('#voices .tile.on'); if (sel) sel.parentNode.scrollLeft = sel.offsetLeft - 8;
 }
 function pickVoice(v) { S.voice = v; S.built = false; renderCustomize(); }
 function pickBed(b) { S.bed = b; renderCustomize(); }
@@ -264,6 +271,8 @@ async function build() {
   go('game');
 }
 
+// useCourtRollCall: with music on, our team's part starts after a 0.9s beat when the visitors went first.
+const beat = (plan, i, music) => (music && i > 0 && !plan[i].away && plan[i - 1].away ? 0.9 : 0);
 let run = null;   // { plan, srcs, bed, gain, starts[], durs[], offs[], total, end, idx }
 function renderFive(el, rows, litIdx) {
   el.innerHTML = rows.map(([p, n, l], i) => `<div class="pl ${litIdx === i ? 'lit' : ''}"><div class="pos">${p}</div><div class="jr">${n}</div><div class="ln">${l}</div></div>`).join('');
@@ -275,7 +284,7 @@ function renderGame() {
   renderFive(document.getElementById('awayfive'), AWAY, null);
   const plan = COMBOS[comboKey()];
   document.getElementById('script').innerHTML = plan.map((s, i) => `<p id="ln${i}">${s.display}</p>`).join('');
-  const dur = plan.reduce((t, s) => t + (cache[`/andnow-demo/${S.voice}/${s.clip}.mp3`]?.duration ?? 0) + s.gap / 1000, 0) + (bedOf() !== 'none' ? 1.5 + 6.1 : 0);
+  const dur = plan.reduce((t, s, i) => t + beat(plan, i, bedOf() !== 'none') + (cache[`/andnow-demo/${S.voice}/${s.clip}.mp3`]?.duration ?? 0) + s.gap / 1000, 0) + (bedOf() !== 'none' ? 1.5 + 6.1 : 0);
   document.getElementById('runs').textContent = 'Runs ' + fmt(dur);
   idleUI();
 }
@@ -297,6 +306,7 @@ function schedule(fromIdx, at) {
   r.srcs.forEach(s => { try { s.stop(); } catch (e) {} }); r.srcs = [];
   let t = at;
   for (let i = fromIdx; i < r.plan.length; i++) {
+    t += beat(r.plan, i, !!r.gain);
     const b = cache[`/andnow-demo/${S.voice}/${r.plan[i].clip}.mp3`];
     const src = ctx.createBufferSource(); src.buffer = b; src.connect(ctx.destination); src.start(t);
     r.srcs.push(src); r.starts[i] = t; r.durs[i] = b.duration;
@@ -316,7 +326,7 @@ function play() {
   const music = bedOf() !== 'none';
   run = { plan, srcs: [], starts: [], durs: [], offs: [], bed: null, gain: null };
   let o = music ? 1.5 : 0;
-  plan.forEach((s, i) => { run.offs[i] = o; o += cache[`/andnow-demo/${S.voice}/${s.clip}.mp3`].duration + s.gap / 1000; });
+  plan.forEach((s, i) => { o += beat(plan, i, music); run.offs[i] = o; o += cache[`/andnow-demo/${S.voice}/${s.clip}.mp3`].duration + s.gap / 1000; });
   run.total = o + (music ? 6.1 : 0);
   const now = ctx.currentTime + 0.08;
   if (music) {
@@ -397,7 +407,9 @@ function frame() {
 function toggleScript() { document.getElementById('script').classList.toggle('hidden'); height(); }
 
 // Height for the iframe that embeds this page (and-now.html listens for nbAnDemoHeight).
-function height() { try { parent.postMessage({ nbAnDemoHeight: document.documentElement.scrollHeight }, '*'); } catch (e) {} }
+// ⚠️ Measure the CONTENT, not documentElement.scrollHeight: that is never less than the iframe's own
+// height, so with the parent adding a margin and resize re-reporting, the frame grew forever.
+function height() { try { const w = document.querySelector('.wrap'); parent.postMessage({ nbAnDemoHeight: Math.ceil(w.getBoundingClientRect().bottom + window.scrollY) + 8 }, '*'); } catch (e) {} }
 window.addEventListener('load', height); window.addEventListener('resize', height);
 renderCustomize(); setTimeout(height, 50);
 </script>
