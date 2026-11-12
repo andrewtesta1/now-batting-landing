@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>And Now demo · The Legend calls the Now Batting Ballers</title>
+<title>And Now demo · The Voice Upstairs calls the Now Batting Ballers</title>
 <meta name="robots" content="noindex" />
 <!--
-  The And Now demo (Andrew, 2026-11-11): not the whole app. One Starting 5, read by The Legend,
+  The And Now demo (Andrew, 2026-11-11): not the whole app. One Starting 5, read by The Voice Upstairs (id 2yxRH…, the slug is still 'legend'),
   a short real script (rendered from sports/court/plan.ts through /api/tts — see
   andnow-demo/sample/script.json), the music picker, and the four other announcers to hear.
   The card and the Customize sheet copy the app's (components/court/CourtStartingFive.tsx).
@@ -168,7 +168,7 @@
       <div class="shd"><b>Customize</b><button onclick="closeSheet()">Done</button></div>
       <div class="lbl">Announcer</div>
       <div class="chips" id="voices"></div>
-      <div class="cap">This demo is read by The Legend. Tap ▶ to hear the other four.</div>
+      <div class="cap">This demo is read by The Voice Upstairs. Tap ▶ to hear the other four.</div>
       <div class="lbl">Music</div>
       <div class="chips" id="beds"></div>
       <div class="cap">Music changes right away, even mid-intro. No Rebuild.</div>
@@ -181,10 +181,10 @@
 </div>
 
 <script>
-// Same tiles and pairings as the app (config.ts VOICES / COURT_BEDS). The Legend reads the sample.
+// Same tiles and pairings as the app (config.ts VOICES / COURT_BEDS). The Voice Upstairs reads the sample.
 const VOICES = [
-  { slug: 'legend', name: 'Legend' }, { slug: 'hypeman', name: 'Hype Man' }, { slug: 'powerhouse', name: 'Powerhouse' },
-  { slug: 'mainevent', name: 'Main Event' }, { slug: 'smooth', name: 'Smooth Operator' },
+  { slug: 'legend', name: 'Voice Upstairs' }, { slug: 'hypeman', name: 'Noise Complaint' }, { slug: 'powerhouse', name: 'Big Boss' },
+  { slug: 'mainevent', name: 'Main Character' }, { slug: 'smooth', name: 'Velvet Hammer' },
 ];
 const BEDS = [
   { id: 'dynasty', name: 'Dynasty' }, { id: 'takeover', name: 'Takeover' }, { id: 'spotlight', name: 'Spotlight' },
@@ -238,7 +238,7 @@ const RESUME = ' Tap play to pick up where it left off.';
 function voiceTap(slug, chip) {
   const name = VOICES.find(v => v.slug === slug).name;
   const paused = preview(`/andnow-voice-${slug}.mp3`, chip.querySelector('.pv'));
-  const note = slug === 'legend' ? '' : ' In the app, a new announcer means one Rebuild. This demo stays with The Legend.';
+  const note = slug === 'legend' ? '' : ' In the app, a new announcer means one Rebuild. This demo stays with The Voice Upstairs.';
   if (paused) toast(`Paused the intro so you can hear The ${name}.${RESUME}`);
   else if (note) toast(note.trim());
 }

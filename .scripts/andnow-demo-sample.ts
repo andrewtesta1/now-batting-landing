@@ -1,5 +1,5 @@
 /**
- * The And Now demo's sample (andnow-demo/sample/): The Legend reading a short Starting 5 —
+ * The And Now demo's sample (andnow-demo/sample/): The Voice Upstairs (was The Legend) reading a short Starting 5 —
  * the welcome, our five, the close — rendered from the APP's script so the demo can say
  * "exactly what the app records". Re-run whenever sports/court/rollCall.ts or plan.ts changes.
  *
