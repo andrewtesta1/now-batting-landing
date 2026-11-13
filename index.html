@@ -727,6 +727,24 @@
     .hero-form-wrap { opacity: 0; animation: fadeUp 0.5s ease forwards 0.52s; max-width: 480px; margin-left: auto; margin-right: auto; }
     .hero-proof { margin-top: 13px; font-size: 13px; color: var(--txt3); opacity: 0; animation: fadeUp 0.5s ease forwards 0.6s; }
     .hero-proof strong { color: var(--daylight); }
+    /* And Now countdown — one line under the hero proof, not a section. Hidden until JS
+       has a real number, and gone again at zero (main has no /and-now page to send anyone to). */
+    /* And Now countdown — the teaser's end card (black, orange glow, and·now mark, the
+       date in big white type), plus a live clock. Sits under the headline, not a section. */
+    .hero-count { position: relative; display: inline-flex; flex-direction: column; align-items: center; margin: 6px 0 28px; padding: 26px 26px 22px; border-radius: 20px; background: #0A0A0A; border: 1px solid rgba(255,106,19,0.35); box-shadow: 0 24px 60px -24px rgba(255,106,19,0.6); overflow: hidden; isolation: isolate; }
+    .hero-count::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 70% 55% at 50% 22%, rgba(255,106,19,0.30), rgba(255,106,19,0) 70%); animation: countGlow 3.2s ease-in-out infinite; }
+    @keyframes countGlow { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+    .hero-count[hidden] { display: none; }
+    .hero-count-mark { width: 190px; height: auto; display: block; }
+    .hero-count-date { margin: 14px 0 4px; font-family: var(--font-sans); font-weight: 900; font-size: clamp(46px, 6.4vw, 72px); line-height: 1; letter-spacing: -0.045em; color: #F6F4EF; font-variant-numeric: tabular-nums; }
+    .hero-count-label { font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #FF6A13; margin-bottom: 16px; }
+    .hero-count-clock { display: flex; gap: 8px; }
+    .hero-count-unit { display: flex; flex-direction: column; align-items: center; min-width: 62px; padding: 9px 6px 7px; border-radius: 11px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); }
+    .hero-count-num { font-family: var(--font-mono); font-weight: 800; font-size: clamp(24px, 3vw, 32px); line-height: 1; color: #FFFFFF; font-variant-numeric: tabular-nums; }
+    .hero-count-unit:last-child .hero-count-num { color: #FF6A13; }
+    .hero-count-cap { margin-top: 5px; font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.18em; color: rgba(246,244,239,0.5); }
+    @media (max-width: 420px) { .hero-count { padding: 22px 16px 18px; } .hero-count-mark { width: 168px; } .hero-count-unit { min-width: 56px; } }
+    @media (prefers-reduced-motion: reduce) { .hero-count::before { animation: none; } }
     /* Hero v2 — two-line eyebrow + stacked bridge line (rhetorical type hierarchy) */
     .hero-eye-block { margin-bottom: 22px; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
     .hero-eye-brand { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(246,244,239,0.5); margin: 0 0 8px; }
@@ -2566,6 +2584,12 @@
       <div class="hero-stack">
         <h1 class="l2">The walk-up song app that brings <span class="g">the hype without the headache.</span></h1>
       </div>
+      <div class="hero-count" id="andnow-count" hidden>
+        <svg class="hero-count-mark" viewBox="0 0 254 60" role="img" aria-label="And Now"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">and</text><circle cx="69" cy="30" r="3.5" fill="#F6F4EF"/><g fill="#FF6A13"><rect x="81.5" y="24" width="6.3" height="12" rx="3.15"/><rect x="91.3" y="18" width="6.3" height="24" rx="3.15"/><rect x="101.1" y="10.5" width="7" height="39" rx="3.5"/><rect x="111.6" y="0" width="8.75" height="60" rx="4.38"/><rect x="123.85" y="9" width="7.7" height="42" rx="3.85"/><rect x="135.05" y="16.5" width="6.65" height="27" rx="3.32"/><rect x="145.2" y="22.5" width="6.65" height="15" rx="3.32"/></g><circle cx="164.35" cy="30" r="3.5" fill="#F6F4EF"/><text x="176.85" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">now</text></svg>
+        <div class="hero-count-date">11.14.26</div>
+        <div class="hero-count-label">Basketball is coming</div>
+        <div class="hero-count-clock" id="andnow-clock" aria-live="off"></div>
+      </div>
       <div class="hero-form-wrap">
         <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>
@@ -2994,8 +3018,8 @@
       <p class="nb20t-tag">Real song picks. From real lineups.</p>
     </div>
     <div class="nb20t-top">
-      <p class="nb20t-week">This week · Nov 2, 2026</p>
-      <ol class="nb20t-list" aria-label="Top three this week"><li><span class="nb20t-rank">1</span><img src="/nb20/art/269573303.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><p>Thriller<em>Michael Jackson</em></p></li><li><span class="nb20t-rank">2</span><img src="/nb20/art/1440723145.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><p>Monster Mash<em>Bobby &quot;Boris&quot; Pickett &amp; The Crypt-Kickers</em></p></li><li><span class="nb20t-rank">3</span><img src="/nb20/art/1127014316.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><p>Ghostbusters<em>Ray Parker Jr.</em></p></li></ol>
+      <p class="nb20t-week">This week · Nov 9, 2026</p>
+      <ol class="nb20t-list" aria-label="Top three this week"><li><span class="nb20t-rank">1</span><img src="/nb20/art/269573303.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><p>Thriller<em>Michael Jackson</em></p></li><li><span class="nb20t-rank">2</span><img src="/nb20/art/1127014316.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><p>Ghostbusters<em>Ray Parker Jr.</em></p></li><li><span class="nb20t-rank">3</span><img src="/nb20/art/1440723145.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"><p>Monster Mash<em>Bobby &quot;Boris&quot; Pickett &amp; The Crypt-Kickers</em></p></li></ol>
       <span class="nb20t-cta">See the full 20 →</span>
     </div>
   </a>
@@ -4141,6 +4165,26 @@
         btn.disabled = false; btn.textContent = 'Keep me posted';
       }
     });
+  })();
+</script>
+<script>
+  /* And Now launch countdown: midnight Eastern as Saturday 2026-11-14 begins (EST, -05:00). */
+  (function () {
+    var target = Date.parse('2026-11-14T00:00:00-05:00');
+    var box = document.getElementById('andnow-count'), clock = document.getElementById('andnow-clock');
+    if (!box || !clock) return;
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    function tick() {
+      var ms = target - Date.now();
+      if (ms <= 0) { box.hidden = true; return false; }
+      var s = Math.floor(ms / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+      var u = function (n, cap) { return '<div class="hero-count-unit"><span class="hero-count-num">' + pad(n) + '</span><span class="hero-count-cap">' + cap + '</span></div>'; };
+      clock.innerHTML = u(d, 'DAYS') + u(h, 'HRS') + u(m, 'MIN') + u(s % 60, 'SEC');
+      box.setAttribute('aria-label', 'And Now: Basketball arrives in ' + d + ' days ' + h + ' hours ' + m + ' minutes');
+      box.hidden = false;
+      return true;
+    }
+    if (tick()) { var t = setInterval(function () { if (!tick()) clearInterval(t); }, 1000); }
   })();
 </script>
 </body>

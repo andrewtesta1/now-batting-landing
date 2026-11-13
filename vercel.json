@@ -15,6 +15,10 @@
       "destination": "https://walkup-hero.vercel.app/api/site-og"
     },
     {
+      "source": "/og-andnow.png",
+      "destination": "https://walkup-hero.vercel.app/api/site-og?brand=andnow"
+    },
+    {
       "source": "/join/:id",
       "destination": "https://walkup-hero.vercel.app/join/:id"
     },
@@ -44,7 +48,7 @@
     },
     {
       "source": "/setup/:id",
-      "destination": "/setup"
+      "destination": "/api/setup?id=:id"
     },
     {
       "source": "/get",
