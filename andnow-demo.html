@@ -95,10 +95,23 @@
   .open .sheet { transform: none; }
   .grab { width: 38px; height: 5px; border-radius: 3px; background: rgba(31,31,31,.18); margin: 0 auto 8px; }
   .shd { display: flex; align-items: baseline; justify-content: space-between; }
+  /* Taller since the app's numbered layout: keep the sheet inside the phone and let it scroll. */
+  .sheet { max-height: calc(100% - 10px); overflow-y: auto; overscroll-behavior: contain; }
+  .shd { position: sticky; top: -8px; background: var(--chalk); z-index: 1; padding: 6px 0; }
   .shd b { font-size: 19px; font-weight: 800; color: var(--char); }
   .shd button { font-size: 14px; font-weight: 700; color: #C24E06; }
   .lbl { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(31,31,31,.45); margin: 11px 2px 6px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .vcols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .vsub { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: rgba(31,31,31,.4); margin: 0 2px 5px; }
+  .vcol { display: flex; flex-direction: column; gap: 6px; }
+  .vcol .chip { width: 100%; }
+  .mseg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+  .mseg button { height: 32px; border-radius: 10px; border: none; font: inherit; font-size: 13px; font-weight: 800; background: rgba(31,31,31,.07); color: rgba(31,31,31,.5); cursor: pointer; }
+  .mseg button.on { background: var(--char); color: var(--court); }
+  .amcard { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid rgba(31,31,31,.12); border-radius: 12px; padding: 9px; margin: 8px 0 4px; font-size: 13px; }
+  .amcard b { display: block; } .amcard span { color: rgba(31,31,31,.55); font-size: 12px; }
+  .amart { width: 38px; height: 38px; border-radius: 8px; background: rgba(31,31,31,.07); display: grid; place-items: center; }
   .chip { height: 32px; border-radius: 16px; padding: 0 11px 0 5px; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid rgba(31,31,31,.12); font-size: 13px; font-weight: 700; color: var(--char);
     box-shadow: 0 1px 2px rgba(0,0,0,.05); transition: background .15s, color .15s, box-shadow .15s; }
   .chip.on { background: var(--char); color: #fff; border-color: var(--char); box-shadow: 0 0 0 2px var(--court), 0 4px 10px rgba(0,0,0,.18); }
@@ -166,13 +179,23 @@
     <div class="sheet" id="sheet" role="dialog" aria-label="Customize">
       <div class="grab"></div>
       <div class="shd"><b>Customize</b><button onclick="closeSheet()">Done</button></div>
-      <div class="lbl">Announcer</div>
-      <div class="chips" id="voices"></div>
-      <div class="cap">This demo is read by The Voice Upstairs. Tap ▶ to hear the other four.</div>
-      <div class="lbl">Music</div>
-      <div class="chips" id="beds"></div>
-      <div class="cap">Music changes right away, even mid-intro. No Rebuild.</div>
-      <div class="lbl">Who's introduced</div>
+      <!-- Same layout as the app's Customize (2026-11-13): numbered sections, voices by
+           Male / Female, and Arena Beds or an Apple Music song under the intro. -->
+      <div class="lbl">1 · Announcer</div>
+      <div class="vcols"><div><div class="vsub">Male</div><div class="vcol" id="voicesM"></div></div><div><div class="vsub">Female</div><div class="vcol" id="voicesF"></div></div></div>
+      <div class="cap">This demo is read by The Voice Upstairs. Tap ▶ to hear the other four. In the app, switching voices means one Rebuild.</div>
+      <div class="lbl">2 · Music</div>
+      <div class="mseg"><button id="segBeds" class="on" onclick="musicTab('beds')">Arena Beds</button><button id="segAm" onclick="musicTab('am')">Apple Music</button></div>
+      <div id="paneBeds">
+        <div class="chips" id="beds"></div>
+        <div class="cap">Music changes right away, even mid-intro. No Rebuild.</div>
+      </div>
+      <div id="paneAm" class="hidden">
+        <div class="cap" style="margin-top:2px">Any song from your Apple Music, under both teams. Pick the song and the second it drops in; the announcer comes in over it.</div>
+        <div class="amcard"><div class="amart">♫</div><div><b>Sirius</b><span>The Alan Parsons Project</span></div></div>
+        <div class="cap">The demo plays the arena beds. Apple Music songs play in the app, with an Apple Music subscription.</div>
+      </div>
+      <div class="lbl">3 · Who's introduced</div>
       <div class="also"><span>Your Starting 5 ✓</span><span>Positions ✓</span><span>The visitors</span><span>Both benches</span><span>Coaches</span><span>Referees</span></div>
       <div class="cap">Switch any of them on in the app and the script rearranges itself.</div>
     </div>
@@ -183,8 +206,8 @@
 <script>
 // Same tiles and pairings as the app (config.ts VOICES / COURT_BEDS). The Voice Upstairs reads the sample.
 const VOICES = [
-  { slug: 'legend', name: 'Voice Upstairs' }, { slug: 'hypeman', name: 'Noise Complaint' }, { slug: 'powerhouse', name: 'Big Boss' },
-  { slug: 'mainevent', name: 'Main Character' }, { slug: 'smooth', name: 'Velvet Hammer' },
+  { slug: 'legend', name: 'Voice Upstairs', male: true }, { slug: 'hypeman', name: 'Noise Complaint', male: true }, { slug: 'smooth', name: 'Velvet Hammer', male: true },
+  { slug: 'powerhouse', name: 'Big Boss' }, { slug: 'mainevent', name: 'Main Character' },
 ];
 const BEDS = [
   { id: 'dynasty', name: 'Dynasty' }, { id: 'takeover', name: 'Takeover' }, { id: 'spotlight', name: 'Spotlight' },
@@ -208,8 +231,14 @@ function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add
 
 function renderFive(lit) { $('five').innerHTML = HOME.map(([p, n, l], i) => `<div class="pl ${lit === i ? 'lit' : ''}"><div class="pos">${p}</div><div class="jr">${n}</div><div class="ln">${l}</div></div>`).join(''); }
 function renderScript() { $('script').innerHTML = SCRIPT.map((s, i) => `<p id="ln${i}">${s.display}</p>`).join(''); }
+function musicTab(t) {
+  $('segBeds').classList.toggle('on', t === 'beds'); $('segAm').classList.toggle('on', t === 'am');
+  $('paneBeds').classList.toggle('hidden', t !== 'beds'); $('paneAm').classList.toggle('hidden', t !== 'am');
+}
 function renderSheet() {
-  $('voices').innerHTML = VOICES.map(v => `<button class="chip ${v.slug === 'legend' ? 'on' : ''}" onclick="voiceTap('${v.slug}', this)"><span class="pv">${PV.play}</span>${v.name}</button>`).join('');
+  const vchip = v => `<button class="chip ${v.slug === 'legend' ? 'on' : ''}" onclick="voiceTap('${v.slug}', this)"><span class="pv">${PV.play}</span>${v.name}</button>`;
+  $('voicesM').innerHTML = VOICES.filter(v => v.male).map(vchip).join('');
+  $('voicesF').innerHTML = VOICES.filter(v => !v.male).map(vchip).join('');
   $('beds').innerHTML = BEDS.map(b => `<button class="chip ${b.id === S.bed ? 'on' : ''} ${b.id === 'none' ? 'np' : ''}" onclick="pickBed('${b.id}')">${b.id === 'none' ? '' : `<span class="pv" onclick="event.stopPropagation(); bedPreview('${b.id}', this)">${PV.play}</span>`}${b.name}</button>`).join('');
   $('bedname').textContent = BEDS.find(b => b.id === S.bed).name;
 }
