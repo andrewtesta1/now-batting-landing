@@ -3469,23 +3469,6 @@
   .sp-socials a{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid rgba(0,0,0,.14);color:#5a5a53;transition:border-color .15s,color .15s,background .15s}
   .sp-socials a:hover{border-color:var(--daylight);color:var(--daylight-dim);background:rgba(184,204,0,.08)}
   .sp-socials svg{width:15px;height:15px;fill:currentColor}
-  .sp-sub{margin-top:26px;padding-top:24px;border-top:1px solid rgba(0,0,0,.10)}
-  .sp-sub h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;color:#18180F}
-  .sp-sub p{font-size:15px;line-height:1.55;color:#5a5a53;margin:0 0 14px;max-width:46ch}
-  .sp-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .sp-form input[type=email]{flex:1 1 260px;min-width:0;font:inherit;font-size:15px;padding:11px 13px;border-radius:9px;border:1px solid rgba(0,0,0,.2);background:#fff;color:#18180F}
-  .sp-form input[type=email]:focus{outline:none;border-color:var(--daylight);box-shadow:0 0 0 3px rgba(184,204,0,.22)}
-  .sp-form button{font:inherit;font-size:15px;font-weight:700;padding:11px 20px;border-radius:9px;cursor:pointer;background:var(--daylight);color:#1F1F1F;border:1px solid var(--daylight)}
-  .sp-form button:hover{background:var(--daylight-dim)}
-  .sp-form button[disabled]{opacity:.55;cursor:default}
-  /* The honeypot must be reachable by a bot and invisible to a person — and to a
-     screen reader, which is why it is aria-hidden and tabindex -1 rather than
-     display:none (some bots skip display:none fields). */
-  .sp-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-  .sp-note{font-size:12.5px;color:#6d6e63;margin:10px 0 0}
-  .sp-msg{font-size:14.5px;font-weight:600;margin:12px 0 0;min-height:1.2em}
-  .sp-msg.ok{color:#5a6b00}
-  .sp-msg.err{color:#9a3412}
   @media(max-width:620px){ .spread .sp-cards{grid-template-columns:1fr} }
 </style>
 <section class="spread">
@@ -3517,21 +3500,6 @@
           <a href="https://www.youtube.com/@NowBattingApp" target="_blank" rel="noopener" title="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         </div>
       </div>
-    </div>
-
-    <div class="sp-sub" id="updates">
-      <h3>Get updates from the Chief Hype Officer</h3>
-      <p>New features, seasonal packs and the occasional field story. Only when there's something worth sending &mdash; no weekly newsletter, no spam.</p>
-      <form class="sp-form" id="subForm" novalidate>
-        <label class="sp-hp" aria-hidden="true"><span>Company</span>
-          <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
-        <label for="subEmail" class="sp-hp">Email address</label>
-        <input id="subEmail" type="email" name="email" required autocomplete="email"
-               placeholder="you@example.com" aria-describedby="subNote">
-        <button type="submit" id="subBtn">Keep me posted</button>
-      </form>
-      <p class="sp-msg" id="subMsg" role="status" aria-live="polite"></p>
-      <p class="sp-note" id="subNote">Unsubscribe any time. We never share your address. <a href="/privacy">Privacy</a>.</p>
     </div>
   </div>
 </section>
@@ -4127,46 +4095,6 @@
 })();
 </script>
 
-<script>
-  /* Updates list. Posts to our own /api/subscribe (same origin, so the page keeps
-     its zero-third-party-requests property). Progressive: the button reports its
-     own state, and a failure says so rather than silently pretending. */
-  (function () {
-    var f = document.getElementById('subForm');
-    if (!f) return;
-    var btn = document.getElementById('subBtn');
-    var msg = document.getElementById('subMsg');
-    f.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      var email = (document.getElementById('subEmail').value || '').trim();
-      var trap = (f.querySelector('input[name=company]').value || '').trim();
-      msg.className = 'sp-msg';
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-        msg.textContent = 'That email doesn\u2019t look right.'; msg.className = 'sp-msg err'; return;
-      }
-      btn.disabled = true; btn.textContent = 'Signing up\u2026';
-      try {
-        var r = await fetch('/api/subscribe', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, company: trap })
-        });
-        var d = await r.json().catch(function () { return {}; });
-        if (r.ok && d.ok) {
-          f.style.display = 'none';
-          msg.textContent = "You\u2019re on the list. Talk soon."; msg.className = 'sp-msg ok';
-        } else {
-          msg.textContent = d.message || 'Something went wrong. Try again in a minute.';
-          msg.className = 'sp-msg err';
-          btn.disabled = false; btn.textContent = 'Keep me posted';
-        }
-      } catch (err) {
-        msg.textContent = 'Couldn\u2019t reach us. Check your connection and try again.';
-        msg.className = 'sp-msg err';
-        btn.disabled = false; btn.textContent = 'Keep me posted';
-      }
-    });
-  })();
-</script>
 <script>
   /* And Now launch countdown: midnight Eastern as Saturday 2026-11-14 begins (EST, -05:00). */
   (function () {
