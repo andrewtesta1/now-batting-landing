@@ -727,6 +727,13 @@
     .hero-form-wrap { opacity: 0; animation: fadeUp 0.5s ease forwards 0.52s; max-width: 480px; margin-left: auto; margin-right: auto; }
     .hero-proof { margin-top: 13px; font-size: 13px; color: var(--txt3); opacity: 0; animation: fadeUp 0.5s ease forwards 0.6s; }
     .hero-proof strong { color: var(--daylight); }
+    /* And Now countdown — one line under the hero proof, not a section. Hidden until JS
+       has a real number, and gone again at zero (main has no /and-now page to send anyone to). */
+    .hero-count { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 0 0 22px; padding: 9px 14px; border: 1.5px solid #FF6A13; border-radius: 12px; background: rgba(255,106,19,0.10); }
+    .hero-count[hidden] { display: none; }
+    .hero-count-label { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #FF6A13; }
+    .hero-count-clock { font-family: var(--font-mono); font-weight: 700; font-size: 15px; color: #FFFFFF; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+    .hero-count-clock span { color: rgba(246,244,239,0.5); font-weight: 600; font-size: 11px; margin: 0 6px 0 1px; }
     /* Hero v2 — two-line eyebrow + stacked bridge line (rhetorical type hierarchy) */
     .hero-eye-block { margin-bottom: 22px; opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s; }
     .hero-eye-brand { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(246,244,239,0.5); margin: 0 0 8px; }
@@ -2565,6 +2572,10 @@
       <div class="hero-stack">
         <h1 class="l2">The walk-up song app that brings <span class="g">the hype without the headache.</span></h1>
       </div>
+      <div class="hero-count" id="andnow-count" hidden>
+        <span class="hero-count-label">And Now: Basketball · Saturday</span>
+        <span class="hero-count-clock" id="andnow-clock" aria-live="off"></span>
+      </div>
       <div class="hero-form-wrap">
         <a class="btn" href="https://apps.apple.com/app/now-batting/id6760744461" style="display:inline-flex; align-items:center; gap:9px; text-decoration:none;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.84 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.09 1.35 10.74.9 1.3 1.97 2.75 3.37 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.03 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.96 1.47-3.04-.03-.01-2.82-1.08-2.85-4.29zM14.38 4.1c.74-.9 1.24-2.15 1.1-3.4-1.07.04-2.36.71-3.13 1.61-.69.79-1.29 2.06-1.13 3.27 1.19.09 2.42-.6 3.16-1.48z"/></svg>
@@ -4063,6 +4074,25 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initIcons);
   else initIcons();
 })();
+</script>
+<script>
+  /* And Now launch countdown: midnight Eastern as Saturday 2026-11-14 begins (EST, -05:00). */
+  (function () {
+    var target = Date.parse('2026-11-14T00:00:00-05:00');
+    var box = document.getElementById('andnow-count'), clock = document.getElementById('andnow-clock');
+    if (!box || !clock) return;
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    function tick() {
+      var ms = target - Date.now();
+      if (ms <= 0) { box.hidden = true; return false; }
+      var s = Math.floor(ms / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+      clock.innerHTML = (d ? d + '<span>D</span>' : '') + pad(h) + '<span>H</span>' + pad(m) + '<span>M</span>' + pad(s % 60) + '<span>S</span>';
+      box.setAttribute('aria-label', 'And Now: Basketball arrives in ' + d + ' days ' + h + ' hours ' + m + ' minutes');
+      box.hidden = false;
+      return true;
+    }
+    if (tick()) { var t = setInterval(function () { if (!tick()) clearInterval(t); }, 1000); }
+  })();
 </script>
 </body>
 </html>
