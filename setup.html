@@ -179,7 +179,7 @@
 
   <script>
     var API='https://walkup-hero.vercel.app';
-    var id=(location.pathname.split('/').filter(Boolean).pop()||'').toUpperCase();
+    var id=((new URLSearchParams(location.search).get('id'))||(location.pathname.split('/').filter(Boolean).pop()||'')).toUpperCase();
     var $=function(s){return document.querySelector(s)};
     var state={tab:'song',song:null,genre:'Hip-Hop',energy:'Hype',court:false};
 
