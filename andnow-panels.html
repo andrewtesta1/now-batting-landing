@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>And Now · See it</title>
+<meta name="robots" content="noindex" />
+<!--
+  Small "See it" demos for /and-now, one per section, routed by hash:
+  #whois · #hypedeck · #parent · #music. (#intro lives in /andnow-demo#intro, which owns the
+  audio engine.) Copied from the app's screens: components/court/*. Each panel reports its
+  height to the parent as { nbAnPanel, h }.
+  PA clips in /andnow-demo/pa are The Voice Upstairs, rendered through /api/tts (profile court),
+  from sports/court/calls.ts teamCallText.
+-->
+<style>
+  @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap; src: url('/fonts/inter-var-latin.woff2') format('woff2'); }
+  :root { --court: #FF6A13; --char: #1F1F1F; --chalk: #F6F4EF; --card: #0B0B0C; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: transparent; font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; color: var(--char); }
+  button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; padding: 0; }
+  .wrap { max-width: 400px; margin: 0 auto; padding: 6px 8px 16px; }
+  .panel { display: none; } .panel.on { display: block; }
+  .screen { border-radius: 26px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,.1), 0 10px 22px rgba(0,0,0,.12); }
+  .light { background: var(--chalk); border: 1px solid rgba(31,31,31,.1); padding: 16px 14px; }
+  .dark { background: var(--char); color: #fff; padding: 16px 14px; }
+  .note { font-size: 12px; line-height: 1.45; color: rgba(31,31,31,.55); text-align: center; margin: 12px 10px 0; }
+  .lbl { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(31,31,31,.45); margin: 0 2px 8px; }
+  .dark .lbl { color: rgba(255,255,255,.45); }
+  .lbl b { color: var(--court); font-weight: 800; }
+  /* who's introduced */
+  .grp { background: #fff; border: 1px solid rgba(31,31,31,.08); border-radius: 14px; overflow: hidden; }
+  .trow { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-bottom: 1px solid rgba(31,31,31,.07); cursor: pointer; user-select: none; }
+  .trow:last-child { border-bottom: 0; }
+  .trow div { flex: 1; min-width: 0; } .trow b { display: block; font-size: 14px; font-weight: 800; } .trow s { display: block; text-decoration: none; font-size: 11.5px; color: rgba(31,31,31,.5); margin-top: 2px; }
+  .tg { width: 44px; height: 26px; border-radius: 13px; background: rgba(31,31,31,.14); position: relative; flex: none; transition: background .2s; }
+  .tg i { position: absolute; left: 2px; top: 2px; width: 22px; height: 22px; border-radius: 11px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.2); transition: transform .2s; }
+  .trow.on .tg { background: var(--court); } .trow.on .tg i { transform: translateX(18px); }
+  .trow.fixed { cursor: default; } .trow.fixed .tg { opacity: .55; }
+  .flow { margin-top: 14px; background: var(--card); color: #fff; border-radius: 16px; padding: 12px 14px; }
+  .flow .hd { display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+  .flow .hd span { color: var(--court); letter-spacing: .04em; }
+  .step { display: flex; gap: 10px; align-items: flex-start; padding: 5px 0; font-size: 13px; line-height: 1.35; }
+  .step em { font-style: normal; flex: none; width: 20px; height: 20px; border-radius: 10px; background: rgba(255,106,19,.16); color: var(--court); font-size: 11px; font-weight: 800; display: grid; place-items: center; margin-top: 1px; }
+  .step span { color: rgba(255,255,255,.85); } .step small { display: block; color: rgba(255,255,255,.45); font-size: 11.5px; margin-top: 1px; }
+  @keyframes in { from { opacity: 0; transform: translateY(4px); } }
+  /* hype deck */
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pa { height: 38px; padding: 0 13px; border-radius: 11px; border: 1px solid rgba(255,255,255,.22); display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 700; color: #fff; transition: all .15s; }
+  .pa svg { width: 10px; height: 10px; flex: none; }
+  .pa.live { background: var(--court); border-color: var(--court); color: #141414; transform: scale(1.03); box-shadow: 0 0 16px rgba(255,106,19,.55); }
+  .jams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .jam { display: flex; align-items: center; gap: 9px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 8px; text-align: left; }
+  .art { width: 38px; height: 38px; border-radius: 8px; flex: none; }
+  .jam b { display: block; font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .jam s { display: block; text-decoration: none; font-size: 11px; color: rgba(255,255,255,.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .jam div { min-width: 0; }
+  .sep { height: 1px; background: rgba(255,255,255,.1); margin: 14px 0; }
+  .tip { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 10px; min-height: 17px; }
+  /* parent link */
+  .pform { background: #fff; border-radius: 16px; border: 1px solid rgba(31,31,31,.08); padding: 14px; }
+  .ptitle { font-size: 16px; font-weight: 800; line-height: 1.25; } .psub { font-size: 12px; color: rgba(31,31,31,.5); margin: 4px 0 10px; }
+  .frow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .fld { margin-top: 8px; } .fld label { display: block; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(31,31,31,.45); margin-bottom: 4px; }
+  .in { height: 38px; border-radius: 10px; border: 1.5px solid rgba(31,31,31,.12); background: var(--chalk); display: flex; align-items: center; padding: 0 10px; font-size: 14px; font-weight: 600; transition: border-color .2s; }
+  .in.focus { border-color: var(--court); }
+  .in .car { width: 1.5px; height: 18px; background: var(--court); margin-left: 1px; animation: blink 1s steps(1) infinite; display: none; } .in.focus .car { display: block; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .say { display: flex; gap: 8px; } .say .in { flex: 1; }
+  .hear { height: 38px; padding: 0 12px; border-radius: 10px; border: 1.5px solid var(--court); color: #C24E06; font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 6px; transition: all .2s; }
+  .hear.live { background: var(--court); color: #141414; box-shadow: 0 0 0 6px rgba(255,106,19,.18); }
+  .send { margin-top: 12px; height: 44px; border-radius: 12px; background: var(--court); color: #141414; font-size: 14.5px; font-weight: 800; display: grid; place-items: center; transition: transform .15s; }
+  .send.tap { transform: scale(.96); }
+  .done { margin-top: 12px; border-radius: 14px; background: var(--card); color: #fff; padding: 12px 14px; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(6px); transition: all .35s; }
+  .done.on { opacity: 1; transform: none; }
+  .done .ic { width: 34px; height: 34px; border-radius: 17px; background: rgba(255,106,19,.18); color: var(--court); display: grid; place-items: center; font-weight: 900; flex: none; }
+  .done b { display: block; font-size: 13.5px; } .done span { font-size: 12px; color: rgba(255,255,255,.55); }
+  .done .imp { margin-left: auto; height: 30px; padding: 0 12px; border-radius: 15px; background: var(--court); color: #141414; font-size: 12.5px; font-weight: 800; display: grid; place-items: center; }
+  .replay { display: block; margin: 10px auto 0; font-size: 12.5px; font-weight: 700; color: #C24E06; }
+  /* music hub */
+  .lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .pl { border-radius: 14px; padding: 12px; min-height: 92px; display: flex; flex-direction: column; justify-content: space-between; color: #fff; position: relative; overflow: hidden; }
+  .pl .em { font-size: 20px; } .pl b { display: block; font-size: 14px; font-weight: 800; line-height: 1.2; } .pl s { display: block; text-decoration: none; font-size: 11.5px; color: rgba(255,255,255,.6); margin-top: 2px; }
+  .pl .tag { position: absolute; right: 10px; top: 10px; font-size: 9.5px; font-weight: 800; letter-spacing: .08em; background: var(--court); color: #141414; border-radius: 8px; padding: 3px 6px; }
+  .add { border: 1.5px dashed rgba(31,31,31,.25); color: var(--char); background: transparent; }
+  .add s { color: rgba(31,31,31,.5); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- WHO'S INTRODUCED -->
+  <section class="panel" id="p-whois">
+    <div class="screen light">
+      <div class="lbl">3 · Who&rsquo;s introduced</div>
+      <div class="grp" id="who"></div>
+      <div class="flow"><div class="hd">The script <span id="runs"></span></div><div id="flow"></div></div>
+    </div>
+    <div class="note">Flip a switch and the script rearranges itself, the way it does in the app.</div>
+  </section>
+
+  <!-- HYPE DECK -->
+  <section class="panel" id="p-hypedeck">
+    <div class="screen dark">
+      <div class="lbl">PA calls · <b>The Voice Upstairs</b></div>
+      <div class="chips" id="pa"></div>
+      <div class="sep"></div>
+      <div class="lbl">Arena jams</div>
+      <div class="jams" id="jams"></div>
+      <div class="tip" id="tip">Tap a PA call. Sound on.</div>
+    </div>
+  </section>
+
+  <!-- PARENT LINK -->
+  <section class="panel" id="p-parent">
+    <div class="screen light">
+      <div class="pform">
+        <div class="ptitle">Your Chief Hype Officer is getting the gym ready</div>
+        <div class="psub">Add your player for the Now Batting Ballers. Takes 30 seconds, no app needed.</div>
+        <div class="frow">
+          <div class="fld"><label>First name</label><div class="in" id="f1"><span></span><i class="car"></i></div></div>
+          <div class="fld"><label>Last name</label><div class="in" id="f2"><span></span><i class="car"></i></div></div>
+        </div>
+        <div class="fld"><label>Number</label><div class="in" id="f3" style="width:90px"><span></span><i class="car"></i></div></div>
+        <div class="fld"><label>How do you say it?</label><div class="say"><div class="in" id="f4"><span></span><i class="car"></i></div><div class="hear" id="hear">▶ Hear it</div></div></div>
+        <div class="send" id="send">Send to your CHO</div>
+      </div>
+      <div class="done" id="done"><div class="ic">+1</div><div><b>Mia Buckets #5</b><span>New from your parent link</span></div><div class="imp">Import</div></div>
+    </div>
+    <button class="replay" onclick="parentRun()">↻ Play it again</button>
+  </section>
+
+  <!-- MUSIC HUB -->
+  <section class="panel" id="p-music">
+    <div class="screen light">
+      <div class="lbl">Music Hub · basketball</div>
+      <div class="lists" id="lists"></div>
+    </div>
+    <div class="note">Arena playlists play through Apple Music, with an Apple Music subscription.</div>
+  </section>
+
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const ID = (location.hash || '#whois').slice(1);
+function height() { try { const w = document.querySelector('.wrap'); parent.postMessage({ nbAnPanel: ID, h: Math.ceil(w.getBoundingClientRect().bottom + window.scrollY) + 6 }, '*'); } catch (e) {} }
+
+/* ── who's introduced (order from sports/court/rollCall.ts) ── */
+const WHO = [
+  { k: 'five', b: 'Your Starting 5', s: 'Always on. Numbers and names.', on: true, fixed: true },
+  { k: 'pos', b: 'Positions', s: '“At point guard… number two…”', on: true },
+  { k: 'refs', b: 'Referees', s: 'Right after the welcome', on: false },
+  { k: 'vis', b: 'The visitors', s: 'Their five, before yours', on: false },
+  { k: 'bench', b: 'The benches', s: 'Right before each team’s five', on: false },
+  { k: 'coach', b: 'Coaches', s: 'Before each team’s bench and five', on: false },
+];
+const W = Object.fromEntries(WHO.map(w => [w.k, w.on]));
+function renderWho() {
+  $('who').innerHTML = WHO.map(w => `<div class="trow ${W[w.k] ? 'on' : ''} ${w.fixed ? 'fixed' : ''}" onclick="flip('${w.k}')"><div><b>${w.b}</b><s>${w.s}</s></div><span class="tg"><i></i></span></div>`).join('');
+  const steps = [['The welcome', '“And now… ladies and gentlemen…”']];
+  if (W.refs) steps.push(['The officials', 'A proper welcome before the whistles start']);
+  if (W.vis) {
+    const parts = [W.coach && 'coaches', W.bench && 'bench', 'starting five'].filter(Boolean).join(', ');
+    steps.push(['The And-One Dunkers', parts.charAt(0).toUpperCase() + parts.slice(1)]);
+  }
+  if (W.coach) steps.push(['Your coaches', 'Coach has been waiting for this']);
+  if (W.bench) steps.push(['Your bench', 'Number and name']);
+  steps.push(['Your Starting 5', W.pos ? '“At point guard… number two… Avery Swish!”' : '“Number two… Avery Swish!”']);
+  steps.push(['The grand finale', '“Let’s play some basketball!”']);
+  $('flow').innerHTML = steps.map((s, i) => `<div class="step"><em>${i + 1}</em><span>${s[0]}<small>${s[1]}</small></span></div>`).join('');
+  $('runs').textContent = steps.length + ' parts';
+  height();
+}
+function flip(k) { if (WHO.find(w => w.k === k).fixed) return; W[k] = !W[k]; renderWho(); }
+
+/* ── hype deck ── */
+const PA = [['timeout', 'Timeout'], ['sub', 'Substitution'], ['q1', 'End of 1st'], ['halftime', 'Halftime'], ['final', 'Final']];
+const JAMS = [['Get Ready for This', '2 Unlimited', '#2a1408,#FF6A13'], ['Jump Around', 'House of Pain', '#1F1F1F,#C24A00'], ['We Ready', 'Archie Eversole', '#3a1a08,#FF8A45'], ['Turn Down for What', 'DJ Snake, Lil Jon', '#111,#7a3410']];
+const PLAY = '<svg viewBox="0 0 10 10"><path d="M2.5 1.5 8.5 5 2.5 8.5z" fill="currentColor"/></svg>', STOP = '<svg viewBox="0 0 10 10"><rect x="2" y="2" width="6" height="6" rx="1" fill="currentColor"/></svg>';
+let au = null, liveK = null;
+function renderPA() { $('pa').innerHTML = PA.map(([k, n]) => `<button class="pa ${liveK === k ? 'live' : ''}" onclick="paTap('${k}')">${liveK === k ? STOP : PLAY}${n}</button>`).join(''); }
+function paStop() { if (au) { au.pause(); au = null; } liveK = null; renderPA(); }
+function paTap(k) {
+  const same = liveK === k; paStop(); if (same) return;
+  au = new Audio(`/andnow-demo/pa/${k}.mp3`); liveK = k; renderPA();
+  au.addEventListener('ended', paStop); au.play().catch(() => paStop());
+  $('tip').textContent = 'Tap again to stop. In the app, every call is in your announcer’s voice.';
+}
+function renderJams() {
+  $('jams').innerHTML = JAMS.map(j => `<button class="jam" onclick="jamTap()"><span class="art" style="background:linear-gradient(135deg,${j[2]})"></span><div><b>${j[0]}</b><s>${j[1]}</s></div></button>`).join('');
+}
+function jamTap() { $('tip').textContent = 'Arena jams play through Apple Music in the app, cued to the best part.'; }
+
+/* ── parent link: a short loop of what a parent sees ── */
+let pt = [];
+function typeInto(id, text, at, ms) {
+  pt.push(setTimeout(() => { document.querySelectorAll('.in').forEach(e => e.classList.remove('focus')); $(id).classList.add('focus'); }, at));
+  [...text].forEach((c, i) => pt.push(setTimeout(() => { $(id).firstChild.textContent = text.slice(0, i + 1); }, at + 120 + i * ms)));
+  return at + 120 + text.length * ms + 220;
+}
+function parentRun() {
+  pt.forEach(clearTimeout); pt = [];
+  ['f1', 'f2', 'f3', 'f4'].forEach(id => { $(id).firstChild.textContent = ''; $(id).classList.remove('focus'); });
+  $('hear').classList.remove('live'); $('done').classList.remove('on'); $('send').classList.remove('tap');
+  let t = 400;
+  t = typeInto('f1', 'Mia', t, 90); t = typeInto('f2', 'Buckets', t, 80); t = typeInto('f3', '5', t, 90); t = typeInto('f4', 'MEE-uh BUCK-its', t, 60);
+  pt.push(setTimeout(() => { document.querySelectorAll('.in').forEach(e => e.classList.remove('focus')); $('hear').classList.add('live'); $('hear').textContent = '■ Hearing it…'; }, t));
+  pt.push(setTimeout(() => { $('hear').classList.remove('live'); $('hear').textContent = '▶ Hear it'; }, t + 1600));
+  pt.push(setTimeout(() => $('send').classList.add('tap'), t + 2000));
+  pt.push(setTimeout(() => $('send').classList.remove('tap'), t + 2200));
+  pt.push(setTimeout(() => { $('done').classList.add('on'); height(); }, t + 2500));
+}
+
+/* ── music hub (constants/musicHub.ts COURT_PLAYLISTS + Team Requests) ── */
+const LISTS = [
+  ['🙋', 'Team Requests', 'Asked for by your team', '#3a1a08,#FF6A13'],
+  ['🔥', 'Starting 5 Intros', 'Lights down, crowd up', '#1F1F1F,#7a3410'],
+  ['📣', 'Timeout & Halftime', 'Keep the gym loud', '#111,#C24A00'],
+  ['💥', 'Warm-Up Bangers', '2000s layup-line heat', '#2a1408,#a8460f'],
+  ['📼', 'Jock Jams Classics', 'The arena throwbacks', '#1a1a1a,#5a2a10'],
+];
+function renderLists() {
+  $('lists').innerHTML = LISTS.map((l, i) => `<div class="pl" style="background:linear-gradient(140deg,${l[3]})">${l[4] ? `<span class="tag">${l[4]}</span>` : ''}<span class="em">${l[0]}</span><div><b>${l[1]}</b><s>${l[2]}</s></div></div>`).join('')
+    + `<div class="pl add"><span class="em">＋</span><div><b>Your playlists</b><s>Import from Apple Music</s></div></div>`;
+}
+
+$('p-' + ID) && $('p-' + ID).classList.add('on');
+if (ID === 'whois') renderWho();
+if (ID === 'hypedeck') { renderPA(); renderJams(); }
+if (ID === 'parent') parentRun();
+if (ID === 'music') renderLists();
+window.addEventListener('load', height); window.addEventListener('resize', height); setTimeout(height, 60);
+</script>
+</body>
+</html>

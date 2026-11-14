@@ -125,6 +125,14 @@
   .also span { font-size: 11.5px; font-weight: 700; color: rgba(31,31,31,.6); background: rgba(31,31,31,.06); border-radius: 11px; padding: 4px 9px; }
   .note { font-size: 11.5px; line-height: 1.45; color: rgba(31,31,31,.5); text-align: center; margin: 12px 8px 0; }
   .hidden { display: none !important; }
+  /* #intro: just the Starting 5 card and the music under it, for the See it panel on /and-now. */
+  body.m-intro .top, body.m-intro .sheet, body.m-intro .scrim, body.m-intro #custBtn, body.m-intro #scriptBtn, body.m-intro .cbar i.sep { display: none !important; }
+  body.m-intro { background: transparent; } body.m-intro .wrap { padding-top: 6px; }
+  body.m-intro .phone { border: 0; background: transparent; box-shadow: none; border-radius: 0; overflow: visible; }
+  body.m-intro .screen { padding: 0; min-height: 0; }
+  body.m-intro #bedBtn { pointer-events: none; }
+  body.m-intro .toast { top: 50px; }
+  #inlineMusic { display: none; } body.m-intro #inlineMusic { display: block; margin-top: 14px; }
 </style>
 </head>
 <body>
@@ -141,7 +149,7 @@
         <div class="cbar">
           <button id="custBtn" onclick="openSheet()"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h3M8 12h6"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="6.5" cy="12" r="1.6"/></svg>Customize</button>
           <i class="sep"></i>
-          <button onclick="toggleScript()"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M4 2h5l3 3v9H4z"/><path d="M6.5 8h4M6.5 11h4"/></svg>Script</button>
+          <button id="scriptBtn" onclick="toggleScript()"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M4 2h5l3 3v9H4z"/><path d="M6.5 8h4M6.5 11h4"/></svg>Script</button>
           <i class="sep"></i>
           <button class="mu" id="bedBtn" onclick="openSheet()"><svg viewBox="0 0 16 16" fill="#FF6A13"><path d="M6 2.5v8.2A2.2 2.2 0 1 0 7.5 12.8V6.2l5-1.2v4.7a2.2 2.2 0 1 0 1.5 2.1V1.6z"/></svg><span id="bedname">Dynasty</span></button>
         </div>
@@ -172,6 +180,7 @@
         </div>
       </div>
       <div class="script hidden" id="script"></div>
+      <div id="inlineMusic"><div class="lbl">Pick the music</div><div id="inlineBeds"></div><div class="cap">Music changes right away, even mid-intro.</div></div>
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -432,8 +441,10 @@ function ui() {
 // Height for the iframe that embeds this page (and-now.html listens for nbAnDemoHeight).
 // ⚠️ Measure the CONTENT, not documentElement.scrollHeight: that is never less than the iframe's
 // own height, so with the parent adding a margin and resize re-reporting, the frame grew forever.
-function height() { try { const w = document.querySelector('.wrap'); parent.postMessage({ nbAnDemoHeight: Math.ceil(w.getBoundingClientRect().bottom + window.scrollY) + 8 }, '*'); } catch (e) {} }
+function height() { try { const w = document.querySelector('.wrap'); const h = Math.ceil(w.getBoundingClientRect().bottom + window.scrollY) + 8; parent.postMessage({ nbAnDemoHeight: h, nbAnPanel: INTRO ? 'intro' : null, h }, '*'); } catch (e) {} }
 window.addEventListener('load', height); window.addEventListener('resize', height);
+const INTRO = location.hash === '#intro';
+if (INTRO) { document.body.classList.add('m-intro'); $('inlineBeds').appendChild($('beds')); document.querySelector('.note').textContent = 'The real script and the real announcer. Sound on.'; }
 renderFive(null); renderSheet(); ui(); setTimeout(height, 50);
 </script>
 </body>
