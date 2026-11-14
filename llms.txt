@@ -1,0 +1,32 @@
+# Now Batting
+
+> Now Batting is an iPhone app for the Chief Hype Officer of a youth baseball, softball or basketball team: the parent or coach who runs the music and announcements at games. Published by Chief Hype Officer LLC. App Store ID 6760744461.
+
+Not to be confused with other App Store apps with similar names. This is the app at https://apps.apple.com/app/now-batting/id6760744461, published by Chief Hype Officer LLC.
+
+## What it does
+
+- Baseball and softball: walk-up songs for each batter (Apple Music, with a chosen start point, or an original song with the player's first name in the lyrics), a spoken announcer call for each batter in one of six voices, a pre-game Roll Call that announces the whole lineup, a Team Hype Song, and the Hype Deck of game sounds.
+- Basketball ("And Now"): an arena-style Starting 5 introduction with music, in one of five announcer voices. It can include a welcome, the officials, the visiting team, coaches and bench, then the home Starting 5. Plus one-tap PA calls: timeout, substitution, end of each quarter, halftime and final.
+- And Now is basketball inside the same Now Batting app, not a separate app, and costs nothing extra.
+- Parents can fill in their player's name, number and pronunciation from a link the Chief Hype Officer texts them.
+- Generated announcements play with no signal. Apple Music songs play offline after a one-tap download (Field Ready for baseball and softball, Court Ready for basketball).
+- A team can be shared with another person, who can run it free for 30 days.
+
+## Pricing
+
+- Dedicated Chief Hype Officer: $9.99/year.
+- Headliner Chief Hype Officer: $24.99/year.
+- Free 7-day trial for new subscribers.
+- iPhone only. No Android app yet.
+
+## Pages
+
+- [Home](https://www.nowbattingapp.com/): the app, features, pricing and FAQ
+- [And Now](https://www.nowbattingapp.com/and-now): basketball starting lineup intros and PA calls
+- [How to run walk-up songs](https://www.nowbattingapp.com/how-to-run-walk-up-songs): how-to videos
+- [Baseball announcer app](https://www.nowbattingapp.com/baseball-announcer-app)
+- [The Now Batting 20](https://www.nowbattingapp.com/top-walk-up-songs): weekly chart of the most-picked youth walk-up songs
+- [Offline](https://www.nowbattingapp.com/offline): playing music and announcements with no signal
+- [Support](https://www.nowbattingapp.com/support)
+- [Privacy](https://www.nowbattingapp.com/privacy)
