@@ -122,6 +122,12 @@
   .chip .pv svg { width: 10px; height: 10px; }
   .cap { font-size: 11.5px; line-height: 1.35; color: rgba(31,31,31,.5); margin: 6px 2px 0; }
   .also { display: flex; flex-wrap: wrap; gap: 5px; }
+  .scard { background: var(--char); border: 1px solid rgba(255,106,19,.45); border-radius: 14px; padding: 12px; }
+  .seb { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--court); }
+  .seb .d { width: 6px; height: 6px; border-radius: 3px; background: var(--court); }
+  .sbtns { display: flex; gap: 8px; margin-top: 10px; }
+  .sbtns button { flex: 1; height: 36px; border-radius: 10px; font-size: 13px; font-weight: 700; color: #fff; border: 1.5px solid rgba(255,255,255,.3); }
+  .sbtns button.hear { background: var(--court); border-color: var(--court); color: #141414; font-weight: 800; }
   .also span { font-size: 11.5px; font-weight: 700; color: rgba(31,31,31,.6); background: rgba(31,31,31,.06); border-radius: 11px; padding: 4px 9px; }
   .note { font-size: 11.5px; line-height: 1.45; color: rgba(31,31,31,.5); text-align: center; margin: 12px 8px 0; }
   .hidden { display: none !important; }
@@ -148,8 +154,6 @@
         <div class="glow"></div><div class="beam b1"></div><div class="beam b2"></div><div class="floor"></div>
         <div class="cbar">
           <button id="custBtn" onclick="openSheet()"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h3M8 12h6"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="6.5" cy="12" r="1.6"/></svg>Customize</button>
-          <i class="sep"></i>
-          <button id="scriptBtn" onclick="toggleScript()"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M4 2h5l3 3v9H4z"/><path d="M6.5 8h4M6.5 11h4"/></svg>Script</button>
           <i class="sep"></i>
           <button class="mu" id="bedBtn" onclick="openSheet()"><svg viewBox="0 0 16 16" fill="#FF6A13"><path d="M6 2.5v8.2A2.2 2.2 0 1 0 7.5 12.8V6.2l5-1.2v4.7a2.2 2.2 0 1 0 1.5 2.1V1.6z"/></svg><span id="bedname">Dynasty</span></button>
         </div>
@@ -179,7 +183,6 @@
           </div>
         </div>
       </div>
-      <div class="script hidden" id="script"></div>
       <div id="inlineMusic"><div class="lbl">Pick the music</div><div id="inlineBeds"></div><div class="cap">Music changes right away, even mid-intro.</div></div>
     </div>
 
@@ -188,13 +191,15 @@
     <div class="sheet" id="sheet" role="dialog" aria-label="Customize">
       <div class="grab"></div>
       <div class="shd"><b>Customize</b><button onclick="closeSheet()">Done</button></div>
+      <div class="cap" style="margin-top:0">Pick the voice, the music and who gets called. We wrote the script: use it as is, or make it your own.</div>
       <!-- Same layout as the app's Customize (2026-11-13): numbered sections, voices by
-           Male / Female, and Arena Beds or an Apple Music song under the intro. -->
+           Male / Female, And Now Music or an Apple Music song, who's introduced, and the script
+           (closed by default, "Make it yours" to open it — 1.2.16, 2026-11-15). -->
       <div class="lbl">1 · Announcer</div>
       <div class="vcols"><div><div class="vsub">Male</div><div class="vcol" id="voicesM"></div></div><div><div class="vsub">Female</div><div class="vcol" id="voicesF"></div></div></div>
       <div class="cap">This demo is read by The Voice Upstairs. Tap ▶ to hear the other four. In the app, switching voices means one Rebuild.</div>
       <div class="lbl">2 · Music</div>
-      <div class="mseg"><button id="segBeds" class="on" onclick="musicTab('beds')">Arena Beds</button><button id="segAm" onclick="musicTab('am')">Apple Music</button></div>
+      <div class="mseg"><button id="segBeds" class="on" onclick="musicTab('beds')">And Now Music</button><button id="segAm" onclick="musicTab('am')">Apple Music</button></div>
       <div id="paneBeds">
         <div class="chips" id="beds"></div>
         <div class="cap">Music changes right away, even mid-intro. No Rebuild.</div>
@@ -202,11 +207,21 @@
       <div id="paneAm" class="hidden">
         <div class="cap" style="margin-top:2px">Any song from your Apple Music, under both teams. Pick the song and the second it drops in; the announcer comes in over it.</div>
         <div class="amcard"><div class="amart">♫</div><div><b>Sirius</b><span>The Alan Parsons Project</span></div></div>
-        <div class="cap">The demo plays the arena beds. Apple Music songs play in the app, with an Apple Music subscription.</div>
+        <div class="cap">The demo plays And Now Music. Apple Music songs play in the app, with an Apple Music subscription.</div>
       </div>
       <div class="lbl">3 · Who's introduced</div>
       <div class="also"><span>Your Starting 5 ✓</span><span>Positions ✓</span><span>The visitors</span><span>Both benches</span><span>Coaches</span><span>Referees</span></div>
-      <div class="cap">Switch any of them on in the app and the script rearranges itself.</div>
+      <div class="cap">Tap any of them on in the app and the script rearranges itself.</div>
+      <div class="lbl">4 · The script</div>
+      <div class="scard">
+        <div class="seb"><span class="d"></span>SCRIPT WRITTEN · READY FOR TIP-OFF</div>
+        <div class="sbtns">
+          <button class="hear" onclick="closeSheet(); if (S.state === 'ready') orb(); else build();">&#9654; Hear it</button>
+          <button onclick="toggleScript()">&#9998; Make it yours</button>
+        </div>
+      </div>
+      <div class="script hidden" id="script"></div>
+      <div class="cap">In the app, tap any line to change it or drop it, or tap a player to add a few words before or after their name. Names stay locked, so every player is said right. Or upload your own PA recording.</div>
     </div>
   </div>
   <div class="note">The real script and the real announcer: what the app records for your team. Sound on.</div>
