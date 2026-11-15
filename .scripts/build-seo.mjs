@@ -324,7 +324,7 @@ Not to be confused with other App Store apps with similar names. This is the app
 ## What it does
 
 - Baseball and softball: walk-up songs for each batter (Apple Music, with a chosen start point, or an original song with the player's first name in the lyrics), a spoken announcer call for each batter in one of six voices, a pre-game Roll Call that announces the whole lineup, a Team Hype Song, and the Hype Deck of game sounds.
-- Basketball ("And Now"): an arena-style Starting 5 introduction with music, in one of five announcer voices. It can include a welcome, the officials, the visiting team, coaches and bench, then the home Starting 5. Plus one-tap PA calls: timeout, substitution, end of each quarter, halftime and final.
+- Basketball ("And Now"): an arena-style Starting 5 introduction with music, in one of five announcer voices. It can include a welcome, the officials, the visiting team, coaches and bench, then the home Starting 5. The script is written for you and editable: change or drop any line, add words before or after a player's name (names stay locked to how they're pronounced), or upload your own PA recording. Plus one-tap PA calls: timeout, substitution, end of each quarter, halftime and final.
 - And Now is basketball inside the same Now Batting app, not a separate app, and costs nothing extra.
 - Parents can fill in their player's name, number and pronunciation from a link the Chief Hype Officer texts them.
 - Generated announcements play with no signal. Apple Music songs play offline after a one-tap download (Field Ready for baseball and softball, Court Ready for basketball).
