@@ -121,6 +121,11 @@
   .chip .pv.live { background: var(--court); }
   .chip .pv svg { width: 10px; height: 10px; }
   .cap { font-size: 11.5px; line-height: 1.35; color: rgba(31,31,31,.5); margin: 6px 2px 0; }
+  .field { height: 36px; border-radius: 10px; border: 1px solid rgba(31,31,31,.14); background: #fff; display: flex; align-items: center; padding: 0 12px; font-size: 13px; color: rgba(31,31,31,.4); }
+  .wchips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .wchip { height: 32px; border-radius: 16px; padding: 0 12px 0 10px; display: inline-flex; align-items: center; gap: 5px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; background: #F6F4EF; color: var(--char); border: 1px solid rgba(31,31,31,.22); }
+  .wchip.on { background: var(--court); border-color: var(--court); color: #141414; }
+  .wchip i { font-style: normal; font-weight: 800; width: 12px; text-align: center; }
   .also { display: flex; flex-wrap: wrap; gap: 5px; }
   .scard { background: var(--char); border: 1px solid rgba(255,106,19,.45); border-radius: 14px; padding: 12px; }
   .seb { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--court); }
@@ -192,8 +197,8 @@
       <div class="grab"></div>
       <div class="shd"><b>Customize</b><button onclick="closeSheet()">Done</button></div>
       <div class="cap" style="margin-top:0">Pick the voice, the music and who gets called. We wrote the script: use it as is, or make it your own.</div>
-      <!-- Same layout as the app's Customize (2026-11-13): numbered sections, voices by
-           Male / Female, And Now Music or an Apple Music song, who's introduced, and the script
+      <!-- Same layout as the app's Customize (2026-11-16): numbered sections, voices by
+           Male / Female, And Now Music or an Apple Music song, the scene, who's introduced (tap chips), and the script
            (closed by default, "Make it yours" to open it — 1.2.16, 2026-11-15). -->
       <div class="lbl">1 · Announcer</div>
       <div class="vcols"><div><div class="vsub">Male</div><div class="vcol" id="voicesM"></div></div><div><div class="vsub">Female</div><div class="vcol" id="voicesF"></div></div></div>
@@ -209,10 +214,13 @@
         <div class="amcard"><div class="amart">♫</div><div><b>Sirius</b><span>The Alan Parsons Project</span></div></div>
         <div class="cap">The demo plays And Now Music. Apple Music songs play in the app, with an Apple Music subscription.</div>
       </div>
-      <div class="lbl">3 · Who's introduced</div>
-      <div class="also"><span>Your Starting 5 ✓</span><span>Positions ✓</span><span>The visitors</span><span>Both benches</span><span>Coaches</span><span>Referees</span></div>
-      <div class="cap">Tap any of them on in the app and the script rearranges itself.</div>
-      <div class="lbl">4 · The script</div>
+      <div class="lbl">3 · The scene</div>
+      <div class="field">Venue (optional)</div>
+      <div class="mseg" style="margin-top:6px"><button class="on" onclick="sceneTab(this)">Today</button><button onclick="sceneTab(this)">Tonight</button></div>
+      <div class="lbl">4 · Who's introduced</div>
+      <div class="wchips" id="wchips"></div>
+      <div class="cap">Tap to add or drop a part of the intro.</div>
+      <div class="lbl">5 · The script</div>
       <div class="scard">
         <div class="seb"><span class="d"></span>SCRIPT WRITTEN · READY FOR TIP-OFF</div>
         <div class="sbtns">
@@ -461,6 +469,13 @@ window.addEventListener('load', height); window.addEventListener('resize', heigh
 const INTRO = location.hash === '#intro';
 if (INTRO) { document.body.classList.add('m-intro'); $('inlineBeds').appendChild($('beds')); document.querySelector('.note').textContent = 'The real script and the real announcer. Sound on.'; }
 renderFive(null); renderSheet(); ui(); setTimeout(height, 50);
+
+// "Who's introduced" chips, the same five as the app (CourtStartingFive.tsx). Visual only here:
+// the demo always plays its one recorded intro.
+const WHO = [['Positions', true], ['The And-One Dunkers', false], ['Bench', false], ['Coaches', false], ['Referees', false]];
+function renderWho() { const el = document.getElementById('wchips'); if (!el) return; el.innerHTML = WHO.map((w, i) => `<button class="wchip ${w[1] ? 'on' : ''}" onclick="WHO[${i}][1]=!WHO[${i}][1];renderWho()"><i>${w[1] ? '✓' : '+'}</i>${w[0]}</button>`).join(''); }
+function sceneTab(b) { b.parentNode.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); }
+renderWho();
 </script>
 </body>
 </html>
