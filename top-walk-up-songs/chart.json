@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "chartDate": "2026-11-09",
+  "chartDate": "2026-11-16",
   "window": {
-    "start": "2026-10-12",
-    "end": "2026-11-08"
+    "start": "2026-10-19",
+    "end": "2026-11-15"
   },
   "url": "https://www.nowbattingapp.com/top-walk-up-songs",
   "entries": [
@@ -20,10 +20,10 @@
     },
     {
       "rank": 2,
-      "trackId": "1127014316",
-      "title": "Ghostbusters",
-      "artist": "Ray Parker Jr.",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1127014316.jpg",
+      "trackId": "1440723145",
+      "title": "Monster Mash",
+      "artist": "Bobby \"Boris\" Pickett & The Crypt-Kickers",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1440723145.jpg",
       "movement": {
         "type": "up",
         "by": 1
@@ -32,10 +32,10 @@
     },
     {
       "rank": 3,
-      "trackId": "1440723145",
-      "title": "Monster Mash",
-      "artist": "Bobby \"Boris\" Pickett & The Crypt-Kickers",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1440723145.jpg",
+      "trackId": "1127014316",
+      "title": "Ghostbusters",
+      "artist": "Ray Parker Jr.",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1127014316.jpg",
       "movement": {
         "type": "down",
         "by": 1
@@ -104,10 +104,9 @@
       "artist": "Metallica",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1572051818.jpg",
       "movement": {
-        "type": "up",
-        "by": 3
+        "type": "same"
       },
-      "lastWeek": 12
+      "lastWeek": 9
     },
     {
       "rank": 10,
@@ -122,14 +121,15 @@
     },
     {
       "rank": 11,
-      "trackId": "1765520596",
-      "title": "Big Dawgs",
-      "artist": "Hanumankind & Kalmi",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1765520596.jpg",
+      "trackId": "933984097",
+      "title": "Fireball (feat. John Ryan)",
+      "artist": "Pitbull",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/933984097.jpg",
       "movement": {
-        "type": "same"
+        "type": "up",
+        "by": 2
       },
-      "lastWeek": 11
+      "lastWeek": 13
     },
     {
       "rank": 12,
@@ -138,101 +138,100 @@
       "artist": "Soulja Boy Tell 'Em",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1443190324.jpg",
       "movement": {
-        "type": "down",
-        "by": 3
+        "type": "same"
       },
-      "lastWeek": 9
+      "lastWeek": 12
     },
     {
       "rank": 13,
-      "trackId": "933984097",
-      "title": "Fireball (feat. John Ryan)",
-      "artist": "Pitbull",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/933984097.jpg",
-      "movement": {
-        "type": "up",
-        "by": 4
-      },
-      "lastWeek": 17
-    },
-    {
-      "rank": 14,
-      "trackId": "1440903439",
-      "title": "Lose Yourself",
-      "artist": "Eminem",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1440903439.jpg",
+      "trackId": "1631464175",
+      "title": "Pretty Girls Walk",
+      "artist": "Big Boss Vette",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1631464175.jpg",
       "movement": {
         "type": "reentry"
       },
       "lastWeek": null
     },
     {
-      "rank": 15,
-      "trackId": "1844932150",
-      "title": "Choosin' Texas",
-      "artist": "Ella Langley",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/1844932150.jpg",
+      "rank": 14,
+      "trackId": "159294551",
+      "title": "Smooth Criminal",
+      "artist": "Michael Jackson",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/159294551.jpg",
       "movement": {
-        "type": "up",
+        "type": "new"
+      },
+      "lastWeek": null
+    },
+    {
+      "rank": 15,
+      "trackId": "1440903439",
+      "title": "Lose Yourself",
+      "artist": "Eminem",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1440903439.jpg",
+      "movement": {
+        "type": "down",
         "by": 1
       },
-      "lastWeek": 16
+      "lastWeek": 14
     },
     {
       "rank": 16,
+      "trackId": "1765520596",
+      "title": "Big Dawgs",
+      "artist": "Hanumankind & Kalmi",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/1765520596.jpg",
+      "movement": {
+        "type": "down",
+        "by": 5
+      },
+      "lastWeek": 11
+    },
+    {
+      "rank": 17,
       "trackId": "1612321591",
       "title": "Bones",
       "artist": "Imagine Dragons",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1612321591.jpg",
       "movement": {
         "type": "down",
-        "by": 2
+        "by": 1
       },
-      "lastWeek": 14
+      "lastWeek": 16
     },
     {
-      "rank": 17,
+      "rank": 18,
       "trackId": "1480503102",
       "title": "I Put a Spell on You (In the Style of Hocus Pocus)",
       "artist": "PattyCake",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1480503102.jpg",
       "movement": {
         "type": "down",
-        "by": 2
+        "by": 1
       },
-      "lastWeek": 15
+      "lastWeek": 17
     },
     {
-      "rank": 18,
+      "rank": 19,
       "trackId": "1533513537",
       "title": "Seven Nation Army",
       "artist": "The White Stripes",
       "artwork": "https://www.nowbattingapp.com/nb20/art/1533513537.jpg",
       "movement": {
-        "type": "up",
-        "by": 2
+        "type": "down",
+        "by": 1
       },
-      "lastWeek": 20
-    },
-    {
-      "rank": 19,
-      "trackId": "353859978",
-      "title": "All I Do Is Win (feat. T-Pain, Ludacris, Snoop Dogg & Rick Ross)",
-      "artist": "DJ Khaled",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/353859978.jpg",
-      "movement": {
-        "type": "reentry"
-      },
-      "lastWeek": null
+      "lastWeek": 18
     },
     {
       "rank": 20,
-      "trackId": "911604128",
-      "title": "Crazy Train",
-      "artist": "Ozzy Osbourne",
-      "artwork": "https://www.nowbattingapp.com/nb20/art/911604128.jpg",
+      "trackId": "6769649578",
+      "title": "Shabang",
+      "artist": "Drake",
+      "artwork": "https://www.nowbattingapp.com/nb20/art/6769649578.jpg",
       "movement": {
-        "type": "reentry"
+        "type": "new"
       },
       "lastWeek": null
     }
