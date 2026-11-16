@@ -285,7 +285,7 @@
     .an-body a { color: var(--txt); font-weight: 600; text-decoration: underline; text-decoration-color: var(--court); text-underline-offset: 3px; }
     .an-answer { border-left: 3px solid var(--court); padding: 2px 0 2px 16px; }
     .opt { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--court-ink); border: 1px solid rgba(168,67,10,.35); border-radius: 999px; padding: 2px 7px; margin-left: 6px; white-space: nowrap; vertical-align: 2px; }
+      color: var(--court-ink); border: 1px solid rgba(168,67,10,.35); border-radius: 999px; padding: 2px 7px; margin: 0 2px 0 2px; white-space: nowrap; vertical-align: 2px; }
 
     /* Voice grid — the same card + player button as the baseball page, orange accent. */
     .vgrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin: 0 0 8px; }
@@ -316,6 +316,24 @@
     .an-close { margin-top: 40px; padding: 22px 22px; background: var(--charcoal); border-radius: 14px; border-top: 4px solid var(--court); }
     .an-close p { margin: 0 0 16px; color: #F6F4EF; font-size: 18.5px; line-height: 1.5; font-weight: 600; }
 
+    .an-hero p.an-sub { font-size: 21px; line-height: 1.4; font-weight: 700; color: #F6F4EF; margin: 0 0 20px; max-width: 46ch; text-wrap: balance; }
+    .an-hero p.an-have { color: #F6F4EF; font-weight: 600; }
+    .an-body p.an-beat { font-weight: 800; font-size: 19px; color: var(--txt); margin-top: -8px; }
+    .an-callout { margin: 26px 0 22px; padding: 20px 22px 4px; background: #fff; border: 1px solid rgba(31,31,31,.14); border-left: 4px solid var(--court); border-radius: 12px; }
+    .an-body .an-callout p { font-size: 16.5px; margin-bottom: 14px; }
+    .an-body .an-callout p.an-callout-h { font-size: 19px; font-weight: 800; letter-spacing: -.01em; color: var(--txt); margin-bottom: 10px; }
+    .an-payoff { margin: 40px 0 8px; text-align: center; padding: 26px 18px; border-top: 1px solid var(--bord); border-bottom: 1px solid var(--bord); }
+    .an-body .an-payoff p { font-size: 18px; font-weight: 600; margin: 0; color: #2A2D30; }
+    .an-body .an-payoff p.an-payoff-h { font-size: clamp(24px, 4vw, 32px); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; color: var(--txt); margin: 0 0 10px; }
+    .an-value { margin: 52px 0 0; padding: 30px 26px 30px; background: var(--charcoal); border-radius: 16px; border-top: 5px solid var(--court); }
+    .an-body .an-value h2 { margin: 0 0 14px; color: #F6F4EF; font-size: clamp(26px, 4.4vw, 36px); }
+    .an-body .an-value p { color: #C8C6C0; font-size: 17px; margin: 0 0 14px; }
+    .an-body .an-nos { list-style: none; padding: 0; margin: 0 0 18px; }
+    .an-body .an-nos li { color: #F6F4EF; font-size: 17px; font-weight: 700; margin: 0 0 6px; padding-left: 26px; position: relative; }
+    .an-body .an-nos li::before { content: ''; position: absolute; left: 2px; top: .62em; width: 12px; height: 3px; border-radius: 2px; background: var(--court); }
+    .an-body .an-value p.an-value-big { color: #F6F4EF; font-size: 19px; font-weight: 800; line-height: 1.4; }
+    .an-value .an-cta { margin-top: 6px; }
+
     .faq-list { margin-top: 8px; }
     .faq-item { border-top: 1px solid var(--bord); padding: 20px 0 4px; }
     .faq-item:last-child { border-bottom: 1px solid var(--bord); padding-bottom: 8px; }
@@ -339,6 +357,8 @@
     @media (max-width: 560px) {
       .an-hero { padding: 44px 18px 42px; } .an-body { padding: 40px 18px 64px; }
       .vgrid { grid-template-columns: 1fr; }
+      .an-hero p.an-sub { font-size: 18px; }
+      .an-value { padding: 26px 20px; }
     }
   </style>
 </head>
@@ -379,23 +399,26 @@
     <div class="in">
       <svg class="an-mark idle-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254 60" role="img" aria-label="and now"><text x="0" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">and</text><circle cx="69.00" cy="30" r="3.5" fill="#F6F4EF"/><rect class="bar b1" x="81.50" y="24" width="6.3" height="12" rx="3.15" fill="#FF6A13"/><rect class="bar b2" x="91.30" y="18" width="6.3" height="24" rx="3.15" fill="#FF6A13"/><rect class="bar b3" x="101.10" y="10.5" width="7.0" height="39" rx="3.5" fill="#FF6A13"/><rect class="bar b4" x="111.60" y="0" width="8.75" height="60" rx="4.38" fill="#FF6A13"/><rect class="bar b5" x="123.85" y="9" width="7.7" height="42" rx="3.85" fill="#FF6A13"/><rect class="bar b6" x="135.05" y="16.5" width="6.65" height="27" rx="3.32" fill="#FF6A13"/><rect class="bar b7" x="145.20" y="22.5" width="6.65" height="15" rx="3.32" fill="#FF6A13"/><circle cx="164.35" cy="30" r="3.5" fill="#F6F4EF"/><text x="176.85" y="44" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="36" fill="#F6F4EF" letter-spacing="-1">now</text></svg>
       <p class="eyebrow">Introducing And Now, by Now Batting</p>
-    <h1>Chief Hype Officer. Now on the Hardwood.</h1>
-    <p class="lede">And now&hellip; baseball season is over. But the Chief Hype Officer doesn&rsquo;t have an offseason.</p>
-    <p class="lede">Arena-style intros, PA calls and game-day music for youth basketball, all from your iPhone. Included with Now Batting at no extra charge.</p>
-    <a class="an-cta" href="https://apps.apple.com/app/now-batting/id6760744461">Get Now Batting on the App Store</a>
-      <span class="an-cta-note">One app. Basketball, baseball and softball. iPhone only.</span>
+      <h1>Turn Any Gym Into an Arena.</h1>
+      <p class="an-sub">Built for the Chief Hype Officer who refuses to let basketball season get boring.</p>
+      <p class="lede">Baseball season ended. Your completely unnecessary commitment to game-day production did not.</p>
+      <p class="lede">Bring arena energy to youth basketball without turning it into another job. Build your Starting 5 intro, choose your announcer and music, customize as much&mdash;or as little&mdash;as you want, then run the whole thing from your iPhone.</p>
+      <p class="lede an-have">Already have Now Batting? You already have And Now. No extra charge.</p>
+      <a class="an-cta" href="https://apps.apple.com/app/now-batting/id6760744461">Get Now Batting on the App Store</a>
+      <span class="an-cta-note">One app. Basketball, baseball and softball. From $9.99/year.</span>
     </div>
   </section>
 
   <div class="an-body">
-    <h2>Starting 5 Intros. You Take the Credit.</h2>
-  <p>Pick the announcer and the music, build it once and hit Play. Try it below. Sound on.</p>
-  <div class="an-see" id="as-intro"><button type="button" onclick="seeIt('intro')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-intro" data-src="/andnow-demo#intro" title="Play a Starting 5 intro" scrolling="no" allow="autoplay"></iframe></div></div>
+    <h2>Build It Once. Bring the House Down All Season.</h2>
+    <p>Choose your announcer. Pick the music. Add your Starting 5.</p>
+    <p class="an-beat">Then hit Play.</p>
+    <p>And Now handles the timing, script and introductions so you can enjoy your wildly disproportionate production value without actually becoming an event producer.</p>
+    <div class="an-see" id="as-intro"><button type="button" onclick="seeIt('intro')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-intro" data-src="/andnow-demo#intro" title="Play a Starting 5 intro" scrolling="no" allow="autoplay"></iframe></div></div>
 
-
-
-    <h2>Five announcers. Zero microphone anxiety.</h2>
-    <p>Most of us should stick to holding the speaker. Hear all five, pick one and let them do the talking.</p>
+    <h2>Five Announcers. Zero Microphone Anxiety.</h2>
+    <p>Pick the voice that fits your team. And Now does the rest.</p>
+    <p>Every announcer comes with arena-style music, professionally produced intros and enough presence to make a school gym feel significantly more important than it is.</p>
     <div class="vgrid">
     <div class="vcard">
       <h3>The Voice Upstairs</h3>
@@ -428,45 +451,73 @@
       <button class="r3-fplay" data-audio="/andnow-voice-smooth.mp3" onclick="fplay(this)"><span class="ic"></span><span class="eq"><i></i><i></i><i></i><i></i></span>Hear The Velvet Hammer</button>
     </div>
   </div>
-  <p>Two female voices and three male, each paired with its own arena music.</p>
+  <p>Five voices. Five arena music beds. No microphone required.</p>
 
-  <h2>Keep It Simple. Or Go All Out.</h2>
-  <p>Just your starting five? Perfect. Both teams, benches, coaches and refs? Someone&rsquo;s taking this CHO job seriously.</p>
-  <ol>
+    <h2>Your Intro. Your Rules.</h2>
+    <p>Starting 5 and done? Perfect. Want the full production? We support your choices.</p>
+    <p>Welcome the gym. Introduce the officials. Give the visitors their moment. Add coaches and reserves. Then bring out the Starting 5.</p>
+    <p>Or skip all of it except the five names. And Now automatically builds the intro around whatever you choose.</p>
+    <ol>
       <li><strong>The welcome.</strong> <em>&ldquo;And now&hellip; ladies and gentlemen&hellip;&rdquo;</em> With your gym&rsquo;s name if you want it.</li>
-      <li><strong>The officials.</strong><span class="opt">Optional</span> Before anyone yells &ldquo;THAT&rsquo;S A FOUL!&rdquo;</li>
-      <li><strong>The visiting team.</strong><span class="opt">Optional</span> The full arena treatment, same as yours.</li>
-      <li><strong>Coaches and bench.</strong><span class="opt">Optional</span> For both teams, building to the starting five.</li>
+      <li><strong>The officials.</strong> <span class="opt">Optional</span> Before anyone yells &ldquo;THAT&rsquo;S A FOUL!&rdquo;</li>
+      <li><strong>The visiting team.</strong> <span class="opt">Optional</span> The full arena treatment, same as yours.</li>
+      <li><strong>Coaches and bench.</strong> <span class="opt">Optional</span> For both teams, building to the Starting 5.</li>
       <li><strong>Your Starting 5.</strong> Numbers, names and positions.</li>
       <li><strong>The finale.</strong> <em>&ldquo;Let&rsquo;s play some basketball!&rdquo;</em></li>
     </ol>
-  <p>One Play button runs it all, and the script adjusts to whatever you leave out. Use it as is, or make it yours: change any line, drop a part, add a few words around a player&rsquo;s name, or upload your own PA recording.</p>
-  <div class="an-see" id="as-whois"><button type="button" onclick="seeIt('whois')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-whois" data-src="/andnow-panels#whois" title="Choose who gets introduced" scrolling="no" allow="autoplay"></iframe></div></div>
+    <div class="an-callout">
+      <p class="an-callout-h">And yes, you can change basically everything.</p>
+      <p>Edit any line. Add a nickname. Change how a player is introduced. Drop sections you don&rsquo;t want. Add your own words. Even upload your own PA recording.</p>
+      <p>Your team doesn&rsquo;t have to sound like everyone else&rsquo;s.</p>
+    </div>
+    <div class="an-see" id="as-whois"><button type="button" onclick="seeIt('whois')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-whois" data-src="/andnow-panels#whois" title="Choose who gets introduced" scrolling="no" allow="autoplay"></iframe></div></div>
 
+    <div class="an-payoff">
+      <p class="an-payoff-h">One Button. The Whole Intro.</p>
+      <p>You can customize the hell out of it.<br>Game day is still one tap.</p>
+    </div>
 
-  <h2>The Hype Deck Hits the Hardwood.</h2>
-  <p>One-tap PA calls in your announcer&rsquo;s voice (timeout, substitution, end of each quarter, halftime, final) plus arena songs cued to the best part.</p>
-  <div class="an-see" id="as-hypedeck"><button type="button" onclick="seeIt('hypedeck')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-hypedeck" data-src="/andnow-panels#hypedeck" title="Tap the PA calls" scrolling="no" allow="autoplay"></iframe></div></div>
+    <h2>The Hype Deck Hits the Hardwood.</h2>
+    <p>The intro is only the beginning.</p>
+    <p>Timeout. Substitution. End of the quarter. Halftime. Final.</p>
+    <p>Your announcer handles the PA calls. Your Hype Deck keeps the music ready. One tap when you need it. No searching Apple Music while the ref is staring at you.</p>
+    <div class="an-see" id="as-hypedeck"><button type="button" onclick="seeIt('hypedeck')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-hypedeck" data-src="/andnow-panels#hypedeck" title="Tap the PA calls" scrolling="no" allow="autoplay"></iframe></div></div>
 
+    <h2>Stop Chasing the Roster.</h2>
+    <p>Text parents one link.</p>
+    <p>They enter their player&rsquo;s name, number and pronunciation, hear their name in your announcer&rsquo;s voice and send it back. You import the team in one tap.</p>
+    <p>Coach changes the lineup five minutes before tip? Tap Rebuild and your intro catches up.</p>
+    <p>No spreadsheets. No group-text scavenger hunt. No typing 12 names while sitting in the parking lot.</p>
+    <div class="an-see" id="as-parent"><button type="button" onclick="seeIt('parent')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-parent" data-src="/andnow-panels#parent" title="What parents see on the link" scrolling="no" allow="autoplay"></iframe></div></div>
 
-  <h2>The Coach Changed the Lineup. Again.</h2>
-  <p>Changes take seconds. Tap Rebuild and the intro catches up.</p>
-  <p>Or skip the typing: text parents one link. They add their player&rsquo;s name, number and how to say it, hear it in your announcer&rsquo;s voice, and you import the team in one tap.</p>
-  <div class="an-see" id="as-parent"><button type="button" onclick="seeIt('parent')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-parent" data-src="/andnow-panels#parent" title="What parents see on the link" scrolling="no" allow="autoplay"></iframe></div></div>
+    <h2>Warmups Handled. Timeouts Handled. Halftime Handled.</h2>
+    <p>Use Now Batting&rsquo;s basketball playlists, anything from Apple Music, your own playlists, or songs parents send through your team link.</p>
+    <p>Everything the Chief Hype Officer needs is in one place.</p>
+    <div class="an-see" id="as-music"><button type="button" onclick="seeIt('music')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-music" data-src="/andnow-panels#music" title="The basketball Music Hub" scrolling="no" allow="autoplay"></iframe></div></div>
 
+    <h2>No Service? Welcome to Youth Basketball.</h2>
+    <p>Your Starting 5 intros and PA calls stay on your phone.</p>
+    <p>Tap <strong>Court Ready</strong> before you leave Wi-Fi and bring your arena music too.</p>
+    <p>No signal. No panic. Keep the game moving.</p>
 
-  <h2>Your Gym. Your Soundtrack.</h2>
-  <p>Arena playlists for warmups, timeouts and halftime through Apple Music, your own playlists, and a Team Requests list built from the parent link.</p>
-  <div class="an-see" id="as-music"><button type="button" onclick="seeIt('music')" aria-expanded="false">See it<span class="chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="an-panel"><iframe id="ap-music" data-src="/andnow-panels#music" title="The basketball Music Hub" scrolling="no" allow="autoplay"></iframe></div></div>
+    <h2>Can&rsquo;t Make It? The Hype Can.</h2>
+    <p>Share the team with another parent and hand them the speaker.</p>
+    <p>They can run your setup free for 30 days with no account required on the latest version of Now Batting.</p>
+    <p>You miss the game. The production standards do not have to suffer.</p>
 
-  <h2>No service? Welcome to youth basketball.</h2>
-    <p>Your intros and PA calls are saved on your phone, so the gym&rsquo;s one bar of service doesn&rsquo;t matter. Tap <strong>Court Ready</strong> on Wi-Fi to bring the arena jams too.</p>
-
-    <h2>Can&rsquo;t make the game? Hand off the hype.</h2>
-    <p>Share the team with whoever&rsquo;s running the speaker. They can run it free for 30 days, no account needed, on the latest Now Batting.</p>
-
-    <h2>Same app. Same subscription. No extra charge.</h2>
-  <p>Basketball joins baseball and softball in Now Batting, from $9.99/year. Free 7-day trial for new subscribers.</p>
+    <div class="an-value">
+      <h2>You Already Paid for It.</h2>
+      <p>If you&rsquo;re a Now Batting subscriber, And Now is included.</p>
+      <ul class="an-nos">
+        <li>No basketball add-on.</li>
+        <li>No second subscription.</li>
+        <li>No charge per announcer.</li>
+        <li>No charge per player.</li>
+      </ul>
+      <p class="an-value-big">Baseball. Softball. Basketball. One subscription, from $9.99/year.</p>
+      <p>New here? New subscribers get everything free for 7 days.</p>
+      <a class="an-cta" href="https://apps.apple.com/app/now-batting/id6760744461">Get Now Batting on the App Store</a>
+    </div>
 
     <div class="an-cross">
       <p><strong>And in spring?</strong> Your walk-up songs are waiting in <a href="/">Now Batting</a>.</p>
@@ -517,10 +568,9 @@
     </div>
 
     <div class="an-close">
-      <p><strong>Every team needs a Chief Hype Officer. Basketball included.</strong></p>
-    <p><em>And now&hellip; let&rsquo;s play some basketball.</em></p>
+      <p><strong>The hype has an offseason problem. Your subscription doesn&rsquo;t.</strong></p>
       <a class="an-cta" href="https://apps.apple.com/app/now-batting/id6760744461">Get Now Batting on the App Store</a>
-      <span class="an-cta-note">Bringing the hype without the headache. Now indoors.</span>
+      <span class="an-cta-note">One app. Basketball, baseball and softball. iPhone only.</span>
     </div>
   </div>
 </main>
